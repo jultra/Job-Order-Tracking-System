@@ -5,8 +5,8 @@ Feature: An ongoing job status
 
   Scenario: Viewing the status of an on going job
     Given I am on the ongoing jobs page
-    When I click on one of the ongoing job's field
-    Then I should be able to see the steps that have already been taken regarding the completion of the jobs
-      And I should be able to see the list of people responsible for the completion of the job
-      And I should be able to see the current stage being taken to complete the job
-      And I should be able to see the date upon which each stage was taken/finished
+    When I press on one of the ongoing job's field
+    Then I should see the steps that have already been taken regarding the completion of the jobs
+      And I should see the list of people responsible for the completion of the job
+      And I should see the current stage being taken to complete the job
+      And I should see the date upon which each stage was taken/finished
