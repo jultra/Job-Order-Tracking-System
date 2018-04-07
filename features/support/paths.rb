@@ -18,6 +18,12 @@ module NavigationHelpers
 
     # Add more mappings here.
     # Here is an example that pulls values out of the Regexp:
+
+    when /^the log_in page$/
+      '/'
+
+    when /^account dashboard$/
+      '#dashboard'
     #
     #   when /^(.*)'s profile page$/i
     #     user_profile_path(User.find_by_login($1))
