@@ -1,0 +1,52 @@
+%body.login
+  %div
+    %a#signup.hiddenanchor
+    %a#signin.hiddenanchor
+    .login_wrapper
+      .animate.form.login_form
+        %section.login_content
+          %form
+            %h1 Login Form
+            %div
+              %input.form-control{:placeholder => "Username", :required => "", :type => "text"}/
+            %div
+              %input.form-control{:placeholder => "Password", :required => "", :type => "password"}/
+            %div
+              %a.btn.btn-default.submit{:href => "/index"} Log in
+              %a.reset_pass{:href => "#"} Forgot your password?
+            .clearfix
+            .separator
+              %p.change_link
+                New to site?
+                %a.to_register{:href => "#signup"} Create Account
+              .clearfix
+              %br/
+              %div
+                %h1
+                  %i.fa.fa-list-alt
+                  Job Order Tracking System
+                %p ©2016 All Rights Reserved.<br>Privacy and Terms
+      #register.animate.form.registration_form
+        %section.login_content
+          %form
+            %h1 Create Account
+            %div
+              %input.form-control{:placeholder => "Username", :required => "", :type => "text"}/
+            %div
+              %input.form-control{:placeholder => "Email", :required => "", :type => "email"}/
+            %div
+              %input.form-control{:placeholder => "Password", :required => "", :type => "password"}/
+            %div
+              %a.btn.btn-default.submit{:href => "/index"} Submit
+            .clearfix
+            .separator
+              %p.change_link
+                Already a member ?
+                %a.to_register{:href => "#signin"} Log in
+              .clearfix
+              %br/
+              %div
+                %h1
+                  %i.fa.fa-list-alt
+                  Job Order Tracking System
+                %p ©2016 All Rights Reserved.<br>Privacy and Terms

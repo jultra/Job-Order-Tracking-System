@@ -11,6 +11,7 @@ gem 'rails', '~> 5.1.6'
 gem 'rspec'
 gem 'rspec-autotest'
 gem 'autotest'
+gem 'gentelella-rails'
 # Use sqlite3 as the database for Active Record
 gem 'sqlite3'
 # Use Puma as the app server
