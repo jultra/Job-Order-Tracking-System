@@ -1,2 +1,2 @@
-module StaticsHelper
+module StaticHelper
 end

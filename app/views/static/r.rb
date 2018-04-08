@@ -1,6 +1,6 @@
 
 
-lines = File.read('kitchen_sink.erb').split("\n")
+lines = File.read('kitchen_sink.haml').split("\n")
 lines.each_with_index do |line, index|
   if (matches = line.scan(/col\-\w+\-\d+/)).any?
     matches.each do |col|

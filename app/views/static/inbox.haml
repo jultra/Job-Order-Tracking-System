@@ -1,0 +1,283 @@
+.page-title
+  .title_left
+    %h3
+      Inbox Design
+      %small Some examples to get you started
+  .title_right
+    .col-md-5.col-sm-5.col-xs-12.form-group.pull-right.top_search
+      .input-group
+        %input.form-control{:placeholder => "Search for...", :type => "text"}
+          %span.input-group-btn
+            %button.btn.btn-default{:type => "button"} Go!
+  .clearfix
+  .row
+    .col-md-12
+      .x_panel
+        .x_title
+          %h2
+            Inbox Design
+            %small User Mail
+          %ul.nav.navbar-right.panel_toolbox
+            %li
+              %a.collapse-link
+                %i.fa.fa-chevron-up
+            %li.dropdown
+              %a.dropdown-toggle{"aria-expanded" => "false", "data-toggle" => "dropdown", :href => "#", :role => "button"}
+                %i.fa.fa-wrench
+              %ul.dropdown-menu{:role => "menu"}
+                %li
+                  %a{:href => "#"} Settings 1
+                %li
+                  %a{:href => "#"} Settings 2
+            %li
+              %a.close-link
+                %i.fa.fa-close
+          .clearfix
+        .x_content
+          .row
+            .col-sm-3.mail_list_column
+              %button#compose.btn.btn-sm.btn-success.btn-block{:type => "button"} COMPOSE
+              %a{:href => "#"}
+                .mail_list
+                  .left
+                    %i.fa.fa-circle
+                    %i.fa.fa-edit
+                  .right
+                    %h3
+                      Dennis Mugo
+                      %small 3.00 PM
+                    %p Ut enim ad minim veniam, quis nostrud exercitation enim ad minim veniam, quis nostrud exercitation...
+              %a{:href => "#"}
+                .mail_list
+                  .left
+                    %i.fa.fa-star
+                  .right
+                    %h3
+                      Jane Nobert
+                      %small 4.09 PM
+                    %p
+                      %span.badge To
+                      Ut enim ad minim veniam, quis nostrud exercitation enim ad minim veniam, quis nostrud exercitation...
+              %a{:href => "#"}
+                .mail_list
+                  .left
+                    %i.fa.fa-circle-o
+                    %i.fa.fa-paperclip
+                  .right
+                    %h3
+                      Musimbi Anne
+                      %small 4.09 PM
+                    %p
+                      %span.badge CC
+                      Ut enim ad minim veniam, quis nostrud exercitation enim ad minim veniam, quis nostrud exercitation...
+              %a{:href => "#"}
+                .mail_list
+                  .left
+                    %i.fa.fa-paperclip
+                  .right
+                    %h3
+                      Jon Dibbs
+                      %small 4.09 PM
+                    %p Ut enim ad minim veniam, quis nostrud exercitation enim ad minim veniam, quis nostrud exercitation...
+              %a{:href => "#"}
+                .mail_list
+                  .left
+                    \.
+                  .right
+                    %h3
+                      Debbis  Raymond
+                      %small 4.09 PM
+                    %p Ut enim ad minim veniam, quis nostrud exercitation enim ad minim veniam, quis nostrud exercitation...
+              %a{:href => "#"}
+                .mail_list
+                  .left
+                    \.
+                  .right
+                    %h3
+                      Debbis  Raymond
+                      %small 4.09 PM
+                    %p Ut enim ad minim veniam, quis nostrud exercitation enim ad minim veniam, quis nostrud exercitation...
+              %a{:href => "#"}
+                .mail_list
+                  .left
+                    %i.fa.fa-circle
+                    %i.fa.fa-edit
+                  .right
+                    %h3
+                      Dennis Mugo
+                      %small 3.00 PM
+                    %p Ut enim ad minim veniam, quis nostrud exercitation enim ad minim veniam, quis nostrud exercitation...
+              %a{:href => "#"}
+                .mail_list
+                  .left
+                    %i.fa.fa-star
+                  .right
+                    %h3
+                      Jane Nobert
+                      %small 4.09 PM
+                    %p Ut enim ad minim veniam, quis nostrud exercitation enim ad minim veniam, quis nostrud exercitation...
+            / /MAIL LIST
+            / CONTENT MAIL
+            .col-sm-9.mail_view
+              .inbox-body
+                .mail_heading.row
+                  .col-md-8
+                    .btn-group
+                      %button.btn.btn-sm.btn-primary{:type => "button"}
+                        %i.fa.fa-reply
+                        Reply
+                      %button.btn.btn-sm.btn-default{"data-original-title" => "Forward", "data-placement" => "top", "data-toggle" => "tooltip", :type => "button"}
+                        %i.fa.fa-share
+                      %button.btn.btn-sm.btn-default{"data-original-title" => "Print", "data-placement" => "top", "data-toggle" => "tooltip", :type => "button"}
+                        %i.fa.fa-print
+                      %button.btn.btn-sm.btn-default{"data-original-title" => "Trash", "data-placement" => "top", "data-toggle" => "tooltip", :type => "button"}
+                        %i.fa.fa-trash-o
+                  .col-md-4.text-right
+                    %p.date 8:02 PM 12 FEB 2014
+                  .col-md-12
+                    %h4 Donec vitae leo at sem lobortis porttitor eu consequat risus. Mauris sed congue orci. Donec ultrices faucibus rutrum.
+                .sender-info
+                  .row
+                    .col-md-12
+                      %strong Jon Doe
+                      %span (jon.doe@gmail.com)
+                      to
+                      %strong me
+                      %a.sender-dropdown
+                        %i.fa.fa-chevron-down
+                .view-mail
+                  %p
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+                    Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+                  %p
+                    Riusmod tempor incididunt ut labor erem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris
+                    nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt
+                    mollit anim id est laborum.
+                  %p
+                    Modesed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate
+                    velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+                .attachment
+                  %p
+                    %span
+                      %i.fa.fa-paperclip
+                      3 attachments &#x2014;
+                    %a{:href => "#"} Download all attachments
+                    |
+                    %a{:href => "#"} View all images
+                  %ul
+                    %li
+                      %a.atch-thumb{:href => "#"}
+                        %img{:alt => "img", :src => "images/inbox.png"}/
+                      .file-name
+                        image-name.jpg
+                      %span 12KB
+                      .links
+                        %a{:href => "#"} View
+                        \-
+                        %a{:href => "#"} Download
+                    %li
+                      %a.atch-thumb{:href => "#"}
+                        %img{:alt => "img", :src => "images/inbox.png"}/
+                      .file-name
+                        img_name.jpg
+                      %span 40KB
+                      .links
+                        %a{:href => "#"} View
+                        \-
+                        %a{:href => "#"} Download
+                    %li
+                      %a.atch-thumb{:href => "#"}
+                        %img{:alt => "img", :src => "images/inbox.png"}/
+                      .file-name
+                        img_name.jpg
+                      %span 30KB
+                      .links
+                        %a{:href => "#"} View
+                        \-
+                        %a{:href => "#"} Download
+                .btn-group
+                  %button.btn.btn-sm.btn-primary{:type => "button"}
+                    %i.fa.fa-reply
+                    Reply
+                  %button.btn.btn-sm.btn-default{"data-original-title" => "Forward", "data-placement" => "top", "data-toggle" => "tooltip", :type => "button"}
+                    %i.fa.fa-share
+                  %button.btn.btn-sm.btn-default{"data-original-title" => "Print", "data-placement" => "top", "data-toggle" => "tooltip", :type => "button"}
+                    %i.fa.fa-print
+                  %button.btn.btn-sm.btn-default{"data-original-title" => "Trash", "data-placement" => "top", "data-toggle" => "tooltip", :type => "button"}
+                    %i.fa.fa-trash-o
+            / /CONTENT MAIL
+  / compose
+  .compose.col-md-6.col-xs-12
+    .compose-header
+      New Message
+      %button.close.compose-close{:type => "button"}
+        %span &#xD7;
+    .compose-body
+      #alerts
+      .btn-toolbar.editor{"data-role" => "editor-toolbar", "data-target" => "#editor"}
+        .btn-group
+          %a.btn.dropdown-toggle{"data-toggle" => "dropdown", :title => "Font"}
+            %i.fa.fa-font
+            %b.caret
+          %ul.dropdown-menu
+        .btn-group
+          %a.btn.dropdown-toggle{"data-toggle" => "dropdown", :title => "Font Size"}
+            %i.fa.fa-text-height
+            %b.caret
+          %ul.dropdown-menu
+            %li
+              %a{"data-edit" => "fontSize 5"}
+                %p{:style => "font-size:17px"} Huge
+            %li
+              %a{"data-edit" => "fontSize 3"}
+                %p{:style => "font-size:14px"} Normal
+            %li
+              %a{"data-edit" => "fontSize 1"}
+                %p{:style => "font-size:11px"} Small
+        .btn-group
+          %a.btn{"data-edit" => "bold", :title => "Bold (Ctrl/Cmd+B)"}
+            %i.fa.fa-bold
+          %a.btn{"data-edit" => "italic", :title => "Italic (Ctrl/Cmd+I)"}
+            %i.fa.fa-italic
+          %a.btn{"data-edit" => "strikethrough", :title => "Strikethrough"}
+            %i.fa.fa-strikethrough
+          %a.btn{"data-edit" => "underline", :title => "Underline (Ctrl/Cmd+U)"}
+            %i.fa.fa-underline
+        .btn-group
+          %a.btn{"data-edit" => "insertunorderedlist", :title => "Bullet list"}
+            %i.fa.fa-list-ul
+          %a.btn{"data-edit" => "insertorderedlist", :title => "Number list"}
+            %i.fa.fa-list-ol
+          %a.btn{"data-edit" => "outdent", :title => "Reduce indent (Shift+Tab)"}
+            %i.fa.fa-dedent
+          %a.btn{"data-edit" => "indent", :title => "Indent (Tab)"}
+            %i.fa.fa-indent
+        .btn-group
+          %a.btn{"data-edit" => "justifyleft", :title => "Align Left (Ctrl/Cmd+L)"}
+            %i.fa.fa-align-left
+          %a.btn{"data-edit" => "justifycenter", :title => "Center (Ctrl/Cmd+E)"}
+            %i.fa.fa-align-center
+          %a.btn{"data-edit" => "justifyright", :title => "Align Right (Ctrl/Cmd+R)"}
+            %i.fa.fa-align-right
+          %a.btn{"data-edit" => "justifyfull", :title => "Justify (Ctrl/Cmd+J)"}
+            %i.fa.fa-align-justify
+        .btn-group
+          %a.btn.dropdown-toggle{"data-toggle" => "dropdown", :title => "Hyperlink"}
+            %i.fa.fa-link
+          .dropdown-menu.input-append
+            %input.span2{"data-edit" => "createLink", :placeholder => "URL", :type => "text"}/
+            %button.btn{:type => "button"} Add
+          %a.btn{"data-edit" => "unlink", :title => "Remove Hyperlink"}
+            %i.fa.fa-cut
+        .btn-group
+          %a#pictureBtn.btn{:title => "Insert picture (or just drag  drop)"}
+            %i.fa.fa-picture-o
+          %input{"data-edit" => "insertImage", "data-role" => "magic-overlay", "data-target" => "#pictureBtn", :type => "file"}/
+        .btn-group
+          %a.btn{"data-edit" => "undo", :title => "Undo (Ctrl/Cmd+Z)"}
+            %i.fa.fa-undo
+          %a.btn{"data-edit" => "redo", :title => "Redo (Ctrl/Cmd+Y)"}
+            %i.fa.fa-repeat
+      #editor.editor-wrapper
+    .compose-footer
+      %button#send.btn.btn-sm.btn-success{:type => "button"} Send

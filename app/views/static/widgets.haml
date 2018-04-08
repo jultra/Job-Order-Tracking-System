@@ -1,0 +1,400 @@
+.page-title
+  .title_left
+    %h3 Widget Designs
+  .title_right
+    .col-md-5.col-sm-5.col-xs-12.form-group.pull-right.top_search
+      .input-group
+        %input.form-control{:placeholder => "Search for...", :type => "text"}/
+        %span.input-group-btn
+          %button.btn.btn-default{:type => "button"} Go!
+.clearfix
+.row
+  .col-md-12
+    %div
+      .x_content
+        .row
+          .animated.flipInY.col-lg-3.col-md-3.col-sm-6.col-xs-12
+            .tile-stats
+              .icon
+                %i.fa.fa-caret-square-o-right
+              .count 179
+              %h3 New Sign ups
+              %p Lorem ipsum psdea itgum rixt.
+          .animated.flipInY.col-lg-3.col-md-3.col-sm-6.col-xs-12
+            .tile-stats
+              .icon
+                %i.fa.fa-comments-o
+              .count 179
+              %h3 New Sign ups
+              %p Lorem ipsum psdea itgum rixt.
+          .animated.flipInY.col-lg-3.col-md-3.col-sm-6.col-xs-12
+            .tile-stats
+              .icon
+                %i.fa.fa-sort-amount-desc
+              .count 179
+              %h3 New Sign ups
+              %p Lorem ipsum psdea itgum rixt.
+          .animated.flipInY.col-lg-3.col-md-3.col-sm-6.col-xs-12
+            .tile-stats
+              .icon
+                %i.fa.fa-check-square-o
+              .count 179
+              %h3 New Sign ups
+              %p Lorem ipsum psdea itgum rixt.
+        .row.top_tiles{:style => "margin: 10px 0;"}
+          .col-md-3.tile
+            %span Total Sessions
+            %h2 231,809
+            %span.sparkline_two{:style => "height: 160px;"}
+              %canvas{:height => "60", :style => "display: inline-block; vertical-align: top; width: 94px; height: 30px;", :width => "200"}
+          .col-md-3.tile
+            %span Total Revenue
+            %h2 $ 1,231,809
+            %span.sparkline_two{:style => "height: 160px;"}
+              %canvas{:height => "60", :style => "display: inline-block; vertical-align: top; width: 94px; height: 30px;", :width => "200"}
+          .col-md-3.tile
+            %span Total Sessions
+            %h2 231,809
+            %span.sparkline_three{:style => "height: 160px;"}
+              %canvas{:height => "60", :style => "display: inline-block; vertical-align: top; width: 94px; height: 30px;", :width => "200"}
+          .col-md-3.tile
+            %span Total Sessions
+            %h2 231,809
+            %span.sparkline_two{:style => "height: 160px;"}
+              %canvas{:height => "60", :style => "display: inline-block; vertical-align: top; width: 94px; height: 30px;", :width => "200"}
+        %br/
+        .row
+          .col-md-3.col-xs-12.widget.widget_tally_box
+            .x_panel.fixed_height_390
+              .x_title
+                %h2 Tally Design
+                %ul.nav.navbar-right.panel_toolbox
+                  %li
+                    %a.collapse-link
+                      %i.fa.fa-chevron-up
+                  %li.dropdown
+                    %a.dropdown-toggle{"aria-expanded" => "false", "data-toggle" => "dropdown", :href => "#", :role => "button"}
+                      %i.fa.fa-wrench
+                    %ul.dropdown-menu{:role => "menu"}
+                      %li
+                        %a{:href => "#"} Settings 1
+                      %li
+                        %a{:href => "#"} Settings 2
+                  %li
+                    %a.close-link
+                      %i.fa.fa-close
+                .clearfix
+              .x_content
+                %div{:style => "text-align: center; overflow: hidden; margin: 10px 5px 0;"}
+                  %canvas#canvas_line1{:height => "200"}
+                %div{:style => "text-align: center; margin-bottom: 15px;"}
+                  .btn-group{"aria-label" => "First group", :role => "group"}
+                    %button.btn.btn-default.btn-sm{:type => "button"} Day
+                    %button.btn.btn-default.btn-sm{:type => "button"} Month
+                    %button.btn.btn-default.btn-sm{:type => "button"} Year
+                %div
+                  %ul.list-inline.widget_tally
+                    %li
+                      %p
+                        %span.month 12 December 2014
+                        %span.count +12%
+                    %li
+                      %p
+                        %span.month 29 December 2014
+                        %span.count +12%
+                    %li
+                      %p
+                        %span.month 16 January 2015
+                        %span.count +12%
+          .col-md-3.col-xs-12.widget.widget_tally_box
+            .x_panel.fixed_height_390
+              .x_title
+                %h2 Sales Close
+                %ul.nav.navbar-right.panel_toolbox
+                  %li
+                    %a.collapse-link
+                      %i.fa.fa-chevron-up
+                  %li.dropdown
+                    %a.dropdown-toggle{"aria-expanded" => "false", "data-toggle" => "dropdown", :href => "#", :role => "button"}
+                      %i.fa.fa-wrench
+                    %ul.dropdown-menu{:role => "menu"}
+                      %li
+                        %a{:href => "#"} Settings 1
+                      %li
+                        %a{:href => "#"} Settings 2
+                  %li
+                    %a.close-link
+                      %i.fa.fa-close
+                .clearfix
+              .x_content
+                %div{:style => "text-align: center; margin-bottom: 17px"}
+                  %ul.verticle_bars.list-inline
+                    %li
+                      .progress.vertical.progress_wide.bottom
+                        .progress-bar.progress-bar-dark{"data-transitiongoal" => "65", :role => "progressbar"}
+                    %li
+                      .progress.vertical.progress_wide.bottom
+                        .progress-bar.progress-bar-gray{"data-transitiongoal" => "85", :role => "progressbar"}
+                    %li
+                      .progress.vertical.progress_wide.bottom
+                        .progress-bar.progress-bar-info{"data-transitiongoal" => "45", :role => "progressbar"}
+                    %li
+                      .progress.vertical.progress_wide.bottom
+                        .progress-bar.progress-bar-success{"data-transitiongoal" => "75", :role => "progressbar"}
+                .divider
+                %ul.legend.list-unstyled
+                  %li
+                    %p
+                      %span.icon
+                        %i.fa.fa-square.dark
+                      %span.name Item One Name
+                  %li
+                    %p
+                      %span.icon
+                        %i.fa.fa-square.grey
+                      %span.name Item Two Name
+                  %li
+                    %p
+                      %span.icon
+                        %i.fa.fa-square.blue
+                      %span.name Item Three Name
+                  %li
+                    %p
+                      %span.icon
+                        %i.fa.fa-square.green
+                      %span.name Item Four Name
+          .col-md-3.col-xs-12.widget.widget_tally_box
+            .x_panel.ui-ribbon-container.fixed_height_390
+              .ui-ribbon-wrapper
+                .ui-ribbon
+                  30% Off
+              .x_title
+                %h2 User Mail
+                .clearfix
+              .x_content
+                %div{:style => "text-align: center; margin-bottom: 17px"}
+                  %span.chart{"data-percent" => "86"}
+                    %span.percent
+                %h3.name_title Finance
+                %p Short Description
+                .divider
+                %p If you've decided to go in development mode and tweak all of this a bit, there are few things you should do.
+          .col-md-3.col-xs-12.widget.widget_tally_box
+            .x_panel.fixed_height_390
+              .x_content
+                .flex
+                  %ul.list-inline.widget_profile_box
+                    %li
+                      %a
+                        %i.fa.fa-facebook
+                    %li
+                      %img.img-circle.profile_img{:alt => "...", :src => "images/user.png"}/
+                    %li
+                      %a
+                        %i.fa.fa-twitter
+                %h3.name Musimbi
+                .flex
+                  %ul.list-inline.count2
+                    %li
+                      %h3 123
+                      %span Articles
+                    %li
+                      %h3 1234
+                      %span Followers
+                    %li
+                      %h3 123
+                      %span Following
+                %p
+                  If you've decided to go in development mode and tweak all of this a bit, there are few things you should do.
+          .col-md-3.col-xs-12.widget.widget_tally_box
+            .x_panel
+              .x_title
+                %h2 Tally Design1
+                %ul.nav.navbar-right.panel_toolbox
+                  %li
+                    %a.collapse-link
+                      %i.fa.fa-chevron-up
+                  %li.dropdown
+                    %a.dropdown-toggle{"aria-expanded" => "false", "data-toggle" => "dropdown", :href => "#", :role => "button"}
+                      %i.fa.fa-wrench
+                    %ul.dropdown-menu{:role => "menu"}
+                      %li
+                        %a{:href => "#"} Settings 1
+                      %li
+                        %a{:href => "#"} Settings 2
+                  %li
+                    %a.close-link
+                      %i.fa.fa-close
+                .clearfix
+              .x_content
+                %div{:style => "text-align: center; margin-bottom: 17px"}
+                  %span.chart{"data-percent" => "86"}
+                    %span.percent
+                .pie_bg{:style => "text-align: center; display: none; margin-bottom: 17px"}
+                  %canvas#canvas_doughnut{:height => "130"}
+                %div{:style => "text-align: center;"}
+                  .btn-group{"aria-label" => "First group", :role => "group"}
+                    %button.btn.btn-default.btn-sm{:type => "button"} 1 D
+                    %button.btn.btn-default.btn-sm{:type => "button"} 1 W
+                    %button.btn.btn-default.btn-sm{:type => "button"} 1 M
+                    %button.btn.btn-default.btn-sm{:type => "button"} 1 Y
+                %div{:style => "text-align: center; overflow: hidden; margin: 10px 5px 3px;"}
+                  %canvas#canvas_line{:height => "190"}
+                %div
+                  %ul.list-inline.widget_tally
+                    %li
+                      %p
+                        %span.month 12 December 2014
+                        %span.count +12%
+                    %li
+                      %p
+                        %span.month 29 December 2014
+                        %span.count +12%
+                    %li
+                      %p
+                        %span.month 16 January 2015
+                        %span.count +12%
+          .col-md-3.col-xs-12.widget.widget_tally_box
+            .x_panel
+              .x_title
+                %h2 Tally Design2
+                %ul.nav.navbar-right.panel_toolbox
+                  %li
+                    %a.collapse-link
+                      %i.fa.fa-chevron-up
+                  %li.dropdown
+                    %a.dropdown-toggle{"aria-expanded" => "false", "data-toggle" => "dropdown", :href => "#", :role => "button"}
+                      %i.fa.fa-wrench
+                    %ul.dropdown-menu{:role => "menu"}
+                      %li
+                        %a{:href => "#"} Settings 1
+                      %li
+                        %a{:href => "#"} Settings 2
+                  %li
+                    %a.close-link
+                      %i.fa.fa-close
+                .clearfix
+              .x_content
+                %div{:style => "text-align: center; margin-bottom: 17px"}
+                  %span.chart{"data-percent" => "86"}
+                    %span.percent
+                .pie_bg{:style => "text-align: center; display: none; margin-bottom: 17px"}
+                  %canvas#canvas_doughnut2{:height => "130"}
+                %div{:style => "text-align: center;"}
+                  .btn-group{"aria-label" => "First group", :role => "group"}
+                    %button.btn.btn-default.btn-sm{:type => "button"} 1 D
+                    %button.btn.btn-default.btn-sm{:type => "button"} 1 W
+                    %button.btn.btn-default.btn-sm{:type => "button"} 1 M
+                    %button.btn.btn-default.btn-sm{:type => "button"} 1 Y
+                %div{:style => "text-align: center; overflow: hidden; margin: 10px 5px 3px;"}
+                  %canvas#canvas_line2{:height => "190"}
+                %div
+                  %ul.list-inline.widget_tally
+                    %li
+                      %p
+                        %span.month 12 December 2014
+                        %span.count +12%
+                    %li
+                      %p
+                        %span.month 29 December 2014
+                        %span.count +12%
+                    %li
+                      %p
+                        %span.month 16 January 2015
+                        %span.count +12%
+          .col-md-3.col-xs-12.widget.widget_tally_box
+            .x_panel
+              .x_title
+                %h2 Tally Design3
+                %ul.nav.navbar-right.panel_toolbox
+                  %li
+                    %a.collapse-link
+                      %i.fa.fa-chevron-up
+                  %li.dropdown
+                    %a.dropdown-toggle{"aria-expanded" => "false", "data-toggle" => "dropdown", :href => "#", :role => "button"}
+                      %i.fa.fa-wrench
+                    %ul.dropdown-menu{:role => "menu"}
+                      %li
+                        %a{:href => "#"} Settings 1
+                      %li
+                        %a{:href => "#"} Settings 2
+                  %li
+                    %a.close-link
+                      %i.fa.fa-close
+                .clearfix
+              .x_content
+                %div{:style => "text-align: center; margin-bottom: 17px"}
+                  %span.chart{"data-percent" => "86"}
+                    %span.percent
+                .pie_bg{:style => "text-align: center; display: none; margin-bottom: 17px"}
+                  %canvas#canvas_doughnut3{:height => "130"}
+                %div{:style => "text-align: center;"}
+                  .btn-group{"aria-label" => "First group", :role => "group"}
+                    %button.btn.btn-default.btn-sm{:type => "button"} 1 D
+                    %button.btn.btn-default.btn-sm{:type => "button"} 1 W
+                    %button.btn.btn-default.btn-sm{:type => "button"} 1 M
+                    %button.btn.btn-default.btn-sm{:type => "button"} 1 Y
+                %div{:style => "text-align: center; overflow: hidden; margin: 10px 5px 3px;"}
+                  %canvas#canvas_line3{:height => "190"}
+                %div
+                  %ul.list-inline.widget_tally
+                    %li
+                      %p
+                        %span.month 12 December 2014
+                        %span.count +12%
+                    %li
+                      %p
+                        %span.month 29 December 2014
+                        %span.count +12%
+                    %li
+                      %p
+                        %span.month 16 January 2015
+                        %span.count +12%
+          .col-md-3.col-xs-12.widget.widget_tally_box
+            .x_panel
+              .x_title
+                %h2 Tally Design4
+                %ul.nav.navbar-right.panel_toolbox
+                  %li
+                    %a.collapse-link
+                      %i.fa.fa-chevron-up
+                  %li.dropdown
+                    %a.dropdown-toggle{"aria-expanded" => "false", "data-toggle" => "dropdown", :href => "#", :role => "button"}
+                      %i.fa.fa-wrench
+                    %ul.dropdown-menu{:role => "menu"}
+                      %li
+                        %a{:href => "#"} Settings 1
+                      %li
+                        %a{:href => "#"} Settings 2
+                  %li
+                    %a.close-link
+                      %i.fa.fa-close
+                .clearfix
+              .x_content
+                %div{:style => "text-align: center; margin-bottom: 17px"}
+                  %span.chart{"data-percent" => "86"}
+                    %span.percent
+                .pie_bg{:style => "text-align: center; display: none; margin-bottom: 17px"}
+                  %canvas#canvas_doughnut4{:height => "130"}
+                %div{:style => "text-align: center;"}
+                  .btn-group{"aria-label" => "First group", :role => "group"}
+                    %button.btn.btn-default.btn-sm{:type => "button"} 1 D
+                    %button.btn.btn-default.btn-sm{:type => "button"} 1 W
+                    %button.btn.btn-default.btn-sm{:type => "button"} 1 M
+                    %button.btn.btn-default.btn-sm{:type => "button"} 1 Y
+                %div{:style => "text-align: center; overflow: hidden; margin: 10px 5px 3px;"}
+                  %canvas#canvas_line4{:height => "190"}
+                %div
+                  %ul.list-inline.widget_tally
+                    %li
+                      %p
+                        %span.month 12 December 2014
+                        %span.count +12%
+                    %li
+                      %p
+                        %span.month 29 December 2014
+                        %span.count +12%
+                    %li
+                      %p
+                        %span.month 16 January 2015
+                        %span.count +12%

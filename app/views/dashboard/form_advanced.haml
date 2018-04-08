@@ -1,0 +1,1191 @@
+.page-title
+  .title_left
+    %h3 Form advanced
+  .title_right
+    .col-md-5.col-sm-5.col-xs-12.form-group.pull-right.top_search
+      .input-group
+        %input.form-control{:placeholder => "Search for...", :type => "text"}/
+        %span.input-group-btn
+          %button.btn.btn-default{:type => "button"} Go!
+.clearfix
+.row
+  / form input mask
+  .col-md-6.col-sm-12.col-xs-12
+    .x_panel
+      .x_title
+        %h2 Input Mask
+        %ul.nav.navbar-right.panel_toolbox
+          %li
+            %a.collapse-link
+              %i.fa.fa-chevron-up
+          %li.dropdown
+            %a.dropdown-toggle{"aria-expanded" => "false", "data-toggle" => "dropdown", :href => "#", :role => "button"}
+              %i.fa.fa-wrench
+            %ul.dropdown-menu{:role => "menu"}
+              %li
+                %a{:href => "#"} Settings 1
+              %li
+                %a{:href => "#"} Settings 2
+          %li
+            %a.close-link
+              %i.fa.fa-close
+        .clearfix
+      .x_content
+        %br/
+        %form.form-horizontal.form-label-left
+          .form-group
+            %label.control-label.col-md-3.col-sm-3.col-xs-3 Date Mask
+            .col-md-9.col-sm-9.col-xs-9
+              %input.form-control{"data-inputmask" => "'mask': '99/99/9999'", :type => "text"}/
+              %span.fa.fa-user.form-control-feedback.right{"aria-hidden" => "true"}
+          .form-group
+            %label.control-label.col-md-3.col-sm-3.col-xs-3 Phone mask
+            .col-md-9.col-sm-9.col-xs-9
+              %input.form-control{"data-inputmask" => "'mask' : '(999) 999-9999'", :type => "text"}/
+              %span.fa.fa-user.form-control-feedback.right{"aria-hidden" => "true"}
+          .form-group
+            %label.control-label.col-md-3.col-sm-3.col-xs-3 Custom Mask
+            .col-md-9.col-sm-9.col-xs-9
+              %input.form-control{"data-inputmask" => "'mask': '99-999999'", :type => "text"}/
+              %span.fa.fa-user.form-control-feedback.right{"aria-hidden" => "true"}
+          .form-group
+            %label.control-label.col-md-3.col-sm-3.col-xs-3 Serial Number
+            .col-md-9.col-sm-9.col-xs-9
+              %input.form-control{"data-inputmask" => "'mask' : '****-****-****-****-****-***'", :type => "text"}/
+              %span.fa.fa-user.form-control-feedback.right{"aria-hidden" => "true"}
+          .form-group
+            %label.control-label.col-md-3.col-sm-3.col-xs-3 TaxID Mask
+            .col-md-9.col-sm-9.col-xs-9
+              %input.form-control{"data-inputmask" => "'mask' : '99-99999999'", :type => "text"}/
+              %span.fa.fa-user.form-control-feedback.right{"aria-hidden" => "true"}
+          .form-group
+            %label.control-label.col-md-3.col-sm-3.col-xs-3 Credit Card Mask
+            .col-md-9.col-sm-9.col-xs-9
+              %input.form-control{"data-inputmask" => "'mask' : '9999-9999-9999-9999'", :type => "text"}/
+              %span.fa.fa-user.form-control-feedback.right{"aria-hidden" => "true"}
+          .ln_solid
+          .form-group
+            .col-md-9.col-md-offset-3
+              %button.btn.btn-primary{:type => "submit"} Cancel
+              %button.btn.btn-success{:type => "submit"} Submit
+  / /form input mask
+  / form color picker
+  .col-md-6.col-sm-12.col-xs-12
+    .x_panel
+      .x_title
+        %h2 Color Picker
+        %ul.nav.navbar-right.panel_toolbox
+          %li
+            %a.collapse-link
+              %i.fa.fa-chevron-up
+          %li.dropdown
+            %a.dropdown-toggle{"aria-expanded" => "false", "data-toggle" => "dropdown", :href => "#", :role => "button"}
+              %i.fa.fa-wrench
+            %ul.dropdown-menu{:role => "menu"}
+              %li
+                %a{:href => "#"} Settings 1
+              %li
+                %a{:href => "#"} Settings 2
+          %li
+            %a.close-link
+              %i.fa.fa-close
+        .clearfix
+      .x_content
+        %br/
+        %form.form-horizontal.form-label-left
+          .form-group
+            %label.control-label.col-md-3.col-sm-3.col-xs-12 Default Input
+            .col-md-9.col-sm-9.col-xs-12
+              %input.demo1.form-control{:type => "text", :value => "#5367ce"}/
+          .form-group
+            %label.control-label.col-md-3.col-sm-3.col-xs-12 Styled
+            .col-md-9.col-sm-9.col-xs-12
+              .input-group.demo2
+                %input.form-control{:type => "text", :value => "#e01ab5"}/
+                %span.input-group-addon
+                  %i
+          .form-group
+            %label.control-label.col-md-3.col-sm-3.col-xs-12 Horizontal bar
+            .col-md-9.col-sm-9.col-xs-12
+              %input#demo_forceformat.form-control.demo.colorpicker-element{"data-horizontal" => "true", :type => "text", :value => "#8fff00"}/
+          .form-group
+            %label.control-label.col-md-3.col-sm-3.col-xs-12 Vertical bar
+            .col-md-9.col-sm-9.col-xs-12
+              %input#demo_forceformat3.form-control.demo.colorpicker-element{:type => "text", :value => "#8fff00"}/
+          .form-group
+            %label.control-label.col-md-3.col-sm-3.col-xs-12 Inline picker
+            .col-md-9.col-sm-9.col-xs-12
+              .well
+                #demo_cont.demo.demo-auto.inl-bl.colorpicker-element{"data-color" => "rgba(150,216,62,0.55)", "data-container" => "#demo_cont", "data-inline" => "true"}
+                .demo.demo-auto.inl-bl.colorpicker-element{"data-color" => "rgb(50,216,62)", "data-container" => "true", "data-inline" => "true", :style => "margin-left:20px;"}
+  / /form color picker
+  / form input knob
+  .col-md-12
+    .x_panel
+      .x_title
+        %h2 Input knob
+        %ul.nav.navbar-right.panel_toolbox
+          %li
+            %a.collapse-link
+              %i.fa.fa-chevron-up
+          %li.dropdown
+            %a.dropdown-toggle{"aria-expanded" => "false", "data-toggle" => "dropdown", :href => "#", :role => "button"}
+              %i.fa.fa-wrench
+            %ul.dropdown-menu{:role => "menu"}
+              %li
+                %a{:href => "#"} Settings 1
+              %li
+                %a{:href => "#"} Settings 2
+          %li
+            %a.close-link
+              %i.fa.fa-close
+        .clearfix
+      .x_content
+        .col-md-2
+          %p Display value
+          %input.knob{"data-displayprevious" => "true", "data-fgcolor" => "#26B99A", "data-height" => "120", "data-min" => "-100", "data-width" => "100", :value => "44"}/
+        .col-md-2
+          %p × 'cursor' mode
+          %input.knob{"data-cursor" => "true", "data-fgcolor" => "#34495E", "data-height" => "120", "data-width" => "100", :value => "29"}/
+        .col-md-2
+          %p Step 0.1
+          %input.knob{"data-displayprevious" => "true", "data-fgcolor" => "#26B99A", "data-height" => "120", "data-max" => "10000", "data-min" => "-10000", "data-step" => ".1", "data-width" => "100", :value => "0"}/
+        .col-md-2
+          %p Angle arc
+          %input.knob{"data-anglearc" => "250", "data-angleoffset" => "-125", "data-fgcolor" => "#34495E", "data-height" => "120", "data-rotation" => "anticlockwise", "data-width" => "100", :value => "35"}/
+        .col-md-2
+          %p Alternate design
+          %input.knob{"data-displayprevious" => "true", "data-fgcolor" => "#26B99A", "data-height" => "120", "data-skin" => "tron", "data-thickness" => ".2", "data-width" => "110", :value => "75"}/
+        .col-md-2
+          %p Angle offset
+          %input.knob{"data-angleoffset" => "90", "data-fgcolor" => "#26B99A", "data-height" => "120", "data-linecap" => "round", "data-width" => "100", :value => "35"}/
+  / /form input knob
+.row
+  .col-md-12
+    / form date pickers
+    .x_panel{:style => ""}
+      .x_title
+        %h2
+          Date Pickers
+          %small Available with multiple designs
+        %ul.nav.navbar-right.panel_toolbox
+          %li
+            %a.collapse-link
+              %i.fa.fa-chevron-up
+          %li.dropdown
+            %a.dropdown-toggle{"aria-expanded" => "false", "data-toggle" => "dropdown", :href => "#", :role => "button"}
+              %i.fa.fa-wrench
+            %ul.dropdown-menu{:role => "menu"}
+              %li
+                %a{:href => "#"} Settings 1
+              %li
+                %a{:href => "#"} Settings 2
+          %li
+            %a.close-link
+              %i.fa.fa-close
+        .clearfix
+      .x_content
+        .well{:style => "overflow: auto"}
+          .col-md-4
+            #reportrange_right.pull-left{:style => "background: #fff; cursor: pointer; padding: 5px 10px; border: 1px solid #ccc"}
+              %i.glyphicon.glyphicon-calendar.fa.fa-calendar
+              %span December 30, 2014 - January 28, 2015
+              %b.caret
+          .col-md-4
+            %p Date Range Picker with opening to right and left
+          .col-md-4
+            #reportrange.pull-right{:style => "background: #fff; cursor: pointer; padding: 5px 10px; border: 1px solid #ccc"}
+              %i.glyphicon.glyphicon-calendar.fa.fa-calendar
+              %span December 30, 2014 - January 28, 2015
+              %b.caret
+        .well{:style => "overflow: auto"}
+          .col-md-4
+            Date Range Picker
+            %form.form-horizontal
+              %fieldset
+                .control-group
+                  .controls
+                    .input-prepend.input-group
+                      %span.add-on.input-group-addon
+                        %i.glyphicon.glyphicon-calendar.fa.fa-calendar
+                      %input#reservation.form-control{:name => "reservation", :style => "width: 200px", :type => "text", :value => "01/01/2016 - 01/25/2016"}/
+          .col-md-5
+            Date and Time
+            %form.form-horizontal
+              %fieldset
+                .control-group
+                  .controls
+                    .input-prepend.input-group
+                      %span.add-on.input-group-addon
+                        %i.glyphicon.glyphicon-calendar.fa.fa-calendar
+                      %input#reservation-time.form-control{:name => "reservation-time", :type => "text", :value => "01/01/2016 - 01/25/2016"}/
+        .row.calendar-exibit
+          .col-md-3
+            .daterangepicker.dropdown-menu.ltr.single.opensright.show-calendar.picker_1.xdisplay
+              .calendar.left.single{:style => "display: block;"}
+                .daterangepicker_input
+                  %input.input-mini.form-control.active{:name => "daterangepicker_start", :style => "display: none;", :type => "text", :value => ""}/
+                  %i.fa.fa-calendar.glyphicon.glyphicon-calendar{:style => "display: none;"}
+                  .calendar-time{:style => "display: none;"}
+                    %div
+                    %i.fa.fa-clock-o.glyphicon.glyphicon-time
+                .calendar-table
+                  %table.table-condensed
+                    %thead
+                      %tr
+                        %th.prev.available
+                          %i.fa.fa-chevron-left.glyphicon.glyphicon-chevron-left
+                        %th.month{:colspan => "5"} Oct 2016
+                        %th.next.available
+                          %i.fa.fa-chevron-right.glyphicon.glyphicon-chevron-right
+                      %tr
+                        %th Su
+                        %th Mo
+                        %th Tu
+                        %th We
+                        %th Th
+                        %th Fr
+                        %th Sa
+                    %tbody
+                      %tr
+                        %td.weekend.off.available{"data-title" => "r0c0"} 25
+                        %td.off.available{"data-title" => "r0c1"} 26
+                        %td.off.available{"data-title" => "r0c2"} 27
+                        %td.off.available{"data-title" => "r0c3"} 28
+                        %td.off.available{"data-title" => "r0c4"} 29
+                        %td.off.available{"data-title" => "r0c5"} 30
+                        %td.weekend.available{"data-title" => "r0c6"} 1
+                      %tr
+                        %td.weekend.available{"data-title" => "r1c0"} 2
+                        %td.available{"data-title" => "r1c1"} 3
+                        %td.available{"data-title" => "r1c2"} 4
+                        %td.available{"data-title" => "r1c3"} 5
+                        %td.available{"data-title" => "r1c4"} 6
+                        %td.available{"data-title" => "r1c5"} 7
+                        %td.weekend.available{"data-title" => "r1c6"} 8
+                      %tr
+                        %td.weekend.available{"data-title" => "r2c0"} 9
+                        %td.available{"data-title" => "r2c1"} 10
+                        %td.available{"data-title" => "r2c2"} 11
+                        %td.available{"data-title" => "r2c3"} 12
+                        %td.available{"data-title" => "r2c4"} 13
+                        %td.available{"data-title" => "r2c5"} 14
+                        %td.weekend.available{"data-title" => "r2c6"} 15
+                      %tr
+                        %td.weekend.available{"data-title" => "r3c0"} 16
+                        %td.available{"data-title" => "r3c1"} 17
+                        %td.today.active.start-date.active.end-date.available{"data-title" => "r3c2"} 18
+                        %td.available{"data-title" => "r3c3"} 19
+                        %td.available{"data-title" => "r3c4"} 20
+                        %td.available{"data-title" => "r3c5"} 21
+                        %td.weekend.available{"data-title" => "r3c6"} 22
+                      %tr
+                        %td.weekend.available{"data-title" => "r4c0"} 23
+                        %td.available{"data-title" => "r4c1"} 24
+                        %td.available{"data-title" => "r4c2"} 25
+                        %td.available{"data-title" => "r4c3"} 26
+                        %td.available{"data-title" => "r4c4"} 27
+                        %td.available{"data-title" => "r4c5"} 28
+                        %td.weekend.available{"data-title" => "r4c6"} 29
+                      %tr
+                        %td.weekend.available{"data-title" => "r5c0"} 30
+                        %td.available{"data-title" => "r5c1"} 31
+                        %td.off.available{"data-title" => "r5c2"} 1
+                        %td.off.available{"data-title" => "r5c3"} 2
+                        %td.off.available{"data-title" => "r5c4"} 3
+                        %td.off.available{"data-title" => "r5c5"} 4
+                        %td.weekend.off.available{"data-title" => "r5c6"} 5
+              .calendar.right{:style => "display: none;"}
+                .daterangepicker_input
+                  %input.input-mini.form-control{:name => "daterangepicker_end", :style => "display: none;", :type => "text", :value => ""}/
+                  %i.fa.fa-calendar.glyphicon.glyphicon-calendar{:style => "display: none;"}
+                  .calendar-time{:style => "display: none;"}
+                    %div
+                    %i.fa.fa-clock-o.glyphicon.glyphicon-time
+                .calendar-table
+                  %table.table-condensed
+                    %thead
+                      %tr
+                        %th
+                        %th.month{:colspan => "5"} Nov 2016
+                        %th.next.available
+                          %i.fa.fa-chevron-right.glyphicon.glyphicon-chevron-right
+                      %tr
+                        %th Su
+                        %th Mo
+                        %th Tu
+                        %th We
+                        %th Th
+                        %th Fr
+                        %th Sa
+                    %tbody
+                      %tr
+                        %td.weekend.off.available{"data-title" => "r0c0"} 30
+                        %td.off.available{"data-title" => "r0c1"} 31
+                        %td.available{"data-title" => "r0c2"} 1
+                        %td.available{"data-title" => "r0c3"} 2
+                        %td.available{"data-title" => "r0c4"} 3
+                        %td.available{"data-title" => "r0c5"} 4
+                        %td.weekend.available{"data-title" => "r0c6"} 5
+                      %tr
+                        %td.weekend.available{"data-title" => "r1c0"} 6
+                        %td.available{"data-title" => "r1c1"} 7
+                        %td.available{"data-title" => "r1c2"} 8
+                        %td.available{"data-title" => "r1c3"} 9
+                        %td.available{"data-title" => "r1c4"} 10
+                        %td.available{"data-title" => "r1c5"} 11
+                        %td.weekend.available{"data-title" => "r1c6"} 12
+                      %tr
+                        %td.weekend.available{"data-title" => "r2c0"} 13
+                        %td.available{"data-title" => "r2c1"} 14
+                        %td.available{"data-title" => "r2c2"} 15
+                        %td.available{"data-title" => "r2c3"} 16
+                        %td.available{"data-title" => "r2c4"} 17
+                        %td.available{"data-title" => "r2c5"} 18
+                        %td.weekend.available{"data-title" => "r2c6"} 19
+                      %tr
+                        %td.weekend.available{"data-title" => "r3c0"} 20
+                        %td.available{"data-title" => "r3c1"} 21
+                        %td.available{"data-title" => "r3c2"} 22
+                        %td.available{"data-title" => "r3c3"} 23
+                        %td.available{"data-title" => "r3c4"} 24
+                        %td.available{"data-title" => "r3c5"} 25
+                        %td.weekend.available{"data-title" => "r3c6"} 26
+                      %tr
+                        %td.weekend.available{"data-title" => "r4c0"} 27
+                        %td.available{"data-title" => "r4c1"} 28
+                        %td.available{"data-title" => "r4c2"} 29
+                        %td.available{"data-title" => "r4c3"} 30
+                        %td.off.available{"data-title" => "r4c4"} 1
+                        %td.off.available{"data-title" => "r4c5"} 2
+                        %td.weekend.off.available{"data-title" => "r4c6"} 3
+                      %tr
+                        %td.weekend.off.available{"data-title" => "r5c0"} 4
+                        %td.off.available{"data-title" => "r5c1"} 5
+                        %td.off.available{"data-title" => "r5c2"} 6
+                        %td.off.available{"data-title" => "r5c3"} 7
+                        %td.off.available{"data-title" => "r5c4"} 8
+                        %td.off.available{"data-title" => "r5c5"} 9
+                        %td.weekend.off.available{"data-title" => "r5c6"} 10
+              .ranges{:style => "display: none;"}
+                .range_inputs
+                  %button.applyBtn.btn.btn-sm.btn-success{:type => "button"} Apply
+                  %button.cancelBtn.btn.btn-sm.btn-default{:type => "button"} Cancel
+            %fieldset
+              .control-group
+                .controls
+                  .col-md-11.xdisplay_inputx.form-group.has-feedback
+                    %input#single_cal1.form-control.has-feedback-left{"aria-describedby" => "inputSuccess2Status", :placeholder => "First Name", :type => "text"}/
+                    %span.fa.fa-calendar-o.form-control-feedback.left{"aria-hidden" => "true"}
+                    %span#inputSuccess2Status.sr-only (success)
+          .col-md-3
+            .daterangepicker.dropdown-menu.ltr.single.opensright.show-calendar.picker_2.xdisplay
+              .calendar.left.single{:style => "display: block;"}
+                .daterangepicker_input
+                  %input.input-mini.form-control.active{:name => "daterangepicker_start", :style => "display: none;", :type => "text", :value => ""}/
+                  %i.fa.fa-calendar.glyphicon.glyphicon-calendar{:style => "display: none;"}
+                  .calendar-time{:style => "display: none;"}
+                    %div
+                    %i.fa.fa-clock-o.glyphicon.glyphicon-time
+                .calendar-table
+                  %table.table-condensed
+                    %thead
+                      %tr
+                        %th.prev.available
+                          %i.fa.fa-chevron-left.glyphicon.glyphicon-chevron-left
+                        %th.month{:colspan => "5"} Oct 2016
+                        %th.next.available
+                          %i.fa.fa-chevron-right.glyphicon.glyphicon-chevron-right
+                      %tr
+                        %th Su
+                        %th Mo
+                        %th Tu
+                        %th We
+                        %th Th
+                        %th Fr
+                        %th Sa
+                    %tbody
+                      %tr
+                        %td.weekend.off.available{"data-title" => "r0c0"} 25
+                        %td.off.available{"data-title" => "r0c1"} 26
+                        %td.off.available{"data-title" => "r0c2"} 27
+                        %td.off.available{"data-title" => "r0c3"} 28
+                        %td.off.available{"data-title" => "r0c4"} 29
+                        %td.off.available{"data-title" => "r0c5"} 30
+                        %td.weekend.available{"data-title" => "r0c6"} 1
+                      %tr
+                        %td.weekend.available{"data-title" => "r1c0"} 2
+                        %td.available{"data-title" => "r1c1"} 3
+                        %td.available{"data-title" => "r1c2"} 4
+                        %td.available{"data-title" => "r1c3"} 5
+                        %td.available{"data-title" => "r1c4"} 6
+                        %td.available{"data-title" => "r1c5"} 7
+                        %td.weekend.available{"data-title" => "r1c6"} 8
+                      %tr
+                        %td.weekend.available{"data-title" => "r2c0"} 9
+                        %td.available{"data-title" => "r2c1"} 10
+                        %td.available{"data-title" => "r2c2"} 11
+                        %td.available{"data-title" => "r2c3"} 12
+                        %td.available{"data-title" => "r2c4"} 13
+                        %td.available{"data-title" => "r2c5"} 14
+                        %td.weekend.available{"data-title" => "r2c6"} 15
+                      %tr
+                        %td.weekend.available{"data-title" => "r3c0"} 16
+                        %td.available{"data-title" => "r3c1"} 17
+                        %td.today.active.start-date.active.end-date.available{"data-title" => "r3c2"} 18
+                        %td.available{"data-title" => "r3c3"} 19
+                        %td.available{"data-title" => "r3c4"} 20
+                        %td.available{"data-title" => "r3c5"} 21
+                        %td.weekend.available{"data-title" => "r3c6"} 22
+                      %tr
+                        %td.weekend.available{"data-title" => "r4c0"} 23
+                        %td.available{"data-title" => "r4c1"} 24
+                        %td.available{"data-title" => "r4c2"} 25
+                        %td.available{"data-title" => "r4c3"} 26
+                        %td.available{"data-title" => "r4c4"} 27
+                        %td.available{"data-title" => "r4c5"} 28
+                        %td.weekend.available{"data-title" => "r4c6"} 29
+                      %tr
+                        %td.weekend.available{"data-title" => "r5c0"} 30
+                        %td.available{"data-title" => "r5c1"} 31
+                        %td.off.available{"data-title" => "r5c2"} 1
+                        %td.off.available{"data-title" => "r5c3"} 2
+                        %td.off.available{"data-title" => "r5c4"} 3
+                        %td.off.available{"data-title" => "r5c5"} 4
+                        %td.weekend.off.available{"data-title" => "r5c6"} 5
+              .calendar.right{:style => "display: none;"}
+                .daterangepicker_input
+                  %input.input-mini.form-control{:name => "daterangepicker_end", :style => "display: none;", :type => "text", :value => ""}/
+                  %i.fa.fa-calendar.glyphicon.glyphicon-calendar{:style => "display: none;"}
+                  .calendar-time{:style => "display: none;"}
+                    %div
+                    %i.fa.fa-clock-o.glyphicon.glyphicon-time
+                .calendar-table
+                  %table.table-condensed
+                    %thead
+                      %tr
+                        %th
+                        %th.month{:colspan => "5"} Nov 2016
+                        %th.next.available
+                          %i.fa.fa-chevron-right.glyphicon.glyphicon-chevron-right
+                      %tr
+                        %th Su
+                        %th Mo
+                        %th Tu
+                        %th We
+                        %th Th
+                        %th Fr
+                        %th Sa
+                    %tbody
+                      %tr
+                        %td.weekend.off.available{"data-title" => "r0c0"} 30
+                        %td.off.available{"data-title" => "r0c1"} 31
+                        %td.available{"data-title" => "r0c2"} 1
+                        %td.available{"data-title" => "r0c3"} 2
+                        %td.available{"data-title" => "r0c4"} 3
+                        %td.available{"data-title" => "r0c5"} 4
+                        %td.weekend.available{"data-title" => "r0c6"} 5
+                      %tr
+                        %td.weekend.available{"data-title" => "r1c0"} 6
+                        %td.available{"data-title" => "r1c1"} 7
+                        %td.available{"data-title" => "r1c2"} 8
+                        %td.available{"data-title" => "r1c3"} 9
+                        %td.available{"data-title" => "r1c4"} 10
+                        %td.available{"data-title" => "r1c5"} 11
+                        %td.weekend.available{"data-title" => "r1c6"} 12
+                      %tr
+                        %td.weekend.available{"data-title" => "r2c0"} 13
+                        %td.available{"data-title" => "r2c1"} 14
+                        %td.available{"data-title" => "r2c2"} 15
+                        %td.available{"data-title" => "r2c3"} 16
+                        %td.available{"data-title" => "r2c4"} 17
+                        %td.available{"data-title" => "r2c5"} 18
+                        %td.weekend.available{"data-title" => "r2c6"} 19
+                      %tr
+                        %td.weekend.available{"data-title" => "r3c0"} 20
+                        %td.available{"data-title" => "r3c1"} 21
+                        %td.available{"data-title" => "r3c2"} 22
+                        %td.available{"data-title" => "r3c3"} 23
+                        %td.available{"data-title" => "r3c4"} 24
+                        %td.available{"data-title" => "r3c5"} 25
+                        %td.weekend.available{"data-title" => "r3c6"} 26
+                      %tr
+                        %td.weekend.available{"data-title" => "r4c0"} 27
+                        %td.available{"data-title" => "r4c1"} 28
+                        %td.available{"data-title" => "r4c2"} 29
+                        %td.available{"data-title" => "r4c3"} 30
+                        %td.off.available{"data-title" => "r4c4"} 1
+                        %td.off.available{"data-title" => "r4c5"} 2
+                        %td.weekend.off.available{"data-title" => "r4c6"} 3
+                      %tr
+                        %td.weekend.off.available{"data-title" => "r5c0"} 4
+                        %td.off.available{"data-title" => "r5c1"} 5
+                        %td.off.available{"data-title" => "r5c2"} 6
+                        %td.off.available{"data-title" => "r5c3"} 7
+                        %td.off.available{"data-title" => "r5c4"} 8
+                        %td.off.available{"data-title" => "r5c5"} 9
+                        %td.weekend.off.available{"data-title" => "r5c6"} 10
+              .ranges{:style => "display: none;"}
+                .range_inputs
+                  %button.applyBtn.btn.btn-sm.btn-success{:type => "button"} Apply
+                  %button.cancelBtn.btn.btn-sm.btn-default{:type => "button"} Cancel
+            %fieldset
+              .control-group
+                .controls
+                  .col-md-11.xdisplay_inputx.form-group.has-feedback
+                    %input#single_cal2.form-control.has-feedback-left{"aria-describedby" => "inputSuccess2Status2", :placeholder => "First Name", :type => "text"}/
+                    %span.fa.fa-calendar-o.form-control-feedback.left{"aria-hidden" => "true"}
+                    %span#inputSuccess2Status2.sr-only (success)
+          .col-md-3
+            .daterangepicker.dropdown-menu.ltr.single.opensright.show-calendar.picker_3.xdisplay
+              .calendar.left.single{:style => "display: block;"}
+                .daterangepicker_input
+                  %input.input-mini.form-control.active{:name => "daterangepicker_start", :style => "display: none;", :type => "text", :value => ""}/
+                  %i.fa.fa-calendar.glyphicon.glyphicon-calendar{:style => "display: none;"}
+                  .calendar-time{:style => "display: none;"}
+                    %div
+                    %i.fa.fa-clock-o.glyphicon.glyphicon-time
+                .calendar-table
+                  %table.table-condensed
+                    %thead
+                      %tr
+                        %th.prev.available
+                          %i.fa.fa-chevron-left.glyphicon.glyphicon-chevron-left
+                        %th.month{:colspan => "5"} Oct 2016
+                        %th.next.available
+                          %i.fa.fa-chevron-right.glyphicon.glyphicon-chevron-right
+                      %tr
+                        %th Su
+                        %th Mo
+                        %th Tu
+                        %th We
+                        %th Th
+                        %th Fr
+                        %th Sa
+                    %tbody
+                      %tr
+                        %td.weekend.off.available{"data-title" => "r0c0"} 25
+                        %td.off.available{"data-title" => "r0c1"} 26
+                        %td.off.available{"data-title" => "r0c2"} 27
+                        %td.off.available{"data-title" => "r0c3"} 28
+                        %td.off.available{"data-title" => "r0c4"} 29
+                        %td.off.available{"data-title" => "r0c5"} 30
+                        %td.weekend.available{"data-title" => "r0c6"} 1
+                      %tr
+                        %td.weekend.available{"data-title" => "r1c0"} 2
+                        %td.available{"data-title" => "r1c1"} 3
+                        %td.available{"data-title" => "r1c2"} 4
+                        %td.available{"data-title" => "r1c3"} 5
+                        %td.available{"data-title" => "r1c4"} 6
+                        %td.available{"data-title" => "r1c5"} 7
+                        %td.weekend.available{"data-title" => "r1c6"} 8
+                      %tr
+                        %td.weekend.available{"data-title" => "r2c0"} 9
+                        %td.available{"data-title" => "r2c1"} 10
+                        %td.available{"data-title" => "r2c2"} 11
+                        %td.available{"data-title" => "r2c3"} 12
+                        %td.available{"data-title" => "r2c4"} 13
+                        %td.available{"data-title" => "r2c5"} 14
+                        %td.weekend.available{"data-title" => "r2c6"} 15
+                      %tr
+                        %td.weekend.available{"data-title" => "r3c0"} 16
+                        %td.available{"data-title" => "r3c1"} 17
+                        %td.today.active.start-date.active.end-date.available{"data-title" => "r3c2"} 18
+                        %td.available{"data-title" => "r3c3"} 19
+                        %td.available{"data-title" => "r3c4"} 20
+                        %td.available{"data-title" => "r3c5"} 21
+                        %td.weekend.available{"data-title" => "r3c6"} 22
+                      %tr
+                        %td.weekend.available{"data-title" => "r4c0"} 23
+                        %td.available{"data-title" => "r4c1"} 24
+                        %td.available{"data-title" => "r4c2"} 25
+                        %td.available{"data-title" => "r4c3"} 26
+                        %td.available{"data-title" => "r4c4"} 27
+                        %td.available{"data-title" => "r4c5"} 28
+                        %td.weekend.available{"data-title" => "r4c6"} 29
+                      %tr
+                        %td.weekend.available{"data-title" => "r5c0"} 30
+                        %td.available{"data-title" => "r5c1"} 31
+                        %td.off.available{"data-title" => "r5c2"} 1
+                        %td.off.available{"data-title" => "r5c3"} 2
+                        %td.off.available{"data-title" => "r5c4"} 3
+                        %td.off.available{"data-title" => "r5c5"} 4
+                        %td.weekend.off.available{"data-title" => "r5c6"} 5
+              .calendar.right{:style => "display: none;"}
+                .daterangepicker_input
+                  %input.input-mini.form-control{:name => "daterangepicker_end", :style => "display: none;", :type => "text", :value => ""}/
+                  %i.fa.fa-calendar.glyphicon.glyphicon-calendar{:style => "display: none;"}
+                  .calendar-time{:style => "display: none;"}
+                    %div
+                    %i.fa.fa-clock-o.glyphicon.glyphicon-time
+                .calendar-table
+                  %table.table-condensed
+                    %thead
+                      %tr
+                        %th
+                        %th.month{:colspan => "5"} Nov 2016
+                        %th.next.available
+                          %i.fa.fa-chevron-right.glyphicon.glyphicon-chevron-right
+                      %tr
+                        %th Su
+                        %th Mo
+                        %th Tu
+                        %th We
+                        %th Th
+                        %th Fr
+                        %th Sa
+                    %tbody
+                      %tr
+                        %td.weekend.off.available{"data-title" => "r0c0"} 30
+                        %td.off.available{"data-title" => "r0c1"} 31
+                        %td.available{"data-title" => "r0c2"} 1
+                        %td.available{"data-title" => "r0c3"} 2
+                        %td.available{"data-title" => "r0c4"} 3
+                        %td.available{"data-title" => "r0c5"} 4
+                        %td.weekend.available{"data-title" => "r0c6"} 5
+                      %tr
+                        %td.weekend.available{"data-title" => "r1c0"} 6
+                        %td.available{"data-title" => "r1c1"} 7
+                        %td.available{"data-title" => "r1c2"} 8
+                        %td.available{"data-title" => "r1c3"} 9
+                        %td.available{"data-title" => "r1c4"} 10
+                        %td.available{"data-title" => "r1c5"} 11
+                        %td.weekend.available{"data-title" => "r1c6"} 12
+                      %tr
+                        %td.weekend.available{"data-title" => "r2c0"} 13
+                        %td.available{"data-title" => "r2c1"} 14
+                        %td.available{"data-title" => "r2c2"} 15
+                        %td.available{"data-title" => "r2c3"} 16
+                        %td.available{"data-title" => "r2c4"} 17
+                        %td.available{"data-title" => "r2c5"} 18
+                        %td.weekend.available{"data-title" => "r2c6"} 19
+                      %tr
+                        %td.weekend.available{"data-title" => "r3c0"} 20
+                        %td.available{"data-title" => "r3c1"} 21
+                        %td.available{"data-title" => "r3c2"} 22
+                        %td.available{"data-title" => "r3c3"} 23
+                        %td.available{"data-title" => "r3c4"} 24
+                        %td.available{"data-title" => "r3c5"} 25
+                        %td.weekend.available{"data-title" => "r3c6"} 26
+                      %tr
+                        %td.weekend.available{"data-title" => "r4c0"} 27
+                        %td.available{"data-title" => "r4c1"} 28
+                        %td.available{"data-title" => "r4c2"} 29
+                        %td.available{"data-title" => "r4c3"} 30
+                        %td.off.available{"data-title" => "r4c4"} 1
+                        %td.off.available{"data-title" => "r4c5"} 2
+                        %td.weekend.off.available{"data-title" => "r4c6"} 3
+                      %tr
+                        %td.weekend.off.available{"data-title" => "r5c0"} 4
+                        %td.off.available{"data-title" => "r5c1"} 5
+                        %td.off.available{"data-title" => "r5c2"} 6
+                        %td.off.available{"data-title" => "r5c3"} 7
+                        %td.off.available{"data-title" => "r5c4"} 8
+                        %td.off.available{"data-title" => "r5c5"} 9
+                        %td.weekend.off.available{"data-title" => "r5c6"} 10
+              .ranges{:style => "display: none;"}
+                .range_inputs
+                  %button.applyBtn.btn.btn-sm.btn-success{:type => "button"} Apply
+                  %button.cancelBtn.btn.btn-sm.btn-default{:type => "button"} Cancel
+            %fieldset
+              .control-group
+                .controls
+                  .col-md-11.xdisplay_inputx.form-group.has-feedback
+                    %input#single_cal3.form-control.has-feedback-left{"aria-describedby" => "inputSuccess2Status3", :placeholder => "First Name", :type => "text"}/
+                    %span.fa.fa-calendar-o.form-control-feedback.left{"aria-hidden" => "true"}
+                    %span#inputSuccess2Status3.sr-only (success)
+          .col-md-3
+            .daterangepicker.dropdown-menu.ltr.single.opensright.show-calendar.picker_4.xdisplay
+              .calendar.left.single{:style => "display: block;"}
+                .daterangepicker_input
+                  %input.input-mini.form-control.active{:name => "daterangepicker_start", :style => "display: none;", :type => "text", :value => ""}/
+                  %i.fa.fa-calendar.glyphicon.glyphicon-calendar{:style => "display: none;"}
+                  .calendar-time{:style => "display: none;"}
+                    %div
+                    %i.fa.fa-clock-o.glyphicon.glyphicon-time
+                .calendar-table
+                  %table.table-condensed
+                    %thead
+                      %tr
+                        %th.prev.available
+                          %i.fa.fa-chevron-left.glyphicon.glyphicon-chevron-left
+                        %th.month{:colspan => "5"} Oct 2016
+                        %th.next.available
+                          %i.fa.fa-chevron-right.glyphicon.glyphicon-chevron-right
+                      %tr
+                        %th Su
+                        %th Mo
+                        %th Tu
+                        %th We
+                        %th Th
+                        %th Fr
+                        %th Sa
+                    %tbody
+                      %tr
+                        %td.weekend.off.available{"data-title" => "r0c0"} 25
+                        %td.off.available{"data-title" => "r0c1"} 26
+                        %td.off.available{"data-title" => "r0c2"} 27
+                        %td.off.available{"data-title" => "r0c3"} 28
+                        %td.off.available{"data-title" => "r0c4"} 29
+                        %td.off.available{"data-title" => "r0c5"} 30
+                        %td.weekend.available{"data-title" => "r0c6"} 1
+                      %tr
+                        %td.weekend.available{"data-title" => "r1c0"} 2
+                        %td.available{"data-title" => "r1c1"} 3
+                        %td.available{"data-title" => "r1c2"} 4
+                        %td.available{"data-title" => "r1c3"} 5
+                        %td.available{"data-title" => "r1c4"} 6
+                        %td.available{"data-title" => "r1c5"} 7
+                        %td.weekend.available{"data-title" => "r1c6"} 8
+                      %tr
+                        %td.weekend.available{"data-title" => "r2c0"} 9
+                        %td.available{"data-title" => "r2c1"} 10
+                        %td.available{"data-title" => "r2c2"} 11
+                        %td.available{"data-title" => "r2c3"} 12
+                        %td.available{"data-title" => "r2c4"} 13
+                        %td.available{"data-title" => "r2c5"} 14
+                        %td.weekend.available{"data-title" => "r2c6"} 15
+                      %tr
+                        %td.weekend.available{"data-title" => "r3c0"} 16
+                        %td.available{"data-title" => "r3c1"} 17
+                        %td.today.active.start-date.active.end-date.available{"data-title" => "r3c2"} 18
+                        %td.available{"data-title" => "r3c3"} 19
+                        %td.available{"data-title" => "r3c4"} 20
+                        %td.available{"data-title" => "r3c5"} 21
+                        %td.weekend.available{"data-title" => "r3c6"} 22
+                      %tr
+                        %td.weekend.available{"data-title" => "r4c0"} 23
+                        %td.available{"data-title" => "r4c1"} 24
+                        %td.available{"data-title" => "r4c2"} 25
+                        %td.available{"data-title" => "r4c3"} 26
+                        %td.available{"data-title" => "r4c4"} 27
+                        %td.available{"data-title" => "r4c5"} 28
+                        %td.weekend.available{"data-title" => "r4c6"} 29
+                      %tr
+                        %td.weekend.available{"data-title" => "r5c0"} 30
+                        %td.available{"data-title" => "r5c1"} 31
+                        %td.off.available{"data-title" => "r5c2"} 1
+                        %td.off.available{"data-title" => "r5c3"} 2
+                        %td.off.available{"data-title" => "r5c4"} 3
+                        %td.off.available{"data-title" => "r5c5"} 4
+                        %td.weekend.off.available{"data-title" => "r5c6"} 5
+              .calendar.right{:style => "display: none;"}
+                .daterangepicker_input
+                  %input.input-mini.form-control{:name => "daterangepicker_end", :style => "display: none;", :type => "text", :value => ""}/
+                  %i.fa.fa-calendar.glyphicon.glyphicon-calendar{:style => "display: none;"}
+                  .calendar-time{:style => "display: none;"}
+                    %div
+                    %i.fa.fa-clock-o.glyphicon.glyphicon-time
+                .calendar-table
+                  %table.table-condensed
+                    %thead
+                      %tr
+                        %th
+                        %th.month{:colspan => "5"} Nov 2016
+                        %th.next.available
+                          %i.fa.fa-chevron-right.glyphicon.glyphicon-chevron-right
+                      %tr
+                        %th Su
+                        %th Mo
+                        %th Tu
+                        %th We
+                        %th Th
+                        %th Fr
+                        %th Sa
+                    %tbody
+                      %tr
+                        %td.weekend.off.available{"data-title" => "r0c0"} 30
+                        %td.off.available{"data-title" => "r0c1"} 31
+                        %td.available{"data-title" => "r0c2"} 1
+                        %td.available{"data-title" => "r0c3"} 2
+                        %td.available{"data-title" => "r0c4"} 3
+                        %td.available{"data-title" => "r0c5"} 4
+                        %td.weekend.available{"data-title" => "r0c6"} 5
+                      %tr
+                        %td.weekend.available{"data-title" => "r1c0"} 6
+                        %td.available{"data-title" => "r1c1"} 7
+                        %td.available{"data-title" => "r1c2"} 8
+                        %td.available{"data-title" => "r1c3"} 9
+                        %td.available{"data-title" => "r1c4"} 10
+                        %td.available{"data-title" => "r1c5"} 11
+                        %td.weekend.available{"data-title" => "r1c6"} 12
+                      %tr
+                        %td.weekend.available{"data-title" => "r2c0"} 13
+                        %td.available{"data-title" => "r2c1"} 14
+                        %td.available{"data-title" => "r2c2"} 15
+                        %td.available{"data-title" => "r2c3"} 16
+                        %td.available{"data-title" => "r2c4"} 17
+                        %td.available{"data-title" => "r2c5"} 18
+                        %td.weekend.available{"data-title" => "r2c6"} 19
+                      %tr
+                        %td.weekend.available{"data-title" => "r3c0"} 20
+                        %td.available{"data-title" => "r3c1"} 21
+                        %td.available{"data-title" => "r3c2"} 22
+                        %td.available{"data-title" => "r3c3"} 23
+                        %td.available{"data-title" => "r3c4"} 24
+                        %td.available{"data-title" => "r3c5"} 25
+                        %td.weekend.available{"data-title" => "r3c6"} 26
+                      %tr
+                        %td.weekend.available{"data-title" => "r4c0"} 27
+                        %td.available{"data-title" => "r4c1"} 28
+                        %td.available{"data-title" => "r4c2"} 29
+                        %td.available{"data-title" => "r4c3"} 30
+                        %td.off.available{"data-title" => "r4c4"} 1
+                        %td.off.available{"data-title" => "r4c5"} 2
+                        %td.weekend.off.available{"data-title" => "r4c6"} 3
+                      %tr
+                        %td.weekend.off.available{"data-title" => "r5c0"} 4
+                        %td.off.available{"data-title" => "r5c1"} 5
+                        %td.off.available{"data-title" => "r5c2"} 6
+                        %td.off.available{"data-title" => "r5c3"} 7
+                        %td.off.available{"data-title" => "r5c4"} 8
+                        %td.off.available{"data-title" => "r5c5"} 9
+                        %td.weekend.off.available{"data-title" => "r5c6"} 10
+              .ranges{:style => "display: none;"}
+                .range_inputs
+                  %button.applyBtn.btn.btn-sm.btn-success{:type => "button"} Apply
+                  %button.cancelBtn.btn.btn-sm.btn-default{:type => "button"} Cancel
+            %fieldset
+              .control-group
+                .controls
+                  .col-md-11.xdisplay_inputx.form-group.has-feedback
+                    %input#single_cal4.form-control.has-feedback-left{"aria-describedby" => "inputSuccess2Status4", :placeholder => "First Name", :type => "text"}/
+                    %span.fa.fa-calendar-o.form-control-feedback.left{"aria-hidden" => "true"}
+                    %span#inputSuccess2Status4.sr-only (success)
+    / /form datepicker
+    / form grid slider
+    .x_panel{:style => ""}
+      .x_title
+        %h2 Grid Slider
+        %ul.nav.navbar-right.panel_toolbox
+          %li
+            %a.collapse-link
+              %i.fa.fa-chevron-up
+          %li.dropdown
+            %a.dropdown-toggle{"aria-expanded" => "false", "data-toggle" => "dropdown", :href => "#", :role => "button"}
+              %i.fa.fa-wrench
+            %ul.dropdown-menu{:role => "menu"}
+              %li
+                %a{:href => "#"} Settings 1
+              %li
+                %a{:href => "#"} Settings 2
+          %li
+            %a.close-link
+              %i.fa.fa-close
+        .clearfix
+      .x_content
+        .row.grid_slider
+          .col-md-6.col-sm-6.col-xs-12
+            %p Default grid slider with min and max values
+            %input#range{:name => "range", :type => "text", :value => ""}/
+          .col-md-6.col-sm-6.col-xs-12
+            %p Grid with slider labels are far away outside it's container
+            %input#range_25{:name => "range", :type => "text", :value => ""}/
+          .col-md-6.col-sm-6.col-xs-12
+            %p Grid with labels inside container using force_edges attribute
+            %input#range_27{:name => "range", :type => "text", :value => ""}/
+          .col-md-6.col-sm-6.col-xs-12
+            %p Create Grid with pre-defined steps
+            %input#range_26{:name => "range", :type => "text", :value => ""}/
+          .col-md-6.col-sm-6.col-xs-12
+            %p Prevent one from dragging the labels
+            %input#range_31{:name => "range", :type => "text", :value => ""}/
+          .col-md-6.col-sm-6.col-xs-12
+            %p Grid with minimum and maximum values
+            %input.range_min_max{:name => "range", :type => "text", :value => ""}/
+          %div
+            %p Grid With time in 24 hour format
+            %input.range_time24{:name => "range", :type => "text", :value => ""}/
+    %br/
+    %br/
+    / /form grid slider
+    / image cropping
+    .container.cropper
+      .row
+        .col-md-9
+          .img-container
+            %img#image{:alt => "Picture", :src => "images/cropper.jpg"}/
+        .col-md-3
+          .docs-preview.clearfix
+            .img-preview.preview-lg
+            .img-preview.preview-md
+            .img-preview.preview-sm
+            .img-preview.preview-xs
+          .docs-data
+            .input-group.input-group-sm
+              %label.input-group-addon{:for => "dataX"} X
+              %input#dataX.form-control{:placeholder => "x", :type => "text"}/
+              %span.input-group-addon px
+            .input-group.input-group-sm
+              %label.input-group-addon{:for => "dataY"} Y
+              %input#dataY.form-control{:placeholder => "y", :type => "text"}/
+              %span.input-group-addon px
+            .input-group.input-group-sm
+              %label.input-group-addon{:for => "dataWidth"} Width
+              %input#dataWidth.form-control{:placeholder => "width", :type => "text"}/
+              %span.input-group-addon px
+            .input-group.input-group-sm
+              %label.input-group-addon{:for => "dataHeight"} Height
+              %input#dataHeight.form-control{:placeholder => "height", :type => "text"}/
+              %span.input-group-addon px
+            .input-group.input-group-sm
+              %label.input-group-addon{:for => "dataRotate"} Rotate
+              %input#dataRotate.form-control{:placeholder => "rotate", :type => "text"}/
+              %span.input-group-addon deg
+            .input-group.input-group-sm
+              %label.input-group-addon{:for => "dataScaleX"} ScaleX
+              %input#dataScaleX.form-control{:placeholder => "scaleX", :type => "text"}/
+            .input-group.input-group-sm
+              %label.input-group-addon{:for => "dataScaleY"} ScaleY
+              %input#dataScaleY.form-control{:placeholder => "scaleY", :type => "text"}/
+      .row
+        .col-md-9.docs-buttons
+          / <h3 class="page-header">Toolbar:</h3>
+          .btn-group
+            %button.btn.btn-primary{"data-method" => "setDragMode", "data-option" => "move", :title => "Move", :type => "button"}
+              %span.docs-tooltip{"data-toggle" => "tooltip", :title => "$().cropper(\"setDragMode\", \"move\")"}
+                %span.fa.fa-arrows
+            %button.btn.btn-primary{"data-method" => "setDragMode", "data-option" => "crop", :title => "Crop", :type => "button"}
+              %span.docs-tooltip{"data-toggle" => "tooltip", :title => "$().cropper(\"setDragMode\", \"crop\")"}
+                %span.fa.fa-crop
+          .btn-group
+            %button.btn.btn-primary{"data-method" => "zoom", "data-option" => "0.1", :title => "Zoom In", :type => "button"}
+              %span.docs-tooltip{"data-toggle" => "tooltip", :title => "$().cropper(\"zoom\", 0.1)"}
+                %span.fa.fa-search-plus
+            %button.btn.btn-primary{"data-method" => "zoom", "data-option" => "-0.1", :title => "Zoom Out", :type => "button"}
+              %span.docs-tooltip{"data-toggle" => "tooltip", :title => "$().cropper(\"zoom\", -0.1)"}
+                %span.fa.fa-search-minus
+          .btn-group
+            %button.btn.btn-primary{"data-method" => "move", "data-option" => "-10", "data-second-option" => "0", :title => "Move Left", :type => "button"}
+              %span.docs-tooltip{"data-toggle" => "tooltip", :title => "$().cropper(\"move\", -10, 0)"}
+                %span.fa.fa-arrow-left
+            %button.btn.btn-primary{"data-method" => "move", "data-option" => "10", "data-second-option" => "0", :title => "Move Right", :type => "button"}
+              %span.docs-tooltip{"data-toggle" => "tooltip", :title => "$().cropper(\"move\", 10, 0)"}
+                %span.fa.fa-arrow-right
+            %button.btn.btn-primary{"data-method" => "move", "data-option" => "0", "data-second-option" => "-10", :title => "Move Up", :type => "button"}
+              %span.docs-tooltip{"data-toggle" => "tooltip", :title => "$().cropper(\"move\", 0, -10)"}
+                %span.fa.fa-arrow-up
+            %button.btn.btn-primary{"data-method" => "move", "data-option" => "0", "data-second-option" => "10", :title => "Move Down", :type => "button"}
+              %span.docs-tooltip{"data-toggle" => "tooltip", :title => "$().cropper(\"move\", 0, 10)"}
+                %span.fa.fa-arrow-down
+          .btn-group
+            %button.btn.btn-primary{"data-method" => "rotate", "data-option" => "-45", :title => "Rotate Left", :type => "button"}
+              %span.docs-tooltip{"data-toggle" => "tooltip", :title => "$().cropper(\"rotate\", -45)"}
+                %span.fa.fa-rotate-left
+            %button.btn.btn-primary{"data-method" => "rotate", "data-option" => "45", :title => "Rotate Right", :type => "button"}
+              %span.docs-tooltip{"data-toggle" => "tooltip", :title => "$().cropper(\"rotate\", 45)"}
+                %span.fa.fa-rotate-right
+          .btn-group
+            %button.btn.btn-primary{"data-method" => "scaleX", "data-option" => "-1", :title => "Flip Horizontal", :type => "button"}
+              %span.docs-tooltip{"data-toggle" => "tooltip", :title => "$().cropper(\"scaleX\", -1)"}
+                %span.fa.fa-arrows-h
+            %button.btn.btn-primary{"data-method" => "scaleY", "data-option" => "-1", :title => "Flip Vertical", :type => "button"}
+              %span.docs-tooltip{"data-toggle" => "tooltip", :title => "$().cropper(\"scaleY\", -1)"}
+                %span.fa.fa-arrows-v
+          .btn-group
+            %button.btn.btn-primary{"data-method" => "crop", :title => "Crop", :type => "button"}
+              %span.docs-tooltip{"data-toggle" => "tooltip", :title => "$().cropper(\"crop\")"}
+                %span.fa.fa-check
+            %button.btn.btn-primary{"data-method" => "clear", :title => "Clear", :type => "button"}
+              %span.docs-tooltip{"data-toggle" => "tooltip", :title => "$().cropper(\"clear\")"}
+                %span.fa.fa-remove
+          .btn-group
+            %button.btn.btn-primary{"data-method" => "disable", :title => "Disable", :type => "button"}
+              %span.docs-tooltip{"data-toggle" => "tooltip", :title => "$().cropper(\"disable\")"}
+                %span.fa.fa-lock
+            %button.btn.btn-primary{"data-method" => "enable", :title => "Enable", :type => "button"}
+              %span.docs-tooltip{"data-toggle" => "tooltip", :title => "$().cropper(\"enable\")"}
+                %span.fa.fa-unlock
+          .btn-group
+            %button.btn.btn-primary{"data-method" => "reset", :title => "Reset", :type => "button"}
+              %span.docs-tooltip{"data-toggle" => "tooltip", :title => "$().cropper(\"reset\")"}
+                %span.fa.fa-refresh
+            %label.btn.btn-primary.btn-upload{:for => "inputImage", :title => "Upload image file"}
+              %input#inputImage.sr-only{:accept => "image/*", :name => "file", :type => "file"}/
+              %span.docs-tooltip{"data-toggle" => "tooltip", :title => "Import image with Blob URLs"}
+                %span.fa.fa-upload
+            %button.btn.btn-primary{"data-method" => "destroy", :title => "Destroy", :type => "button"}
+              %span.docs-tooltip{"data-toggle" => "tooltip", :title => "$().cropper(\"destroy\")"}
+                %span.fa.fa-power-off
+          .btn-group.btn-group-crop
+            %button.btn.btn-primary{"data-method" => "getCroppedCanvas", :type => "button"}
+              %span.docs-tooltip{"data-toggle" => "tooltip", :title => "$().cropper(\"getCroppedCanvas\")"}
+                Get Cropped Canvas
+            %button.btn.btn-primary{"data-method" => "getCroppedCanvas", "data-option" => "{ \"width\": 160, \"height\": 90 }", :type => "button"}
+              %span.docs-tooltip{"data-toggle" => "tooltip", :title => "$().cropper(\"getCroppedCanvas\", { width: 160, height: 90 })"}
+                160×90
+            %button.btn.btn-primary{"data-method" => "getCroppedCanvas", "data-option" => "{ \"width\": 320, \"height\": 180 }", :type => "button"}
+              %span.docs-tooltip{"data-toggle" => "tooltip", :title => "$().cropper(\"getCroppedCanvas\", { width: 320, height: 180 })"}
+                320×180
+          / Show the cropped image in modal
+          #getCroppedCanvasModal.modal.fade.docs-cropped{"aria-hidden" => "true", "aria-labelledby" => "getCroppedCanvasTitle", :role => "dialog", :tabindex => "-1"}
+            .modal-dialog
+              .modal-content
+                .modal-header
+                  %button.close{"aria-hidden" => "true", "data-dismiss" => "modal", :type => "button"} ×
+                  %h4#getCroppedCanvasTitle.modal-title Cropped
+                .modal-body
+                .modal-footer
+                  %button.btn.btn-default{"data-dismiss" => "modal", :type => "button"} Close
+                  %a#download.btn.btn-primary{:download => "cropped.png", :href => "javascript:void(0);"} Download
+          / /.modal
+          %button.btn.btn-primary{"data-method" => "getData", "data-option" => "", "data-target" => "#putData", :type => "button"}
+            %span.docs-tooltip{"data-toggle" => "tooltip", :title => "$().cropper(\"getData\")"}
+              Get Data
+          %button.btn.btn-primary{"data-method" => "setData", "data-target" => "#putData", :type => "button"}
+            %span.docs-tooltip{"data-toggle" => "tooltip", :title => "$().cropper(\"setData\", data)"}
+              Set Data
+          %button.btn.btn-primary{"data-method" => "getContainerData", "data-option" => "", "data-target" => "#putData", :type => "button"}
+            %span.docs-tooltip{"data-toggle" => "tooltip", :title => "$().cropper(\"getContainerData\")"}
+              Get Container Data
+          %button.btn.btn-primary{"data-method" => "getImageData", "data-option" => "", "data-target" => "#putData", :type => "button"}
+            %span.docs-tooltip{"data-toggle" => "tooltip", :title => "$().cropper(\"getImageData\")"}
+              Get Image Data
+          %button.btn.btn-primary{"data-method" => "getCanvasData", "data-option" => "", "data-target" => "#putData", :type => "button"}
+            %span.docs-tooltip{"data-toggle" => "tooltip", :title => "$().cropper(\"getCanvasData\")"}
+              Get Canvas Data
+          %button.btn.btn-primary{"data-method" => "setCanvasData", "data-target" => "#putData", :type => "button"}
+            %span.docs-tooltip{"data-toggle" => "tooltip", :title => "$().cropper(\"setCanvasData\", data)"}
+              Set Canvas Data
+          %button.btn.btn-primary{"data-method" => "getCropBoxData", "data-option" => "", "data-target" => "#putData", :type => "button"}
+            %span.docs-tooltip{"data-toggle" => "tooltip", :title => "$().cropper(\"getCropBoxData\")"}
+              Get Crop Box Data
+          %button.btn.btn-primary{"data-method" => "setCropBoxData", "data-target" => "#putData", :type => "button"}
+            %span.docs-tooltip{"data-toggle" => "tooltip", :title => "$().cropper(\"setCropBoxData\", data)"}
+              Set Crop Box Data
+          %button.btn.btn-primary{"data-method" => "moveTo", "data-option" => "0", :type => "button"}
+            %span.docs-tooltip{"data-toggle" => "tooltip", :title => "cropper.moveTo(0)"}
+              0,0
+          %button.btn.btn-primary{"data-method" => "zoomTo", "data-option" => "1", :type => "button"}
+            %span.docs-tooltip{"data-toggle" => "tooltip", :title => "cropper.zoomTo(1)"}
+              100%
+          %button.btn.btn-primary{"data-method" => "rotateTo", "data-option" => "180", :type => "button"}
+            %span.docs-tooltip{"data-toggle" => "tooltip", :title => "cropper.rotateTo(180)"}
+              180°
+          %input#putData.form-control{:placeholder => "Get data to here or set data with this value", :type => "text"}/
+        / /.docs-buttons
+        .col-md-3.docs-toggles
+          / <h3 class="page-header">Toggles:</h3>
+          .btn-group.btn-group-justified{"data-toggle" => "buttons"}
+            %label.btn.btn-primary.active
+              %input#aspectRatio0.sr-only{:name => "aspectRatio", :type => "radio", :value => "1.7777777777777777"}/
+              %span.docs-tooltip{"data-toggle" => "tooltip", :title => "aspectRatio: 16 / 9"}
+                16:9
+            %label.btn.btn-primary
+              %input#aspectRatio1.sr-only{:name => "aspectRatio", :type => "radio", :value => "1.3333333333333333"}/
+              %span.docs-tooltip{"data-toggle" => "tooltip", :title => "aspectRatio: 4 / 3"}
+                4:3
+            %label.btn.btn-primary
+              %input#aspectRatio2.sr-only{:name => "aspectRatio", :type => "radio", :value => "1"}/
+              %span.docs-tooltip{"data-toggle" => "tooltip", :title => "aspectRatio: 1 / 1"}
+                1:1
+            %label.btn.btn-primary
+              %input#aspectRatio3.sr-only{:name => "aspectRatio", :type => "radio", :value => "0.6666666666666666"}/
+              %span.docs-tooltip{"data-toggle" => "tooltip", :title => "aspectRatio: 2 / 3"}
+                2:3
+            %label.btn.btn-primary
+              %input#aspectRatio4.sr-only{:name => "aspectRatio", :type => "radio", :value => "NaN"}/
+              %span.docs-tooltip{"data-toggle" => "tooltip", :title => "aspectRatio: NaN"}
+                Free
+          .btn-group.btn-group-justified{"data-toggle" => "buttons"}
+            %label.btn.btn-primary.active
+              %input#viewMode0.sr-only{:checked => "checked", :name => "viewMode", :type => "radio", :value => "0"}/
+              %span.docs-tooltip{"data-toggle" => "tooltip", :title => "View Mode 0"}
+                VM0
+            %label.btn.btn-primary
+              %input#viewMode1.sr-only{:name => "viewMode", :type => "radio", :value => "1"}/
+              %span.docs-tooltip{"data-toggle" => "tooltip", :title => "View Mode 1"}
+                VM1
+            %label.btn.btn-primary
+              %input#viewMode2.sr-only{:name => "viewMode", :type => "radio", :value => "2"}/
+              %span.docs-tooltip{"data-toggle" => "tooltip", :title => "View Mode 2"}
+                VM2
+            %label.btn.btn-primary
+              %input#viewMode3.sr-only{:name => "viewMode", :type => "radio", :value => "3"}/
+              %span.docs-tooltip{"data-toggle" => "tooltip", :title => "View Mode 3"}
+                VM3
+          .dropdown.dropup.docs-options
+            %button#toggleOptions.btn.btn-primary.btn-block.dropdown-toggle{"aria-expanded" => "true", "data-toggle" => "dropdown", :type => "button"}
+              Toggle Options
+              %span.caret
+            %ul.dropdown-menu{"aria-labelledby" => "toggleOptions", :role => "menu"}
+              %li{:role => "presentation"}
+                %label.checkbox-inline
+                  %input{:checked => "checked", :name => "responsive", :type => "checkbox"}/
+                  responsive
+              %li{:role => "presentation"}
+                %label.checkbox-inline
+                  %input{:checked => "checked", :name => "restore", :type => "checkbox"}/
+                  restore
+              %li{:role => "presentation"}
+                %label.checkbox-inline
+                  %input{:checked => "checked", :name => "checkCrossOrigin", :type => "checkbox"}/
+                  checkCrossOrigin
+              %li{:role => "presentation"}
+                %label.checkbox-inline
+                  %input{:checked => "checked", :name => "checkOrientation", :type => "checkbox"}/
+                  checkOrientation
+              %li{:role => "presentation"}
+                %label.checkbox-inline
+                  %input{:checked => "checked", :name => "modal", :type => "checkbox"}/
+                  modal
+              %li{:role => "presentation"}
+                %label.checkbox-inline
+                  %input{:checked => "checked", :name => "guides", :type => "checkbox"}/
+                  guides
+              %li{:role => "presentation"}
+                %label.checkbox-inline
+                  %input{:checked => "checked", :name => "center", :type => "checkbox"}/
+                  center
+              %li{:role => "presentation"}
+                %label.checkbox-inline
+                  %input{:checked => "checked", :name => "highlight", :type => "checkbox"}/
+                  highlight
+              %li{:role => "presentation"}
+                %label.checkbox-inline
+                  %input{:checked => "checked", :name => "background", :type => "checkbox"}/
+                  background
+              %li{:role => "presentation"}
+                %label.checkbox-inline
+                  %input{:checked => "checked", :name => "autoCrop", :type => "checkbox"}/
+                  autoCrop
+              %li{:role => "presentation"}
+                %label.checkbox-inline
+                  %input{:checked => "checked", :name => "movable", :type => "checkbox"}/
+                  movable
+              %li{:role => "presentation"}
+                %label.checkbox-inline
+                  %input{:checked => "checked", :name => "rotatable", :type => "checkbox"}/
+                  rotatable
+              %li{:role => "presentation"}
+                %label.checkbox-inline
+                  %input{:checked => "checked", :name => "scalable", :type => "checkbox"}/
+                  scalable
+              %li{:role => "presentation"}
+                %label.checkbox-inline
+                  %input{:checked => "checked", :name => "zoomable", :type => "checkbox"}/
+                  zoomable
+              %li{:role => "presentation"}
+                %label.checkbox-inline
+                  %input{:checked => "checked", :name => "zoomOnTouch", :type => "checkbox"}/
+                  zoomOnTouch
+              %li{:role => "presentation"}
+                %label.checkbox-inline
+                  %input{:checked => "checked", :name => "zoomOnWheel", :type => "checkbox"}/
+                  zoomOnWheel
+              %li{:role => "presentation"}
+                %label.checkbox-inline
+                  %input{:checked => "checked", :name => "cropBoxMovable", :type => "checkbox"}/
+                  cropBoxMovable
+              %li{:role => "presentation"}
+                %label.checkbox-inline
+                  %input{:checked => "checked", :name => "cropBoxResizable", :type => "checkbox"}/
+                  cropBoxResizable
+              %li{:role => "presentation"}
+                %label.checkbox-inline
+                  %input{:checked => "checked", :name => "toggleDragModeOnDblclick", :type => "checkbox"}/
+                  toggleDragModeOnDblclick
+          / /.dropdown
+          %a.btn.btn-default.btn-block{"data-toggle" => "tooltip", :href => "https://fengyuanchen.github.io/cropperjs", :title => "Cropper without jQuery"} Cropper.js
+        / /.docs-toggles
+    / /image cropping

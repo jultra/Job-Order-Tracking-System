@@ -1,0 +1,67 @@
+.page-title
+  .title_left
+    %h3 Typography
+  .title_right
+    .col-md-5.col-sm-5.col-xs-12.form-group.pull-right.top_search
+      .input-group
+        %input.form-control{:placeholder => "Search for...", :type => "text"}/
+        %span.input-group-btn
+          %button.btn.btn-default{:type => "button"} Go!
+.clearfix
+.row
+  .col-md-12
+    .x_panel
+      .x_title
+        %h2
+          Typography
+          %small different design elements
+        %ul.nav.navbar-right.panel_toolbox
+          %li
+            %a.collapse-link
+              %i.fa.fa-chevron-up
+          %li.dropdown
+            %a.dropdown-toggle{"aria-expanded" => "false", "data-toggle" => "dropdown", :href => "#", :role => "button"}
+              %i.fa.fa-wrench
+            %ul.dropdown-menu{:role => "menu"}
+              %li
+                %a{:href => "#"} Settings 1
+              %li
+                %a{:href => "#"} Settings 2
+          %li
+            %a.close-link
+              %i.fa.fa-close
+        .clearfix
+      .x_content
+        .col-md-8.col-lg-8.col-sm-7
+          / blockquote
+          %blockquote
+            %p
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer posuere erat a ante Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer posuere erat a ante Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer
+              posuere erat a ante Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer posuere erat a ante.
+            %footer
+              Someone famous in
+              %cite{:title => "Source Title"} Source Title
+          %blockquote.blockquote-reverse
+            %p
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer posuere erat a ante Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer posuere erat a ante Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer
+              posuere erat a ante Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer posuere erat a ante.
+            %footer
+              Someone famous in
+              %cite{:title => "Source Title"} Source Title
+        .col-md-4.col-lg-4.col-sm-5
+          %h1 h1. Bootstrap heading
+          %h2 h2. Bootstrap heading
+          %h3 h3. Bootstrap heading
+          %h4 h4. Bootstrap heading
+          %h5 h5. Bootstrap heading
+          %h6 h6. Bootstrap heading
+        .clearfix
+        .col-md-12
+          %h4 Labels and badges
+          %span.label.label-default Default
+          %span.label.label-primary Primary
+          %span.label.label-success Success
+          %span.label.label-info Info
+          %span.label.label-warning Warning
+          %span.label.label-danger Danger
+          %span.badge.badge-success 42

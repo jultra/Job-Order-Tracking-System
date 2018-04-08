@@ -1,0 +1,82 @@
+.right_col{:role => "main"}
+  %div
+    .page-title
+      .title_left
+        %h3
+          Calendar
+          %small Click to add/edit events
+      .title_right
+        .col-md-5.col-sm-5.col-xs-12.form-group.pull-right.top_search
+          .input-group
+            %input.form-control{:placeholder => "Search for...", :type => "text"}/
+            %span.input-group-btn
+              %button.btn.btn-default{:type => "button"} Go!
+    .clearfix
+    .row
+      .col-md-12
+        .x_panel
+          .x_title
+            %h2
+              Calendar Events
+              %small Sessions
+            %ul.nav.navbar-right.panel_toolbox
+              %li
+                %a.collapse-link
+                  %i.fa.fa-chevron-up
+              %li.dropdown
+                %a.dropdown-toggle{"aria-expanded" => "false", "data-toggle" => "dropdown", :href => "#", :role => "button"}
+                  %i.fa.fa-wrench
+                %ul.dropdown-menu{:role => "menu"}
+                  %li
+                    %a{:href => "#"} Settings 1
+                  %li
+                    %a{:href => "#"} Settings 2
+              %li
+                %a.close-link
+                  %i.fa.fa-close
+            .clearfix
+          .x_content
+            #calendar
+/ calendar modal
+#CalenderModalNew.modal.fade{"aria-hidden" => "true", "aria-labelledby" => "myModalLabel", :role => "dialog", :tabindex => "-1"}
+  .modal-dialog
+    .modal-content
+      .modal-header
+        %button.close{"aria-hidden" => "true", "data-dismiss" => "modal", :type => "button"} ×
+        %h4#myModalLabel.modal-title New Calendar Entry
+      .modal-body
+        #testmodal{:style => "padding: 5px 20px;"}
+          %form#antoform.form-horizontal.calender{:role => "form"}
+            .form-group
+              %label.col-sm-3.control-label Title
+              .col-sm-9
+                %input#title.form-control{:name => "title", :type => "text"}/
+            .form-group
+              %label.col-sm-3.control-label Description
+              .col-sm-9
+                %textarea#descr.form-control{:name => "descr", :style => "height:55px;"}
+      .modal-footer
+        %button.btn.btn-default.antoclose{"data-dismiss" => "modal", :type => "button"} Close
+        %button.btn.btn-primary.antosubmit{:type => "button"} Save changes
+#CalenderModalEdit.modal.fade{"aria-hidden" => "true", "aria-labelledby" => "myModalLabel", :role => "dialog", :tabindex => "-1"}
+  .modal-dialog
+    .modal-content
+      .modal-header
+        %button.close{"aria-hidden" => "true", "data-dismiss" => "modal", :type => "button"} ×
+        %h4#myModalLabel2.modal-title Edit Calendar Entry
+      .modal-body
+        #testmodal2{:style => "padding: 5px 20px;"}
+          %form#antoform2.form-horizontal.calender{:role => "form"}
+            .form-group
+              %label.col-sm-3.control-label Title
+              .col-sm-9
+                %input#title2.form-control{:name => "title2", :type => "text"}/
+            .form-group
+              %label.col-sm-3.control-label Description
+              .col-sm-9
+                %textarea#descr2.form-control{:name => "descr", :style => "height:55px;"}
+      .modal-footer
+        %button.btn.btn-default.antoclose2{"data-dismiss" => "modal", :type => "button"} Close
+        %button.btn.btn-primary.antosubmit2{:type => "button"} Save changes
+#fc_create{"data-target" => "#CalenderModalNew", "data-toggle" => "modal"}
+#fc_edit{"data-target" => "#CalenderModalEdit", "data-toggle" => "modal"}

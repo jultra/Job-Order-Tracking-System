@@ -1,0 +1,701 @@
+.container.body
+  .main_container
+    .col-md-3.left_col
+      .left_col.scroll-view
+        .navbar.nav_title{:style => "border: 0;"}
+          %a.site_title{:href => "index.html"}
+            %i.fa.fa-paw
+            %span Gentelella Alela!
+        .clearfix
+        / menu profile quick info
+        .profile.clearfix
+          .profile_pic
+            %img.img-circle.profile_img{:alt => "...", :src => "images/img.jpg"}/
+          .profile_info
+            %span Welcome,
+            %h2 John Doe
+        / /menu profile quick info
+        %br/
+        / sidebar menu
+        #sidebar-menu.main_menu_side.hidden-print.main_menu
+          .menu_section
+            %h3 General
+            %ul.nav.side-menu
+              %li
+                %a
+                  %i.fa.fa-home
+                  Home
+                  %span.fa.fa-chevron-down
+                %ul.nav.child_menu
+                  %li
+                    %a{:href => "index.html"} Dashboard
+                  %li
+                    %a{:href => "index2.html"} Dashboard2
+                  %li
+                    %a{:href => "index3.html"} Dashboard3
+              %li
+                %a
+                  %i.fa.fa-edit
+                  Forms
+                  %span.fa.fa-chevron-down
+                %ul.nav.child_menu
+                  %li
+                    %a{:href => "form.html"} General Form
+                  %li
+                    %a{:href => "form_advanced.html"} Advanced Components
+                  %li
+                    %a{:href => "form_validation.html"} Form Validation
+                  %li
+                    %a{:href => "form_wizards.html"} Form Wizard
+                  %li
+                    %a{:href => "form_upload.html"} Form Upload
+                  %li
+                    %a{:href => "form_buttons.html"} Form Buttons
+              %li
+                %a
+                  %i.fa.fa-desktop
+                  UI Elements
+                  %span.fa.fa-chevron-down
+                %ul.nav.child_menu
+                  %li
+                    %a{:href => "general_elements.html"} General Elements
+                  %li
+                    %a{:href => "media_gallery.html"} Media Gallery
+                  %li
+                    %a{:href => "typography.html"} Typography
+                  %li
+                    %a{:href => "icons.html"} Icons
+                  %li
+                    %a{:href => "glyphicons.html"} Glyphicons
+                  %li
+                    %a{:href => "widgets.html"} Widgets
+                  %li
+                    %a{:href => "invoice.html"} Invoice
+                  %li
+                    %a{:href => "inbox.html"} Inbox
+                  %li
+                    %a{:href => "calendar.html"} Calendar
+              %li
+                %a
+                  %i.fa.fa-table
+                  Tables
+                  %span.fa.fa-chevron-down
+                %ul.nav.child_menu
+                  %li
+                    %a{:href => "tables.html"} Tables
+                  %li
+                    %a{:href => "tables_dynamic.html"} Table Dynamic
+              %li
+                %a
+                  %i.fa.fa-bar-chart-o
+                  Data Presentation
+                  %span.fa.fa-chevron-down
+                %ul.nav.child_menu
+                  %li
+                    %a{:href => "chartjs.html"} Chart JS
+                  %li
+                    %a{:href => "chartjs2.html"} Chart JS2
+                  %li
+                    %a{:href => "morisjs.html"} Moris JS
+                  %li
+                    %a{:href => "echarts.html"} ECharts
+                  %li
+                    %a{:href => "other_charts.html"} Other Charts
+              %li
+                %a
+                  %i.fa.fa-clone>
+                  Layouts
+                  %span.fa.fa-chevron-down
+                %ul.nav.child_menu
+                  %li
+                    %a{:href => "fixed_sidebar.html"} Fixed Sidebar
+                  %li
+                    %a{:href => "fixed_footer.html"} Fixed Footer
+          .menu_section
+            %h3 Live On
+            %ul.nav.side-menu
+              %li
+                %a
+                  %i.fa.fa-bug
+                  Additional Pages
+                  %span.fa.fa-chevron-down
+                %ul.nav.child_menu
+                  %li
+                    %a{:href => "e_commerce.html"} E-commerce
+                  %li
+                    %a{:href => "projects.html"} Projects
+                  %li
+                    %a{:href => "project_detail.html"} Project Detail
+                  %li
+                    %a{:href => "contacts.html"} Contacts
+                  %li
+                    %a{:href => "profile.html"} Profile
+              %li
+                %a
+                  %i.fa.fa-windows
+                  Extras
+                  %span.fa.fa-chevron-down
+                %ul.nav.child_menu
+                  %li
+                    %a{:href => "page_403.html"} 403 Error
+                  %li
+                    %a{:href => "page_404.html"} 404 Error
+                  %li
+                    %a{:href => "page_500.html"} 500 Error
+                  %li
+                    %a{:href => "plain_page.html"} Plain Page
+                  %li
+                    %a{:href => "login.html"} Login Page
+                  %li
+                    %a{:href => "pricing_tables.html"} Pricing Tables
+              %li
+                %a
+                  %i.fa.fa-sitemap
+                  Multilevel Menu
+                  %span.fa.fa-chevron-down
+                %ul.nav.child_menu
+                  %li
+                    %a{:href => "#level1_1"} Level One
+                  %li
+                    %a
+                      Level One
+                      %span.fa.fa-chevron-down
+                    %ul.nav.child_menu
+                      %li.sub_menu
+                        %a{:href => "level2.html"} Level Two
+                      %li
+                        %a{:href => "#level2_1"} Level Two
+                      %li
+                        %a{:href => "#level2_2"} Level Two
+                  %li
+                    %a{:href => "#level1_2"} Level One
+              %li
+                %a{:href => "javascript:void(0)"}
+                  %i.fa.fa-laptop
+                  Landing Page
+                  %span.label.label-success.pull-right Coming Soon
+        / /sidebar menu
+        / /menu footer buttons
+        .sidebar-footer.hidden-small
+          %a{"data-placement" => "top", "data-toggle" => "tooltip", :title => "Settings"}
+            %span.glyphicon.glyphicon-cog{"aria-hidden" => "true"}
+          %a{"data-placement" => "top", "data-toggle" => "tooltip", :title => "FullScreen"}
+            %span.glyphicon.glyphicon-fullscreen{"aria-hidden" => "true"}
+          %a{"data-placement" => "top", "data-toggle" => "tooltip", :title => "Lock"}
+            %span.glyphicon.glyphicon-eye-close{"aria-hidden" => "true"}
+          %a{"data-placement" => "top", "data-toggle" => "tooltip", :href => "login.html", :title => "Logout"}
+            %span.glyphicon.glyphicon-off{"aria-hidden" => "true"}
+        / /menu footer buttons
+    / top navigation
+    .top_nav
+      .nav_menu
+        %nav
+          .nav.toggle
+            %a#menu_toggle
+              %i.fa.fa-bars
+          %ul.nav.navbar-nav.navbar-right
+            %li
+              %a.user-profile.dropdown-toggle{"aria-expanded" => "false", "data-toggle" => "dropdown", :href => "javascript:;"}
+                %img{:alt => "", :src => "images/img.jpg"}>/
+                John Doe
+                %span.fa.fa-angle-down
+              %ul.dropdown-menu.dropdown-usermenu.pull-right
+                %li
+                  %a{:href => "javascript:;"} Profile
+                %li
+                  %a{:href => "javascript:;"}
+                    %span.badge.bg-red.pull-right 50%
+                    %span Settings
+                %li
+                  %a{:href => "javascript:;"} Help
+                %li
+                  %a{:href => "login.html"}
+                    %i.fa.fa-sign-out.pull-right
+                    Log Out
+            %li.dropdown{:role => "presentation"}
+              %a.dropdown-toggle.info-number{"aria-expanded" => "false", "data-toggle" => "dropdown", :href => "javascript:;"}
+                %i.fa.fa-envelope-o
+                %span.badge.bg-green 6
+              %ul#menu1.dropdown-menu.list-unstyled.msg_list{:role => "menu"}
+                %li
+                  %a
+                    %span.image
+                      %img{:alt => "Profile Image", :src => "images/img.jpg"}/
+                    %span
+                      %span John Smith
+                      %span.time 3 mins ago
+                    %span.message
+                      Film festivals used to be do-or-die moments for movie makers. They were where...
+                %li
+                  %a
+                    %span.image
+                      %img{:alt => "Profile Image", :src => "images/img.jpg"}/
+                    %span
+                      %span John Smith
+                      %span.time 3 mins ago
+                    %span.message
+                      Film festivals used to be do-or-die moments for movie makers. They were where...
+                %li
+                  %a
+                    %span.image
+                      %img{:alt => "Profile Image", :src => "images/img.jpg"}/
+                    %span
+                      %span John Smith
+                      %span.time 3 mins ago
+                    %span.message
+                      Film festivals used to be do-or-die moments for movie makers. They were where...
+                %li
+                  %a
+                    %span.image
+                      %img{:alt => "Profile Image", :src => "images/img.jpg"}/
+                    %span
+                      %span John Smith
+                      %span.time 3 mins ago
+                    %span.message
+                      Film festivals used to be do-or-die moments for movie makers. They were where...
+                %li
+                  .text-center
+                    %a
+                      %strong See All Alerts
+                      %i.fa.fa-angle-right
+    / /top navigation
+    / page content
+    .right_col{:role => "main"}
+      %div
+        .row.top_tiles{:style => "margin: 10px 0;"}
+          .col-md-3.col-sm-3.col-xs-6.tile
+            %span Total Sessions
+            %h2 231,809
+            %span.sparkline_one{:style => "height: 160px;"}
+              %canvas{:height => "60", :style => "display: inline-block; vertical-align: top; width: 94px; height: 30px;", :width => "200"}
+          .col-md-3.col-sm-3.col-xs-6.tile
+            %span Total Revenue
+            %h2 $ 231,809
+            %span.sparkline_one{:style => "height: 160px;"}
+              %canvas{:height => "60", :style => "display: inline-block; vertical-align: top; width: 94px; height: 30px;", :width => "200"}
+          .col-md-3.col-sm-3.col-xs-6.tile
+            %span Total Sessions
+            %h2 231,809
+            %span.sparkline_three{:style => "height: 160px;"}
+              %canvas{:height => "60", :style => "display: inline-block; vertical-align: top; width: 94px; height: 30px;", :width => "200"}
+          .col-md-3.col-sm-3.col-xs-6.tile
+            %span Total Sessions
+            %h2 231,809
+            %span.sparkline_one{:style => "height: 160px;"}
+              %canvas{:height => "60", :style => "display: inline-block; vertical-align: top; width: 94px; height: 30px;", :width => "200"}
+        %br/
+        .row
+          .col-md-12.col-sm-12.col-xs-12
+            .dashboard_graph.x_panel
+              .row.x_title
+                .col-md-6
+                  %h3
+                    Network Activities
+                    %small Graph title sub-title
+                .col-md-6
+                  #reportrange.pull-right{:style => "background: #fff; cursor: pointer; padding: 5px 10px; border: 1px solid #ccc"}
+                    %i.glyphicon.glyphicon-calendar.fa.fa-calendar
+                    %span December 30, 2014 - January 28, 2015
+                    %b.caret
+              .x_content
+                .demo-container{:style => "height:250px"}
+                  #chart_plot_03.demo-placeholder
+        .row
+          .col-md-4.col-sm-6.col-xs-12
+            .x_panel.fixed_height_320
+              .x_title
+                %h2
+                  App Devices
+                  %small Sessions
+                %ul.nav.navbar-right.panel_toolbox
+                  %li
+                    %a.collapse-link
+                      %i.fa.fa-chevron-up
+                  %li.dropdown
+                    %a.dropdown-toggle{"aria-expanded" => "false", "data-toggle" => "dropdown", :href => "#", :role => "button"}
+                      %i.fa.fa-wrench
+                    %ul.dropdown-menu{:role => "menu"}
+                      %li
+                        %a{:href => "#"} Settings 1
+                      %li
+                        %a{:href => "#"} Settings 2
+                  %li
+                    %a.close-link
+                      %i.fa.fa-close
+                .clearfix
+              .x_content
+                %h4 App Versions
+                .widget_summary
+                  .w_left.w_25
+                    %span 1.5.2
+                  .w_center.w_55
+                    .progress
+                      .progress-bar.bg-green{"aria-valuemax" => "100", "aria-valuemin" => "0", "aria-valuenow" => "60", :role => "progressbar", :style => "width: 66%;"}
+                        %span.sr-only 60% Complete
+                  .w_right.w_20
+                    %span 123k
+                  .clearfix
+                .widget_summary
+                  .w_left.w_25
+                    %span 1.5.3
+                  .w_center.w_55
+                    .progress
+                      .progress-bar.bg-green{"aria-valuemax" => "100", "aria-valuemin" => "0", "aria-valuenow" => "60", :role => "progressbar", :style => "width: 45%;"}
+                        %span.sr-only 60% Complete
+                  .w_right.w_20
+                    %span 53k
+                  .clearfix
+                .widget_summary
+                  .w_left.w_25
+                    %span 1.5.4
+                  .w_center.w_55
+                    .progress
+                      .progress-bar.bg-green{"aria-valuemax" => "100", "aria-valuemin" => "0", "aria-valuenow" => "60", :role => "progressbar", :style => "width: 25%;"}
+                        %span.sr-only 60% Complete
+                  .w_right.w_20
+                    %span 23k
+                  .clearfix
+                .widget_summary
+                  .w_left.w_25
+                    %span 1.5.5
+                  .w_center.w_55
+                    .progress
+                      .progress-bar.bg-green{"aria-valuemax" => "100", "aria-valuemin" => "0", "aria-valuenow" => "60", :role => "progressbar", :style => "width: 5%;"}
+                        %span.sr-only 60% Complete
+                  .w_right.w_20
+                    %span 3k
+                  .clearfix
+                .widget_summary
+                  .w_left.w_25
+                    %span 0.1.5.6
+                  .w_center.w_55
+                    .progress
+                      .progress-bar.bg-green{"aria-valuemax" => "100", "aria-valuemin" => "0", "aria-valuenow" => "60", :role => "progressbar", :style => "width: 2%;"}
+                        %span.sr-only 60% Complete
+                  .w_right.w_20
+                    %span 1k
+                  .clearfix
+          .col-md-4.col-sm-6.col-xs-12
+            .x_panel.fixed_height_320
+              .x_title
+                %h2
+                  Daily users
+                  %small Sessions
+                %ul.nav.navbar-right.panel_toolbox
+                  %li
+                    %a.collapse-link
+                      %i.fa.fa-chevron-up
+                  %li.dropdown
+                    %a.dropdown-toggle{"aria-expanded" => "false", "data-toggle" => "dropdown", :href => "#", :role => "button"}
+                      %i.fa.fa-wrench
+                    %ul.dropdown-menu{:role => "menu"}
+                      %li
+                        %a{:href => "#"} Settings 1
+                      %li
+                        %a{:href => "#"} Settings 2
+                  %li
+                    %a.close-link
+                      %i.fa.fa-close
+                .clearfix
+              .x_content
+                %table{:style => "width:100%"}
+                  %tr
+                    %th{:style => "width:37%;"}
+                      %p Top 5
+                    %th
+                      .col-lg-7.col-md-7.col-sm-7.col-xs-7
+                        %p Device
+                      .col-lg-5.col-md-5.col-sm-5.col-xs-5
+                        %p Progress
+                  %tr
+                    %td
+                      %canvas#canvas1{:height => "140", :style => "margin: 15px 10px 10px 0", :width => "140"}
+                    %td
+                      %table.tile_info
+                        %tr
+                          %td
+                            %p
+                              %i.fa.fa-square.blue>
+                              IOS
+                          %td 30%
+                        %tr
+                          %td
+                            %p
+                              %i.fa.fa-square.green>
+                              Android
+                          %td 10%
+                        %tr
+                          %td
+                            %p
+                              %i.fa.fa-square.purple>
+                              Blackberry
+                          %td 20%
+                        %tr
+                          %td
+                            %p
+                              %i.fa.fa-square.aero>
+                              Symbian
+                          %td 15%
+                        %tr
+                          %td
+                            %p
+                              %i.fa.fa-square.red>
+                              Others
+                          %td 30%
+          .col-md-4.col-sm-6.col-xs-12
+            .x_panel.fixed_height_320
+              .x_title
+                %h2
+                  Profile Settings
+                  %small Sessions
+                %ul.nav.navbar-right.panel_toolbox
+                  %li
+                    %a.collapse-link
+                      %i.fa.fa-chevron-up
+                  %li.dropdown
+                    %a.dropdown-toggle{"aria-expanded" => "false", "data-toggle" => "dropdown", :href => "#", :role => "button"}
+                      %i.fa.fa-wrench
+                    %ul.dropdown-menu{:role => "menu"}
+                      %li
+                        %a{:href => "#"} Settings 1
+                      %li
+                        %a{:href => "#"} Settings 2
+                  %li
+                    %a.close-link
+                      %i.fa.fa-close
+                .clearfix
+              .x_content
+                .dashboard-widget-content
+                  %ul.quick-list
+                    %li
+                      %i.fa.fa-line-chart
+                      %a{:href => "#"} Achievements
+                    %li
+                      %i.fa.fa-thumbs-up
+                      %a{:href => "#"} Favorites
+                    %li
+                      %i.fa.fa-calendar-o
+                      %a{:href => "#"} Activities
+                    %li
+                      %i.fa.fa-cog
+                      %a{:href => "#"} Settings
+                    %li
+                      %i.fa.fa-area-chart
+                      %a{:href => "#"} Logout
+                  .sidebar-widget
+                    %h4 Profile Completion
+                    %canvas#chart_gauge_01{:height => "80", :style => "width: 160px; height: 100px;", :width => "150"}
+                    .goal-wrapper
+                      %span#gauge-text.gauge-value.gauge-chart.pull-left 0
+                      %span.gauge-value.pull-left %
+                      %span#goal-text.goal-value.pull-right 100%
+          .col-md-4.col-sm-6.col-xs-12.widget_tally_box
+            .x_panel
+              .x_title
+                %h2 User Uptake
+                %ul.nav.navbar-right.panel_toolbox
+                  %li
+                    %a.collapse-link
+                      %i.fa.fa-chevron-up
+                  %li.dropdown
+                    %a.dropdown-toggle{"aria-expanded" => "false", "data-toggle" => "dropdown", :href => "#", :role => "button"}
+                      %i.fa.fa-wrench
+                    %ul.dropdown-menu{:role => "menu"}
+                      %li
+                        %a{:href => "#"} Settings 1
+                      %li
+                        %a{:href => "#"} Settings 2
+                  %li
+                    %a.close-link
+                      %i.fa.fa-close
+                .clearfix
+              .x_content
+                #graph_bar{:style => "width:100%; height:200px;"}
+                .col-xs-12.bg-white.progress_summary
+                  .row
+                    .progress_title
+                      %span.left Escudor Wireless 1.0
+                      %span.right This sis
+                      .clearfix
+                    .col-xs-2
+                      %span SSD
+                    .col-xs-8
+                      .progress.progress_sm
+                        .progress-bar.bg-green{"data-transitiongoal" => "89", :role => "progressbar"}
+                    .col-xs-2.more_info
+                      %span 89%
+                  .row
+                    .progress_title
+                      %span.left Mobile Access
+                      %span.right Smart Phone
+                      .clearfix
+                    .col-xs-2
+                      %span App
+                    .col-xs-8
+                      .progress.progress_sm
+                        .progress-bar.bg-green{"data-transitiongoal" => "79", :role => "progressbar"}
+                    .col-xs-2.more_info
+                      %span 79%
+                  .row
+                    .progress_title
+                      %span.left WAN access users
+                      %span.right Total 69%
+                      .clearfix
+                    .col-xs-2
+                      %span Usr
+                    .col-xs-8
+                      .progress.progress_sm
+                        .progress-bar.bg-green{"data-transitiongoal" => "69", :role => "progressbar"}
+                    .col-xs-2.more_info
+                      %span 69%
+          / start of weather widget
+          .col-md-4.col-sm-6.col-xs-12
+            .x_panel
+              .x_title
+                %h2
+                  Today's Weather
+                  %small Sessions
+                %ul.nav.navbar-right.panel_toolbox
+                  %li
+                    %a.collapse-link
+                      %i.fa.fa-chevron-up
+                  %li.dropdown
+                    %a.dropdown-toggle{"aria-expanded" => "false", "data-toggle" => "dropdown", :href => "#", :role => "button"}
+                      %i.fa.fa-wrench
+                    %ul.dropdown-menu{:role => "menu"}
+                      %li
+                        %a{:href => "#"} Settings 1
+                      %li
+                        %a{:href => "#"} Settings 2
+                  %li
+                    %a.close-link
+                      %i.fa.fa-close
+                .clearfix
+              .x_content
+                .row
+                  .col-sm-12
+                    .temperature
+                      %b> Monday
+                      , 07:30 AM
+                      %span F
+                      %span
+                        %b C
+                .row
+                  .col-sm-4
+                    .weather-icon
+                      %span
+                        %canvas#partly-cloudy-day{:height => "84", :width => "84"}
+                  .col-sm-8
+                    .weather-text
+                      %h2
+                        Texas
+                        %br/
+                        %i Partly Cloudy Day
+                .col-sm-12
+                  .weather-text.pull-right
+                    %h3.degrees 23
+                .clearfix
+                .row.weather-days
+                  .col-sm-2
+                    .daily-weather
+                      %h2.day Mon
+                      %h3.degrees 25
+                      %span
+                        %canvas#clear-day{:height => "32", :width => "32"}
+                      %h5
+                        15
+                        %i km/h
+                  .col-sm-2
+                    .daily-weather
+                      %h2.day Tue
+                      %h3.degrees 25
+                      %canvas#rain{:height => "32", :width => "32"}
+                      %h5
+                        12
+                        %i km/h
+                  .col-sm-2
+                    .daily-weather
+                      %h2.day Wed
+                      %h3.degrees 27
+                      %canvas#snow{:height => "32", :width => "32"}
+                      %h5
+                        14
+                        %i km/h
+                  .col-sm-2
+                    .daily-weather
+                      %h2.day Thu
+                      %h3.degrees 28
+                      %canvas#sleet{:height => "32", :width => "32"}
+                      %h5
+                        15
+                        %i km/h
+                  .col-sm-2
+                    .daily-weather
+                      %h2.day Fri
+                      %h3.degrees 28
+                      %canvas#wind{:height => "32", :width => "32"}
+                      %h5
+                        11
+                        %i km/h
+                  .col-sm-2
+                    .daily-weather
+                      %h2.day Sat
+                      %h3.degrees 26
+                      %canvas#cloudy{:height => "32", :width => "32"}
+                      %h5
+                        10
+                        %i km/h
+                  .clearfix
+          / end of weather widget
+          .col-md-4.col-sm-6.col-xs-12
+            .x_panel.fixed_height_320
+              .x_title
+                %h2
+                  Incomes
+                  %small Sessions
+                %ul.nav.navbar-right.panel_toolbox
+                  %li
+                    %a.collapse-link
+                      %i.fa.fa-chevron-up
+                  %li.dropdown
+                    %a.dropdown-toggle{"aria-expanded" => "false", "data-toggle" => "dropdown", :href => "#", :role => "button"}
+                      %i.fa.fa-wrench
+                    %ul.dropdown-menu{:role => "menu"}
+                      %li
+                        %a{:href => "#"} Settings 1
+                      %li
+                        %a{:href => "#"} Settings 2
+                  %li
+                    %a.close-link
+                      %i.fa.fa-close
+                .clearfix
+              .x_content
+                .dashboard-widget-content
+                  %ul.quick-list
+                    %li
+                      %i.fa.fa-bars
+                      %a{:href => "#"} Subscription
+                    %li
+                      %i.fa.fa-bar-chart
+                      %a{:href => "#"} Auto Renewal
+                    %li
+                      %i.fa.fa-support
+                      %a{:href => "#"} Help Desk
+                    %li
+                      %i.fa.fa-heart
+                      %a{:href => "#"} Donations
+                  .sidebar-widget
+                    %h4 Goal
+                    %canvas#chart_gauge_02{:height => "80", :style => "width: 160px; height: 100px;", :width => "150"}
+                    .goal-wrapper
+                      %span.gauge-value.pull-left $
+                      %span#gauge-text2.gauge-value.pull-left 3,200
+                      %span#goal-text2.goal-value.pull-right $5,000
+    / /page content
+    / footer content
+    %footer
+      .pull-right
+        Gentelella - Bootstrap Admin Template by
+        %a{:href => "https://colorlib.com"} Colorlib
+      .clearfix
+    / /footer content

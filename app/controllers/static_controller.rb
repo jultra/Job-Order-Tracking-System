@@ -1,4 +1,4 @@
-class StaticsController < ApplicationController
+class StaticController < ApplicationController
 
   def kitchen_sink
    render :kitchen_sink, layout: "kitchen"

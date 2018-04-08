@@ -1,0 +1,933 @@
+.page-title
+  .title_left
+    %h3 General Elements
+  .title_right
+    .col-md-5.col-sm-5.col-xs-12.form-group.pull-right.top_search
+      .input-group
+        %input.form-control{:placeholder => "Search for...", :type => "text"}
+          %span.input-group-btn
+            %button.btn.btn-default{:type => "button"} Go!
+  .clearfix
+  %div
+    .col-md-6.col-sm-6.col-xs-12
+      .x_panel
+        .x_title
+          %h2
+            %i.fa.fa-bars
+            Tabs
+            %small Float left
+          %ul.nav.navbar-right.panel_toolbox
+            %li
+              %a.collapse-link
+                %i.fa.fa-chevron-up
+            %li.dropdown
+              %a.dropdown-toggle{"aria-expanded" => "false", "data-toggle" => "dropdown", :href => "#", :role => "button"}
+                %i.fa.fa-wrench
+              %ul.dropdown-menu{:role => "menu"}
+                %li
+                  %a{:href => "#"} Settings 1
+                %li
+                  %a{:href => "#"} Settings 2
+            %li
+              %a.close-link
+                %i.fa.fa-close
+          .clearfix
+        .x_content
+          %div{"data-example-id" => "togglable-tabs", :role => "tabpanel"}
+            %ul#myTab.nav.nav-tabs.bar_tabs{:role => "tablist"}
+              %li.active{:role => "presentation"}
+                %a#home-tab{"aria-expanded" => "true", "data-toggle" => "tab", :href => "#tab_content1", :role => "tab"} Home
+              %li{:role => "presentation"}
+                %a#profile-tab{"aria-expanded" => "false", "data-toggle" => "tab", :href => "#tab_content2", :role => "tab"} Profile
+              %li{:role => "presentation"}
+                %a#profile-tab2{"aria-expanded" => "false", "data-toggle" => "tab", :href => "#tab_content3", :role => "tab"} Profile
+            #myTabContent.tab-content
+              #tab_content1.tab-pane.fade.active.in{"aria-labelledby" => "home-tab", :role => "tabpanel"}
+                %p
+                  Raw denim you probably haven't heard of them jean shorts Austin. Nesciunt tofu stumptown aliqua, retro synth master cleanse. Mustache cliche tempor, williamsburg carles vegan helvetica. Reprehenderit butcher retro keffiyeh dreamcatcher
+                  synth. Cosby sweater eu banh mi, qui irure terr.
+              #tab_content2.tab-pane.fade{"aria-labelledby" => "profile-tab", :role => "tabpanel"}
+                %p
+                  Food truck fixie locavore, accusamus mcsweeney's marfa nulla single-origin coffee squid. Exercitation +1 labore velit, blog sartorial PBR leggings next level wes anderson artisan four loko farm-to-table craft beer twee. Qui photo
+                  booth letterpress, commodo enim craft beer mlkshk aliquip
+              #tab_content3.tab-pane.fade{"aria-labelledby" => "profile-tab", :role => "tabpanel"}
+                %p
+                  xxFood truck fixie locavore, accusamus mcsweeney's marfa nulla single-origin coffee squid. Exercitation +1 labore velit, blog sartorial PBR leggings next level wes anderson artisan four loko farm-to-table craft beer twee. Qui photo
+                  booth letterpress, commodo enim craft beer mlkshk
+    .col-md-6.col-sm-6.col-xs-12
+      .x_panel
+        .x_title
+          %h2
+            %i.fa.fa-bars
+            Tabs
+            %small Float right
+          %ul.nav.navbar-right.panel_toolbox
+            %li
+              %a.collapse-link
+                %i.fa.fa-chevron-up
+            %li.dropdown
+              %a.dropdown-toggle{"aria-expanded" => "false", "data-toggle" => "dropdown", :href => "#", :role => "button"}
+                %i.fa.fa-wrench
+              %ul.dropdown-menu{:role => "menu"}
+                %li
+                  %a{:href => "#"} Settings 1
+                %li
+                  %a{:href => "#"} Settings 2
+            %li
+              %a.close-link
+                %i.fa.fa-close
+          .clearfix
+        .x_content
+          %div{"data-example-id" => "togglable-tabs", :role => "tabpanel"}
+            %ul#myTab1.nav.nav-tabs.bar_tabs.right{:role => "tablist"}
+              %li.active{:role => "presentation"}
+                %a#home-tabb{"aria-controls" => "home", "aria-expanded" => "true", "data-toggle" => "tab", :href => "#tab_content11", :role => "tab"} Home
+              %li{:role => "presentation"}
+                %a#profile-tabb{"aria-controls" => "profile", "aria-expanded" => "false", "data-toggle" => "tab", :href => "#tab_content22", :role => "tab"} Profile
+              %li{:role => "presentation"}
+                %a#profile-tabb3{"aria-controls" => "profile", "aria-expanded" => "false", "data-toggle" => "tab", :href => "#tab_content33", :role => "tab"} Profile
+            #myTabContent2.tab-content
+              #tab_content11.tab-pane.fade.active.in{"aria-labelledby" => "home-tab", :role => "tabpanel"}
+                %p
+                  Raw denim you probably haven't heard of them jean shorts Austin. Nesciunt tofu stumptown aliqua, retro synth master cleanse. Mustache cliche tempor, williamsburg carles vegan helvetica. Reprehenderit butcher retro keffiyeh dreamcatcher
+                  synth. Cosby sweater eu banh mi, qui irure terr.
+              #tab_content22.tab-pane.fade{"aria-labelledby" => "profile-tab", :role => "tabpanel"}
+                %p
+                  Food truck fixie locavore, accusamus mcsweeney's marfa nulla single-origin coffee squid. Exercitation +1 labore velit, blog sartorial PBR leggings next level wes anderson artisan four loko farm-to-table craft beer twee. Qui photo
+                  booth letterpress, commodo enim craft beer mlkshk aliquip
+              #tab_content33.tab-pane.fade{"aria-labelledby" => "profile-tab", :role => "tabpanel"}
+                %p
+                  xxFood truck fixie locavore, accusamus mcsweeney's marfa nulla single-origin coffee squid. Exercitation +1 labore velit, blog sartorial PBR leggings next level wes anderson artisan four loko farm-to-table craft beer twee. Qui photo
+                  booth letterpress, commodo enim craft beer mlkshk
+    .clearfix
+    .col-md-6.col-sm-6.col-xs-12
+      .x_panel
+        .x_title
+          %h2
+            %i.fa.fa-bars
+            Vertical Tabs
+            %small Float left
+          %ul.nav.navbar-right.panel_toolbox
+            %li
+              %a.collapse-link
+                %i.fa.fa-chevron-up
+            %li.dropdown
+              %a.dropdown-toggle{"aria-expanded" => "false", "data-toggle" => "dropdown", :href => "#", :role => "button"}
+                %i.fa.fa-wrench
+              %ul.dropdown-menu{:role => "menu"}
+                %li
+                  %a{:href => "#"} Settings 1
+                %li
+                  %a{:href => "#"} Settings 2
+            %li
+              %a.close-link
+                %i.fa.fa-close
+          .clearfix
+        .x_content
+          .col-xs-3
+            / required for floating
+            / Nav tabs
+            %ul.nav.nav-tabs.tabs-left
+              %li.active
+                %a{"data-toggle" => "tab", :href => "#home"} Home
+              %li
+                %a{"data-toggle" => "tab", :href => "#profile"} Profile
+              %li
+                %a{"data-toggle" => "tab", :href => "#messages"} Messages
+              %li
+                %a{"data-toggle" => "tab", :href => "#settings"} Settings
+          .col-xs-9
+            / Tab panes
+            .tab-content
+              #home.tab-pane.active
+                %p.lead Home tab
+                %p
+                  Raw denim you probably haven't heard of them jean shorts Austin. Nesciunt tofu stumptown aliqua, retro synth master cleanse. Mustache cliche tempor, williamsburg carles vegan helvetica. Reprehenderit butcher retro keffiyeh dreamcatcher
+                  synth. Cosby sweater eu banh mi, qui irure terr.
+              #profile.tab-pane Profile Tab.
+              #messages.tab-pane Messages Tab.
+              #settings.tab-pane Settings Tab.
+          .clearfix
+    .col-md-6.col-sm-6.col-xs-12
+      .x_panel
+        .x_title
+          %h2
+            %i.fa.fa-bars
+            Vertical Tabs
+            %small Float right
+          %ul.nav.navbar-right.panel_toolbox
+            %li
+              %a.collapse-link
+                %i.fa.fa-chevron-up
+            %li.dropdown
+              %a.dropdown-toggle{"aria-expanded" => "false", "data-toggle" => "dropdown", :href => "#", :role => "button"}
+                %i.fa.fa-wrench
+              %ul.dropdown-menu{:role => "menu"}
+                %li
+                  %a{:href => "#"} Settings 1
+                %li
+                  %a{:href => "#"} Settings 2
+            %li
+              %a.close-link
+                %i.fa.fa-close
+          .clearfix
+        .x_content
+          .col-xs-9
+            / Tab panes
+            .tab-content
+              #home-r.tab-pane.active
+                %p.lead Home tab
+                %p
+                  Raw denim you probably haven't heard of them jean shorts Austin. Nesciunt tofu stumptown aliqua, retro synth master cleanse. Mustache cliche tempor, williamsburg carles vegan helvetica. Reprehenderit butcher retro keffiyeh dreamcatcher
+                  synth. Cosby sweater eu banh mi, qui irure terr.
+              #profile-r.tab-pane Profile Tab.
+              #messages-r.tab-pane Messages Tab.
+              #settings-r.tab-pane Settings Tab.
+          .col-xs-3
+            / required for floating
+            / Nav tabs
+            %ul.nav.nav-tabs.tabs-right
+              %li.active
+                %a{"data-toggle" => "tab", :href => "#home-r"} Home
+              %li
+                %a{"data-toggle" => "tab", :href => "#profile-r"} Profile
+              %li
+                %a{"data-toggle" => "tab", :href => "#messages-r"} Messages
+              %li
+                %a{"data-toggle" => "tab", :href => "#settings-r"} Settings
+    .clearfix
+    .col-md-6.col-sm-6.col-xs-12
+      .x_panel
+        .x_title
+          %h2
+            %i.fa.fa-align-left
+            Collapsible / Accordion
+            %small Sessions
+          %ul.nav.navbar-right.panel_toolbox
+            %li
+              %a.collapse-link
+                %i.fa.fa-chevron-up
+            %li.dropdown
+              %a.dropdown-toggle{"aria-expanded" => "false", "data-toggle" => "dropdown", :href => "#", :role => "button"}
+                %i.fa.fa-wrench
+              %ul.dropdown-menu{:role => "menu"}
+                %li
+                  %a{:href => "#"} Settings 1
+                %li
+                  %a{:href => "#"} Settings 2
+            %li
+              %a.close-link
+                %i.fa.fa-close
+          .clearfix
+        .x_content
+          / start accordion
+          #accordion.accordion{"aria-multiselectable" => "true", :role => "tablist"}
+            .panel
+              %a#headingOne.panel-heading{"aria-controls" => "collapseOne", "aria-expanded" => "true", "data-parent" => "#accordion", "data-toggle" => "collapse", :href => "#collapseOne", :role => "tab"}
+                %h4.panel-title Collapsible Group Items #1
+              #collapseOne.panel-collapse.collapse.in{"aria-labelledby" => "headingOne", :role => "tabpanel"}
+                .panel-body
+                  %table.table.table-bordered
+                    %thead
+                      %tr
+                        %th #
+                        %th First Name
+                        %th Last Name
+                        %th Username
+                    %tbody
+                      %tr
+                        %th{:scope => "row"} 1
+                        %td Mark
+                        %td Otto
+                        %td @mdo
+                      %tr
+                        %th{:scope => "row"} 2
+                        %td Jacob
+                        %td Thornton
+                        %td @fat
+                      %tr
+                        %th{:scope => "row"} 3
+                        %td Larry
+                        %td the Bird
+                        %td @twitter
+            .panel
+              %a#headingTwo.panel-heading.collapsed{"aria-controls" => "collapseTwo", "aria-expanded" => "false", "data-parent" => "#accordion", "data-toggle" => "collapse", :href => "#collapseTwo", :role => "tab"}
+                %h4.panel-title Collapsible Group Items #2
+              #collapseTwo.panel-collapse.collapse{"aria-labelledby" => "headingTwo", :role => "tabpanel"}
+                .panel-body
+                  %p
+                    %strong Collapsible Item 2 data
+                  Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor,
+            .panel
+              %a#headingThree.panel-heading.collapsed{"aria-controls" => "collapseThree", "aria-expanded" => "false", "data-parent" => "#accordion", "data-toggle" => "collapse", :href => "#collapseThree", :role => "tab"}
+                %h4.panel-title Collapsible Group Items #3
+              #collapseThree.panel-collapse.collapse{"aria-labelledby" => "headingThree", :role => "tabpanel"}
+                .panel-body
+                  %p
+                    %strong Collapsible Item 3 data
+                  Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor
+          / end of accordion
+    .col-md-6.col-sm-6.col-xs-12
+      .x_panel
+        .x_title
+          %h2
+            %i.fa.fa-align-left
+            Collapsible / Accordion
+            %small Sessions
+          %ul.nav.navbar-right.panel_toolbox
+            %li
+              %a.collapse-link
+                %i.fa.fa-chevron-up
+            %li.dropdown
+              %a.dropdown-toggle{"aria-expanded" => "false", "data-toggle" => "dropdown", :href => "#", :role => "button"}
+                %i.fa.fa-wrench
+              %ul.dropdown-menu{:role => "menu"}
+                %li
+                  %a{:href => "#"} Settings 1
+                %li
+                  %a{:href => "#"} Settings 2
+            %li
+              %a.close-link
+                %i.fa.fa-close
+          .clearfix
+        .x_content
+          / start accordion
+          #accordion1.accordion{"aria-multiselectable" => "true", :role => "tablist"}
+            .panel
+              %a#headingOne1.panel-heading{"aria-controls" => "collapseOne", "aria-expanded" => "true", "data-parent" => "#accordion1", "data-toggle" => "collapse", :href => "#collapseOne1", :role => "tab"}
+                %h4.panel-title Collapsible Group Item #1
+              #collapseOne1.panel-collapse.collapse.in{"aria-labelledby" => "headingOne", :role => "tabpanel"}
+                .panel-body
+                  %table.table.table-striped
+                    %thead
+                      %tr
+                        %th #
+                        %th First Name
+                        %th Last Name
+                        %th Username
+                    %tbody
+                      %tr
+                        %th{:scope => "row"} 1
+                        %td Mark
+                        %td Otto
+                        %td @mdo
+                      %tr
+                        %th{:scope => "row"} 2
+                        %td Jacob
+                        %td Thornton
+                        %td @fat
+                      %tr
+                        %th{:scope => "row"} 3
+                        %td Larry
+                        %td the Bird
+                        %td @twitter
+            .panel
+              %a#headingTwo1.panel-heading.collapsed{"aria-controls" => "collapseTwo", "aria-expanded" => "false", "data-parent" => "#accordion1", "data-toggle" => "collapse", :href => "#collapseTwo1", :role => "tab"}
+                %h4.panel-title Collapsible Group Item #2
+              #collapseTwo1.panel-collapse.collapse{"aria-labelledby" => "headingTwo", :role => "tabpanel"}
+                .panel-body
+                  %p
+                    %strong Collapsible Item 2 data
+                  Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor,
+            .panel
+              %a#headingThree1.panel-heading.collapsed{"aria-controls" => "collapseThree", "aria-expanded" => "false", "data-parent" => "#accordion1", "data-toggle" => "collapse", :href => "#collapseThree1", :role => "tab"}
+                %h4.panel-title Collapsible Group Item #3
+              #collapseThree1.panel-collapse.collapse{"aria-labelledby" => "headingThree", :role => "tabpanel"}
+                .panel-body
+                  %p
+                    %strong Collapsible Item 3 data
+                  Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor
+          / end of accordion
+  .clearfix
+  %div
+    .col-md-6.col-sm-6.col-xs-12
+      .x_panel
+        .x_title
+          %h2
+            Tooltips
+            %small Hover to view
+          %ul.nav.navbar-right.panel_toolbox
+            %li
+              %a.collapse-link
+                %i.fa.fa-chevron-up
+            %li.dropdown
+              %a.dropdown-toggle{"aria-expanded" => "false", "data-toggle" => "dropdown", :href => "#", :role => "button"}
+                %i.fa.fa-wrench
+              %ul.dropdown-menu{:role => "menu"}
+                %li
+                  %a{:href => "#"} Settings 1
+                %li
+                  %a{:href => "#"} Settings 2
+            %li
+              %a.close-link
+                %i.fa.fa-close
+          .clearfix
+        .x_content
+          %p Add small overlays of content for housing secondary information.
+          / start pop-over
+          .bs-example-popovers
+            %button.btn.btn-default{"data-container" => "body", "data-content" => "Vivamus sagittis lacus vel augue laoreet rutrum faucibus.", "data-original-title" => "", "data-placement" => "left", "data-toggle" => "popover", :title => "", :type => "button"}
+              Left
+            %button.btn.btn-default{"data-container" => "body", "data-content" => "Vivamus sagittis lacus vel augue laoreet rutrum faucibus.", "data-original-title" => "", "data-placement" => "top", "data-toggle" => "popover", :title => "", :type => "button"}
+              Top
+            %button.btn.btn-default{"data-container" => "body", "data-content" => "Vivamus sagittis lacus vel augue laoreet rutrum faucibus.", "data-placement" => "bottom", "data-toggle" => "popover", :type => "button"}
+              Bottom
+            %button.btn.btn-default{"data-container" => "body", "data-content" => "Vivamus sagittis lacus vel augue laoreet rutrum faucibus.", "data-placement" => "right", "data-toggle" => "popover", :type => "button"}
+              Right
+          / end pop-over
+    .col-md-6.col-sm-6.col-xs-12
+      .x_panel
+        .x_title
+          %h2
+            Tooltips
+            %small Hover to view
+          %ul.nav.navbar-right.panel_toolbox
+            %li
+              %a.collapse-link
+                %i.fa.fa-chevron-up
+            %li.dropdown
+              %a.dropdown-toggle{"aria-expanded" => "false", "data-toggle" => "dropdown", :href => "#", :role => "button"}
+                %i.fa.fa-wrench
+              %ul.dropdown-menu{:role => "menu"}
+                %li
+                  %a{:href => "#"} Settings 1
+                %li
+                  %a{:href => "#"} Settings 2
+            %li
+              %a.close-link
+                %i.fa.fa-close
+          .clearfix
+        .x_content
+          %p Hover over the links below to see tooltips:
+          %button.btn.btn-default{"data-placement" => "left", "data-toggle" => "tooltip", :title => "Tooltip left", :type => "button"} Tooltip left
+          %button.btn.btn-default{"data-placement" => "top", "data-toggle" => "tooltip", :title => "Tooltip top", :type => "button"} Tooltip top
+          %button.btn.btn-default{"data-placement" => "bottom", "data-toggle" => "tooltip", :title => "Tooltip bottom", :type => "button"} Tooltip bottom
+          %button.btn.btn-default{"data-placement" => "right", "data-toggle" => "tooltip", :title => "Tooltip right", :type => "button"} Tooltip right
+  .col-md-6.col-sm-6.col-xs-12
+    .x_panel
+      .x_title
+        %h2
+          Daily active users
+          %small Sessions
+        %ul.nav.navbar-right.panel_toolbox
+          %li
+            %a.collapse-link
+              %i.fa.fa-chevron-up
+          %li.dropdown
+            %a.dropdown-toggle{"aria-expanded" => "false", "data-toggle" => "dropdown", :href => "#", :role => "button"}
+              %i.fa.fa-wrench
+            %ul.dropdown-menu{:role => "menu"}
+              %li
+                %a{:href => "#"} Settings 1
+              %li
+                %a{:href => "#"} Settings 2
+          %li
+            %a.close-link
+              %i.fa.fa-close
+        .clearfix
+      .x_content
+        %ul.list-unstyled.timeline
+          %li
+            .block
+              .tags
+                %a.tag{:href => ""}
+                  %span Entertainment
+              .block_content
+                %h2.title
+                  %a Who Needs Sundance When You&#x2019;ve GotCrowdfunding?
+                .byline
+                  %span 13 hours ago
+                  by
+                  %a Jane Smith
+                %p.excerpt
+                  Film festivals used to be do-or-die moments for movie makers. They were where you met the producers that could fund your project, and if the buyers liked your flick, they&#x2019;d pay to Fast-forward and&#x2026;
+                  %a ReadMore
+          %li
+            .block
+              .tags
+                %a.tag{:href => ""}
+                  %span Entertainment
+              .block_content
+                %h2.title
+                  %a Who Needs Sundance When You&#x2019;ve GotCrowdfunding?
+                .byline
+                  %span 13 hours ago
+                  by
+                  %a Jane Smith
+                %p.excerpt
+                  Film festivals used to be do-or-die moments for movie makers. They were where you met the producers that could fund your project, and if the buyers liked your flick, they&#x2019;d pay to Fast-forward and&#x2026;
+                  %a ReadMore
+          %li
+            .block
+              .tags
+                %a.tag{:href => ""}
+                  %span Entertainment
+              .block_content
+                %h2.title
+                  %a Who Needs Sundance When You&#x2019;ve GotCrowdfunding?
+                .byline
+                  %span 13 hours ago
+                  by
+                  %a Jane Smith
+                %p.excerpt
+                  Film festivals used to be do-or-die moments for movie makers. They were where you met the producers that could fund your project, and if the buyers liked your flick, they&#x2019;d pay to Fast-forward and&#x2026;
+                  %a ReadMore
+  .col-md-6.col-sm-6.col-xs-12
+    .x_panel
+      .x_title
+        %h2
+          Daily active users
+          %small Sessions
+        %ul.nav.navbar-right.panel_toolbox
+          %li
+            %a.collapse-link
+              %i.fa.fa-chevron-up
+          %li.dropdown
+            %a.dropdown-toggle{"aria-expanded" => "false", "data-toggle" => "dropdown", :href => "#", :role => "button"}
+              %i.fa.fa-wrench
+            %ul.dropdown-menu{:role => "menu"}
+              %li
+                %a{:href => "#"} Settings 1
+              %li
+                %a{:href => "#"} Settings 2
+          %li
+            %a.close-link
+              %i.fa.fa-close
+        .clearfix
+      .x_content
+        .bs-example{"data-example-id" => "simple-jumbotron"}
+          .jumbotron
+            %h1 Hello, world!
+            %p This is a simple hero unit, a simple jumbotron-style component for calling extra attention to featured content or information.
+  .col-md-6.col-sm-6.col-xs-12
+    .x_panel
+      .x_title
+        %h2
+          %i.fa.fa-chevron-down
+          Dropdowns
+          %small Multiple dropdown designs
+        %ul.nav.navbar-right.panel_toolbox
+          %li
+            %a.collapse-link
+              %i.fa.fa-chevron-up
+          %li.dropdown
+            %a.dropdown-toggle{"aria-expanded" => "false", "data-toggle" => "dropdown", :href => "#", :role => "button"}
+              %i.fa.fa-wrench
+            %ul.dropdown-menu{:role => "menu"}
+              %li
+                %a{:href => "#"} Settings 1
+              %li
+                %a{:href => "#"} Settings 2
+          %li
+            %a.close-link
+              %i.fa.fa-close
+        .clearfix
+      .x_content
+        %p Gentelella provides you with several dropdown designs for your choosing.
+        %ul.nav.nav-pills{:role => "tablist"}
+          %li{:role => "presentation"}
+            %a{:href => "#"} Regular link
+          %li.dropdown{:role => "presentation"}
+            %a#drop4.dropdown-toggle{"aria-expanded" => "false", "aria-haspopup" => "true", "data-toggle" => "dropdown", :href => "#", :role => "button"}
+              Dropdown
+              %span.caret
+            %ul#menu6.dropdown-menu.animated.fadeInDown{:role => "menu"}
+              %li{:role => "presentation"}
+                %a{:href => "https://twitter.com/fat", :role => "menuitem", :tabindex => "-1"} Action
+              %li{:role => "presentation"}
+                %a{:href => "https://twitter.com/fat", :role => "menuitem", :tabindex => "-1"} Another action
+              %li{:role => "presentation"}
+                %a{:href => "https://twitter.com/fat", :role => "menuitem", :tabindex => "-1"} Something else here
+              %li.divider{:role => "presentation"}
+              %li{:role => "presentation"}
+                %a{:href => "https://twitter.com/fat", :role => "menuitem", :tabindex => "-1"} Separated link
+          %li.dropdown{:role => "presentation"}
+            %a#drop5.dropdown-toggle{"aria-expanded" => "false", "aria-haspopup" => "true", "data-toggle" => "dropdown", :href => "#", :role => "button"}
+              Dropdown
+              %span.caret
+            %ul#menu2.dropdown-menu.animated.fadeInDown{"aria-labelledby" => "drop5", :role => "menu"}
+              %li{:role => "presentation"}
+                %a{:href => "https://twitter.com/fat", :role => "menuitem", :tabindex => "-1"} Action
+              %li{:role => "presentation"}
+                %a{:href => "https://twitter.com/fat", :role => "menuitem", :tabindex => "-1"} Another action
+              %li{:role => "presentation"}
+                %a{:href => "https://twitter.com/fat", :role => "menuitem", :tabindex => "-1"} Something else here
+              %li.divider{:role => "presentation"}
+              %li{:role => "presentation"}
+                %a{:href => "https://twitter.com/fat", :role => "menuitem", :tabindex => "-1"} Separated link
+          %li.dropdown{:role => "presentation"}
+            %a#drop6.dropdown-toggle{"aria-expanded" => "false", "aria-haspopup" => "true", "data-toggle" => "dropdown", :href => "#", :role => "button"}
+              Dropdown
+              %span.caret
+            %ul#menu3.dropdown-menu.animated.fadeInDown{"aria-labelledby" => "drop6", :role => "menu"}
+              %li{:role => "presentation"}
+                %a{:href => "https://twitter.com/fat", :role => "menuitem", :tabindex => "-1"} Action
+              %li{:role => "presentation"}
+                %a{:href => "https://twitter.com/fat", :role => "menuitem", :tabindex => "-1"} Another action
+              %li{:role => "presentation"}
+                %a{:href => "https://twitter.com/fat", :role => "menuitem", :tabindex => "-1"} Something else here
+              %li.divider{:role => "presentation"}
+              %li{:role => "presentation"}
+                %a{:href => "https://twitter.com/fat", :role => "menuitem", :tabindex => "-1"} Separated link
+  .col-md-6.col-sm-6.col-xs-12
+    .x_panel
+      .x_title
+        %h2
+          %i.fa.fa-square-o
+          Modals
+        %ul.nav.navbar-right.panel_toolbox
+          %li
+            %a.collapse-link
+              %i.fa.fa-chevron-up
+          %li.dropdown
+            %a.dropdown-toggle{"aria-expanded" => "false", "data-toggle" => "dropdown", :href => "#", :role => "button"}
+              %i.fa.fa-wrench
+            %ul.dropdown-menu{:role => "menu"}
+              %li
+                %a{:href => "#"} Settings 1
+              %li
+                %a{:href => "#"} Settings 2
+          %li
+            %a.close-link
+              %i.fa.fa-close
+        .clearfix
+      .x_content
+        / modals
+        / Large modal
+        %button.btn.btn-primary{"data-target" => ".bs-example-modal-lg", "data-toggle" => "modal", :type => "button"} Large modal
+        .modal.fade.bs-example-modal-lg{"aria-hidden" => "true", :role => "dialog", :tabindex => "-1"}
+          .modal-dialog.modal-lg
+            .modal-content
+              .modal-header
+                %button.close{"data-dismiss" => "modal", :type => "button"}
+                  %span{"aria-hidden" => "true"} &#xD7;
+                %h4#myModalLabel.modal-title Modal title
+              .modal-body
+                %h4 Text in a modal
+                %p Praesent commodo cursus magna, vel scelerisque nisl consectetur et. Vivamus sagittis lacus vel augue laoreet rutrum faucibus dolor auctor.
+                %p Aenean lacinia bibendum nulla sed consectetur. Praesent commodo cursus magna, vel scelerisque nisl consectetur et. Donec sed odio dui. Donec ullamcorper nulla non metus auctor fringilla.
+              .modal-footer
+                %button.btn.btn-default{"data-dismiss" => "modal", :type => "button"} Close
+                %button.btn.btn-primary{:type => "button"} Save changes
+        / Small modal
+        %button.btn.btn-primary{"data-target" => ".bs-example-modal-sm", "data-toggle" => "modal", :type => "button"} Small modal
+        .modal.fade.bs-example-modal-sm{"aria-hidden" => "true", :role => "dialog", :tabindex => "-1"}
+          .modal-dialog.modal-sm
+            .modal-content
+              .modal-header
+                %button.close{"aria-label" => "Close", "data-dismiss" => "modal", :type => "button"}
+                  %span{"aria-hidden" => "true"} &#xD7;
+                %h4#myModalLabel2.modal-title Modal title
+              .modal-body
+                %h4 Text in a modal
+                %p Praesent commodo cursus magna, vel scelerisque nisl consectetur et. Vivamus sagittis lacus vel augue laoreet rutrum faucibus dolor auctor.
+                %p Aenean lacinia bibendum nulla sed consectetur. Praesent commodo cursus magna, vel scelerisque nisl consectetur et. Donec sed odio dui. Donec ullamcorper nulla non metus auctor fringilla.
+              .modal-footer
+                %button.btn.btn-default{"data-dismiss" => "modal", :type => "button"} Close
+                %button.btn.btn-primary{:type => "button"} Save changes
+        / /modals
+  .col-md-6.col-sm-6.col-xs-12
+    .x_panel
+      .x_title
+        %h2
+          %i.fa.fa-bell
+          Notifications
+          %small Styled  Custom notifications
+        %ul.nav.navbar-right.panel_toolbox
+          %li
+            %a.collapse-link
+              %i.fa.fa-chevron-up
+          %li.dropdown
+            %a.dropdown-toggle{"aria-expanded" => "false", "data-toggle" => "dropdown", :href => "#", :role => "button"}
+              %i.fa.fa-wrench
+            %ul.dropdown-menu{:role => "menu"}
+              %li
+                %a{:href => "#"} Settings 1
+              %li
+                %a{:href => "#"} Settings 2
+          %li
+            %a.close-link
+              %i.fa.fa-close
+        .clearfix
+      .x_content
+        %p Regular notifications
+        %button.btn.btn-default.source{:onclick => "new PNotify({                                              title: 'Regular Success',                                              text: 'That thing that you were trying to do worked!',                                              type: 'success',                                              styling: 'bootstrap3'                                              });"} Success
+        %button.btn.btn-default.source{:onclick => "new PNotify({                                              title: 'New Thing',                                              text: 'Just to let you know, something happened.',                                              type: 'info',                                              styling: 'bootstrap3'                                              });"} Info
+        %button.btn.btn-default.source{:onclick => "new PNotify({                                              title: 'Regular Notice',                                              text: 'Check me out! I\\'m a notice.',                                              styling: 'bootstrap3'                                              });"} Notice
+        %button.btn.btn-default.source{:onclick => "new PNotify({                                              title: 'Oh No!',                                              text: 'Something terrible happened.',                                              type: 'error',                                              styling: 'bootstrap3'                                              });"} Error
+        %button.btn.btn-default.source{:onclick => "new PNotify({                                              title: 'Oh No!',                                              text: 'Something terrible happened.',                                              type: 'info',                                              styling: 'bootstrap3',                                              addclass: 'dark'                                              });"} Dark
+        %hr/
+        %p Sticky notifications.. these wont close unless user closes them.
+        %button.btn.btn-default.source{:onclick => "new PNotify({                                              title: 'Sticky Success',                                              text: 'Sticky success... I\\'m not even gonna make a joke.',                                              type: 'success',                                              hide: false,                                              styling: 'bootstrap3'                                              });"} Success
+        %button.btn.btn-default.source{:onclick => "new PNotify({                                              title: 'Sticky Info',                                              text: 'Sticky Info... I\\'m not even gonna make a joke.',                                              type: 'info',                                              hide: false,                                              styling: 'bootstrap3'                                              });"} Info
+        %button.btn.btn-default.source{:onclick => "new PNotify({                                              title: 'Sticky Warning',                                              text: 'Sticky Warning... I\\'m not even gonna make a joke.',                                              hide: false,                                              styling: 'bootstrap3'                                              });"} Warning
+        %button.btn.btn-default.source{:onclick => "new PNotify({                                              title: 'Sticky Danger',                                              text: 'Sticky Danger... I\\'m not even gonna make a joke.',                                              type: 'error',                                              hide: false,                                              styling: 'bootstrap3'                                              });"} Error
+        %button.btn.btn-default.source{:onclick => "new PNotify({                                              title: 'Sticky Success',                                              text: 'Sticky success... I\\'m not even gonna make a joke.',                                              type: 'info',                                              hide: false,                                              styling: 'bootstrap3',                                              addclass: 'dark'                                              });"} Dark
+        %hr/
+        %button.btn.btn-default.source{:onclick => "new PNotify({                                              title: 'Non-Blocking Notice',                                              type: 'info',                                              text: 'When you hover over me I\\'ll fade to show the elements underneath. Feel free to click any of them just like I wasn\\'t even here.',                                              nonblock: {                                              nonblock: true                                              },                                              styling: 'bootstrap3',                                              addclass: 'dark'                                              });"} Non-Blocking Notice
+        %hr/
+        #antoox
+          %div
+            %div
+            %div
+            %div
+        %button.btn.btn-default.source{:onclick => "new TabbedNotification({                                              title: 'Tabbed Notificat',                                              text: 'Sticky success... Raw denim you probably haven\\'t heard of them jean shorts Austin. Nesciunt tofu stumptown aliqua, retro synth master cleanse. Mustache cliche tempor, williamsburg carles vegan helvetica. ',                                              type: 'success',                                              sound: false                                              })"} Success
+        %button.btn.btn-default.source{:onclick => "new TabbedNotification({                                              title: 'Tabbed Notificat',                                              text: 'Custom Info... Raw denim you probably haven\\'t heard of them jean shorts Austin. Nesciunt tofu stumptown aliqua, retro synth master cleanse. Mustache cliche tempor, williamsburg carles vegan helvetica.',                                              type: 'info',                                              sound: false                                              })"} Info
+        %button.btn.btn-default.source{:onclick => "new TabbedNotification({                                              title: 'Tabbed Notificat',                                              text: 'Custom Warning... Raw denim you probably haven\\'t heard of them jean shorts Austin. Nesciunt tofu stumptown aliqua, retro synth master cleanse. Mustache cliche tempor, williamsburg carles vegan helvetica. ',                                              type: 'warning',                                              sound: false                                              })"} Warning
+        %button.btn.btn-default.source{:onclick => "new TabbedNotification({                                              title: 'Custom Notification error',                                              text: 'Custom Error... Raw denim you probably haven\\'t heard of them jean shorts Austin. Nesciunt tofu stumptown aliqua, retro synth master cleanse. Mustache cliche tempor, williamsburg carles vegan helvetica. ',                                              type: 'error',                                              sound: false                                              })"} Error
+        %button.btn.btn-default.source{:onclick => "new TabbedNotification({                                              title: 'Tabbed notification dark',                                              text: 'Custom Dark... Raw denim you probably haven\\'t heard of them jean shorts Austin. Nesciunt tofu stumptown aliqua, retro synth master cleanse. Mustache cliche tempor, williamsburg carles vegan helvetica. ',                                              type: 'dark',                                              sound: false                                              })"} Dark
+  .col-md-6
+    .x_panel
+      .x_title
+        %h2
+          Pop Overs
+          %small Sessions
+        %ul.nav.navbar-right.panel_toolbox
+          %li
+            %a.collapse-link
+              %i.fa.fa-chevron-up
+          %li.dropdown
+            %a.dropdown-toggle{"aria-expanded" => "false", "data-toggle" => "dropdown", :href => "#", :role => "button"}
+              %i.fa.fa-wrench
+            %ul.dropdown-menu{:role => "menu"}
+              %li
+                %a{:href => "#"} Settings 1
+              %li
+                %a{:href => "#"} Settings 2
+          %li
+            %a.close-link
+              %i.fa.fa-close
+        .clearfix
+      .x_content.bs-example-popovers
+        .alert.alert-success.alert-dismissible.fade.in{:role => "alert"}
+          %button.close{"aria-label" => "Close", "data-dismiss" => "alert", :type => "button"}
+            %span{"aria-hidden" => "true"} &#xD7;
+          %strong Holy guacamole!
+          Best check yo self, you're not looking too good.
+        .alert.alert-info.alert-dismissible.fade.in{:role => "alert"}
+          %button.close{"aria-label" => "Close", "data-dismiss" => "alert", :type => "button"}
+            %span{"aria-hidden" => "true"} &#xD7;
+          %strong Holy guacamole!
+          Best check yo self, you're not looking too good.
+        .alert.alert-warning.alert-dismissible.fade.in{:role => "alert"}
+          %button.close{"aria-label" => "Close", "data-dismiss" => "alert", :type => "button"}
+            %span{"aria-hidden" => "true"} &#xD7;
+          %strong Holy guacamole!
+          Best check yo self, you're not looking too good.
+        .alert.alert-danger.alert-dismissible.fade.in{:role => "alert"}
+          %button.close{"aria-label" => "Close", "data-dismiss" => "alert", :type => "button"}
+            %span{"aria-hidden" => "true"} &#xD7;
+          %strong Holy guacamole!
+          Best check yo self, you're not looking too good.
+  .col-md-6
+    .x_panel
+      .x_title
+        %h2
+          %i.fa.fa-align-left
+          Progress bar
+          %small Sessions
+        %ul.nav.navbar-right.panel_toolbox
+          %li
+            %a.collapse-link
+              %i.fa.fa-chevron-up
+          %li.dropdown
+            %a.dropdown-toggle{"aria-expanded" => "false", "data-toggle" => "dropdown", :href => "#", :role => "button"}
+              %i.fa.fa-wrench
+            %ul.dropdown-menu{:role => "menu"}
+              %li
+                %a{:href => "#"} Settings 1
+              %li
+                %a{:href => "#"} Settings 2
+          %li
+            %a.close-link
+              %i.fa.fa-close
+        .clearfix
+      .x_content
+        %p Bootstrap progress bar with animated loading bar, add right to .progress to align right
+        .row
+          .col-md-6
+            .progress.right
+              .progress-bar.progress-bar-danger{"data-transitiongoal" => "25"}
+            .progress.right
+              .progress-bar.progress-bar-warning{"data-transitiongoal" => "45"}
+            .progress.right
+              .progress-bar.progress-bar-info{"data-transitiongoal" => "65"}
+            .progress.right
+              .progress-bar.progress-bar-success{"data-transitiongoal" => "95"}
+          .col-md-6
+            .progress
+              .progress-bar.progress-bar-danger{"data-transitiongoal" => "25"}
+            .progress
+              .progress-bar.progress-bar-warning{"data-transitiongoal" => "45"}
+            .progress
+              .progress-bar.progress-bar-info{"data-transitiongoal" => "65"}
+            .progress
+              .progress-bar.progress-bar-success{"data-transitiongoal" => "95"}
+        .row
+          .col-md-6.col-sm-12
+            %ul.verticle_bars.list-inline
+              %li
+                .progress.progress-striped.vertical.progress_wide.bottom
+                  .progress-bar.progress-bar-danger{"data-transitiongoal" => "25", :role => "progressbar"}
+              %li
+                .progress.progress-striped.vertical.progress_wide.bottom
+                  .progress-bar.progress-bar-warning{"data-transitiongoal" => "45", :role => "progressbar"}
+              %li
+                .progress.vertical.progress_wide.bottom
+                  .progress-bar.progress-bar-info{"data-transitiongoal" => "65", :role => "progressbar"}
+              %li
+                .progress.vertical.progress_wide.bottom
+                  .progress-bar.progress-bar-success{"data-transitiongoal" => "85", :role => "progressbar"}
+          .col-md-6.col-sm-12.fixed_height_200
+            %ul.verticle_bars.list-inline
+              %li
+                .progress.vertical.bottom
+                  .progress-bar.progress-bar-success{"data-transitiongoal" => "85", :role => "progressbar"}
+              %li
+                .progress.vertical.bottom
+                  .progress-bar.progress-bar-info{"data-transitiongoal" => "65", :role => "progressbar"}
+              %li
+                .progress.vertical.bottom
+                  .progress-bar.progress-bar-warning{"data-transitiongoal" => "45", :role => "progressbar"}
+              %li
+                .progress.vertical.bottom
+                  .progress-bar.progress-bar-danger{"data-transitiongoal" => "25", :role => "progressbar"}
+        .row
+          .col-md-6.col-sm-12
+            %ul.verticle_bars.list-inline
+              %li
+                .progress.vertical.progress_wide
+                  .progress-bar.progress-bar-danger.progress-bar-striped{"data-transitiongoal" => "25", :role => "progressbar"}
+              %li
+                .progress.vertical.progress_wide
+                  .progress-bar.progress-bar-warning.progress-bar-striped{"data-transitiongoal" => "45", :role => "progressbar"}
+              %li
+                .progress.vertical.progress_wide
+                  .progress-bar.progress-bar-info{"data-transitiongoal" => "65", :role => "progressbar"}
+              %li
+                .progress.vertical.progress_wide
+                  .progress-bar.progress-bar-success{"data-transitiongoal" => "85", :role => "progressbar"}
+          .col-md-6.col-sm-12.fixed_height_200
+            %ul.verticle_bars.list-inline
+              %li
+                .progress.vertical
+                  .progress-bar.progress-bar-success{"data-transitiongoal" => "85", :role => "progressbar"}
+              %li
+                .progress.vertical
+                  .progress-bar.progress-bar-info{"data-transitiongoal" => "65", :role => "progressbar"}
+              %li
+                .progress.vertical
+                  .progress-bar.progress-bar-warning{"data-transitiongoal" => "45", :role => "progressbar"}
+              %li
+                .progress.vertical
+                  .progress-bar.progress-bar-danger{"data-transitiongoal" => "25", :role => "progressbar"}
+  / Start to do list
+  .col-md-6.col-sm-6.col-xs-12
+    .x_panel
+      .x_title
+        %h2
+          To Do List
+          %small Sample tasks
+        %ul.nav.navbar-right.panel_toolbox
+          %li
+            %a.collapse-link
+              %i.fa.fa-chevron-up
+          %li.dropdown
+            %a.dropdown-toggle{"aria-expanded" => "false", "data-toggle" => "dropdown", :href => "#", :role => "button"}
+              %i.fa.fa-wrench
+            %ul.dropdown-menu{:role => "menu"}
+              %li
+                %a{:href => "#"} Settings 1
+              %li
+                %a{:href => "#"} Settings 2
+          %li
+            %a.close-link
+              %i.fa.fa-close
+        .clearfix
+      .x_content
+        %div
+          %ul.to_do
+            %li
+              %p
+                %input.flat{:type => "checkbox"} Schedule meeting with new client
+              %li
+                %p
+                  %input.flat{:type => "checkbox"} Create email address for new intern
+                %li
+                  %p
+                    %input.flat{:type => "checkbox"} Have IT fix the network printer
+                  %li
+                    %p
+                      %input.flat{:type => "checkbox"} Copy backups to offsite location
+                    %li
+                      %p
+                        %input.flat{:type => "checkbox"} Food truck fixie locavors mcsweeney
+                      %li
+                        %p
+                          %input.flat{:type => "checkbox"} Food truck fixie locavors mcsweeney
+              / End to do list
+              .col-md-6
+                .x_panel
+                  .x_title
+                    %h2
+                      Daily active users
+                      %small Sessions
+                    %ul.nav.navbar-right.panel_toolbox
+                      %li
+                        %a.collapse-link
+                          %i.fa.fa-chevron-up
+                      %li.dropdown
+                        %a.dropdown-toggle{"aria-expanded" => "false", "data-toggle" => "dropdown", :href => "#", :role => "button"}
+                          %i.fa.fa-wrench
+                        %ul.dropdown-menu{:role => "menu"}
+                          %li
+                            %a{:href => "#"} Settings 1
+                          %li
+                            %a{:href => "#"} Settings 2
+                      %li
+                        %a.close-link
+                          %i.fa.fa-close
+                    .clearfix
+                  .x_content
+                    %ul.list-unstyled.msg_list
+                      %li
+                        %a
+                          %span.image
+                            %img{:alt => "img", :src => "images/img.jpg"}/
+                          %span
+                            %span John Smith
+                            %span.time 3 mins ago
+                          %span.message
+                            Film festivals used to be do-or-die moments for movie makers. They were where you met the producers that
+                      %li
+                        %a
+                          %span.image
+                            %img{:alt => "img", :src => "images/img.jpg"}/
+                          %span
+                            %span John Smith
+                            %span.time 3 mins ago
+                          %span.message
+                            Film festivals used to be do-or-die moments for movie makers. They were where you met the producers that
+                      %li
+                        %a
+                          %span.image
+                            %img{:alt => "img", :src => "images/img.jpg"}/
+                          %span
+                            %span John Smith
+                            %span.time 3 mins ago
+                          %span.message
+                            Film festivals used to be do-or-die moments for movie makers. They were where you met the producers that
+                      %li
+                        %a
+                          %span.image
+                            %img{:alt => "img", :src => "images/img.jpg"}/
+                          %span
+                            %span John Smith
+                            %span.time 3 mins ago
+                          %span.message
+                            Film festivals used to be do-or-die moments for movie makers. They were where you met the producers that
+              .clearfix
+              #custom_notifications.custom-notifications.dsp_none
+                %ul.list-unstyled.notifications.clearfix{"data-tabbed_notifications" => "notif-group"}
+                .clearfix
+                #notif-group.tabbed_notifications

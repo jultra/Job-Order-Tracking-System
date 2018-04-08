@@ -1,0 +1,15 @@
+!!!
+%html{:lang => "en"}
+  %head
+    = csrf_meta_tags
+    %meta{:content => "text/html; charset=UTF-8", "http-equiv" => "Content-Type"}/
+    / Meta, title, CSS, favicons, etc.
+    %meta{:charset => "utf-8"}/
+    %meta{:content => "IE=edge", "http-equiv" => "X-UA-Compatible"}/
+    %meta{:content => "width=device-width, initial-scale=1", :name => "viewport"}/
+    = stylesheet_link_tag 'kitchen', media: 'all'
+    = javascript_include_tag :modernizr
+    %title Bootstrap Kitchen Sink
+  %body{"data-spy" => "scroll", "data-target" => "#sidebar"}
+    = yield
+    = javascript_include_tag 'kitchen'

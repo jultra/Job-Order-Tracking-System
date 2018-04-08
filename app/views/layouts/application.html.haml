@@ -1,10 +1,32 @@
 !!!
-%html
+%html{:lang => "en"}
   %head
-    %meta{:content => "text/html; charset=UTF-8", "http-equiv" => "Content-Type"}/
-    %title JobOrderTrackingSystem
     = csrf_meta_tags
-    = stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload'
-    = javascript_include_tag 'application', 'data-turbolinks-track': 'reload'
-  %body
-    = yield
+    %meta{:content => "text/html; charset=UTF-8", "http-equiv" => "Content-Type"}/
+    / Meta, title, CSS, favicons, etc.
+    %meta{:charset => "utf-8"}/
+    %meta{:content => "IE=edge", "http-equiv" => "X-UA-Compatible"}/
+    %meta{:content => "width=device-width, initial-scale=1", :name => "viewport"}/
+    = stylesheet_link_tag 'application', media: 'all'
+    %title= yield :title
+  %body.nav-md
+    .container.body
+      .main_container
+        .col-md-3.left_col
+          .left_col.scroll-view
+            = render partial: 'layouts/shared/leftnav'
+        / top navigation
+        .top_nav
+          .nav_menu
+            %nav
+              = render partial: 'layouts/shared/topnav'
+        / /top navigation
+        / page content
+        .right_col{:role => "main"}
+          = yield
+        / /page content
+        / footer content
+        %footer
+          = render partial: 'layouts/shared/footer'
+        / /footer content
+    = javascript_include_tag 'application'
