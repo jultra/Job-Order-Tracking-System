@@ -8,9 +8,9 @@
       .navbar-header
         %button.navbar-toggler{"aria-controls" => "main-menu", "aria-expanded" => "false", "aria-label" => "Toggle navigation", "data-target" => "#main-menu", "data-toggle" => "collapse", :type => "button"}
           %i.fa.fa-bars
-        %a.navbar-brand{:href => "./"}
+        %a.navbar-brand{:href => "/index"}
           %img{:alt => "Logo", :src => "images/logo.png"}/
-        %a.navbar-brand.hidden{:href => "./"}
+        %a.navbar-brand.hidden{:href => "/index"}
           %img{:alt => "Logo", :src => "images/logo2.png"}/
       #main-menu.main-menu.collapse.navbar-collapse
         %ul.nav.navbar-nav
@@ -25,19 +25,19 @@
               %i.menu-icon.fa.fa-edit>
               Request Job Order
           %li.active
-            %a{:href => "/index"}
+            %a{:href => "/pending_requests"}
               %i.menu-icon.fa.fa-spinner>
               Pending Requests
           %li.active
-            %a{:href => "/index"}
+            %a{:href => "/ongoing_jobs"}
               %i.menu-icon.fa.fa-gavel>
               On-going Jobs
           %li.active
-            %a{:href => "/index"}
+            %a{:href => "/finished_jobs"}
               %i.menu-icon.fa.fa-check>
               Finished Jobs
           %li.active
-            %a{:href => "/index"}
+            %a{:href => "/trash"}
               %i.menu-icon.fa.fa-trash-o>
               Trash
       / /.navbar-collapse
@@ -123,21 +123,9 @@
               %a.nav-link{:href => "#"}
                 %i.fa.fa.-cog>
                 Settings
-              %a.nav-link{:href => "#"}
+              %a.nav-link{:href => "/login"}
                 %i.fa.fa-power.-off>
                 Logout
-          #language-select.language-select.dropdown
-            %a#language.dropdown-toggle{"aria-expanded" => "true", "aria-haspopup" => "true", "data-toggle" => "dropdown", :href => "#"}
-              %i.flag-icon.flag-icon-us
-            .dropdown-menu{"aria-labelledby" => "language"}
-              .dropdown-item
-                %span.flag-icon.flag-icon-fr
-              .dropdown-item
-                %i.flag-icon.flag-icon-es
-              .dropdown-item
-                %i.flag-icon.flag-icon-us
-              .dropdown-item
-                %i.flag-icon.flag-icon-it
     / /header
     / Header
     .breadcrumbs
