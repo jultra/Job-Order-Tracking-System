@@ -1,0 +1,32 @@
+!!!
+/[if lt IE 7] <html class="no-js lt-ie9 lt-ie8 lt-ie7" lang="">
+/[if IE 7] <html class="no-js lt-ie9 lt-ie8" lang="">
+/[if IE 8] <html class="no-js lt-ie9" lang="">
+/ [if gt IE 8]><!
+%html.no-js{:lang => ""}
+  / <![endif]
+  %head
+    %meta{:content => "text/html; charset=UTF-8", "http-equiv" => "Content-Type"}/
+    %meta{:charset => "utf-8"}/
+    %meta{:content => "IE=edge", "http-equiv" => "X-UA-Compatible"}/
+    %title Job Order Tracking System |
+    %meta{:content => "Sufee Admin - HTML5 Admin Template", :name => "description"}/
+    %meta{:content => "width=device-width, initial-scale=1", :name => "viewport"}/
+    = csrf_meta_tags
+    = stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload'
+    = javascript_include_tag 'application', 'data-turbolinks-track': 'reload'
+    %link{:href => "apple-icon.png", :rel => "apple-touch-icon"}/
+    %link{:href => "favicon.ico", :rel => "shortcut icon"}/
+    %link{:href => "assets/css/normalize.css", :rel => "stylesheet"}/
+    %link{:href => "assets/css/bootstrap.min.css", :rel => "stylesheet"}/
+    %link{:href => "assets/css/font-awesome.min.css", :rel => "stylesheet"}/
+    %link{:href => "assets/css/themify-icons.css", :rel => "stylesheet"}/
+    %link{:href => "assets/css/flag-icon.min.css", :rel => "stylesheet"}/
+    %link{:href => "assets/css/cs-skin-elastic.css", :rel => "stylesheet"}/
+    / <link rel="stylesheet" href="assets/css/bootstrap-select.less">
+    %link{:href => "assets/scss/style.css", :rel => "stylesheet"}/
+    %link{:href => "assets/scss/widgets.css", :rel => "stylesheet"}/
+    %link{:href => "assets/css/lib/vector-map/jqvmap.min.css", :rel => "stylesheet"}/
+    %link{:href => "https://fonts.googleapis.com/css?family=Open+Sans:400,600,700,800", :rel => "stylesheet", :type => "text/css"}/
+    / <script type="text/javascript" src="https://cdn.jsdelivr.net/html5shiv/3.7.3/html5shiv.min.js"></script>
+  = yield

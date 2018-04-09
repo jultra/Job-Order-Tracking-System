@@ -1,0 +1,2 @@
+class JobOrder < ApplicationRecord
+end
