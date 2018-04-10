@@ -16,6 +16,26 @@ module NavigationHelpers
     when /^the home\s?page$/
       '/'
 
+    when /^any page of the website/
+      '/index'
+
+    when /^Dashboard/
+      '/index'
+
+    when /^Add Job Order/
+      '/request_form'
+
+    when /^Pending Requests/
+      '/pending_requests'
+
+    when /^Ongoing Jobs/
+      '/ongoing_jobs'
+
+    when /^Finished Jobs/
+      '/finished_jobs'
+
+    when /^Trash/
+      '/trash'
     # Add more mappings here.
     # Here is an example that pulls values out of the Regexp:
     #

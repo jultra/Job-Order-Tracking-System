@@ -5,30 +5,30 @@ Feature: Navigate through the website
 
 Scenario: Show Dashboard page
   Given I am on any page of the website
-  When I click "Dashboard"
-  Then I should see "Dashboard" page
+  When I go to Dashboard
+  Then I should be on Dashboard
 
 Scenario: Show Job Order form
   Given I am on any page of the website
-  When I click "Add Job Order"
-  Then I should see "Request Form" page
+  When I go to Add Job Order
+  Then I should be on Add Job Order
 
 Scenario: Show Pending Requests
   Given I am on any page of the website
-  When I click "Pending Requests"
-  Then I should see "Pending Requests" page
+  When I go to Pending Requests
+  Then I should be on Pending Requests
 
 Scenario: Show Ongoing Jobs
   Given I am on any page of the website
-  When I click "Ongoing Jobs"
-  Then I should see "Ongoing Requests" page
+  When I go to Ongoing Jobs
+  Then I should be on Ongoing Jobs
 
 Scenario: Show Finished Jobs
   Given I am on any page of the website
-  When I click "Finished Jobs"
-  Then I should see "Finished Jobs" page
+  When I go to Finished Jobs
+  Then I should be on Finished Jobs
 
 Scenario: Show Trash
   Given I am on any page of the website
-  When I click "Trash"
-  Then I should see "Thrash" page 
+  When I go to Trash
+  Then I should be on Trash
