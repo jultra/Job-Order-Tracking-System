@@ -5,6 +5,7 @@
         .login-logo
           %a{:href => "index.html"}
             %img.align-content{:alt => "", :src => "images/logo.png"}
+        =debug(params) if Rails.env.development?
         .login-form
           -if(flash[:danger]!=nil)
             %div{:class => "alert alert-danger"}
@@ -13,10 +14,10 @@
             = hidden_field_tag :authenticity_token, form_authenticity_token
             .form-group
               %label Email or Username
-              %input.form-control{:placeholder => "Email or username", :type => "email", :name => "session[email]", :required => true}/
+              %input.form-control{ :placeholder => "Email or username", :type => "email", :name => "session[email]", :required => true}/
             .form-group
               %label Password
-              %input.form-control{:placeholder => "Password", :type => "password", :name => "session[password]", :required => true}/
+              %input.form-control{ :placeholder => "Password", :type => "password", :name => "session[password]", :required => true}/
             .checkbox
               %label
                 %input{:type => "checkbox", :name => "remember_me"}/
