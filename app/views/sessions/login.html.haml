@@ -5,7 +5,6 @@
         .login-logo
           %a{:href => "index.html"}
             %img.align-content{:alt => "", :src => "images/logo.png"}
-        =debug(params) if Rails.env.development?
         .login-form
           -if(flash[:danger]!=nil)
             %div{:class => "alert alert-danger"}
