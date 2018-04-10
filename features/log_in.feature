@@ -17,5 +17,4 @@ Feature: A log in page and mechanism for users
       And I type my password on the password field
       And I click the "Submit" button
     Then I should be redirected to the log_in page
-      And I should be able to see a message saying "Username/password is incorrect"
-      
+      And I should be able to see a message saying "Invalid email/password"

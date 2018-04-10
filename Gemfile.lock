@@ -45,6 +45,7 @@ GEM
     autotest (4.4.6)
       ZenTest (>= 4.4.1)
     backports (3.11.1)
+    bcrypt (3.1.11)
     bindex (0.5.0)
     builder (3.2.3)
     byebug (10.0.2)
@@ -245,6 +246,7 @@ PLATFORMS
 
 DEPENDENCIES
   autotest
+  bcrypt
   byebug
   capybara (~> 2.13)
   coffee-rails (~> 4.2)
