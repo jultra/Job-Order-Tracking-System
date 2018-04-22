@@ -2,7 +2,6 @@ class JobOrdersController < ApplicationController
   protect_from_forgery
 
   def request_form
-    puts 'hehe'
     control_no = params['control_no']
     where = params['where']
     date_needed = params['date_needed']
@@ -23,11 +22,12 @@ class JobOrdersController < ApplicationController
       new_request.fund_source = fund_source
       new_request.adviser = adviser
 
+      puts fund_source
+
       for i in 1..22
         if params["checkbox#{i}"] != nil
           new_request.job_type = params["checkbox#{i}"];
-          puts params["checkbox#{i}"]
-        end
+          end
       end
       new_request.save
 

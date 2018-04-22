@@ -8,9 +8,9 @@
       .navbar-header
         %button.navbar-toggler{"aria-controls" => "main-menu", "aria-expanded" => "false", "aria-label" => "Toggle navigation", "data-target" => "#main-menu", "data-toggle" => "collapse", :type => "button"}
           %i.fa.fa-bars
-        %a.navbar-brand{:href => "./"}
+        %a.navbar-brand{:href => "/index"}
           %img{:alt => "Logo", :src => "images/logo.png"}/
-        %a.navbar-brand.hidden{:href => "./"}
+        %a.navbar-brand.hidden{:href => "/index"}
           %img{:alt => "Logo", :src => "images/logo2.png"}/
       #main-menu.main-menu.collapse.navbar-collapse
         %ul.nav.navbar-nav
@@ -25,19 +25,19 @@
               %i.menu-icon.fa.fa-edit>
               Request Job Order
           %li.active
-            %a{:href => "/index"}
+            %a{:href => "/pending_requests"}
               %i.menu-icon.fa.fa-spinner>
               Pending Requests
           %li.active
-            %a{:href => "/index"}
+            %a{:href => "/ongoing_jobs"}
               %i.menu-icon.fa.fa-gavel>
               On-going Jobs
           %li.active
-            %a{:href => "/index"}
+            %a{:href => "/finished_jobs"}
               %i.menu-icon.fa.fa-check>
               Finished Jobs
           %li.active
-            %a{:href => "/index"}
+            %a{:href => "/trash"}
               %i.menu-icon.fa.fa-trash-o>
               Trash
       / /.navbar-collapse
@@ -123,21 +123,9 @@
               %a.nav-link{:href => "#"}
                 %i.fa.fa.-cog>
                 Settings
-              %a.nav-link{:href => "#"}
+              %a.nav-link{:href => "/login"}
                 %i.fa.fa-power.-off>
                 Logout
-          #language-select.language-select.dropdown
-            %a#language.dropdown-toggle{"aria-expanded" => "true", "aria-haspopup" => "true", "data-toggle" => "dropdown", :href => "#"}
-              %i.flag-icon.flag-icon-us
-            .dropdown-menu{"aria-labelledby" => "language"}
-              .dropdown-item
-                %span.flag-icon.flag-icon-fr
-              .dropdown-item
-                %i.flag-icon.flag-icon-es
-              .dropdown-item
-                %i.flag-icon.flag-icon-us
-              .dropdown-item
-                %i.flag-icon.flag-icon-it
     / /header
     / Header
     .breadcrumbs
@@ -145,142 +133,149 @@
         .page-header.float-left
           .page-title
             %h1 Request Form
-    .content.mt-3
-      .animated.fadeIn
-        .row
-          .col-lg-4
-            .card
-              .card-header
-                %strong.card-title Select a job type
-              .card-body
-                / Credit Card
-                #pay-invoice
-                  .card-body
-                    .card-title
-                      %h4.text-center Job Types
-                    %hr/
-                    %form{:action => "/request_form", :method => "post", :novalidate => "novalidate", :class => "checkbox_class"}
-                      = hidden_field_tag :authenticity_token, form_authenticity_token
-                      .form-group
-                        .checkbox
-                          %label.form-check-label{:for => "checkbox1"}
-                            %input#checkbox1.form-check-input{:name => "checkbox1", :type => "checkbox", :value => "option1"}>/
-                            Aircon cleaning/repair/install
-                        .checkbox
-                          %label.form-check-label{:for => "checkbox2"}
-                            %input#checkbox2.form-check-input{:name => "checkbox2", :type => "checkbox", :value => "option2"}/
-                            Bulb Tube Replacement
-                        .checkbox
-                          %label.form-check-label{:for => "checkbox3"}
-                            %input#checkbox3.form-check-input{:name => "checkbox3", :type => "checkbox", :value => "option3"}/
-                            Carpentry/ Fabrication work/ repair
-                        .checkbox
-                          %label.form-check-label{:for => "checkbox1"}
-                            %input#checkbox1.form-check-input{:name => "checkbox4", :type => "checkbox", :value => "option4"}>/
-                            Computer Hardware Servicing
-                        .checkbox
-                          %label.form-check-label{:for => "checkbox2"}
-                            %input#checkbox2.form-check-input{:name => "checkbox5", :type => "checkbox", :value => "option5"}/
-                            Computer Software Servicing
-                        .checkbox
-                          %label.form-check-label{:for => "checkbox3"}
-                            %input#checkbox3.form-check-input{:name => "checkbox6", :type => "checkbox", :value => "option6"}/
-                            Cost Estimate Formulation / POW
-                        .checkbox
-                          %label.form-check-label{:for => "checkbox1"}
-                            %input#checkbox1.form-check-input{:name => "checkbox7", :type => "checkbox", :value => "option7"}>/
-                            DLP/LCD Services
-                        .checkbox
-                          %label.form-check-label{:for => "checkbox2"}
-                            %input#checkbox2.form-check-input{:name => "checkbox8", :type => "checkbox", :value => "option8"}/
-                            Door knob installation/repair
-                        .checkbox
-                          %label.form-check-label{:for => "checkbox3"}
-                            %input#checkbox3.form-check-input{:name => "checkbox9", :type => "checkbox", :value => "option9"}/
-                            Electric fan cleaning/repair
-                        .checkbox
-                          %label.form-check-label{:for => "checkbox1"}
-                            %input#checkbox1.form-check-input{:name => "checkbox10", :type => "checkbox", :value => "option10"}>/
-                            Electrical installation/repair
-                        .checkbox
-                          %label.form-check-label{:for => "checkbox2"}
-                            %input#checkbox2.form-check-input{:name => "checkbox11", :type => "checkbox", :value => "option11"}/
-                            Internet & network problems
-                        .checkbox
-                          %label.form-check-label{:for => "checkbox3"}
-                            %input#checkbox3.form-check-input{:name => "checkbox12", :type => "checkbox", :value => "option12"}/
-                            Inventory taking & recording
-                        .checkbox
-                          %label.form-check-label{:for => "checkbox1"}
-                            %input#checkbox1.form-check-input{:name => "checkbox13", :type => "checkbox", :value => "option13"}>/
-                            Painting/Repainting/Varnish works
-                        .checkbox
-                          %label.form-check-label{:for => "checkbox2"}
-                            %input#checkbox2.form-check-input{:name => "checkbox14", :type => "checkbox", :value => "option14"}/
-                            Photography/Video coverage
-                        .checkbox
-                          %label.form-check-label{:for => "checkbox3"}
-                            %input#checkbox3.form-check-input{:name => "checkbox15", :type => "checkbox", :value => "option15"}/
-                            Plumbing/Sanitary Install/repair
-                        .checkbox
-                          %label.form-check-label{:for => "checkbox1"}
-                            %input#checkbox1.form-check-input{:name => "checkbox16", :type => "checkbox", :value => "option16"}>/
-                            Printer/ Peripheral related problems
-                        .checkbox
-                          %label.form-check-label{:for => "checkbox2"}
-                            %input#checkbox2.form-check-input{:name => "checkbox17", :type => "checkbox", :value => "option17"}/
-                            Request for Personnel assistance
-                        .checkbox
-                          %label.form-check-label{:for => "checkbox3"}
-                            %input#checkbox3.form-check-input{:name => "checkbox18", :type => "checkbox", :value => "option18"}/
-                            Sounds & lights services
-                        .checkbox
-                          %label.form-check-label{:for => "checkbox1"}
-                            %input#checkbox1.form-check-input{:name => "checkbox19", :type => "checkbox", :value => "option19"}>/
-                            Streamer/Signage making
-                        .checkbox
-                          %label.form-check-label{:for => "checkbox2"}
-                            %input#checkbox2.form-check-input{:name => "checkbox20", :type => "checkbox", :value => "option20"}/
-                            Streamer installation
-                        .checkbox
-                          %label.form-check-label{:for => "checkbox3"}
-                            %input#checkbox3.form-check-input{:name => "checkbox21", :type => "checkbox", :value => "option21"}/
-                            Transfer/Transport items(see listing)
-                        .checkbox
-                          %label.form-check-label{:for => "checkbox3"}
-                            %input#checkbox3.form-check-input{:name => "checkbox22", :type => "checkbox", :value => "option22"}/
-                            Others
-                          %input#cc-pament.form-control{"aria-invalid" => "false", "aria-required" => "true", :name => "cc-payment", :type => "text", :value => "Specify..."}/
+    %form{:action => "", :method => "post", :novalidate => "novalidate", :class => "checkbox_class"}
+      .content.mt-3
+        .animated.fadeIn
+          .row
+            .col-lg-4
+              .card
+                .card-header
+                  %strong.card-title Select a job type
+                .card-body
+                  / Credit Card
+                  #pay-invoice
+                    .card-body
+                      .card-title
+                        %h4.text-center Job Types
+                        %hr/
+                        .form-group
+                          .checkbox
+                            %label.form-check-label{:for => "checkbox1"}
+                              %input#checkbox1.form-check-input{:name => "checkbox1", :type => "checkbox", :value => "option1"}>/
+                              Aircon cleaning/repair/install
+                          .checkbox
+                            %label.form-check-label{:for => "checkbox2"}
+                              %input#checkbox2.form-check-input{:name => "checkbox2", :type => "checkbox", :value => "option2"}/
+                              Bulb Tube Replacement
+                          .checkbox
+                            %label.form-check-label{:for => "checkbox3"}
+                              %input#checkbox3.form-check-input{:name => "checkbox3", :type => "checkbox", :value => "option3"}/
+                              Carpentry/ Fabrication work/ repair
+                          .checkbox
+                            %label.form-check-label{:for => "checkbox1"}
+                              %input#checkbox1.form-check-input{:name => "checkbox4", :type => "checkbox", :value => "option4"}>/
+                              Computer Hardware Servicing
+                          .checkbox
+                            %label.form-check-label{:for => "checkbox2"}
+                              %input#checkbox2.form-check-input{:name => "checkbox5", :type => "checkbox", :value => "option5"}/
+                              Computer Software Servicing
+                          .checkbox
+                            %label.form-check-label{:for => "checkbox3"}
+                              %input#checkbox3.form-check-input{:name => "checkbox6", :type => "checkbox", :value => "option6"}/
+                              Cost Estimate Formulation / POW
+                          .checkbox
+                            %label.form-check-label{:for => "checkbox1"}
+                              %input#checkbox1.form-check-input{:name => "checkbox7", :type => "checkbox", :value => "option7"}>/
+                              DLP/LCD Services
+                          .checkbox
+                            %label.form-check-label{:for => "checkbox2"}
+                              %input#checkbox2.form-check-input{:name => "checkbox8", :type => "checkbox", :value => "option8"}/
+                              Door knob installation/repair
+                          .checkbox
+                            %label.form-check-label{:for => "checkbox3"}
+                              %input#checkbox3.form-check-input{:name => "checkbox9", :type => "checkbox", :value => "option9"}/
+                              Electric fan cleaning/repair
+                          .checkbox
+                            %label.form-check-label{:for => "checkbox1"}
+                              %input#checkbox1.form-check-input{:name => "checkbox10", :type => "checkbox", :value => "option10"}>/
+                              Electrical installation/repair
+                          .checkbox
+                            %label.form-check-label{:for => "checkbox2"}
+                              %input#checkbox2.form-check-input{:name => "checkbox11", :type => "checkbox", :value => "option11"}/
+                              Internet & network problems
+                          .checkbox
+                            %label.form-check-label{:for => "checkbox3"}
+                              %input#checkbox3.form-check-input{:name => "checkbox12", :type => "checkbox", :value => "option12"}/
+                              Inventory taking & recording
+                          .checkbox
+                            %label.form-check-label{:for => "checkbox1"}
+                              %input#checkbox1.form-check-input{:name => "checkbox13", :type => "checkbox", :value => "option13"}>/
+                              Painting/Repainting/Varnish works
+                          .checkbox
+                            %label.form-check-label{:for => "checkbox2"}
+                              %input#checkbox2.form-check-input{:name => "checkbox14", :type => "checkbox", :value => "option14"}/
+                              Photography/Video coverage
+                          .checkbox
+                            %label.form-check-label{:for => "checkbox3"}
+                              %input#checkbox3.form-check-input{:name => "checkbox15", :type => "checkbox", :value => "option15"}/
+                              Plumbing/Sanitary Install/repair
+                          .checkbox
+                            %label.form-check-label{:for => "checkbox1"}
+                              %input#checkbox1.form-check-input{:name => "checkbox16", :type => "checkbox", :value => "option16"}>/
+                              Printer/ Peripheral related problems
+                          .checkbox
+                            %label.form-check-label{:for => "checkbox2"}
+                              %input#checkbox2.form-check-input{:name => "checkbox17", :type => "checkbox", :value => "option17"}/
+                              Request for Personnel assistance
+                          .checkbox
+                            %label.form-check-label{:for => "checkbox3"}
+                              %input#checkbox3.form-check-input{:name => "checkbox18", :type => "checkbox", :value => "option18"}/
+                              Sounds & lights services
+                          .checkbox
+                            %label.form-check-label{:for => "checkbox1"}
+                              %input#checkbox1.form-check-input{:name => "checkbox19", :type => "checkbox", :value => "option19"}>/
+                              Streamer/Signage making
+                          .checkbox
+                            %label.form-check-label{:for => "checkbox2"}
+                              %input#checkbox2.form-check-input{:name => "checkbox20", :type => "checkbox", :value => "option20"}/
+                              Streamer installation
+                          .checkbox
+                            %label.form-check-label{:for => "checkbox3"}
+                              %input#checkbox3.form-check-input{:name => "checkbox21", :type => "checkbox", :value => "option21"}/
+                              Transfer/Transport items(see listing)
+                          .checkbox
+                            %label.form-check-label{:for => "checkbox3"}
+                              %input#checkbox3.form-check-input{:name => "checkbo22", :type => "checkbox", :value => "option22"}/
+                              Others
+                            %input#cc-pament.form-control{"aria-invalid" => "false", "aria-required" => "true", :name => "cc-payment", :type => "text", :placeholder => "Specify..."}/
+            .col-lg-8
+              .card
+                .card-header
+                  %strong.card-title Job Order Information
+                .card-body.card-block
+                  .form-group
+                    %label.form-control-label{:for => "control_no"} Control Number
+                    %input.form-control{:placeholder => "2018-ABCD", :type => "text", :name => 'control_no'}/
+                  .form-group
+                    %label.form-control-label{:for => "where"} Where
+                    %input.form-control{:placeholder => "e.g. CS Lecture Room", :type => "text", :name => 'where'}/
+                  .form-group
+                    %label.form-control-label{:for => "date_needed"} Date Needed
+                    %input.form-control{:placeholder => "", :type => "date", :name => 'date_needed'}/
+                  .form-group
+                    %label.form-control-label{:for => "time_needed"} Time Needed
+                    %input.form-control{:placeholder => "", :type => "time", :name => 'time_needed'}/
+                  .form-group
+                    %label.form-control-label{:for => "order"} Order/Activity/Problem Area
+                    %textarea.form-control{:name => 'problem_areas', :placeholder => "Content...", :rows => "9"}
+                  .form-group
+                    %label.form-control-label{:for => "requester"} Requested by
+                    %input.form-control{:placeholder => "e.g. Bea Santiago", :type => "text", :name => 'requester'}/
+                  .form-group
+                    %label.form-control-label{:for => "adviser"} Adviser
+                    %input.form-control{:placeholder => "e.g. John Ultra", :type => "text", :name => 'adviser'}/
+                  .form-group
+                    %label.form-control-label{:for => "fund"} Fund Source
+                    %input.form-control{:placeholder => "e.g. DNSM", :type => "text", :name => 'fund_source'}/
 
-
-                        %label.form-control-label{:for => "control_no"} Control Number
-                        %input.form-control{:placeholder => "2018-ABCD", :type => "text", :name => 'control_no'}/
-
-                        %label.form-control-label{:for => "where"} Where
-                        %input.form-control{:placeholder => "e.g. CS Lecture Room", :type => "text", :name => 'where'}/
-
-                        %label.form-control-label{:for => "date_needed"} Date Needed
-                        %input.form-control{:placeholder => "", :type => "date", :name => 'date_needed'}/
-
-                        %label.form-control-label{:for => "time_needed"} Time Needed
-                        %input.form-control{:placeholder => "", :type => "time", :name => 'time_needed'}/
-
-                        %label.form-control-label{:for => "order"} Order/Activity/Problem Area
-                        %textarea.form-control{:name => "textarea-input", :placeholder => "Content...", :rows => "9", :name => 'problem_areas'}
-
-                        %label.form-control-label{:for => "requester"} Requested by
-                        %input.form-control{:placeholder => "e.g. Bea Santiago", :type => "text", :name => 'requester'}/
-
-                        %label.form-control-label{:for => "adviser"} Adviser
-                        %input.form-control{:placeholder => "e.g. John Ultra", :type => "text", :name => 'adviser'}/
-
-                        %label.form-control-label{:for => "fund"} Fund Source
-                        %input.form-control{:placeholder => "e.g. DNSM", :type => "text", :name => 'fund_source'}/
-
-                      .float_right
-                        %button.btn.btn-primary{:type => "submit"}
-                          %i.fa.fa-check>
-                            Submit
-                        %button.btn.btn-secondary{:type => "button"}
-                          %i.fa.fa-times>
-                            Cancel
+                  .float_right
+                    %button.btn.btn-primary{:type => "submit"}
+                      %i.fa.fa-check>
+                        Submit
+                    %button.btn.btn-secondary{:type => "button"}
+                      %i.fa.fa-times>
+                        Cancel
+  %script{:src => "assets/js/vendor/jquery-2.1.4.min.js"}
+  %script{:src => "assets/js/popper.min.js"}
+  %script{:src => "assets/js/plugins.js"}
+  %script{:src => "assets/js/main.js"}
