@@ -144,20 +144,22 @@
                       %th Progress
                       %th Actions
                   %tbody
-                    %tr
-                      %td 2018-A-123
-                      %td Computer Software Servicing
-                      %td Waiting approval
-                      %td
-                        %button.btn.btn-primary.btn-sm{:type => "button"}
-                          %i.fa.fa-eye>
-                            View
-                        %button.btn.btn-success.btn-sm{:type => "button"}
-                          %i.fa.fa-pencil>
-                            Edit
-                        %button.btn.btn-danger.btn-sm{:type => "button"}
-                          %i.fa.fa-times>
-                            Cancel
+                    -@requests.each do |req|
+                      %tr
+                        %td= req.control_no
+                        %td= req.job_type
+                        %td Waiting approval
+                        %td
+                          %form{:action => "/pending_requests", :method => "post", :class => "checkbox_class"}
+                            %button.btn.btn-primary.btn-sm{:type => "submit", :id => "view", :name => "view"}
+                              %i.fa.fa-eye>
+                                View
+                            %button.btn.btn-success.btn-sm{:type => "submit", :id => "edit", :name => "edit"}
+                              %i.fa.fa-pencil>
+                                Edit
+                            %button.btn.btn-danger.btn-sm{:type => "submit", :id => "cancel", :name => "cancel", :value => req.control_no}
+                              %i.fa.fa-times>
+                                Cancel
       / .animated
     / .content
   / /#right-panel

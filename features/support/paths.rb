@@ -34,6 +34,9 @@ module NavigationHelpers
     when /^Finished Jobs/
       '/finished_jobs'
 
+    when /^Request Form/
+      '/request_form'
+
     when /^Trash/
       '/trash'
     # Add more mappings here.

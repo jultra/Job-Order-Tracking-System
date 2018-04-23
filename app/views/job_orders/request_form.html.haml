@@ -257,7 +257,7 @@
                     %input.form-control{:placeholder => "", :type => "time", :name => 'time_needed'}/
                   .form-group
                     %label.form-control-label{:for => "order"} Order/Activity/Problem Area
-                    %textarea.form-control{:name => 'problem_areas', :placeholder => "Content...", :rows => "9"}
+                    %textarea.form-control{:name => 'problem_area', :placeholder => "Content...", :rows => "9"}
                   .form-group
                     %label.form-control-label{:for => "requester"} Requested by
                     %input.form-control{:placeholder => "e.g. Bea Santiago", :type => "text", :name => 'requester'}/
@@ -269,12 +269,12 @@
                     %input.form-control{:placeholder => "e.g. DNSM", :type => "text", :name => 'fund_source'}/
 
                   .float_right
-                    %button.btn.btn-primary{:type => "submit"}
+                    %button.btn.btn-primary{:type => "submit", :name => "submit", :id => "submit"}
                       %i.fa.fa-check>
                         Submit
-                    %button.btn.btn-secondary{:type => "button"}
+                    %button.btn.btn-secondary{:type => "submit", :id => "cancel", :name => "cancel"}
                       %i.fa.fa-times>
-                        Cancel
+                        Cancel
   %script{:src => "assets/js/vendor/jquery-2.1.4.min.js"}
   %script{:src => "assets/js/popper.min.js"}
   %script{:src => "assets/js/plugins.js"}

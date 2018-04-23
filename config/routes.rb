@@ -10,4 +10,5 @@ Rails.application.routes.draw do
   get '/ongoing_jobs' => 'job_orders#ongoing_jobs'
   get '/finished_jobs' => 'job_orders#finished_jobs'
   get '/trash' => 'job_orders#trash'
+  post '/pending_requests' => 'job_orders#pending_requests'
 end
