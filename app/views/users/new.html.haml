@@ -36,7 +36,7 @@
               = f.password_field :password, :required =>true, :placeholder => "Password", :type => "password", :pattern=>".{8,}",:title=>"Password should be a minimum of 8 characters", :id=>"password", class: "form-control"
             .form-group
               = f.label "confirm password"
-              = f.password_field :password_confirmation, :required =>true, :placeholder => "Confirm Password", :type => "password", :oninput=>"check(this)", :id=>"confirmpassword", class: "form-control"
+              = f.password_field :password_confirmation, :required =>true, :placeholder => "Confirm Password", :type => "password", :oninput=>"check(this);", :id=>"confirmpassword", class: "form-control"
               %label
                 %input{:required =>true, :type => "checkbox"}/
                 Agree the terms and policy
@@ -51,3 +51,5 @@
   %script{:src => "assets/js/popper.min.js"}
   %script{:src => "assets/js/plugins.js"}
   %script{:src => "assets/js/main.js"}
+  %script{:src => "assets/javascripts/users.js"}
+
