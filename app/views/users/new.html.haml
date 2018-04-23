@@ -1,0 +1,58 @@
+%body.bg-dark
+  .sufee-login.d-flex.align-content-center.flex-wrap
+    .container
+      .login-content
+        .login-logo
+          %a{:href => "index.html"}
+            %img.align-content{:alt => "", :src => "images/logo.png"}/
+        .login-form
+          %h3{:id=>"signuptitle"} Sign Up
+          %br
+          -if(flash[:danger]!=nil)
+            %div{:class => "alert alert-danger"}
+              %H6=flash[:danger]
+          =form_tag users_path do
+            %div.form-row
+              %div{:class=>"form-group col-md-4"}
+                %label{:for=>"inputfirstname"}Firstname
+                %input{:name=>"firstname",:required =>true,:type=>"text", :class=>"form-control", :id=>"inputfirstname", :placeholder => "Firstname"}
+              %div{:class=>"form-group col-md-4"}
+                %label{:for=>"inputmiddlename"}Middlename
+                %input{:name=>"middlename",:required =>true,:type=>"text", :class=>"form-control", :id=>"inputmiddlename", :placeholder => "Middlename"}
+              %div{:class => "form-group col-md-4"}
+                %label{:for=>"inputlastname"}Lastname
+                %input{:name=>"lastname", :required =>true, :type=>"text", :class=>"form-control", :id=>"inputlastname", :placeholder=>"Lastname"}
+            .form-group
+              %label{:for=>"inputposition"}
+                Position
+              %select{:name=>"position", :id=>"inputposition", :class=>"form-control"}
+                %option{:selected => true, :disabled => true}Choose
+                %option{}Student
+                %option{}Faculty
+            .form-group
+              %label Username
+              %input.form-control{:name=>"username", :required =>true, :placeholder => "Username", :type => "text"}/
+            .form-group
+              %label Email
+              %input.form-control{:name=>"email", :required =>true, :placeholder => "Email", :type => "email"}/
+            .form-group
+              %label Password
+              %input.form-control{:name=>"password", :required =>true, :placeholder => "Password", :type => "password", :pattern=>".{8,}",:title=>"Password should be a minimum of 8 characters", :id=>"password"}/
+            .form-group
+              %label confirmpassword
+              %input.form-control{:name=>"confirmpassword", :required =>true, :placeholder => "Confirm Password", :type => "password", :oninput=>"check(this)", :id=>"confirmpassword"}/
+            .checkbox
+              %label
+                %input{:required =>true, :type => "checkbox"}/
+                Agree the terms and policy
+            %button.btn.btn-primary.btn-flat.m-b-30.m-t-30{:type => "submit"} Register
+            .register-link.m-t-15.text-center
+              %p
+                Already have account ?
+                %a{:href => "/login"} Sign in
+  %footer{:id=>"userfooter"}
+    %p &copy;All rights reserved 2018. Krabby Inc.
+  %script{:src => "assets/js/vendor/jquery-2.1.4.min.js"}
+  %script{:src => "assets/js/popper.min.js"}
+  %script{:src => "assets/js/plugins.js"}
+  %script{:src => "assets/js/main.js"}

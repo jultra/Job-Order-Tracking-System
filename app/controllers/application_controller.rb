@@ -1,6 +1,16 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
 
+  def handle_unverified_request
+    # raise an exception
+    fail ActionController::InvalidAuthenticityToken
+    # or destroy session, redirect
+    if current_user_session
+      current_user_session.destroy
+    end
+    redirect_to root_url
+  end
+
   helper_method :current_user_session, :current_user
 
   private

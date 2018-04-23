@@ -1,9 +1,9 @@
 Rails.application.routes.draw do
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
-  root 'users#login'
+  root 'user_sessions#new'
   get '/login' => 'users#login'
   get '/index' => 'users#index'
-  get '/signup' => 'users#sign_up'
+  get '/signup' => 'users#new'
   get '/request_form' => 'job_orders#request_form'
   post '/request_form' => 'job_orders#request_form'
   get '/pending_requests' => 'job_orders#pending_requests'

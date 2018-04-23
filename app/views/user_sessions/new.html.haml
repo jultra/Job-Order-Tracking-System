@@ -1,0 +1,28 @@
+%body.bg-dark
+  .sufee-login.d-flex.align-content-center.flex-wrap
+    .container
+      .login-content
+        .login-logo
+          %a{:href => "/login"}
+            %img.align-content{:alt => "", :src => "images/lg.png"}/
+        .login-form
+          = form_for @user_session do |f|
+            = render 'shared/errors', object: @user_session
+            .form-group
+              = f.label :email
+              = f.email_field :email, class: 'form-control'
+            .form-group
+              = f.label :password
+              = f.password_field :password, class: 'form-control'
+            .form-group
+              = f.label :remember_me
+              = f.check_box :remember_me
+              = f.submit "Log in!", class: 'btn btn-primary btn-lg'
+            .register-link.m-t-15.text-center
+              %p
+                Don't have account ?
+                %a{:href => "/signup"} Sign Up Here
+  %script{:src => "assets/js/vendor/jquery-2.1.4.min.js"}
+  %script{:src => "assets/js/popper.min.js"}
+  %script{:src => "assets/js/plugins.js"}
+  %script{:src => "assets/js/main.js"}
