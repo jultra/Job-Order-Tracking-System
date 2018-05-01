@@ -343,7 +343,7 @@ body.open .navbar .navbar-brand.hidden {
 
 /* Right panel */
 .right-panel {
-  display: table-cell;
+  /display: table-cell;
   padding-left: 0 !important;
   -webkit-transition: all .35s ease;
   -moz-transition: all .35s ease;
@@ -357,7 +357,8 @@ body.open .navbar .navbar-brand.hidden {
   clear: both;
   display: inline-block;
   padding: 15px 20px 13px 20px;
-  width: 100%; }
+  width: 100%;
+  }
 
 .open .right-panel {
   margin-left: -210px; }

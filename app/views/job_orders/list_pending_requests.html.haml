@@ -1,0 +1,60 @@
+.div{:style => "position: relative; top: 75px; z-index:1; left: 275px; width: 80%;"}
+  / /header
+  / Header
+  .breadcrumbs
+    .col-sm-4
+      .page-header.float-left
+        .page-title
+          %h3 Pending Requests
+  .content.mt-3
+    .animated.fadeIn
+      .row
+        .col-md-12
+          .card
+            .card-body
+              %table#bootstrap-data-table.table.table-striped.table-bordered
+                %thead
+                  %tr
+                    %th Control Number
+                    %th Job Type
+                    %th Progress
+                    %th Actions
+                %tbody
+                  -@requests.each do |req|
+                    %tr
+                      %td= req.control_no
+                      %td= req.job_type
+                      %td= req.progress
+                      %td
+                        = link_to(job_order_path(req), method: :get, class: 'btn btn-primary') do
+                          %i.fa.fa-eye>
+                            View
+                        = link_to(edit_job_order_path(req), method: :get, class: 'btn btn-success') do
+                          %i.fa.fa-pencil>
+                            Edit
+                        = link_to(job_order_path(req), method: :delete, class: 'btn btn-danger') do
+                          %i.fa.fa-times>
+                            Cancel
+    / .animated
+  / .content
+/ /#right-panel
+/ Right Panel
+%script{:src => "assets/js/vendor/jquery-2.1.4.min.js"}
+%script{:src => "assets/js/popper.min.js"}
+%script{:src => "assets/js/plugins.js"}
+%script{:src => "assets/js/main.js"}
+%script{:src => "assets/js/lib/data-table/datatables.min.js"}
+%script{:src => "assets/js/lib/data-table/dataTables.bootstrap.min.js"}
+%script{:src => "assets/js/lib/data-table/dataTables.buttons.min.js"}
+%script{:src => "assets/js/lib/data-table/buttons.bootstrap.min.js"}
+%script{:src => "assets/js/lib/data-table/jszip.min.js"}
+%script{:src => "assets/js/lib/data-table/pdfmake.min.js"}
+%script{:src => "assets/js/lib/data-table/vfs_fonts.js"}
+%script{:src => "assets/js/lib/data-table/buttons.html5.min.js"}
+%script{:src => "assets/js/lib/data-table/buttons.print.min.js"}
+%script{:src => "assets/js/lib/data-table/buttons.colVis.min.js"}
+%script{:src => "assets/js/lib/data-table/datatables-init.js"}
+:javascript
+  $(document).ready(function() {
+    $('#bootstrap-data-table-export').DataTable();
+  } );
