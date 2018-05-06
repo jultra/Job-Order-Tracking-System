@@ -7,7 +7,17 @@
             %img.align-content{:alt => "", :src => "images/lg.png"}/
         .login-form
           = form_for @user_session do |f|
-            = render 'shared/errors', object: @user_session
+            - if @user_session.errors.any?
+              #error_explanation
+                .div{:class=>"alert alert-danger alert-dismissible fade show", :role=>"alert"}
+                  %button.close{"aria-label" => "Close", "data-dismiss" => "alert", type: "button"}
+                    %span{"aria-hidden" => "true"} ×
+                  %h2#errorHeading
+                    Email/Password Incorrect!
+                    -#= pluralize(@user_session.errors.count, "error")
+                    -#prohibited:
+                  - @user_session.errors.full_messages.each do |msg|
+                    %p#errorList= msg
             .form-group
               = f.label :email
               = f.email_field :email, class: 'form-control'
