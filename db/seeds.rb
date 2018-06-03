@@ -5,3 +5,5 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
+#user = User.create(:username => "be", :position => "Student", :fname =>"Bea", :mname => "Santos", :lname => "Santiago", :email =>"bdSantiago@up.edu.ph", :password =>"art", :password_confirmation => "art", :active => true, :approved => true, :confirmed => true);
+#params.require(:user).permit(:username, :position, :fname, :mname, :lname, :email, :password, :password_confirmation)
