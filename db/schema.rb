@@ -36,6 +36,7 @@ ActiveRecord::Schema.define(version: 20180521023454) do
     t.date "date_started"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "progress"
   end
 
   create_table "user_sessions", force: :cascade do |t|
