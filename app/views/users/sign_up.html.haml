@@ -1,0 +1,31 @@
+%body.bg-dark
+  .sufee-login.d-flex.align-content-center.flex-wrap
+    .container
+      .login-content
+        .login-logo
+          %a{:href => "/signup"}
+            %img.align-content{:alt => "", :src => "images/lg.png"}/
+        .login-form
+          %form
+            .form-group
+              %label Username
+              %input.form-control{:placeholder => "Username", :type => "email"}/
+            .form-group
+              %label Email
+              %input.form-control{:placeholder => "Email", :type => "email"}/
+            .form-group
+              %label Password
+              %input.form-control{:placeholder => "Password", :type => "password"}/
+            .checkbox
+              %label
+                %input{:type => "checkbox"}/
+                Agree the terms and policy
+            %button.btn.btn-primary.btn-flat.m-b-30.m-t-30{:type => "submit"} Register
+            .register-link.m-t-15.text-center
+              %p
+                Already have account ?
+                %a{:href => "/login"} Sign in
+  %script{:src => "assets/js/vendor/jquery-2.1.4.min.js"}
+  %script{:src => "assets/js/popper.min.js"}
+  %script{:src => "assets/js/plugins.js"}
+  %script{:src => "assets/js/main.js"}

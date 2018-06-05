@@ -1,0 +1,170 @@
+.content.mt-3
+  .animated.fadeIn
+    .row
+      .col-lg-4
+        .card
+          .card-header
+            %strong.card-title Select a job type
+          .card-body
+            / Credit Card
+            #pay-invoice
+              .card-body
+                .card-title
+                  %h4.text-center Job Types
+                  %hr/
+                  .form-group
+                    .checkbox
+                      %input#variable{:name => "variable", :type => "hidden", :value => "#{@job_type}"}/
+                      %label.form-check-label{:for => "checkbox1"}
+                        = check_box_tag "job_order[job_type]", "Aircon cleaning/repair/install", @job_type == "Aircon cleaning/repair/install"
+                        Aircon cleaning/repair/install
+                    .checkbox
+                      %label.form-check-label{:for => "checkbox2"}
+                        = check_box_tag "job_order[job_type]", "Bulb Tube Replacement", @job_type == "Bulb Tube Replacement"
+                        Bulb Tube Replacement
+                    .checkbox
+                      %label.form-check-label{:for => "checkbox3"}
+                        = check_box_tag "job_order[job_type]", "Carpentry/ Fabrication work/ repair", @job_type == "Carpentry/ Fabrication work/ repair"
+                        Carpentry/ Fabrication work/ repair
+                    .checkbox
+                      %label.form-check-label{:for => "checkbox1"}
+                        = check_box_tag "job_order[job_type]", "Computer Hardware Servicing", @job_type == "Computer Hardware Servicing"
+                        Computer Hardware Servicing
+                    .checkbox
+                      %label.form-check-label{:for => "checkbox2"}
+                        = check_box_tag "job_order[job_type]", "Computer Software Servicing", @job_type == "Computer Software Servicing"
+                        Computer Software Servicing
+                    .checkbox
+                      %label.form-check-label{:for => "checkbox3"}
+                        = check_box_tag "job_order[job_type]", "Cost Estimate Formulation / POW", @job_type == "Cost Estimate Formulation / POW"
+                        Cost Estimate Formulation / POW
+                    .checkbox
+                      %label.form-check-label{:for => "checkbox1"}
+                        = check_box_tag "job_order[job_type]", "DLP/LCD Services", @job_type == "DLP/LCD Services"
+                        DLP/LCD Services
+                    .checkbox
+                      %label.form-check-label{:for => "checkbox2"}
+                        = check_box_tag "job_order[job_type]", "Door knob installation/repair", @job_type == "Door knob installation/repair"
+                        Door knob installation/repair
+                    .checkbox
+                      %label.form-check-label{:for => "checkbox3"}
+                        = check_box_tag "job_order[job_type]", "Electric fan cleaning/repair", @job_type == "Electric fan cleaning/repair"
+                        Electric fan cleaning/repair
+                    .checkbox
+                      %label.form-check-label{:for => "checkbox1"}
+                        = check_box_tag "job_order[job_type]", "Electrical installation/repair", @job_type == "Electrical installation/repair"
+                        Electrical installation/repair
+                    .checkbox
+                      %label.form-check-label{:for => "checkbox2"}
+                        = check_box_tag "job_order[job_type]", "Internet & network problems", @job_type == "Internet & network problems"
+                        Internet & network problems
+                    .checkbox
+                      %label.form-check-label{:for => "checkbox3"}
+                        = check_box_tag "job_order[job_type]", "Inventory taking & recording", @job_type == "Inventory taking & recording"
+                        Inventory taking & recording
+                    .checkbox
+                      %label.form-check-label{:for => "checkbox1"}
+                        = check_box_tag "job_order[job_type]", "Painting/Repainting/Varnish works", @job_type == "Painting/Repainting/Varnish works"
+                        Painting/Repainting/Varnish works
+                    .checkbox
+                      %label.form-check-label{:for => "checkbox2"}
+                        = check_box_tag "job_order[job_type]", "Photography/Video coverage", @job_type == "Photography/Video coverage"
+                        Photography/Video coverage
+                    .checkbox
+                      %label.form-check-label{:for => "checkbox3"}
+                        = check_box_tag "job_order[job_type]", "Plumbing/Sanitary Install/repair", @job_type == "Plumbing/Sanitary Install/repair"
+                        Plumbing/Sanitary Install/repair
+                    .checkbox
+                      %label.form-check-label{:for => "checkbox1"}
+                        = check_box_tag "job_order[job_type]", "Printer/ Peripheral related problems", @job_type == "Printer/ Peripheral related problems"
+                        Printer/ Peripheral related problems
+                    .checkbox
+                      %label.form-check-label{:for => "checkbox2"}
+                        = check_box_tag "job_order[job_type]", "Request for Personnel assistance", @job_type == "Request for Personnel assistance"
+                        Request for Personnel assistance
+                    .checkbox
+                      %label.form-check-label{:for => "checkbox3"}
+                        = check_box_tag "job_order[job_type]", "Sounds & lights services", @job_type == "Sounds & lights services"
+                        Sounds & lights services
+                    .checkbox
+                      %label.form-check-label{:for => "checkbox1"}
+                        = check_box_tag "job_order[job_type]", "Streamer/Signage making", @job_type == "Streamer/Signage making"
+                        Streamer/Signage making
+                    .checkbox
+                      %label.form-check-label{:for => "checkbox2"}
+                        = check_box_tag "job_order[job_type]", "Streamer installation", @job_type == "Streamer installation"
+                        Streamer installation
+                    .checkbox
+                      %label.form-check-label{:for => "checkbox3"}
+                        = check_box_tag "job_order[job_type]", "Transfer/Transport items(see listing)", @job_type == "Transfer/Transport items(see listing)"
+                        Transfer/Transport items(see listing)
+                    .checkbox
+                      %label.form-check-label{:for => "others"}
+                        %input#others{:name => "others", :type => "checkbox", :onclick => "enableDisableField();" }>/
+                        Others
+                      %input.form-control{:id => "specify", :type => "text", :placeholder => "Specify...", :name => "job_order[job_type]", :disabled => true}/
+      .col-lg-8
+        .card
+          .card-header
+            %strong.card-title Job Order Information
+          .card-body.card-block
+            .form-group
+              %label.form-control-label{:for => "control_no"} Control Number
+              = job.text_field :control_no, :class => 'form-control', :placeholder => "2018-XXXX"
+            .form-group
+              %label.form-control-label{:for => "where"} Where
+              = job.text_field :where, :class => 'form-control', :placeholder => "eg. CS Lecture Room"
+            .form-group
+              %label.form-control-label{:for => "date_needed"} Date Needed
+              = job.text_field :date_needed, :class => 'form-control', :type => "date"
+            .form-group
+              %label.form-control-label{:for => "time_needed"} Time Needed
+              = job.text_field :time_needed, :class => 'form-control', :type => "time"
+            .form-group
+              %label.form-control-label{:for => "order"} Order/Activity/Problem Area
+              = job.text_area :information, :class => 'form-control', :rows => "9", :placeholder => "Content..."
+            .form-group
+              %label.form-control-label{:for => "requester"} Requested by
+              = job.text_field :requester, :class => 'form-control', :placeholder => "John Doe"
+            .form-group
+              %label.form-control-label{:for => "adviser"} Adviser
+              = job.text_field :adviser, :class => 'form-control', :placeholder => "Jane Doe"
+            .form-group
+              %label.form-control-label{:for => "fund"} Fund Source
+              = job.text_field :fund_source, :class => 'form-control', :placeholder => "DNSM"
+
+            .float-right
+              %button.btn.btn-primary{:type => "submit"}
+                %i.fa.fa-check>
+                  Submit
+              = link_to(users_path(), method: :get, class: 'btn btn-secondary') do
+                %i.fa.fa-times>
+                  Cancel
+
+%script{:src => "/assets/js/vendor/jquery-2.1.4.min.js"}
+:javascript
+  function enableDisableField() {
+    var cb1 = document.getElementById('others').checked;
+    document.getElementById('specify').disabled = !cb1;
+  }
+
+  $(document).ready(function(){
+    var job_type = document.getElementById("variable").value;
+    if(!toBeChecked(job_type, "Aircon cleaning/repair/install") && !toBeChecked(job_type, "Bulb Tube Replacement") && !toBeChecked(job_type, "Carpentry/ Fabrication work/ repair") &&
+      !toBeChecked(job_type, "Computer Hardware Servicing") && !toBeChecked(job_type, "Computer Software Servicing") &&!toBeChecked(job_type, "Cost Estimate Formulation / POW") &&
+      !toBeChecked(job_type, "DLP/LCD Services") &&!toBeChecked(job_type, "Door knob installation/repair") &&!toBeChecked(job_type, "Electric fan cleaning/repair") &&
+      !toBeChecked(job_type, "Electrical installation/repair") &&!toBeChecked(job_type, "Internet & network problems") &&!toBeChecked(job_type, "Inventory taking & recording") &&
+      !toBeChecked(job_type, "Painting/Repainting/Varnish works") &&!toBeChecked(job_type, "Photography/Video coverage") &&!toBeChecked(job_type, "Plumbing/Sanitary Install/repair") &&
+      !toBeChecked(job_type, "Printer/ Peripheral related problems") &&!toBeChecked(job_type, "Request for Personnel assistance") &&!toBeChecked(job_type, "Sounds & lights services") &&
+      !toBeChecked(job_type, "Streamer/Signage making") &&!toBeChecked(job_type, "Streamer installation") &&!toBeChecked(job_type, "Transfer/Transport items(see listing)" && job_type != "") ){
+        document.getElementById('others').checked = true;
+        document.getElementById('specify').disabled = false;
+        document.getElementById('specify').value = job_type;
+    }
+  });
+  function toBeChecked(job_type, value){
+    if(value == job_type){
+      return true;
+    }
+    return false;
+  }

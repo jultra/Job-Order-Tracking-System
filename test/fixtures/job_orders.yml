@@ -1,0 +1,47 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  control_no: MyString
+  job_type: MyString
+  code: MyString
+  information: MyText
+  where: MyString
+  requester: MyString
+  adviser: MyString
+  fund_source: MyString
+  signature: MyString
+  acknowledgment: MyText
+  job_office: MyString
+  inspected_by: MyString
+  remarks: MyText
+  available_materials: MyString
+  assigned_to: MyString
+  date_filed: 2018-04-09
+  date_needed: 2018-04-09
+  date_approved: 2018-04-09
+  delivery_date: 2018-04-09
+  time_needed: 2018-04-09 15:22:50
+  date_started: 2018-04-09
+
+two:
+  control_no: MyString
+  job_type: MyString
+  code: MyString
+  information: MyText
+  where: MyString
+  requester: MyString
+  adviser: MyString
+  fund_source: MyString
+  signature: MyString
+  acknowledgment: MyText
+  job_office: MyString
+  inspected_by: MyString
+  remarks: MyText
+  available_materials: MyString
+  assigned_to: MyString
+  date_filed: 2018-04-09
+  date_needed: 2018-04-09
+  date_approved: 2018-04-09
+  delivery_date: 2018-04-09
+  time_needed: 2018-04-09 15:22:50
+  date_started: 2018-04-09
