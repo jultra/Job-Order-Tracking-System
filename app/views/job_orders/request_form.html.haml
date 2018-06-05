@@ -248,7 +248,33 @@
                     %input.form-control{:placeholder => "2018-ABCD", :type => "text", :name => 'control_no'}/
                   .form-group
                     %label.form-control-label{:for => "where"} Where
-                    %input.form-control{:placeholder => "e.g. CS Lecture Room", :type => "text", :name => 'where'}/
+                    %select#sel1.form-control
+                      %option{:selected => "selected",:value => "default"} --Select One--
+                      %option{:value => "DH"} Division of Humanities (DH)
+                      %option{:value => "DNSM"} Division of Natural Sciences and Mathematics (DNSM)
+                      %option{:value => "DM"} Division of Management (DM)
+                      %option{:value => "DSS"} Division of Social Sciences (DSS)
+                      %option{:value => "Dean"} Dean's office
+                      %option{:value => "ADean"} Associate Dean
+                      %option{:value => "Admin"} Supervising Administrative Office
+                      %option{:value => "OCS"} Office of the College Secretary (OCS) 
+                      %option{:value => "OSA"} Office of Student Affairs (OSA)
+                      %option{:value => "DC"} Dental Clinic
+                      %option{:value => "HC"} Health Clinic
+                      %option{:value => "OCEP"} Office of Continuing Education and Pahinungod (OCEP)
+                      %option{:value => "REIS"} Regional Environmental Information System (REIS)
+                      %option{:value => "ASHO"} Anti-Sexual Harassment Office (ASHO)
+                      %option{:value => "GDP"} Gender & Development Program (GDP)
+                      %option{:value => "SWF"} Sentro ng Wikang Filipino (SWF)
+                      %option{:value => "Museum"} Natural History Museum & Herbarium
+                      %option{:value => "Men"} Men's Dorm
+                      %option{:value => "Ladies"} Ladies Dorm
+                      %option{:value => "CDMO"} Campus Development & Maintenance Office (CDMO)
+                      %option{:value => "SC"} Student Council Office
+                      %option{:value => "Vista"} Vista
+                      %option{:value => "Alumni"} Alumni Assosciation
+                      %option{:value => "LSHS"} Leyte-Samar Heritage Center (LSHS)
+                      %option{:value => "NSTP"} NSTP Office
                   .form-group
                     %label.form-control-label{:for => "date_needed"} Date Needed
                     %input.form-control{:placeholder => "", :type => "date", :name => 'date_needed'}/
@@ -266,8 +292,34 @@
                     %input.form-control{:placeholder => "e.g. John Ultra", :type => "text", :name => 'adviser'}/
                   .form-group
                     %label.form-control-label{:for => "fund"} Fund Source
-                    %input.form-control{:placeholder => "e.g. DNSM", :type => "text", :name => 'fund_source'}/
-
+                    %select#sel1.form-control
+                      %option{:selected => "selected",:value => "default"} --Select One--
+                      %option{:value => "Requestioner"} Requestioner
+                      %option{:value => "DH"} Division of Humanities (DH)
+                      %option{:value => "DNSM"} Division of Natural Sciences and Mathematics (DNSM)
+                      %option{:value => "DM"} Division of Management (DM)
+                      %option{:value => "DSS"} Division of Social Sciences (DSS)
+                      %option{:value => "Dean"} Dean's office
+                      %option{:value => "ADean"} Associate Dean
+                      %option{:value => "Admin"} Supervising Administrative Office
+                      %option{:value => "OCS"} Office of the College Secretary (OCS) 
+                      %option{:value => "OSA"} Office of Student Affairs (OSA)
+                      %option{:value => "DC"} Dental Clinic
+                      %option{:value => "HC"} Health Clinic
+                      %option{:value => "OCEP"} Office of Continuing Education and Pahinungod (OCEP)
+                      %option{:value => "REIS"} Regional Environmental Information System (REIS)
+                      %option{:value => "ASHO"} Anti-Sexual Harassment Office (ASHO)
+                      %option{:value => "GDP"} Gender & Development Program (GDP)
+                      %option{:value => "SWF"} Sentro ng Wikang Filipino (SWF)
+                      %option{:value => "Museum"} Natural History Museum & Herbarium
+                      %option{:value => "Men"} Men's Dorm
+                      %option{:value => "Ladies"} Ladies Dorm
+                      %option{:value => "CDMO"} Campus Development & Maintenance Office (CDMO)
+                      %option{:value => "SC"} Student Council Office
+                      %option{:value => "Vista"} Vista
+                      %option{:value => "Alumni"} Alumni Assosciation
+                      %option{:value => "LSHS"} Leyte-Samar Heritage Center (LSHS)
+                      %option{:value => "NSTP"} NSTP Office
                   .float_right
                     %button.btn.btn-primary{:type => "submit", :name => "submit", :id => "submit"}
                       %i.fa.fa-check>
