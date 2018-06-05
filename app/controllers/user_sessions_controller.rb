@@ -8,10 +8,8 @@ class UserSessionsController < ApplicationController
   def create
     @user_session = UserSession.new(user_session_params.to_h)
     if @user_session.save
-      flash[:status] = "Welcome back!"
       redirect_to '/request_form'
     else
-      flash[:status] = "Email/Password Incorrect!"
       render :action => :new
     end
   end
@@ -34,6 +32,8 @@ class UserSessionsController < ApplicationController
         "login"
       when "destroy"
         "login"
+      when "create"
+        "login"        
       else 
         "application"
     end
