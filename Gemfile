@@ -14,6 +14,7 @@ gem 'autotest'
 gem 'haml-rails'
 gem 'haml'
 
+gem 'rolify'
 # Use sqlite3 as the database for Active Record
 gem 'sqlite3'
 # Use Puma as the app server

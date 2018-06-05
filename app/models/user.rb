@@ -1,4 +1,5 @@
 class User < ApplicationRecord
+  rolify
   acts_as_authentic do |c|
     c.crypto_provider = Authlogic::CryptoProviders::BCrypt
   end
@@ -8,5 +9,5 @@ class User < ApplicationRecord
   
   def self.find_by_login_or_email(login)
     find_by_email(login)
- end
+  end
 end

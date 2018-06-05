@@ -182,6 +182,7 @@ GEM
       ffi (>= 0.5.0, < 2)
     request_store (1.4.1)
       rack (>= 1.4)
+    rolify (5.2.0)
     rspec (3.7.0)
       rspec-core (~> 3.7.0)
       rspec-expectations (~> 3.7.0)
@@ -272,6 +273,7 @@ DEPENDENCIES
   listen (>= 3.0.5, < 3.2)
   puma (~> 3.7)
   rails (~> 5.1.6)
+  rolify
   rspec
   rspec-autotest
   sass-rails (~> 5.0)
