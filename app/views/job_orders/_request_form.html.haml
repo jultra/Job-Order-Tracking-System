@@ -110,7 +110,7 @@
           .card-body.card-block
             .form-group
               %label.form-control-label{:for => "control_no"} Control Number
-              = job.text_field :control_no, :class => 'form-control', :placeholder => "2018-XXXX"
+              = job.text_field :control_no, :class => 'form-control', :readonly => "readonly", :placeholder => "XXXX-XXXX", :value => "XXXX-XXXX" 
             .form-group
               %label.form-control-label{:for => "where"} Where
               = job.text_field :where, :class => 'form-control', :placeholder => "eg. CS Lecture Room"

@@ -1,0 +1,98 @@
+.div{:style => "position: relative; top: 75px; z-index:1; left: 275px; width: 80%;"}
+  / /header
+  / Header
+  .content.mt-3
+    .animated.fadeIn
+      .col-md-12
+        .card
+          .card-header
+            %strong.card-title.mb-3
+              %tr
+                Job Details
+          .card-body
+            .center
+              .col-md-7
+                .card.border.border-secondary
+                  .card-header
+                    %tr
+                      Job Order :  
+                      %td= @job_order.control_no
+                  .card-body
+                    .row
+                      .col-md-6
+                        %address.mt-3
+                          %strong Job Type
+                          %br/
+                          %td= @job_order.job_type
+                          %br/
+                          %br/
+                          %b Requested by
+                          %br/
+                          %td= @job_order.requester
+                          %br/
+                          %br/
+                          %b Date Needed
+                          %br/
+                          %td= @job_order.date_needed
+                          %br/
+                          %br/
+                          %b Adviser
+                          %br/
+                          %td= @job_order.adviser
+                          %br/
+                          %br/
+                          %b Order/Activity/Problem Area
+                          %br/
+                          %td= @job_order.information
+                          %br/
+                      .col-md-6
+                        %address.mt-3
+                          %strong Location
+                          %br/
+                          %td= @job_order.where
+                          %br/
+                          %br/
+                          %b Date Requested
+                          %br/
+                          June 6, 2018
+                          %br/
+                          %br/
+                          %b Time Needed
+                          %br/
+                          %td= @job_order.time_needed
+                          %br/
+            .col-md-5.col-lg-5
+              .card
+                .card-body
+                  .stat-widget-one
+                    .stat-icon.dib
+                      %i.ti-money.text-success.border-success
+                    .stat-content.dib
+                      .stat-text Estimated Budget
+                      .stat-digit 1,012
+            .col-lg-5.col-md-6
+              .card
+                .card-body
+                  .stat-widget-one
+                    .stat-icon.dib
+                      %i.fa.fa-cart-plus.text-success.border-success
+                    .stat-content.dib
+                      .stat-text Total Amount Spent
+                      .stat-digit 1,012  
+            .col-lg-5.col-md-6
+              .card
+                .card-body
+                  .stat-widget-one
+                    .stat-icon.dib
+                      %i.fa.fa-clock-o.text-success.border-success
+                    .stat-content.dib
+                      .stat-text Estimated Project Duration
+                      .stat-digit 1,012                    
+  %script{:src => "assets/js/vendor/jquery-2.1.4.min.js"}
+  %script{:src => "assets/js/popper.min.js"}
+  %script{:src => "assets/js/plugins.js"}
+  %script{:src => "assets/js/main.js"}
+  / Chart js
+  %script{:src => "assets/js/lib/chart-js/Chart.bundle.js"}
+  %script{:src => "assets/js/lib/chart-js/chartjs-init.js"}
+  %script{:src => "https://canvasjs.com/assets/script/canvasjs.min.js"}

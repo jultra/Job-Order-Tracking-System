@@ -39,17 +39,15 @@ class JobOrdersController < ApplicationController
     end
  
   end
-
-  def new
-
-  end
-
   def create
     @new_request = JobOrder.create!(job_order_params)
+    @new_request.control_no = "XXXX-XXXX"
     @new_request.progress = "Waiting for Approval"
     @new_request.save!
     #should put notice here
     redirect_to '/job_orders/list_pending_requests'
+
+  def new
 
   end
 
@@ -59,7 +57,8 @@ class JobOrdersController < ApplicationController
   end
 
   def show
-    @requests = JobOrder.find params[:id]
+    @job_order = JobOrder.find params[:id]
+    @job_type = @job_order.job_type
   end
 
   def edit
@@ -96,6 +95,10 @@ class JobOrdersController < ApplicationController
     update_record = JobOrder.find params[:id]
     update_record.update_attributes!(:progress => attribute)
     redirect_to '/job_orders/list_pending_approval'
+  end
+
+  def list_ongoing_jobs
+    @requests = JobOrder.where(:progress => "Approved")
   end
 
 end
