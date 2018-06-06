@@ -5,21 +5,23 @@ class JobOrdersController < ApplicationController
     params.require(:job_order).permit(:job_type, :control_no, :where, :date_needed, :time_needed, :information, :requester, :adviser, :fund_source)
   end
 
+  def admin_approval_params
+    params.require(:job_order).permit(:job_office, :delivery_date)
+  end
+
   def new
   end
 
   def create
     @new_request = JobOrder.create!(job_order_params)
-    @new_request.progress = "Waiting for Approval"
+    @new_request.progress = "Waiting for Adviser Approval"
     @new_request.save!
     #should put notice here
     redirect_to '/job_orders/list_pending_requests'
-
   end
 
   def list_pending_requests
-    @requests = JobOrder.where(:progress => "Waiting for Approval")
-    #try using dependency injection kena
+    @requests = JobOrder.where(:progress => "Waiting for Admin Approval").or(JobOrder.where(:progress => "Waiting for Adviser Approval"))
   end
 
   def show
@@ -44,22 +46,52 @@ class JobOrdersController < ApplicationController
     redirect_to '/job_orders/list_pending_requests'
   end
 
-  def list_pending_approval
-    @requests = JobOrder.where(:progress => "Waiting for Approval", :adviser => "John Ultra")
+  def list_pending_admin_approval
+    @requests = JobOrder.where(:progress => "Waiting for Admin Approval")
   end
 
-  def approve_job_order
-    update_attribute("Approved")
+  def list_pending_adviser_approval
+    @requests = JobOrder.where(:progress => "Waiting for Adviser Approval", :adviser => "John Ultra")
   end
 
-  def reject_job_order
+  def adviser_approval
+    @job_order = JobOrder.find params[:id]
+    @job_type = @job_order.job_type
+  end
+
+  def adviser_approve_job_order
+    update_attribute("Waiting for Admin Approval")
+    redirect_to '/job_orders/list_pending_adviser_approval'
+  end
+
+  def adviser_reject_job_order
     update_attribute("Rejected")
+    redirect_to '/job_orders/list_pending_adviser_approval'
   end
 
   def update_attribute(attribute)
     update_record = JobOrder.find params[:id]
     update_record.update_attributes!(:progress => attribute)
-    redirect_to '/job_orders/list_pending_approval'
   end
+
+  def admin_approval
+    @job_order = JobOrder.find params[:id]
+    @job_type = @job_order.job_type
+  end
+
+  def admin_approve_job_order
+    update_record = JobOrder.find params[:id]
+    update_record.update_attributes!(admin_approval_params)
+    update_record.update_attributes!(:progress => "Waiting for Admin Approval")
+
+    redirect_to '/job_orders/list_pending_admin_approval'
+  end
+
+  def admin_reject_job_order
+    update_attribute("Rejected")
+    redirect_to '/job_orders/list_pending_admin_approval'
+  end
+
+
 
 end
