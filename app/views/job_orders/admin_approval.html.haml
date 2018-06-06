@@ -11,12 +11,12 @@
               %label.form-control-label{:for => "control_no"} For
               = job.text_field :job_office, :class => 'form-control'
             .form-group
-              %label.form-control-label{:for => "where"} Expected Delivery
-              = job.text_field :delivery_date, :class => 'form-control'
+              %label.form-control-label{:for => "control_no"} Expected delivery Date
+              = job.text_field :delivery_date, :class => 'form-control', :type => "date"
             .float-right
               %button.btn.btn-primary{:type => "submit"}
                 %i.fa.fa-check>
-                  Submit
+                  Approve
               = link_to(admin_reject_job_order_path(@job_order.id), method: :get, class: 'btn btn-danger') do
                 %i.fa.fa-times>
                   Reject

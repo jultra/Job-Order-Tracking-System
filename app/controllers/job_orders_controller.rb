@@ -82,8 +82,7 @@ class JobOrdersController < ApplicationController
   def admin_approve_job_order
     update_record = JobOrder.find params[:id]
     update_record.update_attributes!(admin_approval_params)
-    update_record.update_attributes!(:progress => "Waiting for Admin Approval")
-
+    update_record.update_attributes!(:progress => "On-going")
     redirect_to '/job_orders/list_pending_admin_approval'
   end
 
@@ -91,7 +90,5 @@ class JobOrdersController < ApplicationController
     update_attribute("Rejected")
     redirect_to '/job_orders/list_pending_admin_approval'
   end
-
-
 
 end
