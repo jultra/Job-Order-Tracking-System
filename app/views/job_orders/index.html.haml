@@ -5,6 +5,7 @@
     .col-sm-4
       .page-header.float-left
         .page-title
+          -@user = User.find(session['user_credentials_id'])
           %h1 Dashboard
     .col-sm-8
       .page-header.float-right
@@ -21,7 +22,8 @@
                 .h1.text-muted.text-right.mb-4
                   %i.fa.fa-spinner.text-light
                 .h4.mb-0.text-light
-                  %span.count 87500
+                  %span.count
+                    =@pending_request_num
                 %small.text-uppercase.font-weight-bold.text-light Pending Requests
                 .progress.progress-xs.mt-3.mb-0.bg-light{:style => "width: 40%; height: 5px;"}
             .card.col-lg-2.col-md-6.no-padding.no-shadow
@@ -29,7 +31,8 @@
                 .h1.text-muted.text-right.mb-4
                   %i.fa.fa-gavel.text-light
                 .h4.mb-0.text-light
-                  %span.count 385
+                  %span.count
+                    =@ongoing_request_num
                 %small.text-uppercase.font-weight-bold.text-light On-going Jobs
                 .progress.progress-xs.mt-3.mb-0.bg-light{:style => "width: 40%; height: 5px;"}
             .card.col-lg-2.col-md-6.no-padding.no-shadow
@@ -37,37 +40,22 @@
                 .h1.text-right.mb-4
                   %i.fa.fa-check.text-light
                 .h4.mb-0.text-light
-                  %span.count 1238
+                  %span.count
+                    = @finished_request_num
                 %small.text-light.text-uppercase.font-weight-bold Finished Jobs
                 .progress.progress-xs.mt-3.mb-0.bg-light{:style => "width: 40%; height: 5px;"}
                 .col-lg-3.col-md-6
-        .col-lg-3.col-md-6
-          .card
-            .card-body
-              .stat-widget-one
-                .stat-icon.dib
-                  %i.ti-money.text-success.border-success
-                .stat-content.dib
-                  .stat-text Total Cost
-                  .stat-digit 1,012
-        .col-lg-3.col-md-6
-          .card
-            .card-body
-              .stat-widget-one
-                .stat-icon.dib
-                  %i.ti-user.text-primary.border-primary
-                .stat-content.dib
-                  .stat-text New Requests
-                  .stat-digit 961
-        .col-lg-3.col-md-6
-          .card
-            .card-body
-              .stat-widget-one
-                .stat-icon.dib
-                  %i.ti-layout-grid2.text-warning.border-warning
-                .stat-content.dib
-                  .stat-text Active Projects
-                  .stat-digit 770
+    -if @user.has_role? :SAO_admin
+      .col-lg-3.col-md-6
+        .card
+          .card-body
+            .stat-widget-one
+              .stat-icon.dib
+                %i.ti-user.text-primary.border-primary
+              .stat-content.dib
+                .stat-text Pending Accounts
+                .stat-digit 
+                  =@pending_Accounts
 / /#right-panel
 / Right Panel
 %script{:src => "assets/js/vendor/jquery-2.1.4.min.js"}

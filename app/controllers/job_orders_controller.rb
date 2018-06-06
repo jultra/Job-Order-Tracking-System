@@ -6,10 +6,42 @@ class JobOrdersController < ApplicationController
   end
 
   def index
-    @user = User.find(session['user_credentials_id'])
+    #SAO Admin
+    name = User.find(session['user_credentials_id']).fname + ' ' + User.find(session['user_credentials_id']).lname
+    if User.find(session['user_credentials_id']).has_role? :SAO_admin
+      @pending_request_num = JobOrder.where(:progress => "Waiting for Adviser Approval").count
+      @pending_request_num2 = JobOrder.where(:progress => "Waiting for Admin Approval").count
+      @pending_request_num += @pending_request_num2
+      @ongoing_request_num = JobOrder.where(:progress => "On going").count
+      @finished_request_num = JobOrder.where(:progress => "Completed").count
+      @pending_Accounts = User.where(:active => false, :approved => false, :confirmed => false).count
+    #Adviser
+    #elsif User.find(session['user_credentials_id']).has_role? :Adviser
+    #  @pending_request_num = JobOrder.where(:progress => "Waiting for Adviser Approval").count
+    #  @pending_request_num2 = JobOrder.where(:progress => "Waiting for Admin Approval").count
+    #  @pending_request_num += @pending_request_num2
+    #  @ongoing_request_num = JobOrder.where(:progress => "On going").count
+    #  @finished_request_num = JobOrder.where(:progress => "Completed").count
+    #Chairperson/Head
+    #elsif User.find(session['user_credentials_id']).has_role? :Head
+    #  @pending_request_num = JobOrder.where(:progress => "Waiting for Adviser Approval").count
+    #  @pending_request_num2 = JobOrder.where(:progress => "Waiting for Admin Approval").count
+    #  @pending_request_num += @pending_request_num2
+    #  @ongoing_request_num = JobOrder.where(:progress => "On going").count
+    #  @finished_request_num = JobOrder.where(:progress => "Completed").count
+    #Student, Faculty, Staff
+    else
+      @pending_request_num = JobOrder.where(:progress => "Waiting for Adviser Approval", :requester => name).count
+      @pending_request_num2 = JobOrder.where(:progress => "Waiting for Admin Approval", :requester => name).count
+      @pending_request_num += @pending_request_num2
+      @ongoing_request_num = JobOrder.where(:progress => "On going", :requester => name).count
+      @finished_request_num = JobOrder.where(:progress => "Completed", :requester => name).count
+    end
+ 
   end
 
   def new
+
   end
 
   def create
