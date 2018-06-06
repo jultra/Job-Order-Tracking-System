@@ -1,48 +1,71 @@
 class JobOrdersController < ApplicationController
   protect_from_forgery
 
-  def request_form
-    control_no = params['control_no']
-    where = params['where']
-    date_needed = params['date_needed']
-    time_needed = params['time_needed']
-    problem_area = params['problem_area']
-    requester = params['requester']
-    adviser = params['adviser']
-    fund_source = params['fund_source']
-
-    if(control_no != nil && where != nil && date_needed != nil && time_needed != nil && problem_area != nil )
-      new_request = JobOrder.new
-      new_request.control_no = control_no
-      new_request.where = where
-      new_request.date_needed = date_needed
-      new_request.time_needed = time_needed
-      new_request.information = problem_area
-      new_request.requester = requester
-      new_request.fund_source = fund_source
-      new_request.adviser = adviser
-
-      for i in 1..22
-        if params["checkbox#{i}"] != nil
-          new_request.job_type = params["checkbox#{i}"];
-          end
-      end
-      test_ = new_request.save
-    end
-
-      if(params['submit'])
-        redirect_to '/pending_requests'
-      elsif(params['cancel'])
-        redirect_to '/index'
-      end
+  def job_order_params
+    params.require(:job_order).permit(:job_type, :control_no, :where, :date_needed, :time_needed, :information, :requester, :adviser, :fund_source)
   end
 
-  def pending_requests
-    if(params['cancel'])
-      JobOrder.where(control_no: params['cancel']).delete_all;
-      @requests = JobOrder.all
-    else
-      @requests = JobOrder.all
-    end
+  def new
   end
+
+  def create
+    @new_request = JobOrder.create!(job_order_params)
+    @new_request.control_no = "XXXX-XXXX"
+    @new_request.progress = "Waiting for Approval"
+    @new_request.save!
+    #should put notice here
+    redirect_to '/job_orders/list_pending_requests'
+
+  end
+
+  def list_pending_requests
+    @requests = JobOrder.where(:progress => "Waiting for Approval")
+    #try using dependency injection kena
+  end
+
+  def show
+    @job_order = JobOrder.find params[:id]
+    @job_type = @job_order.job_type
+  end
+
+  def edit
+    @job_order = JobOrder.find params[:id]
+    @job_type = @job_order.job_type
+  end
+
+  def update
+    update_record = JobOrder.find params[:id]
+    update_record.update_attributes!(job_order_params)
+    #should put notice here
+    redirect_to '/job_orders/list_pending_requests'
+  end
+
+  def destroy
+    @job_order = JobOrder.find params[:id]
+    @job_order.destroy
+    redirect_to '/job_orders/list_pending_requests'
+  end
+
+  def list_pending_approval
+    @requests = JobOrder.where(:progress => "Waiting for Approval", :adviser => "John Ultra")
+  end
+
+  def approve_job_order
+    update_attribute("Approved")
+  end
+
+  def reject_job_order
+    update_attribute("Rejected")
+  end
+
+  def update_attribute(attribute)
+    update_record = JobOrder.find params[:id]
+    update_record.update_attributes!(:progress => attribute)
+    redirect_to '/job_orders/list_pending_approval'
+  end
+
+  def list_ongoing_jobs
+    @requests = JobOrder.where(:progress => "Approved")
+  end
+
 end
