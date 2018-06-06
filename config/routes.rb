@@ -4,10 +4,14 @@ Rails.application.routes.draw do
  get '/signup' => 'users#new'
   post '/register' => 'users#create'
   get '/job_orders/list_pending_requests' => 'job_orders#list_pending_requests'
-  get '/job_orders/list_pending_approval' => 'job_orders#list_pending_approval'
-  get '/job_orders/approve_job_order/:id' => 'job_orders#approve_job_order', as: 'approve_job_order'
-  get '/job_orders/reject_job_order/:id' => 'job_orders#reject_job_order', as: 'reject_job_order'
-  
+  get '/job_orders/list_pending_adviser_approval' => 'job_orders#list_pending_adviser_approval', as: 'list_pending_adviser_approval'
+  get '/job_orders/list_pending_admin_approval' => 'job_orders#list_pending_admin_approval', as: 'list_pending_admin_approval'
+  get '/job_orders/admin_approval/:id' => 'job_orders#admin_approval', as: 'admin_approval'
+  get '/job_orders/adviser_approval/:id' => 'job_orders#adviser_approval', as: 'adviser_approval'
+  get '/job_orders/adviser_approve_job_order/:id' => 'job_orders#adviser_approve_job_order', as: 'adviser_approve_job_order'
+  get '/job_orders/admin_approve_job_order/:id' => 'job_orders#admin_approve_job_order', as: 'admin_approve_job_order'
+  get '/job_orders/adviser_reject_job_order/:id' => 'job_orders#adviser_reject_job_order', as: 'adviser_reject_job_order'
+  get '/job_orders/admin_reject_job_order/:id' => 'job_orders#admin_reject_job_order', as: 'admin_reject_job_order'
   get '/users/approve/:id' => 'users#approve', as: 'approve_user'
   get '/users/reject/:id' => 'users#reject', as: 'reject_user'
   resources :job_orders
