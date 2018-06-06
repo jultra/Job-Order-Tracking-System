@@ -26,13 +26,13 @@
                       %td= req.job_type
                       %td= req.requester
                       %td
-                        = link_to(job_order_path(req), method: :get, class: 'btn btn-primary') do
+                        = link_to(admin_approval_path(req), method: :get, class: 'btn btn-primary') do
                           %i.fa.fa-eye>
                             View
-                        = link_to(approve_job_order_path(req), method: :get, class: 'btn btn-success') do
+                        = link_to(admin_approve_job_order_path(req), method: :get, class: 'btn btn-success') do
                           %i.fa.fa-check>
                             Approve
-                        = link_to(reject_job_order_path(req), method: :get, class: 'btn btn-danger') do
+                        = link_to(admin_reject_job_order_path(req), method: :get, class: 'btn btn-danger') do
                           %i.fa.fa-times>
                             Reject
     / .animated
