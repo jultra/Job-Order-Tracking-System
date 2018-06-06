@@ -1,0 +1,183 @@
+%body
+  / Left Panel
+  %aside#left-panel.left-panel
+    %nav.navbar.navbar-expand-sm.navbar-default
+      .navbar-header
+        %button.navbar-toggler{"aria-controls" => "main-menu", "aria-expanded" => "false", "aria-label" => "Toggle navigation", "data-target" => "#main-menu", "data-toggle" => "collapse", :type => "button"}
+          %i.fa.fa-bars
+        %a.navbar-brand{:href => "/index"}
+          %img{:alt => "Logo", :src => "images/logo.png"}/
+        %a.navbar-brand.hidden{:href => "/index"}
+          %img{:alt => "Logo", :src =>  "images/logo2.png"}/
+      #main-menu.main-menu.collapse.navbar-collapse
+        %ul.nav.navbar-nav
+          %h3.menu-title General
+          / /.menu-title
+          %li.active
+            %a{:href => "/index"}
+              %i.menu-icon.fa.fa-dashboard>
+              Dashboard
+          %li.active
+            %a{:href => "/request_form"}
+              %i.menu-icon.fa.fa-edit>
+              Request Job Order
+          %li.active
+            %a{:href => "/pending_requests"}
+              %i.menu-icon.fa.fa-spinner>
+              Pending Requests
+          %li.active
+            %a{:href => "/ongoing_jobs"}
+              %i.menu-icon.fa.fa-gavel>
+              On-going Jobs
+          %li.active
+            %a{:href => "/finished_jobs"}
+              %i.menu-icon.fa.fa-check>
+              Finished Jobs
+          %li.active
+            %a{:href => "/trash"}
+              %i.menu-icon.fa.fa-trash-o>
+              Trash
+      / /.navbar-collapse
+  / /#left-panel
+  / Left Panel
+  / Right Panel
+  #right-panel.right-panel
+    / Header
+    %header#header.header
+      .header-menu
+        .col-sm-7
+          %a#menuToggle.menutoggle.pull-left
+            %i.fa.fa.fa-tasks
+          .header-left
+            %button.search-trigger
+              %i.fa.fa-search
+            .form-inline
+              %form.search-form
+                %input.form-control.mr-sm-2{"aria-label" => "Search", :placeholder => "Search ...", :type => "text"}/
+                %button.search-close{:type => "submit"}
+                  %i.fa.fa-close
+            .dropdown.for-notification
+              %button#notification.btn.btn-secondary.dropdown-toggle{"aria-expanded" => "false", "aria-haspopup" => "true", "data-toggle" => "dropdown", :type => "button"}
+                %i.fa.fa-bell
+                %span.count.bg-danger 5
+              .dropdown-menu{"aria-labelledby" => "notification"}
+                %p.red You have 3 Notification
+                %a.dropdown-item.media.bg-flat-color-1{:href => "#"}
+                  %i.fa.fa-check
+                  %p Server #1 overloaded.
+                %a.dropdown-item.media.bg-flat-color-4{:href => "#"}
+                  %i.fa.fa-info
+                  %p Server #2 overloaded.
+                %a.dropdown-item.media.bg-flat-color-5{:href => "#"}
+                  %i.fa.fa-warning
+                  %p Server #3 overloaded.
+            .dropdown.for-message
+              %button#message.btn.btn-secondary.dropdown-toggle{"aria-expanded" => "false", "aria-haspopup" => "true", "data-toggle" => "dropdown", :type => "button"}
+                %i.ti-email
+                %span.count.bg-primary 9
+              .dropdown-menu{"aria-labelledby" => "message"}
+                %p.red You have 4 Mails
+                %a.dropdown-item.media.bg-flat-color-1{:href => "#"}
+                  %span.photo.media-left
+                    %img{:alt => "avatar", :src => "images/avatar/1.jpg"}/
+                  %span.message.media-body
+                    %span.name.float-left Jonathan Smith
+                    %span.time.float-right Just now
+                    %p Hello, this is an example msg
+                %a.dropdown-item.media.bg-flat-color-4{:href => "#"}
+                  %span.photo.media-left
+                    %img{:alt => "avatar", :src => "images/avatar/2.jpg"}/
+                  %span.message.media-body
+                    %span.name.float-left Jack Sanders
+                    %span.time.float-right 5 minutes ago
+                    %p Lorem ipsum dolor sit amet, consectetur
+                %a.dropdown-item.media.bg-flat-color-5{:href => "#"}
+                  %span.photo.media-left
+                    %img{:alt => "avatar", :src => "images/avatar/3.jpg"}/
+                  %span.message.media-body
+                    %span.name.float-left Cheryl Wheeler
+                    %span.time.float-right 10 minutes ago
+                    %p Hello, this is an example msg
+                %a.dropdown-item.media.bg-flat-color-3{:href => "#"}
+                  %span.photo.media-left
+                    %img{:alt => "avatar", :src => "images/avatar/4.jpg"}/
+                  %span.message.media-body
+                    %span.name.float-left Rachel Santos
+                    %span.time.float-right 15 minutes ago
+                    %p Lorem ipsum dolor sit amet, consectetur
+        .col-sm-5
+          .user-area.dropdown.float-right
+            %a.dropdown-toggle{"aria-expanded" => "false", "aria-haspopup" => "true", "data-toggle" => "dropdown", :href => "#"}
+              %img.user-avatar.rounded-circle{:alt => "User Avatar", :src => "images/admin.jpg"}/
+            .user-menu.dropdown-menu
+              %a.nav-link{:href => "#"}
+                %i.fa.fa-.user>
+                My Profile
+              %a.nav-link{:href => "#"}
+                %i.fa.fa-.user>
+                Notifications
+                %span.count 13
+              %a.nav-link{:href => "#"}
+                %i.fa.fa.-cog>
+                Settings
+              %a.nav-link{:href => "/login"}
+                %i.fa.fa-power.-off>
+                Logout
+    / /header
+    / Header
+    .breadcrumbs
+      .col-sm-4
+        .page-header.float-left
+          .page-title
+            %h1 Finished Jobs
+    .content.mt-3
+      .animated.fadeIn
+        .row
+          .col-md-12
+            .card
+              .card-body
+                %table#bootstrap-data-table.table.table-striped.table-bordered
+                  %thead
+                    %tr
+                      %th Control Number
+                      %th Job Type
+                      %th Progress
+                      %th Actions
+                  %tbody
+                    %tr
+                      %td 2018-C-789
+                      %td Computer Hardware Servicing
+                      %td Done
+                      %td
+                        %button.btn.btn-primary.btn-sm{:type => "button"}
+                          %i.fa.fa-eye>
+                            View
+                        %button.btn.btn-success.btn-sm{:type => "button"}
+                          %i.fa.fa-hand-o-left>
+                            Evaluate
+                        %button.btn.btn-danger.btn-sm{:type => "button"}
+                          %i.fa.fa-trash-o>
+                            Delete
+      / .animated
+    / .content
+  / /#right-panel
+  / Right Panel
+  %script{:src => "assets/js/vendor/jquery-2.1.4.min.js"}
+  %script{:src => "assets/js/popper.min.js"}
+  %script{:src => "assets/js/plugins.js"}
+  %script{:src => "assets/js/main.js"}
+  %script{:src => "assets/js/lib/data-table/datatables.min.js"}
+  %script{:src => "assets/js/lib/data-table/dataTables.bootstrap.min.js"}
+  %script{:src => "assets/js/lib/data-table/dataTables.buttons.min.js"}
+  %script{:src => "assets/js/lib/data-table/buttons.bootstrap.min.js"}
+  %script{:src => "assets/js/lib/data-table/jszip.min.js"}
+  %script{:src => "assets/js/lib/data-table/pdfmake.min.js"}
+  %script{:src => "assets/js/lib/data-table/vfs_fonts.js"}
+  %script{:src => "assets/js/lib/data-table/buttons.html5.min.js"}
+  %script{:src => "assets/js/lib/data-table/buttons.print.min.js"}
+  %script{:src => "assets/js/lib/data-table/buttons.colVis.min.js"}
+  %script{:src => "assets/js/lib/data-table/datatables-init.js"}
+  :javascript
+    $(document).ready(function() {
+      $('#bootstrap-data-table-export').DataTable();
+    } );
