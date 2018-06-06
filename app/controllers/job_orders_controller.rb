@@ -5,6 +5,10 @@ class JobOrdersController < ApplicationController
     params.require(:job_order).permit(:job_type, :control_no, :where, :date_needed, :time_needed, :information, :requester, :adviser, :fund_source)
   end
 
+  def index
+    @user = User.find(session['user_credentials_id'])
+  end
+
   def new
   end
 

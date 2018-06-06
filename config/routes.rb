@@ -7,6 +7,9 @@ Rails.application.routes.draw do
   get '/job_orders/list_pending_approval' => 'job_orders#list_pending_approval'
   get '/job_orders/approve_job_order/:id' => 'job_orders#approve_job_order', as: 'approve_job_order'
   get '/job_orders/reject_job_order/:id' => 'job_orders#reject_job_order', as: 'reject_job_order'
+  
+  get '/users/approve/:id' => 'users#approve', as: 'approve_user'
+  get '/users/reject/:id' => 'users#reject', as: 'reject_user'
   resources :job_orders
   resources :users
   resources :user_sessions, only: [:create, :destroy]

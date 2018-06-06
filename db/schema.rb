@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180605183056) do
+ActiveRecord::Schema.define(version: 20180606002218) do
 
   create_table "job_orders", force: :cascade do |t|
     t.string "control_no"
@@ -74,9 +74,9 @@ ActiveRecord::Schema.define(version: 20180605183056) do
     t.datetime "last_login_at"
     t.string "current_login_ip"
     t.string "last_login_ip"
-    t.boolean "active", default: true
-    t.boolean "approved", default: true
-    t.boolean "confirmed", default: true
+    t.boolean "active", default: false
+    t.boolean "approved", default: false
+    t.boolean "confirmed", default: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "accessType"

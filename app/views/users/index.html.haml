@@ -5,96 +5,57 @@
     .col-sm-4
       .page-header.float-left
         .page-title
-          %h1 Dashboard
-    .col-sm-8
-      .page-header.float-right
-        .page-title
-          %ol.breadcrumb.text-right
-            %li.active Dashboard
+          %h3 Pending Accounts
   .content.mt-3
     .animated.fadeIn
       .row
-        .col-sm-12.mb-4
-          .card-group
-            .card.col-lg-2.col-md-6.no-padding.bg-flat-color-1
-              .card-body
-                .h1.text-muted.text-right.mb-4
-                  %i.fa.fa-spinner.text-light
-                .h4.mb-0.text-light
-                  %span.count 87500
-                %small.text-uppercase.font-weight-bold.text-light Pending Requests
-                .progress.progress-xs.mt-3.mb-0.bg-light{:style => "width: 40%; height: 5px;"}
-            .card.col-lg-2.col-md-6.no-padding.no-shadow
-              .card-body.bg-flat-color-2
-                .h1.text-muted.text-right.mb-4
-                  %i.fa.fa-gavel.text-light
-                .h4.mb-0.text-light
-                  %span.count 385
-                %small.text-uppercase.font-weight-bold.text-light On-going Jobs
-                .progress.progress-xs.mt-3.mb-0.bg-light{:style => "width: 40%; height: 5px;"}
-            .card.col-lg-2.col-md-6.no-padding.no-shadow
-              .card-body.bg-flat-color-3
-                .h1.text-right.mb-4
-                  %i.fa.fa-check.text-light
-                .h4.mb-0.text-light
-                  %span.count 1238
-                %small.text-light.text-uppercase.font-weight-bold Finished Jobs
-                .progress.progress-xs.mt-3.mb-0.bg-light{:style => "width: 40%; height: 5px;"}
-                .col-lg-3.col-md-6
-        .col-lg-3.col-md-6
+        .col-md-12
           .card
             .card-body
-              .stat-widget-one
-                .stat-icon.dib
-                  %i.ti-money.text-success.border-success
-                .stat-content.dib
-                  .stat-text Total Cost
-                  .stat-digit 1,012
-        .col-lg-3.col-md-6
-          .card
-            .card-body
-              .stat-widget-one
-                .stat-icon.dib
-                  %i.ti-user.text-primary.border-primary
-                .stat-content.dib
-                  .stat-text New Requests
-                  .stat-digit 961
-        .col-lg-3.col-md-6
-          .card
-            .card-body
-              .stat-widget-one
-                .stat-icon.dib
-                  %i.ti-layout-grid2.text-warning.border-warning
-                .stat-content.dib
-                  .stat-text Active Projects
-                  .stat-digit 770
+              %table#bootstrap-data-table.table.table-striped.table-bordered
+                %thead
+                  %tr
+                    %th Firstname
+                    %th Middle Name
+                    %th Last Name
+                    %th Division/Department
+                    %th Position
+                    %th Action
+                %tbody
+                  -@user2.each do |req|
+                    %tr
+                      %td= req.fname
+                      %td= req.mname
+                      %td= req.lname
+                      %td= req.Division_Department
+                      %td= req.position
+                      %td
+                        = link_to(approve_user_path(req), method: :get, class: 'btn btn-success') do
+                          %i.fa.fa-check>
+                            Approve
+                        = link_to(reject_user_path(req), method: :get, class: 'btn btn-danger') do
+                          %i.fa.fa-times>
+                            Reject
+    / .animated
+  / .content
 / /#right-panel
 / Right Panel
-%script{:src => "assets/js/vendor/jquery-2.1.4.min.js"}
-%script{:src => "https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js"}
-%script{:src => "assets/js/plugins.js"}
-%script{:src => "assets/js/main.js"}
-%script{:src => "assets/js/lib/chart-js/Chart.bundle.js"}
-%script{:src => "assets/js/dashboard.js"}
-%script{:src => "assets/js/widgets.js"}
-%script{:src => "assets/js/lib/vector-map/jquery.vmap.js"}
-%script{:src => "assets/js/lib/vector-map/jquery.vmap.min.js"}
-%script{:src => "assets/js/lib/vector-map/jquery.vmap.sampledata.js"}
-%script{:src => "assets/js/lib/vector-map/country/jquery.vmap.world.js"}
+%script{:src => "/assets/js/vendor/jquery-2.1.4.min.js"}
+%script{:src => "/assets/js/popper.min.js"}
+%script{:src => "/assets/js/plugins.js"}
+%script{:src => "/assets/js/main.js"}
+%script{:src => "/assets/js/lib/data-table/datatables.min.js"}
+%script{:src => "/assets/js/lib/data-table/dataTables.bootstrap.min.js"}
+%script{:src => "/assets/js/lib/data-table/dataTables.buttons.min.js"}
+%script{:src => "/assets/js/lib/data-table/buttons.bootstrap.min.js"}
+%script{:src => "/assets/js/lib/data-table/jszip.min.js"}
+%script{:src => "/assets/js/lib/data-table/pdfmake.min.js"}
+%script{:src => "/assets/js/lib/data-table/vfs_fonts.js"}
+%script{:src => "/assets/js/lib/data-table/buttons.html5.min.js"}
+%script{:src => "/assets/js/lib/data-table/buttons.print.min.js"}
+%script{:src => "/assets/js/lib/data-table/buttons.colVis.min.js"}
+%script{:src => "/assets/js/lib/data-table/datatables-init.js"}
 :javascript
-  ( function ( $ ) {
-      "use strict";
-
-      jQuery( '#vmap' ).vectorMap( {
-          map: 'world_en',
-          backgroundColor: null,
-          color: '#ffffff',
-          hoverOpacity: 0.7,
-          selectedColor: '#1de9b6',
-          enableZoom: true,
-          showTooltip: true,
-          values: sample_data,
-          scaleColors: [ '#1de9b6', '#03a9f5' ],
-          normalizeFunction: 'polynomial'
-      } );
-  } )( jQuery );
+  $(document).ready(function() {
+    $('#bootstrap-data-table-export').DataTable();
+  } );

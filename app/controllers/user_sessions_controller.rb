@@ -2,13 +2,18 @@ class UserSessionsController < ApplicationController
   layout :resolve_layout
 
   def new
+    if current_user_session != nil
+      current_user_session.destroy
+    else
+      session.destroy
+    end
     @user_session = UserSession.new
   end
 
   def create
     @user_session = UserSession.new(user_session_params.to_h)
     if @user_session.save
-      redirect_to '/request_form'
+      redirect_to job_orders_path
     else
       render :action => :new
     end

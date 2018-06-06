@@ -27,7 +27,7 @@
               = f.select :Division_Department, options_for_select(["Division of Natural Sciences and Mathematics", "Division of Social Sciences", "Division of Management", "Division of Humanities", "Finance Department", "Dean's Department", "Supervising Administrative Office", "CDMO"]), {}, :id=>"inputDivDept", class: "form-control"
             .form-group
               = f.label "position"
-              = f.select :position, options_for_select(["Student", "Adviser", "Faculty", "Staff", "Chairperson/Head", "Admin Officer"]), {}, :id=>"inputposition", class: "form-control"
+              = f.select :position, options_for_select(["Student", "Adviser", "Faculty", "Staff", "Chairperson/Head"]), {}, :id=>"inputposition", class: "form-control"
             .form-group
               = f.label "username"
               = f.text_field :username, :required =>true, :placeholder => "Username", :type => "text", class: "form-control"
