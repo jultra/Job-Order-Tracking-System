@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180606002218) do
+ActiveRecord::Schema.define(version: 20180608033651) do
 
   create_table "job_orders", force: :cascade do |t|
     t.string "control_no"
@@ -18,25 +18,37 @@ ActiveRecord::Schema.define(version: 20180606002218) do
     t.string "code"
     t.text "information"
     t.string "where"
-    t.string "requester"
-    t.string "adviser"
     t.string "fund_source"
-    t.string "signature"
     t.text "acknowledgment"
-    t.string "job_office"
-    t.string "inspected_by"
-    t.text "remarks"
     t.string "available_materials"
-    t.string "assigned_to"
     t.date "date_filed"
     t.date "date_needed"
     t.date "date_approved"
     t.date "delivery_date"
     t.time "time_needed"
     t.date "date_started"
+    t.string "progress"
+    t.date "inspection_date"
+    t.text "inspection_remarks"
+    t.text "assignment_remarks"
+    t.date "assignment_date"
+    t.float "money_budget"
+    t.float "money_spent"
+    t.date "date_completed"
+    t.integer "user_id"
+    t.integer "adviser_id"
+    t.integer "office_id"
+    t.integer "inspected_by_id"
+    t.integer "assigned_to_id"
+    t.index ["user_id"], name: "index_job_orders_on_user_id"
+  end
+
+  create_table "offices", force: :cascade do |t|
+    t.string "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.string "progress"
+    t.integer "head_id"
+    t.string "acronym"
   end
 
   create_table "roles", force: :cascade do |t|

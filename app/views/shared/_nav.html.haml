@@ -16,6 +16,21 @@
           %a{:href => job_orders_path}
             %i.menu-icon.fa.fa-dashboard>
             Dashboard
+        -@user = User.find(session['user_credentials_id'])
+        -if @user.has_role? :SAO_admin
+          %li.active
+            %a{:href => users_path  }
+              %i.menu-icon.fa.fa-address-book-o>
+              Accounts
+          %li.active
+            %a{:href => "/offices"}
+              %i.menu-icon.fa.fa-hospital-o>
+              Offices
+        -if @user.has_role? :SAO_admin or @user.has_role? :Adviser or @user.has_role? :Head
+          %li.active
+            %a{:href => "/job_orders"}
+              %i.menu-icon.fa.fa-file-text-o>
+              Job Orders
         %li.active
           %a{:href => "/job_orders/new"}
             %i.menu-icon.fa.fa-edit>
@@ -37,14 +52,6 @@
           %a{:href => "/trash"}
             %i.menu-icon.fa.fa-trash-o>
             Trash
-    %hr{:style => "background: white;"}
-      -@user = User.find(session['user_credentials_id'])
-      -if @user.has_role? :SAO_admin
-        %ul.nav.navbar-nav.navbar-inverse
-        %li.active
-          %a{:href => users_path}
-            %i.menu-icon.fa.fa-address-book-o>
-            Account
     / /.navbar-collapse
 
 #right-panel.right-panel{:style => "position: fixed; width: 80%; z-index: 3; left: 280px;"}
