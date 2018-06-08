@@ -1,6 +1,5 @@
 class UsersController < ApplicationController
   layout :resolve_layout
-  skip_before_filter :require_login
 
   def new
     if current_user_session != nil
@@ -44,6 +43,15 @@ class UsersController < ApplicationController
     end
     redirect_to users_path
   end
+
+  def new_update
+
+  end
+
+  def update
+
+  end
+
 
   def reject
     user = User.find params[:id]
