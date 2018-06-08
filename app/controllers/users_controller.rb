@@ -1,5 +1,6 @@
 class UsersController < ApplicationController
   layout :resolve_layout
+  skip_before_filter :require_login
 
   def new
     if current_user_session != nil

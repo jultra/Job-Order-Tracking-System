@@ -1,5 +1,6 @@
 class JobOrdersController < ApplicationController
   protect_from_forgery
+  before_action :require_login
 
   def job_order_params
     params.require(:job_order).permit(:job_type, :control_no, :where, :date_needed, :time_needed, :information, :requester, :adviser, :fund_source)
@@ -37,20 +38,23 @@ class JobOrdersController < ApplicationController
       @ongoing_request_num = JobOrder.where(:progress => "On going", :requester => name).count
       @finished_request_num = JobOrder.where(:progress => "Completed", :requester => name).count
     end
- 
+  end
+
   def admin_approval_params
     params.require(:job_order).permit(:job_office, :delivery_date)
   end
 
   def new
   end
+
   def create
     @new_request = JobOrder.create!(job_order_params)
     @new_request.progress = "Waiting for Adviser Approval"
     @new_request.save!
     #should put notice here
     redirect_to '/job_orders/list_pending_requests'
-
+  end
+  
   def new
 
   end
@@ -130,5 +134,22 @@ class JobOrdersController < ApplicationController
     update_attribute("Rejected")
     redirect_to '/job_orders/list_pending_admin_approval'
   end
+
+  private
+    def current_user_session
+      return @current_user_session if defined?(@current_user_session)
+      @current_user_session = UserSession.find
+    end
+
+    def current_user
+      return @current_user if defined?(@current_user)
+      @current_user = current_user_session && current_user_session.user
+    end
+
+    def require_login
+      unless session['user_credentials_id']
+        redirect_to '/'
+      end
+    end
 
 end
