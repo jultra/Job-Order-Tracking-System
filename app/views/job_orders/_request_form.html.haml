@@ -14,7 +14,7 @@
                   %hr/
                   .form-group
                     .checkbox
-                      %input#variable{:name => "variable", :type => "hidden", :value => "#{@job_type}"}/
+                      %input#variable{:name => "variable", :type => "hidden", :value => "#{@job_type}"}
                       %label.form-check-label{:for => "checkbox1"}
                         = check_box_tag "job_order[job_type]", "Aircon cleaning/repair/install", @job_type == "Aircon cleaning/repair/install"
                         Aircon cleaning/repair/install
@@ -110,7 +110,7 @@
           .card-body.card-block
             .form-group
               %label.form-control-label{:for => "control_no"} Control Number
-              = job.text_field :control_no, :class => 'form-control', :placeholder => "2018-XXXX"
+              = job.text_field :control_no, :class => 'form-control', :placeholder => "2018-XXXX", :value => "XXXX-X"
             .form-group
               %label.form-control-label{:for => "where"} Where
               = job.text_field :where, :class => 'form-control', :placeholder => "eg. CS Lecture Room"
@@ -132,6 +132,9 @@
             .form-group
               %label.form-control-label{:for => "fund"} Fund Source
               = job.text_field :fund_source, :class => 'form-control', :placeholder => "DNSM"
+            .form-group
+              %label.form-control-label{:for => "user_id"}
+              = job.hidden_field :user_id, :value => "#{session['user_credentials_id']}"
 
             .float-right
               %button.btn.btn-primary{:type => "submit"}

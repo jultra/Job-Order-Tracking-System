@@ -1,12 +1,13 @@
 class JobOrdersController < ApplicationController
   protect_from_forgery
+  before_action :require_login
 
   def job_order_params
-    params.require(:job_order).permit(:job_type, :control_no, :where, :date_needed, :time_needed, :information, :requester, :adviser, :fund_source)
+    params.require(:job_order).permit(:job_type, :control_no, :where, :date_needed, :time_needed, :information, :fund_source, :user_id)
   end
 
   def index
-    #SAO Admin
+    #SAO Admin wuvwuv
     name = User.find(session['user_credentials_id']).fname + ' ' + User.find(session['user_credentials_id']).lname
     if User.find(session['user_credentials_id']).has_role? :SAO_admin
       @pending_request_num = JobOrder.where(:progress => "Waiting for Adviser Approval").count
@@ -31,13 +32,13 @@ class JobOrdersController < ApplicationController
     #  @finished_request_num = JobOrder.where(:progress => "Completed").count
     #Student, Faculty, Staff
     else
-      @pending_request_num = JobOrder.where(:progress => "Waiting for Adviser Approval", :requester => name).count
-      @pending_request_num2 = JobOrder.where(:progress => "Waiting for Admin Approval", :requester => name).count
+      @pending_request_num = JobOrder.where(:progress => "Waiting for Adviser Approval", :user_id => session['user_credentials_id']).count
+      @pending_request_num2 = JobOrder.where(:progress => "Waiting for Admin Approval", :user_id => session['user_credentials_id']).count
       @pending_request_num += @pending_request_num2
-      @ongoing_request_num = JobOrder.where(:progress => "On going", :requester => name).count
-      @finished_request_num = JobOrder.where(:progress => "Completed", :requester => name).count
+      @ongoing_request_num = JobOrder.where(:progress => "On going", :user_id => session['user_credentials_id']).count
+      @finished_request_num = JobOrder.where(:progress => "Completed", :user_id => session['user_credentials_id']).count
     end
- 
+
   end
 
   def new
@@ -59,7 +60,8 @@ class JobOrdersController < ApplicationController
   end
 
   def show
-    @requests = JobOrder.find params[:id]
+    @job_order = JobOrder.find params[:id]
+    @job_type = @job_order.job_type
   end
 
   def edit
@@ -96,6 +98,12 @@ class JobOrdersController < ApplicationController
     update_record = JobOrder.find params[:id]
     update_record.update_attributes!(:progress => attribute)
     redirect_to '/job_orders/list_pending_approval'
+  end
+
+  def require_login
+    unless session['user_credentials_id']
+      redirect_to '/'
+    end
   end
 
 end
