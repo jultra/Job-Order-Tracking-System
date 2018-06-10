@@ -1,9 +1,11 @@
+require 'date'
+
 class JobOrdersController < ApplicationController
   protect_from_forgery
   before_action :require_login
 
   def job_order_params
-    params.require(:job_order).permit(:job_type, :control_no, :where, :date_needed, :time_needed, :information, :fund_source, :user_id)
+    params.require(:job_order).permit(:job_type, :where, :date_needed, :time_needed, :available_materials, :information, :fund_source, :user_id)
   end
 
   def index
@@ -46,16 +48,34 @@ class JobOrdersController < ApplicationController
   end
 
   def create
-    @new_request = JobOrder.create!(job_order_params)
-    @new_request.progress = "Waiting for Approval"
-    @new_request.save!
-    #should put notice here
-    redirect_to '/job_orders/list_pending_requests'
+    current_time = DateTime.now
 
+    if !(params[:job_order][:date_needed] == "") && !Date.parse(params[:job_order][:date_needed].to_s).past?
+      @new_request = JobOrder.new(job_order_params)
+      @new_request.date_filed = current_time.strftime "%Y-%m-%d"
+
+      if !(params[:job_order][:adviser] == "")
+        #do some query here to set @new_request.adviser_id =
+        @new_request.progress = "Waiting for adviser approval"
+      else
+        @new_request.progress = "Waiting for admin approval"
+      end
+
+      if @new_request.valid?
+        @new_request.save!
+        redirect_to '/job_orders/pending_requests'
+      else
+        flash[:notice] = "Insufficient information provided!"
+        redirect_to '/job_orders/new'
+      end
+    else
+      flash[:notice] = "Date provided is not valid!"
+      redirect_to '/job_orders/new'
+    end
   end
 
-  def list_pending_requests
-    @requests = JobOrder.where(:progress => "Waiting for Approval")
+  def pending_requests
+    @requests = JobOrder.where("progress LIKE 'Waiting%' OR progress LIKE 'Ready%'")
     #try using dependency injection kena
   end
 
@@ -73,13 +93,13 @@ class JobOrdersController < ApplicationController
     update_record = JobOrder.find params[:id]
     update_record.update_attributes!(job_order_params)
     #should put notice here
-    redirect_to '/job_orders/list_pending_requests'
+    redirect_to '/job_orders/pending_requests'
   end
 
   def destroy
     @job_order = JobOrder.find params[:id]
-    @job_order.destroy
-    redirect_to '/job_orders/list_pending_requests'
+    @job_order.update_column(:progress, "Cancelled")
+    redirect_to '/job_orders/pending_requests'
   end
 
   def list_pending_approval
@@ -103,6 +123,112 @@ class JobOrdersController < ApplicationController
   def require_login
     unless session['user_credentials_id']
       redirect_to '/'
+    end
+  end
+
+  def trash
+    @rejected_requests = JobOrder.where("user_id = ? AND (progress LIKE ? OR progress = 'Cancelled')", session['user_credentials_id'], 'Rejected by%')
+  end
+
+  def finished_jobs
+    @finished_jobs = JobOrder.where("user_id = ? AND progress = 'Finished'", session['user_credentials_id'])
+  end
+
+  def ongoing_jobs
+    @ongoing_jobs = JobOrder.where("user_id = ? AND progress LIKE ?", session['user_credentials_id'], 'Ongoing%')
+  end
+
+  def approved_job_orders
+    if User.find(session['user_credentials_id']).has_role? :SAO_admin   #admin
+      @approved_requests = JobOrder.where("progress = 'Waiting for assignment'")
+    elsif User.find(session['user_credentials_id']).has_role? :Adviser  #faculty
+      @approved_requests = JobOrder.where("progress = 'Waiting for admin approval' AND adviser_id = ?", session['user_credentials_id'])
+    end
+  end
+
+  def unapproved_job_orders
+    if User.find(session['user_credentials_id']).has_role? :SAO_admin   #admin
+      @unapproved_requests = JobOrder.where("progress = 'Waiting for admin approval'")
+    elsif User.find(session['user_credentials_id']).has_role? :Adviser  #faculty
+      @unapproved_requests = JobOrder.where("progress = 'Waiting for faculty approval' AND adviser_id = ?", session['user_credentials_id'])
+    end
+  end
+
+  def ongoing_job_orders
+    if User.find(session['user_credentials_id']).has_role? :SAO_admin   #admin
+      @ongoing_jobs = JobOrder.where("progress LIKE ?", 'Ongoing%')
+    elsif User.find(session['user_credentials_id']).has_role? :Adviser  #faculty
+      @ongoing_jobs = JobOrder.where("progress LIKE ? AND adviser_id = ?", 'Ongoing%', session['user_credentials_id'])
+    elsif User.find(session['user_credentials_id']).has_role? :Head     #head/chair
+      @office = Office.where(:user_id => session['user_credentials_id'])
+      if !@office.blank?
+        @ongoing_jobs = JobOrder.where("progress LIKE ? AND office_id = ?", 'Ongoing%', @office.office_id)
+      end
+    else  #staff
+      @ongoing_jobs = JobOrder.where("assigned_to_id = ? AND progress LIKE ?", session['user_credentials_id'], 'Ongoing%')
+    end
+  end
+
+  def finished_job_orders
+    if User.find(session['user_credentials_id']).has_role? :SAO_admin   #admin
+      @finished_jobs = JobOrder.where("progress = 'Finished'")
+    elsif User.find(session['user_credentials_id']).has_role? :Adviser  #faculty
+      @finished_jobs = JobOrder.where("progress = 'Finished' AND adviser_id = ?", session['user_credentials_id'])
+    elsif User.find(session['user_credentials_id']).has_role? :Head     #head/chair
+      @office = Office.where(:user_id => session['user_credentials_id'])
+      if !@office.blank?
+        @finished_job = JobOrder.where("progress = 'Finished' AND office_id = ?", @office.office_id)
+      end
+    else  #staff
+      @finished_jobs = JobOrder.where("assigned_to_id = ? AND progress = 'Finished'", session['user_credentials_id'])
+    end
+  end
+
+  def assigned_job_orders
+    if User.find(session['user_credentials_id']).has_role? :Head     #head/chair
+      @office = Office.where(:user_id => session['user_credentials_id'])
+      if !@office.blank?
+        @assigned_requests = JobOrder.where("progress = 'Ready to start' AND office_id = ?", @office.office_id)
+      end 
+    end
+  end
+
+  def unassigned_job_orders
+    if User.find(session['user_credentials_id']).has_role? :Head     #head/chair
+      @office = Office.where(:user_id => session['user_credentials_id'])
+      if !@office.blank?
+        @unassigned_requests = JobOrder.where("progress = 'Waiting for assignment' AND office_id = ?", @office.office_id)
+      end
+    end
+  end
+
+  def pending_job_orders
+    @pending_jobs = JobOrder.where("assigned_to_id = ? AND progress = 'Ready to start'", session['user_credentials_id'])
+  end
+
+  def manage_job_orders
+    if User.find(session['user_credentials_id']).has_role? :SAO_admin   #admin
+      @approved_requests = JobOrder.where("progress = 'Waiting for assignment'")
+      @unapproved_requests = JobOrder.where("progress = 'Waiting for admin approval'")
+      @ongoing_jobs = JobOrder.where("progress LIKE ?", 'Ongoing%')
+      @finished_jobs = JobOrder.where("progress = 'Finished'")
+    elsif User.find(session['user_credentials_id']).has_role? :Adviser  #faculty
+      @approved_requests = JobOrder.where("progress = 'Waiting for admin approval' AND adviser_id = ?", session['user_credentials_id'])
+      @unapproved_requests = JobOrder.where("progress = 'Waiting for faculty approval' AND adviser_id = ?", session['user_credentials_id'])
+      @ongoing_jobs = JobOrder.where("progress LIKE ? AND adviser_id = ?", 'Ongoing%', session['user_credentials_id'])
+      @finished_jobs = JobOrder.where("progress = 'Finished' AND adviser_id = ?", session['user_credentials_id'])
+    elsif User.find(session['user_credentials_id']).has_role? :Head     #head/chair
+      @office = Office.where(:user_id => session['user_credentials_id'])
+      if !@office.blank?
+        @assigned_requests = JobOrder.where("progress = 'Ready to start' AND office_id = ?", @office.office_id)
+        @unassigned_requests = JobOrder.where("progress = 'Waiting for assignment' AND office_id = ?", @office.office_id)
+        @ongoing_jobs = JobOrder.where("progress LIKE ? AND office_id = ?", 'Ongoing%', @office.office_id)
+        @finished_job = JobOrder.where("progress = 'Finished' AND office_id = ?", @office.office_id)
+      end
+    else  #staff
+      @pending_jobs = JobOrder.where("assigned_to_id = ? AND progress = 'Ready to start'", session['user_credentials_id'])
+      @ongoing_jobs = JobOrder.where("assigned_to_id = ? AND progress LIKE ?", session['user_credentials_id'], 'Ongoing%')
+      @finished_jobs = JobOrder.where("assigned_to_id = ? AND progress = 'Finished'", session['user_credentials_id'])
     end
   end
 

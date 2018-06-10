@@ -1,0 +1,28 @@
+.div{:style => "position: relative; top: 75px; z-index:1; left: 275px; width: 80%;"}
+  / /header
+  / Header
+  .breadcrumbs
+    .col-lg-12
+      .card
+        .card-header
+          %h4 Manage Job Orders
+        .card-body
+          .custom-tab
+            %nav
+              #nav-tab.nav.nav-tabs{:role => "tablist"}
+                -@user = User.find(session['user_credentials_id'])
+                -if @user.has_role? :SAO_admin or @user.has_role? :Adviser
+                  %a#custom-nav-approve-tab.nav-item.nav-link{:href => "/jobs/approved"} Approved Job Orders
+                  %a#custom-nav-unapprove-tab.nav-item.nav-link{:href => "/jobs/unapproved"} Unapproved Job Orders
+                -if @user.has_role? :Head
+                  %a#custom-nav-assigned-tab.nav-item.nav-link{:href => "/jobs/assigned"} Assigned Job Orders
+                  %a#custom-nav-unassigned-tab.nav-item.nav-link{:href => "/jobs/unassigned"} Unassigned Job Orders
+                -if @user.has_role? :Staff
+                  %a#custom-nav-assigned-tab.nav-item.nav-link{:href => "/jobs/pending"} Pending Job Orders
+                %a#custom-nav-ongoing-tab.nav-item.nav-link{:href => "/jobs/ongoing"} Ongoing Job Orders
+                %a#custom-nav-finish-tab.nav-item.nav-link{:href => "/jobs/finished"} Finished Job Orders
+
+%script{:src => "/assets/js/vendor/jquery-2.1.4.min.js"}
+%script{:src => "/assets/js/popper.min.js"}
+%script{:src => "/assets/js/plugins.js"}
+%script{:src => "/assets/js/main.js"}

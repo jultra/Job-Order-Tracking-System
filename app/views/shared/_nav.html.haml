@@ -28,15 +28,15 @@
               Offices
         -if @user.has_role? :SAO_admin or @user.has_role? :Adviser or @user.has_role? :Head
           %li.active
-            %a{:href => "/job_orders"}
+            %a{:href => "/manage_job_orders"}
               %i.menu-icon.fa.fa-file-text-o>
-              Job Orders
+              Manage Job Orders
         %li.active
           %a{:href => "/job_orders/new"}
             %i.menu-icon.fa.fa-edit>
             Request Job Order
         %li.active
-          %a{:href => "/job_orders/list_pending_requests"}
+          %a{:href => "/job_orders/pending_requests"}
             %i.menu-icon.fa.fa-spinner>
             Pending Requests
         %li.active
@@ -53,19 +53,14 @@
             Trash
     / /.navbar-collapse
 
-#right-panel.right-panel{:style => "position: fixed; width: 80%; z-index: 3; left: 280px;"}
+#right-panel.right-panel{:style => "position: fixed; width: 80%; z-index: 1; left: 280px;"}
   / Header
   %header#header.header
     .header-menu
       .col-sm-7
         .header-left
-          %button.search-trigger
-            %i.fa.fa-search
-          .form-inline
-            %form.search-form
-              %input.form-control.mr-sm-2{"aria-label" => "Search", :placeholder => "Search ...", :type => "text"}/
-              %button.search-close{:type => "submit"}
-                %i.fa.fa-close
+          Job Order Tracking System
+
       .col-sm-5
         .user-area.dropdown.float-right
           %a.dropdown-toggle{"aria-expanded" => "false", "aria-haspopup" => "true", "data-toggle" => "dropdown", :href => "#"}
@@ -74,13 +69,6 @@
             %a.nav-link{:href => "#"}
               %i.fa.fa-.user>
               My Profile
-            %a.nav-link{:href => "#"}
-              %i.fa.fa-.user>
-              Notifications
-              %span.count 13
-            %a.nav-link{:href => "#"}
-              %i.fa.fa.-cog>
-              Settings
             %a.nav-link{:href => root_path}
               %i.fa.fa-power.-off>
               Logout

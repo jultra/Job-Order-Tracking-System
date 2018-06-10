@@ -109,65 +109,27 @@
             %strong.card-title Job Order Information
           .card-body.card-block
             .form-group
-              %label.form-control-label{:for => "control_no"} Control Number
-              = job.text_field :control_no, :class => 'form-control', :placeholder => "2018-XXXX", :value => "XXXX-X"
-            .form-group
               %label.form-control-label{:for => "where"} Where
               = job.text_field :where, :class => 'form-control', :placeholder => "eg. CS Lecture Room"
             .form-group
-              %label.form-control-label{:for => "date_needed"} Date Needed
+              %label.form-control-label{:for => "date_needed"} Date Needed*
               = job.text_field :date_needed, :class => 'form-control', :type => "date"
             .form-group
               %label.form-control-label{:for => "time_needed"} Time Needed
               = job.text_field :time_needed, :class => 'form-control', :type => "time"
             .form-group
-              %label.form-control-label{:for => "order"} Order/Activity/Problem Area
-              = job.text_area :information, :class => 'form-control', :rows => "9", :placeholder => "Content..."
-            .form-group
-              %label.form-control-label{:for => "requester"} Requested by
-              = job.text_field :requester, :class => 'form-control', :placeholder => "John Doe"
-            .form-group
               %label.form-control-label{:for => "adviser"} Adviser
-              = job.text_field :adviser, :class => 'form-control', :placeholder => "Jane Doe"
+              = job.text_field :adviser, :class => 'form-control', :placeholder => "e.g. Jane Doe"
             .form-group
               %label.form-control-label{:for => "fund"} Fund Source
-              = job.text_field :fund_source, :class => 'form-control', :placeholder => "DNSM"
+              = job.text_field :fund_source, :class => 'form-control', :placeholder => "e.g. DNSM"
+            .form-group
+              %label.form-control-label{:for => "information"} Order/Activity/Problem Area
+              = job.text_area :information, :class => 'form-control', :rows => "9", :placeholder => "Important information"
+            .form-group
+              %label.form-control-label{:for => "available_materials"} Available Materials
+              = job.text_area :available_materials, :class => 'form-control', :rows => "4", :placeholder => ""
             .form-group
               %label.form-control-label{:for => "user_id"}
               = job.hidden_field :user_id, :value => "#{session['user_credentials_id']}"
-
-            .float-right
-              %button.btn.btn-primary{:type => "submit"}
-                %i.fa.fa-check>
-                  Submit
-              = link_to(users_path(), method: :get, class: 'btn btn-secondary') do
-                %i.fa.fa-times>
-                  Cancel
-
-%script{:src => "/assets/js/vendor/jquery-2.1.4.min.js"}
-:javascript
-  function enableDisableField() {
-    var cb1 = document.getElementById('others').checked;
-    document.getElementById('specify').disabled = !cb1;
-  }
-
-  $(document).ready(function(){
-    var job_type = document.getElementById("variable").value;
-    if(!toBeChecked(job_type, "Aircon cleaning/repair/install") && !toBeChecked(job_type, "Bulb Tube Replacement") && !toBeChecked(job_type, "Carpentry/ Fabrication work/ repair") &&
-      !toBeChecked(job_type, "Computer Hardware Servicing") && !toBeChecked(job_type, "Computer Software Servicing") &&!toBeChecked(job_type, "Cost Estimate Formulation / POW") &&
-      !toBeChecked(job_type, "DLP/LCD Services") &&!toBeChecked(job_type, "Door knob installation/repair") &&!toBeChecked(job_type, "Electric fan cleaning/repair") &&
-      !toBeChecked(job_type, "Electrical installation/repair") &&!toBeChecked(job_type, "Internet & network problems") &&!toBeChecked(job_type, "Inventory taking & recording") &&
-      !toBeChecked(job_type, "Painting/Repainting/Varnish works") &&!toBeChecked(job_type, "Photography/Video coverage") &&!toBeChecked(job_type, "Plumbing/Sanitary Install/repair") &&
-      !toBeChecked(job_type, "Printer/ Peripheral related problems") &&!toBeChecked(job_type, "Request for Personnel assistance") &&!toBeChecked(job_type, "Sounds & lights services") &&
-      !toBeChecked(job_type, "Streamer/Signage making") &&!toBeChecked(job_type, "Streamer installation") &&!toBeChecked(job_type, "Transfer/Transport items(see listing)" && job_type != "") ){
-        document.getElementById('others').checked = true;
-        document.getElementById('specify').disabled = false;
-        document.getElementById('specify').value = job_type;
-    }
-  });
-  function toBeChecked(job_type, value){
-    if(value == job_type){
-      return true;
-    }
-    return false;
-  }
+            *The specified date should be at least 3 days earlier today
