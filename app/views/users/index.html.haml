@@ -5,41 +5,68 @@
     .col-sm-4
       .page-header.float-left
         .page-title
-          %h3 Pending Accounts
+          %h3 Accounts
   .content.mt-3
-    .animated.fadeIn
-      .row
-        .col-md-12
-          .card
-            .card-body
-              %table#bootstrap-data-table.table.table-striped.table-bordered
-                %thead
-                  %tr
-                    %th Firstname
-                    %th Middle Name
-                    %th Last Name
-                    %th Division/Department
-                    %th Position
-                    %th Action
-                %tbody
-                  -@user2.each do |req|
-                    %tr
-                      %td= req.fname
-                      %td= req.mname
-                      %td= req.lname
-                      %td= req.Division_Department
-                      %td= req.position
-                      %td
-                        = link_to(approve_user_path(req), method: :get, class: 'btn btn-success') do
-                          %i.fa.fa-check>
-                            Approve
-                        = link_to(reject_user_path(req), method: :get, class: 'btn btn-danger') do
-                          %i.fa.fa-times>
-                            Reject
-    / .animated
-  / .content
-/ /#right-panel
-/ Right Panel
+    .custom-tab
+      %nav
+        #nav-tab.nav.nav-tabs{role: "tablist"}
+          %a#custom-nav-profile-tab.nav-item.nav-link{"aria-controls" => "custom-nav-profile", "aria-selected" => "false", "data-toggle" => "tab", href: "#custom-nav-profile", role: "tab"} Active Account
+          %a#custom-nav-home-tab.nav-item.nav-link{"aria-controls" => "custom-nav-home", "aria-selected" => "false", "data-toggle" => "tab", href: "#custom-nav-home", role: "tab"} Pending Account
+
+      #nav-tabContent.tab-content.pl-3.pt-2
+        #custom-nav-home.tab-pane.fade{"aria-labelledby" => "custom-nav-home-tab", role: "tabpanel"}
+          .animated.fadeIn
+            .row
+              .col-md-12
+                .card
+                  .card-body
+                    %table#bootstrap-data-table.table.table-striped.table-bordered
+                      %thead
+                        %tr
+                          %th Firstname
+                          %th Middle Name
+                          %th Last Name
+                          %th Division/Department
+                          %th Position
+                          %th Action
+                      %tbody
+                        -@user2.each do |req|
+                          %tr
+                            %td= req.fname
+                            %td= req.mname
+                            %td= req.lname
+                            %td= req.Division_Department
+                            %td= req.position
+                            %td
+                              = link_to(approve_user_path(req), method: :get, class: 'btn btn-success') do
+                                %i.fa.fa-check>
+                                  Approve
+                              = link_to(reject_user_path(req), method: :get, class: 'btn btn-danger') do
+                                %i.fa.fa-times>
+                                  Reject
+        #custom-nav-profile.tab-pane.fade{"aria-labelledby" => "custom-nav-profile-tab", role: "tabpanel"}
+          .animated.fadeIn
+            .row
+              .col-md-12
+                .card
+                  .card-body
+                    %table#bootstrap-data-table.table.table-striped.table-bordered
+                      %thead
+                        %tr
+                          %th Firstname
+                          %th Middle Name
+                          %th Last Name
+                          %th Division/Department
+                          %th Position
+                      %tbody
+                        -@user.each do |req|
+                          %tr
+                            %td= req.fname
+                            %td= req.mname
+                            %td= req.lname
+                            %td= req.Division_Department
+                            %td= req.position
+
 %script{:src => "/assets/js/vendor/jquery-2.1.4.min.js"}
 %script{:src => "/assets/js/popper.min.js"}
 %script{:src => "/assets/js/plugins.js"}

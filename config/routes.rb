@@ -14,8 +14,12 @@ Rails.application.routes.draw do
   get '/job_orders/admin_reject_job_order/:id' => 'job_orders#admin_reject_job_order', as: 'admin_reject_job_order'
   get '/users/approve/:id' => 'users#approve', as: 'approve_user'
   get '/users/reject/:id' => 'users#reject', as: 'reject_user'
+  get '/users/new_update' => 'users#new_update'
+  get '/users/active_account' => 'users#show_active_account'
+  post '/users/:id' => 'users#update'
   resources :job_orders
   resources :users
+  resources :offices
   resources :user_sessions, only: [:create, :destroy]
   delete '/sign_out', to: 'user_sessions#destroy', as: :sign_out
   get '/sign_in', to: 'user_sessions#new', as: :sign_in

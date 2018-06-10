@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180608033651) do
+ActiveRecord::Schema.define(version: 20180610075336) do
 
   create_table "job_orders", force: :cascade do |t|
     t.string "control_no"
@@ -49,6 +49,9 @@ ActiveRecord::Schema.define(version: 20180608033651) do
     t.datetime "updated_at", null: false
     t.integer "head_id"
     t.string "acronym"
+    t.index ["acronym"], name: "index_offices_on_acronym", unique: true
+    t.index ["head_id"], name: "index_offices_on_head_id", unique: true
+    t.index ["name"], name: "index_offices_on_name", unique: true
   end
 
   create_table "roles", force: :cascade do |t|
