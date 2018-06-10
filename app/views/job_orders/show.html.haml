@@ -15,7 +15,7 @@
                 .card.border.border-secondary
                   .card-header
                     %tr
-                      Job Order :
+                      Job Order :  
                       %td= @job_order.control_no
                   .card-body
                     .row
@@ -28,7 +28,7 @@
                           %br/
                           %b Requested by
                           %br/
-                          %td= @job_order.user_id
+                          %td= @job_order.requester
                           %br/
                           %br/
                           %b Date Needed
@@ -38,7 +38,7 @@
                           %br/
                           %b Adviser
                           %br/
-                          %td= @job_order.adviser_id
+                          %td= @job_order.adviser
                           %br/
                           %br/
                           %b Order/Activity/Problem Area
@@ -54,7 +54,7 @@
                           %br/
                           %b Date Requested
                           %br/
-                          June 6, 2018
+                          %td= @date_rqstd
                           %br/
                           %br/
                           %b Time Needed
@@ -78,7 +78,7 @@
                       %i.fa.fa-cart-plus.text-success.border-success
                     .stat-content.dib
                       .stat-text Total Amount Spent
-                      .stat-digit 1,012
+                      .stat-digit 1,012  
             .col-lg-5.col-md-6
               .card
                 .card-body
@@ -87,7 +87,7 @@
                       %i.fa.fa-clock-o.text-success.border-success
                     .stat-content.dib
                       .stat-text Estimated Project Duration
-                      .stat-digit 1,012
+                      .stat-digit 1,012                    
   %script{:src => "assets/js/vendor/jquery-2.1.4.min.js"}
   %script{:src => "assets/js/popper.min.js"}
   %script{:src => "assets/js/plugins.js"}
