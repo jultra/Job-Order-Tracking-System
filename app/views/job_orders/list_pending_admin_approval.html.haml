@@ -24,7 +24,7 @@
                     %tr
                       %td= req.control_no
                       %td= req.job_type
-                      %td= req.requester
+                      %td= User.find(req.user_id).fname + " " + User.find(req.user_id).mname + " " + User.find(req.user_id).lname
                       %td
                         = link_to(admin_approval_path(req), method: :get, class: 'btn btn-primary') do
                           %i.fa.fa-eye>

@@ -7,9 +7,12 @@
           .card-header
             %strong.card-title Office doing the Job
           .card-body.card-block
-            .form-group
-              %label.form-control-label{:for => "control_no"} For
-              = job.text_field :job_office, :class => 'form-control'
+            .form-group{:id => "live-search-form2", :action => search2_path, :method => "get"}
+              %input#variable3{:name => "variable3", :type => "hidden", :value => "#{@job_office_name}"}
+              = job.text_field :office_id, :class => 'form-control', :type => "hidden", :id => "office_id"
+              %label.form-control-label{:for => "Adviser"} For
+              %input#office_name{:name => "office_name", :type => "text", :class => 'form-control', :autocomplete => "off"}/
+            #live-search2-results
             .form-group
               %label.form-control-label{:for => "control_no"} Expected delivery Date
               = job.text_field :delivery_date, :class => 'form-control', :type => "date"
@@ -26,6 +29,8 @@
 %script{:src => "/assets/js/plugins.js"}
 %script{:src => "/assets/js/main.js"}
 %script{:src => "/assets/js/vendor/jquery-2.1.4.min.js"}
+%script{:src => "https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"}
+
 :javascript
   function enableDisableField() {
     var cb1 = document.getElementById('others').checked;
@@ -33,6 +38,34 @@
   }
 
   $(document).ready(function(){
+  var off_name = document.getElementById("variable3").value;
+  if(off_name != ""){
+    document.getElementById("office_name").value = off_name
+  }
+    $("input#office_name").keyup(function(){
+        var url = "/job_orders/live_search2";
+        var x = document.getElementById("live-search2-results");
+
+        var formData= $.param($("#office_name").map(function(){
+          return {
+            value:  document.getElementById('office_name').value
+          }
+        }));
+        $.get(url, formData, function(html) {
+          if(x.style.display == "none"){
+            x.style.display = "block"
+          }
+          $("#live-search2-results").html(html);
+          $("#myUL2 li").on("click", function(){
+
+            document.getElementById('office_name').value = $(this).text()
+            document.getElementById('job_office_id').value = this.id
+            x.style.display = "none"
+          });
+        });
+    });
+
+
     var job_type = document.getElementById("variable").value;
     if(!toBeChecked(job_type, "Aircon cleaning/repair/install") && !toBeChecked(job_type, "Bulb Tube Replacement") && !toBeChecked(job_type, "Carpentry/ Fabrication work/ repair") &&
       !toBeChecked(job_type, "Computer Hardware Servicing") && !toBeChecked(job_type, "Computer Software Servicing") &&!toBeChecked(job_type, "Cost Estimate Formulation / POW") &&
@@ -76,6 +109,8 @@
     document.getElementById('requester').disabled = true;
     document.getElementById('adviser').disabled = true;
     document.getElementById('fund').disabled = true;
+
+
   });
   function toBeChecked(job_type, value){
     if(value == job_type){

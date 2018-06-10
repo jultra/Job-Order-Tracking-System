@@ -14,6 +14,9 @@ Rails.application.routes.draw do
   get '/job_orders/admin_reject_job_order/:id' => 'job_orders#admin_reject_job_order', as: 'admin_reject_job_order'
   get '/users/approve/:id' => 'users#approve', as: 'approve_user'
   get '/users/reject/:id' => 'users#reject', as: 'reject_user'
+  get '/job_orders/live_search' => 'job_orders#live_search', as: 'search'
+  get '/job_orders/live_search2' => 'job_orders#live_search2', as: 'search2'
+
   resources :job_orders
   resources :users
   resources :user_sessions, only: [:create, :destroy]
