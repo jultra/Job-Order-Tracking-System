@@ -45,9 +45,6 @@ class JobOrdersController < ApplicationController
     params.require(:job_order).permit(:job_office, :delivery_date)
   end
 
-  def new
-  end
-
   def create
     @new_request = JobOrder.create!(job_order_params)
     @new_request.progress = "Waiting for Adviser Approval"
@@ -57,7 +54,7 @@ class JobOrdersController < ApplicationController
   end
   
   def new
-
+    $date_requested = Date.today.to_s
   end
 
   def list_pending_requests
@@ -66,6 +63,7 @@ class JobOrdersController < ApplicationController
 
   def show
     @job_order = JobOrder.find params[:id]
+    @date_rqstd = $date_requested
     @job_type = @job_order.job_type
   end
 
@@ -128,6 +126,7 @@ class JobOrdersController < ApplicationController
     update_record = JobOrder.find params[:id]
     update_record.update_attributes!(admin_approval_params)
     update_record.update_attributes!(:progress => "On-going")
+    update_record.update_attributes!(:control_no => Date.today.year.to_s + "-" + JobOrder.last.id.to_s)
     redirect_to '/job_orders/list_pending_admin_approval'
   end
 
@@ -136,10 +135,10 @@ class JobOrdersController < ApplicationController
     redirect_to '/job_orders/list_pending_admin_approval'
   end
 
-    def require_login
-      unless session['user_credentials_id']
-        redirect_to '/'
-      end
+  def require_login
+    unless session['user_credentials_id']
+      redirect_to '/'
     end
+  end
 
 end
