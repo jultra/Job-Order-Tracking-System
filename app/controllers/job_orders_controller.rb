@@ -44,7 +44,7 @@ class JobOrdersController < ApplicationController
   end
 
   def new
-
+    @user_name = User.find(session['user_credentials_id']).fname + " " + User.find(session['user_credentials_id']).lname
   end
 
   def create
@@ -87,6 +87,10 @@ class JobOrdersController < ApplicationController
   def edit
     @job_order = JobOrder.find params[:id]
     @job_type = @job_order.job_type
+    if(@job_order.adviser_id != "")
+      @user = User.find(@job_order.adviser_id)
+      @adviser_name = @user.fname + " " + @user.mname + " " + @user.lname
+    end
   end
 
   def update
@@ -102,22 +106,81 @@ class JobOrdersController < ApplicationController
     redirect_to '/job_orders/pending_requests'
   end
 
-  def list_pending_approval
-    @requests = JobOrder.where(:progress => "Waiting for Approval", :adviser => "John Ultra")
+  def list_pending_admin_approval
+    @requests = JobOrder.where(:progress => "Waiting for admin approval")
   end
 
-  def approve_job_order
-    update_attribute("Approved")
+  def list_pending_adviser_approval
+    @requests = JobOrder.where(:progress => "Waiting for adviser approval", :adviser_id => session['user_credentials_id'])
   end
 
-  def reject_job_order
+  def adviser_approval
+    @job_order = JobOrder.find params[:id]
+    @job_type = @job_order.job_type
+    if(@job_order.adviser_id != "")
+      @user = User.find(@job_order.adviser_id)
+      @adviser_name = @user.fname + " " + @user.mname + " " + @user.lname
+    end
+  end
+
+  def adviser_approve_job_order
+    update_attribute("Waiting for admin approval")
+    redirect_to '/job_orders/list_pending_adviser_approval'
+  end
+
+  def adviser_reject_job_order
     update_attribute("Rejected")
+    redirect_to '/job_orders/list_pending_adviser_approval'
   end
 
   def update_attribute(attribute)
     update_record = JobOrder.find params[:id]
     update_record.update_attributes!(:progress => attribute)
     redirect_to '/job_orders/list_pending_approval'
+  end
+
+  def list_ongoing_jobs
+    @requests = JobOrder.where(:progress => "Approved")
+  end
+
+  def admin_approval
+    @job_order = JobOrder.find params[:id]
+    @job_type = @job_order.job_type
+    if(@job_order.adviser_id != "")
+      @user = User.find(@job_order.adviser_id)
+      @adviser_name = @user.fname + " " + @user.mname + " " + @user.lname
+    end
+  end
+
+  def admin_approve_job_order
+    update_record = JobOrder.find params[:id]
+    update_record.update_attributes!(admin_approval_params)
+    update_record.update_attributes!(:progress => "Waiting for Assignment")
+    redirect_to '/job_orders/list_pending_admin_approval'
+  end
+
+  def admin_reject_job_order
+    update_attribute("Rejected")
+    redirect_to '/job_orders/list_pending_admin_approval'
+  end
+
+  def live_search
+    if(params[:undefined] != "")
+          @results = (User.where("fname LIKE ? OR mname LIKE ? OR lname LIKE ? ", "#{params[:undefined]}%", "#{params[:undefined]}%", "#{params[:undefined]}%"))
+    else
+      @results = ""
+    end
+    render :layout => false
+
+  end
+
+  def live_search2
+    if(params[:undefined] != "")
+      @results = (Office.where("name LIKE ? ", "#{params[:undefined]}%"))
+    else
+      @results = ""
+    end
+    render :layout => false
   end
 
   def require_login
@@ -189,7 +252,7 @@ class JobOrdersController < ApplicationController
       @office = Office.where(:user_id => session['user_credentials_id'])
       if !@office.blank?
         @assigned_requests = JobOrder.where("progress = 'Ready to start' AND office_id = ?", @office.office_id)
-      end 
+      end
     end
   end
 

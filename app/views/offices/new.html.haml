@@ -1,0 +1,31 @@
+.div{:style => "position: relative; top: 75px; z-index:1; left: 275px; width: 80%;"}
+  .sufee-login.d-flex.align-content-center.flex-wrap
+    .container
+      .login-logo
+        %a{:href => "index.html"}
+          %img.align-content{:alt => "", :src => "images/logo.png"}/
+      .login-form
+        %h3{:id=>"signuptitle"} Office Creation
+        %br
+        -if(flash[:danger]!=nil)
+          %div{:class => "alert alert-danger"}
+            %H6=flash[:danger]
+        = form_for @office do |f|
+          %div.form-row
+            %div{:class=>"form-group col-md-4"}
+              = f.label "office name"
+              = f.text_field :name, :required => true, :class=>"form-control", :id=>"inputname", :placeholder => "Office Name"
+            %div{:class => "form-group col-md-4"}
+              = f.label "acronym"
+              = f.text_field :acronym, :required =>true, :type=>"text", :class=>"form-control", :id=>"inputlacronym", :placeholder=>"Acronym"
+            .form-group
+              = f.label "Head"
+              = f.select :head_id, options_for_select(@user_name), {}, :id=>"inputHead", class: "form-control"  
+              
+            %button.btn.btn-primary.btn-flat.m-b-30.m-t-30{:type => "submit"} Create Office
+  %footer{:id=>"userfooter", :style=>"text-align: center;"}
+    %p &copy;All rights reserved 2018. Krabby Inc.
+  %script{:src => "assets/js/vendor/jquery-2.1.4.min.js"}
+  %script{:src => "assets/js/popper.min.js"}
+  %script{:src => "assets/js/plugins.js"}
+  %script{:src => "assets/js/main.js"}

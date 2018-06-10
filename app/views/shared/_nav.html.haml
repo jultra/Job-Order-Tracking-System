@@ -19,11 +19,11 @@
         -@user = User.find(session['user_credentials_id'])
         -if @user.has_role? :SAO_admin
           %li.active
-            %a{:href => users_path  }
+            %a{:href => users_path}
               %i.menu-icon.fa.fa-address-book-o>
               Accounts
           %li.active
-            %a{:href => "/offices"}
+            %a{:href => offices_path}
               %i.menu-icon.fa.fa-hospital-o>
               Offices
         -if @user.has_role? :SAO_admin or @user.has_role? :Adviser or @user.has_role? :Head
@@ -43,6 +43,7 @@
           %a{:href => "/ongoing_jobs"}
             %i.menu-icon.fa.fa-gavel>
             On-going Jobs
+
         %li.active
           %a{:href => "/finished_jobs"}
             %i.menu-icon.fa.fa-check>
@@ -66,9 +67,9 @@
           %a.dropdown-toggle{"aria-expanded" => "false", "aria-haspopup" => "true", "data-toggle" => "dropdown", :href => "#"}
             %img.user-avatar.rounded-circle{:alt => "User Avatar", :src => "/images/admin.jpg"}/
           .user-menu.dropdown-menu
-            %a.nav-link{:href => "#"}
+            %a.nav-link{:href => "/users/new_update"}
               %i.fa.fa-.user>
-              My Profile
+              Update Profile
             %a.nav-link{:href => root_path}
               %i.fa.fa-power.-off>
               Logout

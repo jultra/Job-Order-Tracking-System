@@ -18,11 +18,28 @@ Rails.application.routes.draw do
   get '/jobs/assigned' => 'job_orders#assigned_job_orders'
   get '/jobs/unassigned' => 'job_orders#unassigned_job_orders'
   get '/jobs/pending' => 'job_orders#pending_job_orders'
+  get '/job_orders/list_pending_adviser_approval' => 'job_orders#list_pending_adviser_approval', as: 'list_pending_adviser_approval'
+  get '/job_orders/list_pending_admin_approval' => 'job_orders#list_pending_admin_approval', as: 'list_pending_admin_approval'
+  get '/job_orders/admin_approval/:id' => 'job_orders#admin_approval', as: 'admin_approval'
+  get '/job_orders/adviser_approval/:id' => 'job_orders#adviser_approval', as: 'adviser_approval'
+  get '/job_orders/adviser_approve_job_order/:id' => 'job_orders#adviser_approve_job_order', as: 'adviser_approve_job_order'
+  get '/job_orders/admin_approve_job_order/:id' => 'job_orders#admin_approve_job_order', as: 'admin_approve_job_order'
+  get '/job_orders/adviser_reject_job_order/:id' => 'job_orders#adviser_reject_job_order', as: 'adviser_reject_job_order'
+  get '/job_orders/admin_reject_job_order/:id' => 'job_orders#admin_reject_job_order', as: 'admin_reject_job_order'
+
 
   get '/users/approve/:id' => 'users#approve', as: 'approve_user'
   get '/users/reject/:id' => 'users#reject', as: 'reject_user'
+  get '/users/new_update' => 'users#new_update'
+  get '/users/active_account' => 'users#show_active_account'
+  post '/users/:id' => 'users#update'
+
+  get '/job_orders/live_search' => 'job_orders#live_search', as: 'search'
+  get '/job_orders/live_search2' => 'job_orders#live_search2', as: 'search2'
+  
   resources :job_orders
   resources :users
+  resources :offices
   resources :user_sessions, only: [:create, :destroy]
   delete '/sign_out', to: 'user_sessions#destroy', as: :sign_out
   get '/sign_in', to: 'user_sessions#new', as: :sign_in

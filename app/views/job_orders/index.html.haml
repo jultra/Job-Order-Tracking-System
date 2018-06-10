@@ -13,6 +13,9 @@
           %ol.breadcrumb.text-right
             %li.active Dashboard
   .content.mt-3
+    -if(flash[:notice]!=nil)
+      %div{:class => "alert alert-success"}
+        %H6=flash[:notice]
     .animated.fadeIn
       .row
         .col-sm-12.mb-4
