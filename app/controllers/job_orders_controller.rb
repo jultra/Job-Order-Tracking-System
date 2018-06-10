@@ -51,7 +51,7 @@ class JobOrdersController < ApplicationController
 
   def create
     @new_request = JobOrder.create!(job_order_params)
-    if(@new_request.adviser_id == "")
+    if(@new_request.adviser_id == "" || @new_request.adviser_id == nil)
       @new_request.progress = "Waiting for Admin Approval"
     else
       @new_request.progress = "Waiting for Adviser Approval"
@@ -132,7 +132,7 @@ class JobOrdersController < ApplicationController
   def admin_approval
     @job_order = JobOrder.find params[:id]
     @job_type = @job_order.job_type
-    if(@job_order.adviser_id != "")
+    if(@job_order.adviser_id != "" && @job_order.adviser_id != nil)
       @user = User.find(@job_order.adviser_id)
       @adviser_name = @user.fname + " " + @user.mname + " " + @user.lname
     end
