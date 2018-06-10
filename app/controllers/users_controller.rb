@@ -8,7 +8,7 @@ class UsersController < ApplicationController
       session.destroy
     end
     @user = User.new
-    @office = Office.all.select("name").to_a
+    @office = Office.all.map{|i| i.name }
   end
 
   def create

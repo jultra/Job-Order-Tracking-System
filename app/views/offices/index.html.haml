@@ -24,14 +24,19 @@
                     %th Office Name
                     %th Office Acronym
                     %th Chairperson/Head
+                    %th Action
                 %tbody
                   -@office.each do |office|
                     %tr
                       %td= office.name
                       %td= office.acronym
-                      %td= @user.find_by_id(office.head_id)
+                      %td= User.find(office.head_id)
+                      %td
+                        = link_to("#", method: :get, class: 'btn btn-warning') do
+                          %i.fa.fa-edit>
+                            Edit
             = link_to(new_office_path, method: :get, class: 'btn btn-success') do
-              %i.fa.fa-check>
+              %i.fa.fa-plus-square-o>
                 Add Office
     / .animated
   / .content

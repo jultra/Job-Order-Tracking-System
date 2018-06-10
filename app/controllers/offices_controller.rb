@@ -2,12 +2,16 @@ class OfficesController < ApplicationController
 
   def index
     @office = Office.all
-    @user = User.all.where(:position => 'Chairperson/Head')
+    @user = User.all.where(:position => 'Chairperson/Head').map{|i| i.fname + " " + i.lname}
   end
 
   def new
     @office = Office.new
-  #  @user = User.all.where(:position => 'Chairperson/Head').to_a
+    @user = User.all.where(:position => 'Chairperson/Head')
+    @user_n = @user.map{|x| x.fname + ' '+ x.mname + ' ' + x.lname}
+    @user_id = @user.map{|x| x.id}
+    #@user_name = Hash.new
+    @user_name[] = @user_n.map{|x| [x.id, x.fname + ' '+ x.mname + ' ' + x.lname]}
   end
 
   def create
@@ -32,7 +36,7 @@ class OfficesController < ApplicationController
   private
 
   def office_params
-    params.require(:office).permit(:name, :acronym)
+    params.require(:office).permit(:name, :acronym, :head_id)
   end
 
 end
