@@ -30,7 +30,7 @@
                     %tr
                       %td= office.name
                       %td= office.acronym
-                      %td= User.find(office.head_id)
+                      %td= User.find(office.head_id).fname + " " + User.find(office.head_id).mname + " " + User.find(office.head_id).lname
                       %td
                         = link_to("#", method: :get, class: 'btn btn-warning') do
                           %i.fa.fa-edit>

@@ -11,7 +11,9 @@ class OfficesController < ApplicationController
     @user_n = @user.map{|x| x.fname + ' '+ x.mname + ' ' + x.lname}
     @user_id = @user.map{|x| x.id}
     #@user_name = Hash.new
-    @user_name[] = @user_n.map{|x| [x.id, x.fname + ' '+ x.mname + ' ' + x.lname]}
+    #@user_name[] = @user_n.map{|x| [x.id, x.fname + ' '+ x.mname + ' ' + x.lname]}
+    @user_name = @user.collect{|x| [x.fname + ' '+ x.mname + ' ' + x.lname, x.id]}
+
   end
 
   def create
