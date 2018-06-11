@@ -39,7 +39,7 @@
                       %td None
                       %td= req.date_needed
                       %td
-                        = link_to(job_order_path(req), method: :get, class: 'btn btn-primary') do
+                        = link_to(unapproved_path(req), method: :get, class: 'btn btn-primary') do
                           %i.fa.fa-eye>
                             View
 

@@ -152,6 +152,10 @@ class JobOrdersController < ApplicationController
     end
   end
 
+  def unapproved
+    @job_order = JobOrder.find params[:id]
+  end
+
   def admin_approve_job_order
     update_record = JobOrder.find params[:id]
     update_record.update_attributes!(admin_approval_params)
@@ -267,32 +271,6 @@ class JobOrdersController < ApplicationController
 
   def pending_job_orders
     @pending_jobs = JobOrder.where("assigned_to_id = ? AND progress = 'Ready to start'", session['user_credentials_id'])
-  end
-
-  def manage_job_orders
-    if User.find(session['user_credentials_id']).has_role? :SAO_admin   #admin
-      @approved_requests = JobOrder.where("progress = 'Waiting for assignment'")
-      @unapproved_requests = JobOrder.where("progress = 'Waiting for admin approval'")
-      @ongoing_jobs = JobOrder.where("progress LIKE ?", 'Ongoing%')
-      @finished_jobs = JobOrder.where("progress = 'Finished'")
-    elsif User.find(session['user_credentials_id']).has_role? :Adviser  #faculty
-      @approved_requests = JobOrder.where("progress = 'Waiting for admin approval' AND adviser_id = ?", session['user_credentials_id'])
-      @unapproved_requests = JobOrder.where("progress = 'Waiting for faculty approval' AND adviser_id = ?", session['user_credentials_id'])
-      @ongoing_jobs = JobOrder.where("progress LIKE ? AND adviser_id = ?", 'Ongoing%', session['user_credentials_id'])
-      @finished_jobs = JobOrder.where("progress = 'Finished' AND adviser_id = ?", session['user_credentials_id'])
-    elsif User.find(session['user_credentials_id']).has_role? :Head     #head/chair
-      @office = Office.where(:user_id => session['user_credentials_id'])
-      if !@office.blank?
-        @assigned_requests = JobOrder.where("progress = 'Ready to start' AND office_id = ?", @office.office_id)
-        @unassigned_requests = JobOrder.where("progress = 'Waiting for assignment' AND office_id = ?", @office.office_id)
-        @ongoing_jobs = JobOrder.where("progress LIKE ? AND office_id = ?", 'Ongoing%', @office.office_id)
-        @finished_job = JobOrder.where("progress = 'Finished' AND office_id = ?", @office.office_id)
-      end
-    else  #staff
-      @pending_jobs = JobOrder.where("assigned_to_id = ? AND progress = 'Ready to start'", session['user_credentials_id'])
-      @ongoing_jobs = JobOrder.where("assigned_to_id = ? AND progress LIKE ?", session['user_credentials_id'], 'Ongoing%')
-      @finished_jobs = JobOrder.where("assigned_to_id = ? AND progress = 'Finished'", session['user_credentials_id'])
-    end
   end
 
 end

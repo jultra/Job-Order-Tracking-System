@@ -12,8 +12,7 @@
               = job.text_field :office_id, :class => 'form-control', :type => "hidden", :id => "office_id"
               %label.form-control-label{:for => "Adviser"} For
               %input#office_name{:name => "office_name", :type => "text", :class => 'form-control', :autocomplete => "off"}/
-            #live-search2-results
-            .form-group
+            #live-search2-results            .form-group
               %label.form-control-label{:for => "control_no"} Expected delivery Date
               = job.text_field :delivery_date, :class => 'form-control', :type => "date"
             .float-right

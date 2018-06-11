@@ -118,9 +118,10 @@
             .form-group
               %label.form-control-label{:for => "time_needed"} Time Needed
               = job.text_field :time_needed, :class => 'form-control',:type => "time", :id => "time_needed"
-            .form-group
+            .form-group{:id => "live-search-form", :action => search_path, :method => "get"}
               %label.form-control-label{:for => "adviser"} Adviser
-              = job.text_field :adviser, :class => 'form-control', :placeholder => "e.g. Jane Doe"
+              %input#adviser_name{:name => "adviser_name", :type => "text", :class => 'form-control', :autocomplete => "off"}/
+            #live-search-results
             .form-group
               %label.form-control-label{:for => "fund"} Fund Source
               = job.text_field :fund_source, :class => 'form-control', :placeholder => "e.g. DNSM"
