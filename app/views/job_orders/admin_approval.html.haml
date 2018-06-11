@@ -12,7 +12,8 @@
               = job.text_field :office_id, :class => 'form-control', :type => "hidden", :id => "office_id"
               %label.form-control-label{:for => "Adviser"} For
               %input#office_name{:name => "office_name", :type => "text", :class => 'form-control', :autocomplete => "off"}/
-            #live-search2-results            .form-group
+            #live-results
+            .form-group
               %label.form-control-label{:for => "control_no"} Expected delivery Date
               = job.text_field :delivery_date, :class => 'form-control', :type => "date"
             .float-right
@@ -43,7 +44,7 @@
   }
     $("input#office_name").keyup(function(){
         var url = "/job_orders/live_search2";
-        var x = document.getElementById("live-search2-results");
+        var y = document.getElementById("live-results");
 
         var formData= $.param($("#office_name").map(function(){
           return {
@@ -51,15 +52,14 @@
           }
         }));
         $.get(url, formData, function(html) {
-          if(x.style.display == "none"){
-            x.style.display = "block"
+          if(y.style.display == "none"){
+            y.style.display = "block"
           }
-          $("#live-search2-results").html(html);
+          $("#live-results").html(html);
           $("#myUL2 li").on("click", function(){
-
             document.getElementById('office_name').value = $(this).text()
-            document.getElementById('job_office_id').value = this.id
-            x.style.display = "none"
+            document.getElementById('office_id').value = this.id
+            y.style.display = "none"
           });
         });
     });
