@@ -158,17 +158,16 @@ class JobOrdersController < ApplicationController
 
   def live_search
     if(params[:undefined] != "")
-          @results = (User.where("fname LIKE ? OR mname LIKE ? OR lname LIKE ? ", "#{params[:undefined]}%", "#{params[:undefined]}%", "#{params[:undefined]}%"))
+          @results = (User.where("(fname LIKE ? OR mname LIKE ? OR lname LIKE ?) AND position LIKE ?", "#{params[:undefined]}%", "#{params[:undefined]}%", "#{params[:undefined]}%", "Faculty"))
     else
       @results = ""
     end
     render :layout => false
-
   end
 
   def live_search2
     if(params[:undefined] != "")
-      @results = (Office.where("name LIKE ? ", "#{params[:undefined]}%"))
+      @results = (Office.where("name LIKE ? ", "%#{params[:undefined]}%"))
     else
       @results = ""
     end
