@@ -77,8 +77,8 @@ class UsersController < ApplicationController
       when "new"
         "login"
       when "create"
-        "login"  
-      else 
+        "login"
+      else
         "application"
     end
   end

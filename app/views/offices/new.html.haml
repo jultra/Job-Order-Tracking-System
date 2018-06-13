@@ -20,7 +20,7 @@
               = f.text_field :acronym, :required =>true, :type=>"text", :class=>"form-control", :id=>"inputlacronym", :placeholder=>"Acronym"
             .form-group
               = f.label "Head"
-              = f.select :head_id, options_for_select(@user_name), {}, :id=>"inputHead", class: "form-control"
+              = f.select :user_id, options_for_select(@user_name), {}, :id=>"inputHead", class: "form-control"
             %button.btn.btn-primary.btn-flat.m-b-30.m-t-30{:type => "submit"} Create Office
   %footer{:id=>"userfooter", :style=>"text-align: center;"}
     %p &copy;All rights reserved 2018. Krabby Inc.

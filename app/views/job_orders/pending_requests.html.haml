@@ -22,6 +22,7 @@
                 %tbody
                   -@requests.each do |req|
                     %tr
+                      /{:onclick => "location.href='#{job_order_path(req)}'"}
                       %td= req.date_filed
                       %td= req.job_type
                       %td= req.progress
@@ -33,7 +34,7 @@
                           %i.fa.fa-pencil>
                             Edit
                         = link_to "Cancel", "#smallmodal", :class => "btn btn-danger", "data-toggle" => "modal"
-                        #smallmodal.modal.fade{"data-backdrop" => "false", "aria-hidden" => "true", "aria-labelledby" => "smallmodalLabel", :role => "dialog", :tabindex => "-1"}
+                        #smallmodal.modal.fade{"data-backdrop" => "false", "aria-hidden" => "true", "aria-labelledby" => "smallmodalLabel", :role => "dialog", :tabindex => "-1", :style => "margin-top:50px;"}
                           .modal-dialog.modal-sm{:role => "document"}
                             .modal-content
                               .modal-header
@@ -51,6 +52,10 @@
   / .content
 / /#right-panel
 / Right Panel
+#smallmodal.modal.fade {
+top:50px;
+}
+
 %script{:src => "/assets/js/vendor/jquery-2.1.4.min.js"}
 %script{:src => "/assets/js/popper.min.js"}
 %script{:src => "/assets/js/plugins.js"}

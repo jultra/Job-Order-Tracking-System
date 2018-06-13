@@ -5,7 +5,7 @@ class JobOrdersController < ApplicationController
   before_action :require_login
 
   def job_order_params
-    params.require(:job_order).permit(:job_type, :where, :date_needed, :time_needed, :available_materials, :information, :fund_source, :user_id)
+    params.require(:job_order).permit(:job_type, :where, :date_needed, :time_needed, :available_materials, :information, :adviser_id, :fund_source, :user_id)
   end
 
   def index
@@ -47,6 +47,10 @@ class JobOrdersController < ApplicationController
     @user_name = User.find(session['user_credentials_id']).fname + " " + User.find(session['user_credentials_id']).lname
   end
 
+  def admin_approval_params
+    params.require(:job_order).permit(:job_office, :delivery_date)
+  end
+
   def create
     current_time = DateTime.now
 
@@ -54,7 +58,9 @@ class JobOrdersController < ApplicationController
       @new_request = JobOrder.new(job_order_params)
       @new_request.date_filed = current_time.strftime "%Y-%m-%d"
 
-      if !(params[:job_order][:adviser] == "")
+      print "adviser #{params[:job_order][:adviser]} ssssssssssssssss"
+
+      if @new_request.adviser_id != "" && @new_request.adviser_id != nil
         #do some query here to set @new_request.adviser_id =
         @new_request.progress = "Waiting for adviser approval"
       else
@@ -159,8 +165,9 @@ class JobOrdersController < ApplicationController
   def admin_approve_job_order
     update_record = JobOrder.find params[:id]
     update_record.update_attributes!(admin_approval_params)
-    update_record.update_attributes!(:progress => "Waiting for Assignment")
-    redirect_to '/job_orders/list_pending_admin_approval'
+    update_record.update_attributes!(:control_no => Date.today.year.to_s + '-' + JobOrder.last.id.to_s)
+    update_record.update_attributes!(:progress => "Waiting for assignment")
+    redirect_to '/jobs/unapproved'
   end
 
   def admin_reject_job_order
@@ -261,9 +268,10 @@ class JobOrdersController < ApplicationController
 
   def unassigned_job_orders
     if User.find(session['user_credentials_id']).has_role? :Head     #head/chair
-      @office = Office.where(:user_id => session['user_credentials_id'])
+      @office = Office.where("user_id = ?", session['user_credentials_id'])
+      print "qqqqqqqqqqqqqqqqqqqqqqq#{@office}"
       if !@office.blank?
-        @unassigned_requests = JobOrder.where("progress = 'Waiting for assignment' AND office_id = ?", @office.office_id)
+        @unassigned_requests = JobOrder.where("progress = 'Waiting for assignment' AND office_id = ?", @office.last.id)
       end
     end
   end
