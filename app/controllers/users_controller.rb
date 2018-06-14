@@ -8,6 +8,7 @@ class UsersController < ApplicationController
       session.destroy
     end
     @user = User.new
+    @office = Office.all.map{|i| i.name }
   end
 
   def create
@@ -22,7 +23,8 @@ class UsersController < ApplicationController
   end
 
   def index
-    @user = User.find(session['user_credentials_id'])
+    #@user = User.find(session['user_credentials_id'])
+    @user = User.all.where(:active => true, :approved => true, :confirmed => true)
     @user2 = User.all.where(:active => false, :approved => false, :confirmed => false)
   end
 
@@ -32,8 +34,6 @@ class UsersController < ApplicationController
     user.save
     if user.position == "Student"
       user.add_role :Student
-    elsif user.position == "Adviser"
-      user.add_role :Adviser
     elsif user.position == "Faculty"
       user.add_role :Faculty
     elsif user.position == "Staff"
@@ -45,11 +45,18 @@ class UsersController < ApplicationController
   end
 
   def new_update
+    @user = User.find_by_id(session['user_credentials_id'])
+  end
 
+  def show_active_account
+    @user = User.all.where(:active => true, :approved => true, :confirmed => true)
   end
 
   def update
-
+    @users = User.find params[:id]
+    @users.update_attributes!(users_params)
+    flash[:notice] = "Account was successfully updated."
+    redirect_to job_orders_path
   end
 
 
@@ -70,8 +77,8 @@ class UsersController < ApplicationController
       when "new"
         "login"
       when "create"
-        "login"  
-      else 
+        "login"
+      else
         "application"
     end
   end

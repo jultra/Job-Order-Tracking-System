@@ -1,0 +1,31 @@
+%head
+  :css
+    #myUL2 {
+        list-style-type: none;
+        padding: 0;
+        margin: 0;
+      }
+
+    #myUL2 li {
+      border: 1px solid #ddd;
+      margin-top: -1px; /* Prevent double borders */
+      background-color: #f6f6f6;
+      padding: 12px;
+      text-decoration: none;
+      font-size: 18px;
+      color: black;
+      display: block
+    }
+
+    #myUL2 li:hover:not(.header) {
+      background-color: #eee;
+    }
+%body
+  - if @results.empty?
+    %ul#myUL2
+      %li
+        %a{:href => "#"} Result not found
+  - else
+    %ul#myUL2
+      - @results.each do |post|
+        %li{:id => post.id}= post.name

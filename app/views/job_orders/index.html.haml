@@ -6,13 +6,11 @@
       .page-header.float-left
         .page-title
           -@user = User.find(session['user_credentials_id'])
-          %h1 Dashboard
-    .col-sm-8
-      .page-header.float-right
-        .page-title
-          %ol.breadcrumb.text-right
-            %li.active Dashboard
+          %h3 Dashboard
   .content.mt-3
+    -if(flash[:notice]!=nil)
+      %div{:class => "alert alert-success"}
+        %H6=flash[:notice]
     .animated.fadeIn
       .row
         .col-sm-12.mb-4
@@ -54,7 +52,7 @@
                 %i.ti-user.text-primary.border-primary
               .stat-content.dib
                 .stat-text Pending Accounts
-                .stat-digit 
+                .stat-digit
                   =@pending_Accounts
 / /#right-panel
 / Right Panel

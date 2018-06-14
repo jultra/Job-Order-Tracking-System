@@ -15,6 +15,7 @@
                   .form-group
                     .checkbox
                       %input#variable{:name => "variable", :type => "hidden", :value => "#{@job_type}"}
+                      %input#variable2{:name => "variable2", :type => "hidden", :value => "#{@adviser_name}"}
                       %label.form-check-label{:for => "checkbox1"}
                         = check_box_tag "job_order[job_type]", "Aircon cleaning/repair/install", @job_type == "Aircon cleaning/repair/install", :id => "option1"
                         Aircon cleaning/repair/install
@@ -109,29 +110,58 @@
             %strong.card-title Job Order Information
           .card-body.card-block
             .form-group
-              %label.form-control-label{:for => "control_no"} Control Number
-              = job.text_field :control_no, :class => 'form-control', :placeholder => "2018-XXXX", :id => "control_no"
-            .form-group
               %label.form-control-label{:for => "where"} Where
               = job.text_field :where, :class => 'form-control',:placeholder => "eg. CS Lecture Room", :id => "where"
             .form-group
-              %label.form-control-label{:for => "date_needed"} Date Needed
-              = job.text_field :date_needed, :class => 'form-control',:type => "date", :id => "date_needed"
+              %label.form-control-label{:for => "date_needed"} Date Needed*
+              = job.text_field :date_needed, :class => 'form-control', :type => "date"
             .form-group
               %label.form-control-label{:for => "time_needed"} Time Needed
               = job.text_field :time_needed, :class => 'form-control',:type => "time", :id => "time_needed"
-            .form-group
-              %label.form-control-label{:for => "order"} Order/Activity/Problem Area
-              = job.text_area :information, :class => 'form-control', :rows => "9",:placeholder => "Content...", :id => "order"
-            .form-group
-              %label.form-control-label{:for => "requester"} Requested by
-              = job.text_field :requester, :class => 'form-control',:placeholder => "John Doe", :id => "requester"
-            .form-group
+            .form-group{:id => "live-search-form", :action => search_path, :method => "get"}
               %label.form-control-label{:for => "adviser"} Adviser
-              = job.text_field :adviser, :class => 'form-control',:placeholder => "Jane Doe", :id => "adviser"
+              %input#adviser_name{:name => "adviser_name", :type => "text", :class => 'form-control', :autocomplete => "off"}/
+            #live-search-results
             .form-group
               %label.form-control-label{:for => "fund"} Fund Source
-              = job.text_field :fund_source, :class => 'form-control', :placeholder => "DNSM", :id => "fund"
+              = job.text_field :fund_source, :class => 'form-control', :placeholder => "e.g. DNSM"
+            .form-group
+              %label.form-control-label{:for => "information"} Order/Activity/Problem Area
+              = job.text_area :information, :class => 'form-control', :rows => "9", :placeholder => "Important information"
+            .form-group
+              %label.form-control-label{:for => "available_materials"} Available Materials
+              = job.text_area :available_materials, :class => 'form-control', :rows => "4", :placeholder => ""
             .form-group
               %label.form-control-label{:for => "user_id"}
               = job.hidden_field :user_id, :value => "#{session['user_credentials_id']}"
+              = job.hidden_field :adviser_id, :id => "adviser_id"
+            *The specified date should be at least 3 days earlier today
+%script{:src => "https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"}
+:javascript
+  $(document).ready(function(){
+    var adv_name = document.getElementById("variable2").value;
+    if(adv_name != ""){
+      document.getElementById("adviser_name").value = adv_name
+    }
+      $("input#adviser_name").keyup(function(){
+          var url = "/job_orders/live_search";
+          var x = document.getElementById("live-search-results");
+
+          var formData= $.param($("#adviser_name").map(function(){
+            return {
+              value:  document.getElementById('adviser_name').value
+            }
+          }));
+          $.get(url, formData, function(html) {
+            if(x.style.display == "none"){
+              x.style.display = "block"
+            }
+            $("#live-search-results").html(html);
+            $("#myUL li").on("click", function(){
+              document.getElementById('adviser_name').value = $(this).text()
+              document.getElementById('adviser_id').value = this.id
+              x.style.display = "none"
+            });
+          });
+      });
+  });

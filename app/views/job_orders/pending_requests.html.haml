@@ -15,14 +15,15 @@
               %table#bootstrap-data-table.table.table-striped.table-bordered
                 %thead
                   %tr
-                    %th Control Number
+                    %th Date Filed
                     %th Job Type
                     %th Progress
                     %th Actions
                 %tbody
                   -@requests.each do |req|
                     %tr
-                      %td= req.control_no
+                      /{:onclick => "location.href='#{job_order_path(req)}'"}
+                      %td= req.date_filed
                       %td= req.job_type
                       %td= req.progress
                       %td
@@ -33,7 +34,7 @@
                           %i.fa.fa-pencil>
                             Edit
                         = link_to "Cancel", "#smallmodal", :class => "btn btn-danger", "data-toggle" => "modal"
-                        #smallmodal.modal.fade{"data-backdrop" => "false", "aria-hidden" => "true", "aria-labelledby" => "smallmodalLabel", :role => "dialog", :tabindex => "-1"}
+                        #smallmodal.modal.fade{"data-backdrop" => "false", "aria-hidden" => "true", "aria-labelledby" => "smallmodalLabel", :role => "dialog", :tabindex => "-1", :style => "margin-top:50px;"}
                           .modal-dialog.modal-sm{:role => "document"}
                             .modal-content
                               .modal-header
@@ -42,10 +43,7 @@
                                   %span{"aria-hidden" => "true"} ×
                               .modal-body
                                 %p.text-center
-                                  Are you sure you want to cancel
-                                  %h5.pb-2.display-5.text-center= req.control_no
-                                %p.text-center
-                                  job order request?
+                                  Are you sure you want to cancel job order request?
                               .modal-footer
                                 %button.btn.btn-secondary{"data-dismiss" => "modal", :type => "button"} Cancel
                                 = link_to(job_order_path(req), method: :delete, class: 'btn btn-danger') do
@@ -54,6 +52,10 @@
   / .content
 / /#right-panel
 / Right Panel
+#smallmodal.modal.fade {
+top:50px;
+}
+
 %script{:src => "/assets/js/vendor/jquery-2.1.4.min.js"}
 %script{:src => "/assets/js/popper.min.js"}
 %script{:src => "/assets/js/plugins.js"}

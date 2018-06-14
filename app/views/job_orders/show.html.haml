@@ -54,7 +54,7 @@
                           %br/
                           %b Date Requested
                           %br/
-                          June 6, 2018
+                          %td= @job_order.date_filed
                           %br/
                           %br/
                           %b Time Needed
@@ -69,7 +69,10 @@
                       %i.ti-money.text-success.border-success
                     .stat-content.dib
                       .stat-text Estimated Budget
-                      .stat-digit 1,012
+                      -if !@job_order.money_budget.nil?
+                        .stat-digit= @job_order.money_budget
+                      -else
+                        .stat-digit= 0.00
             .col-lg-5.col-md-6
               .card
                 .card-body
@@ -78,7 +81,10 @@
                       %i.fa.fa-cart-plus.text-success.border-success
                     .stat-content.dib
                       .stat-text Total Amount Spent
-                      .stat-digit 1,012
+                      -if !@job_order.money_spent.nil?
+                        .stat-digit= @job_order.money_spent
+                      -else
+                        .stat-digit 0.00
             .col-lg-5.col-md-6
               .card
                 .card-body
@@ -87,12 +93,12 @@
                       %i.fa.fa-clock-o.text-success.border-success
                     .stat-content.dib
                       .stat-text Estimated Project Duration
-                      .stat-digit 1,012
-  %script{:src => "assets/js/vendor/jquery-2.1.4.min.js"}
-  %script{:src => "assets/js/popper.min.js"}
-  %script{:src => "assets/js/plugins.js"}
-  %script{:src => "assets/js/main.js"}
+                      .stat-digit= @job_order.date_needed - @job_order.date_filed
+  %script{:src => "/assets/js/vendor/jquery-2.1.4.min.js"}
+  %script{:src => "/assets/js/popper.min.js"}
+  %script{:src => "/assets/js/plugins.js"}
+  %script{:src => "/assets/js/main.js"}
   / Chart js
-  %script{:src => "assets/js/lib/chart-js/Chart.bundle.js"}
-  %script{:src => "assets/js/lib/chart-js/chartjs-init.js"}
+  %script{:src => "/assets/js/lib/chart-js/Chart.bundle.js"}
+  %script{:src => "/assets/js/lib/chart-js/chartjs-init.js"}
   %script{:src => "https://canvasjs.com/assets/script/canvasjs.min.js"}

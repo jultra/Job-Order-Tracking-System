@@ -24,17 +24,17 @@
                     %tr
                       %td= req.control_no
                       %td= req.job_type
-                      %td= req.requester
+                      %td= User.find(req.user_id).fname + " " + User.find(req.user_id).mname + " " + User.find(req.user_id).lname
                       %td
                         = link_to(adviser_approval_path(req), method: :get, class: 'btn btn-primary') do
                           %i.fa.fa-eye>
-                            View
+                            View
                         = link_to(adviser_approve_job_order_path(req), method: :get, class: 'btn btn-success') do
                           %i.fa.fa-check>
-                            Approve
+                            Approve
                         = link_to(adviser_reject_job_order_path(req), method: :get, class: 'btn btn-danger') do
                           %i.fa.fa-times>
-                            Reject
+                            Reject
     / .animated
   / .content
 / /#right-panel

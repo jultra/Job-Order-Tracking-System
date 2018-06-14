@@ -1,6 +1,7 @@
 class User < ApplicationRecord
   has_many :job_orders
-  
+  has_one :office
+
   rolify
   acts_as_authentic do |c|
     c.crypto_provider = Authlogic::CryptoProviders::BCrypt
