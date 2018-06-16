@@ -36,7 +36,7 @@
                     %tr
                       %td= req.date_filed
                       %td= req.job_type
-                      %td None
+                      %td= User.find(req.user_id).fname + " " + User.find(req.user_id).mname + " " + User.find(req.user_id).lname
                       %td= req.date_needed
                       %td
                         = link_to(unapproved_path(req), method: :get, class: 'btn btn-primary') do
