@@ -46,6 +46,7 @@ class UsersController < ApplicationController
 
   def new_update
     @user = User.find_by_id(session['user_credentials_id'])
+    @office = Office.all.map{|i| i.name }
   end
 
   def show_active_account

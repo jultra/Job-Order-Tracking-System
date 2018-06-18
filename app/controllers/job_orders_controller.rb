@@ -58,7 +58,7 @@ class JobOrdersController < ApplicationController
       @new_request = JobOrder.new(job_order_params)
       @new_request.date_filed = current_time.strftime "%Y-%m-%d"
 
-      print "adviser #{params[:job_order][:adviser]} ssssssssssssssss"
+      print "adviser #{params[:job_order][:adviser_id]} ssssssssssssssss"
 
       if @new_request.adviser_id != "" && @new_request.adviser_id != nil
         #do some query here to set @new_request.adviser_id =
@@ -87,6 +87,7 @@ class JobOrdersController < ApplicationController
   def show
     @job_order = JobOrder.find params[:id]
     @job_type = @job_order.job_type
+    @users = User.all
   end
 
   def edit

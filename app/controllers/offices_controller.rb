@@ -19,7 +19,10 @@ class OfficesController < ApplicationController
     @office = Office.new(office_params)
     begin
       @office.save!
-      flash[:success] = "Office Successfully Created"
+      @user_head = User.find(@office.user_id)
+      @user_head.Division_Department = @office.name
+      @user_head.save!
+      flash[:success] = "Hi #{params[:office][:name]} Successfully Created"
       rescue ActiveRecord::RecordNotUnique => e
       puts e.message
       if e.message != nil || e.message != ""

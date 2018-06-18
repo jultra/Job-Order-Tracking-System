@@ -120,7 +120,7 @@
               = job.text_field :time_needed, :class => 'form-control',:type => "time", :id => "time_needed"
             .form-group{:id => "live-search-form", :action => search_path, :method => "get"}
               %label.form-control-label{:for => "adviser"} Adviser
-              %input#adviser_name{:name => "adviser_name", :type => "text", :class => 'form-control', :autocomplete => "off"}/
+              %input#adviser_name{:name => "adviser_id", :type => "text", :class => 'form-control', :autocomplete => "off"}/
             #live-search-results
             .form-group
               %label.form-control-label{:for => "fund"} Fund Source
@@ -139,6 +139,7 @@
 %script{:src => "https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"}
 :javascript
   $(document).ready(function(){
+    alert("Wiw");
     var adv_name = document.getElementById("variable2").value;
     if(adv_name != ""){
       document.getElementById("adviser_name").value = adv_name

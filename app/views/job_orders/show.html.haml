@@ -28,7 +28,7 @@
                           %br/
                           %b Requested by
                           %br/
-                          %td= @job_order.user_id
+                          %td= @users.find(@job_order.user_id).fname + " " +  @users.find(@job_order.user_id).lname
                           %br/
                           %br/
                           %b Date Needed
@@ -38,7 +38,7 @@
                           %br/
                           %b Adviser
                           %br/
-                          %td= @job_order.adviser_id
+                          %td= @users.find(@job_order.adviser_id).fname + " " +  @users.find(@job_order.adviser_id).lname
                           %br/
                           %br/
                           %b Order/Activity/Problem Area
