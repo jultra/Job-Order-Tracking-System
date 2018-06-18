@@ -13,7 +13,7 @@
         = form_for @office do |f|
           %div.form-row
             %div{:class=>"form-group col-md-4"}
-              = f.label "office name"
+              = f.label "office name" 
               = f.text_field :name, :required => true, :class=>"form-control", :id=>"inputname", :placeholder => "Office Name"
             %div{:class => "form-group col-md-4"}
               = f.label "acronym"

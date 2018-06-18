@@ -36,7 +36,7 @@
                     %tr
                       %td= req.control_no
                       %td= req.job_type
-                      %td None
+                      %td= User.find(req.user_id).fname + " " + User.find(req.user_id).mname + " " + User.find(req.user_id).lname
                       %td= req.progress
                       %td
                         = link_to(job_order_path(req), method: :get, class: 'btn btn-primary') do
