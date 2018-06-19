@@ -31,7 +31,7 @@ class UsersController < ApplicationController
   def approve
     user = User.find params[:id]
     user.update(:approved => true, :confirmed => true, :active => true)
-    user.save
+    
     if user.position == "Student"
       user.add_role :Student
     elsif user.position == "Faculty"
@@ -41,6 +41,7 @@ class UsersController < ApplicationController
     elsif user.position == "Chairperson/Head"
       user.add_role :Head
     end
+    user.save!
     redirect_to users_path
   end
 
