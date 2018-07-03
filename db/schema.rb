@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180616102557) do
+ActiveRecord::Schema.define(version: 20180621114744) do
 
   create_table "job_orders", force: :cascade do |t|
     t.string "control_no"

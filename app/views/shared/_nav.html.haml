@@ -22,7 +22,7 @@
             %a{:href => offices_path}
               %i.menu-icon.fa.fa-hospital-o>
               Offices
-        -if @user.has_role? :SAO_admin or @user.has_role? :Adviser or @user.has_role? :Head
+        -if @user.has_role? :SAO_admin or @user.has_role? :Faculty or @user.has_role? :Head
           %li.active
             %a{:href => "/manage_job_orders"}
               %i.menu-icon.fa.fa-file-text-o>

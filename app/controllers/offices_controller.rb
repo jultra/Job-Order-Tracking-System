@@ -2,12 +2,12 @@ class OfficesController < ApplicationController
 
   def index
     @office = Office.all
-    @user = User.all.where(:position => 'Chairperson/Head').map{|i| i.fname + " " + i.lname}
+    @user = User.all.where("position = 'Chairperson/Head' OR position = 'Admin Officer'").map{|i| i.fname + " " + i.lname}
   end
 
   def new
     @office = Office.new
-    @user = User.all.where(:position => 'Chairperson/Head')
+    @user = User.all.where("position = 'Chairperson/Head' OR position = 'Admin Officer'")
     @user_n = @user.map{|x| x.fname + ' '+ x.mname + ' ' + x.lname}
     @user_id = @user.map{|x| x.id}
     #@user_name = Hash.new

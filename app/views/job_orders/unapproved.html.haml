@@ -1,6 +1,6 @@
 .div{:style => "position: relative; top: 75px; z-index:1; left: 275px; width: 80%;"}
   = form_for(:job_order, :url => "/job_orders/admin_approve_job_order/#{@job_order.id}", :method => 'get') do |job|
-    = render(:partial => "request_form", :locals => {:job => job})
+    = render(:partial => "unapproved_request_form", :locals => {:job => job})
     .animated.fadeIn
       .col-lg-8{:style => "left:33.5%;"}
         .card
@@ -65,18 +65,20 @@
     });
 
 
-    var job_type = document.getElementById("variable").value;
+    var job_type = document.getElementById('variable').value;
+    console.log("Job type: " + job_type + "Wiw");
     if(!toBeChecked(job_type, "Aircon cleaning/repair/install") && !toBeChecked(job_type, "Bulb Tube Replacement") && !toBeChecked(job_type, "Carpentry/ Fabrication work/ repair") &&
       !toBeChecked(job_type, "Computer Hardware Servicing") && !toBeChecked(job_type, "Computer Software Servicing") &&!toBeChecked(job_type, "Cost Estimate Formulation / POW") &&
       !toBeChecked(job_type, "DLP/LCD Services") &&!toBeChecked(job_type, "Door knob installation/repair") &&!toBeChecked(job_type, "Electric fan cleaning/repair") &&
       !toBeChecked(job_type, "Electrical installation/repair") &&!toBeChecked(job_type, "Internet & network problems") &&!toBeChecked(job_type, "Inventory taking & recording") &&
-      !toBeChecked(job_type, "Painting/Repainting/Varnish works") &&!toBeChecked(job_type, "Photography/Video coverage") &&!toBeChecked(job_type, "Plumbing/Sanitary Install/repair") &&
+      !toBeChecked(job_type, "Painting/Repainting/Varnish works") && !toBeChecked(job_type, "Photography/Video coverage") &&!toBeChecked(job_type, "Plumbing/Sanitary Install/repair") &&
       !toBeChecked(job_type, "Printer/ Peripheral related problems") &&!toBeChecked(job_type, "Request for Personnel assistance") &&!toBeChecked(job_type, "Sounds & lights services") &&
       !toBeChecked(job_type, "Streamer/Signage making") &&!toBeChecked(job_type, "Streamer installation") &&!toBeChecked(job_type, "Transfer/Transport items(see listing)" && job_type != "") ){
         document.getElementById('others').checked = true;
         document.getElementById('specify').disabled = false;
         document.getElementById('specify').value = job_type;
     }
+   
     document.getElementById('option1').disabled = true;
     document.getElementById('option2').disabled = true;
     document.getElementById('option3').disabled = true;
@@ -112,7 +114,7 @@
 
   });
   function toBeChecked(job_type, value){
-    if(value == job_type){
+    if(job_type == value){
       return true;
     }
     return false;

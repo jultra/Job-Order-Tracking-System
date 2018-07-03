@@ -11,7 +11,7 @@
             %nav
               #nav-tab.nav.nav-tabs{:role => "tablist"}
                 -@user = User.find(session['user_credentials_id'])
-                -if @user.has_role? :SAO_admin or @user.has_role? :Adviser
+                -if @user.has_role? :SAO_admin or @user.has_role? :Faculty
                   %a#custom-nav-approve-tab.nav-item.nav-link{:href => "/jobs/approved"} Approved Job Orders
                   %a#custom-nav-unapprove-tab.nav-item.nav-link.active{:href => "/jobs/unapproved"} Unapproved Job Orders
                 -if @user.has_role? :Head
@@ -39,9 +39,14 @@
                       %td= User.find(req.user_id).fname + " " + User.find(req.user_id).mname + " " + User.find(req.user_id).lname
                       %td= req.date_needed
                       %td
-                        = link_to(unapproved_path(req), method: :get, class: 'btn btn-primary') do
-                          %i.fa.fa-eye>
-                            View
+                        -if @user.has_role? :SAO_admin
+                          = link_to(unapproved_path(req), method: :get, class: 'btn btn-primary') do
+                            %i.fa.fa-eye>
+                              View
+                        -if @user.has_role? :Faculty
+                          = link_to(adviser_approval_path(req), method: :get, class: 'btn btn-primary') do
+                            %i.fa.fa-eye>
+                              View
 
 %script{:src => "/assets/js/vendor/jquery-2.1.4.min.js"}
 %script{:src => "/assets/js/popper.min.js"}

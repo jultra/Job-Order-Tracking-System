@@ -2,9 +2,9 @@
   = form_for(:job_order, :url => "/job_orders/#{@job_order.id}", :method => 'put') do |job|
     = render(:partial => "request_form", :locals => {:job => job})
     .float-right{:style => "padding-bottom: 25px; padding-right: 15px;"}
-      = link_to(adviser_approve_job_order_path(@job_order.id), method: :get, class: 'btn btn-primary') do
-        %i.fa.fa-times>
-          Approve
+      %button.btn.btn-primary{:type => "submit"}
+        %i.fa.fa-check>
+          Approve
       = link_to(adviser_reject_job_order_path(@job_order.id), method: :get, class: 'btn btn-danger') do
         %i.fa.fa-times>
           Reject

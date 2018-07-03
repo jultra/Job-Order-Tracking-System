@@ -1,4 +1,4 @@
-class UsersController < ApplicationController
+  class UsersController < ApplicationController
   layout :resolve_layout
 
   def new
@@ -32,16 +32,8 @@ class UsersController < ApplicationController
     user = User.find params[:id]
     user.update(:approved => true, :confirmed => true, :active => true)
     
-    if user.position == "Student"
-      user.add_role :Student
-    elsif user.position == "Faculty"
-      user.add_role :Faculty
-    elsif user.position == "Staff"
-      user.add_role :Staff
-    elsif user.position == "Chairperson/Head"
-      user.add_role :Head
-    end
-    user.save!
+    set_role(user)
+    
     redirect_to users_path
   end
 
@@ -69,6 +61,22 @@ class UsersController < ApplicationController
   end
 
   private
+
+  def set_role(user)
+    if user.position == "Student"
+      user.add_role :Student
+    elsif user.position == "Admin Officer"
+      user.add_role :AdminOfficer
+    elsif user.position == "Faculty"
+      user.add_role :Faculty
+    elsif user.position == "Staff"
+      user.add_role :Staff
+    elsif user.position == "Chairperson/Head"
+      user.add_role :Head
+    end
+    user.save!
+
+  end
 
   def users_params
     params.require(:user).permit(:username, :Division_Department, :position, :fname, :mname, :lname, :email, :password, :password_confirmation)

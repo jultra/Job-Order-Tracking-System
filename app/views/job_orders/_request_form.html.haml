@@ -136,11 +136,13 @@
               = job.hidden_field :user_id, :value => "#{session['user_credentials_id']}"
               = job.hidden_field :adviser_id, :id => "adviser_id"
             *The specified date should be at least 3 days earlier today
+            
 %script{:src => "https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"}
+
 :javascript
   $(document).ready(function(){
-    alert("Wiw");
     var adv_name = document.getElementById("variable2").value;
+
     if(adv_name != ""){
       document.getElementById("adviser_name").value = adv_name
     }

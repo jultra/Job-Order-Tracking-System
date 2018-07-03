@@ -2,7 +2,7 @@ class UserSessionsController < ApplicationController
   layout :resolve_layout
 
   def new
-    User.find(2).add_role :SAO_admin
+    # User.find(1).add_role :SAO_admin
     if current_user_session != nil
       current_user_session.destroy
     else
