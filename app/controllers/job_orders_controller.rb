@@ -3,6 +3,7 @@ require 'date'
 class JobOrdersController < ApplicationController
   protect_from_forgery
   before_action :require_login
+  before_action :get_job, only: [:show, :edit, :destroy, :adviser_approval, :admin_approval, :unapproved, :unassigned]
 
   def job_order_params
     params.require(:job_order).permit(:job_type, :where, :date_needed, :time_needed, :available_materials, :information, :adviser_id, :fund_source, :user_id)
@@ -51,6 +52,10 @@ class JobOrdersController < ApplicationController
     params.require(:job_order).permit(:office_id, :delivery_date)
   end
 
+  def assign_params
+    params.require(:job_order).permit(:assigned_to_id, :staff_name)
+  end
+
   def create
     current_time = DateTime.now
 
@@ -86,13 +91,11 @@ class JobOrdersController < ApplicationController
   end
 
   def show
-    @job_order = JobOrder.find params[:id]
     @job_type = @job_order.job_type
     @users = User.all
   end
 
   def edit
-    @job_order = JobOrder.find params[:id]
     @job_type = @job_order.job_type
     if(@job_order.adviser_id != "" && @job_order.adviser_id != nil)
       @user = User.find(@job_order.adviser_id)
@@ -101,15 +104,14 @@ class JobOrdersController < ApplicationController
   end
 
   def update
-    update_record = JobOrder.find params[:id]
     update_record.update_attributes!(job_order_params)
     #should put notice here
     redirect_to '/job_orders/pending_requests'
   end
 
   def destroy
-    @job_order = JobOrder.find params[:id]
     @job_order.update_column(:progress, "Cancelled")
+    @job_order.save!
     redirect_to '/job_orders/pending_requests'
   end
 
@@ -122,7 +124,6 @@ class JobOrdersController < ApplicationController
   end
 
   def adviser_approval
-    @job_order = JobOrder.find params[:id]
     @job_type = @job_order.job_type
     if(@job_order.adviser_id != "" && @job_order.adviser_id != nil)
       @user = User.find(@job_order.adviser_id)
@@ -152,7 +153,6 @@ class JobOrdersController < ApplicationController
 
   def admin_approval
     print "admin approval"
-    @job_order = JobOrder.find params[:id]
     @job_type = @job_order.job_type
     if(@job_order.adviser_id != "" && @job_order.adviser_id != nil)
       @user = User.find(@job_order.adviser_id)
@@ -161,7 +161,13 @@ class JobOrdersController < ApplicationController
   end
 
   def unapproved
-    @job_order = JobOrder.find params[:id]
+  end
+
+  def unassigned
+    puts "Job Order: #{@job_order.assigned_to_id}"
+    if @job_order.assigned_to_id != nil
+      @staff = User.find(@job_order.assigned_to_id)
+    end
   end
 
   def admin_approve_job_order
@@ -175,6 +181,13 @@ class JobOrdersController < ApplicationController
   def admin_reject_job_order
     update_attribute("Rejected")
     redirect_to '/jobs/unapproved'
+  end
+
+  def assign_job_order
+    update_record = JobOrder.find params[:id]
+    update_record.update_attributes!(assign_params)
+    update_record.update_attributes!(progress: 'Waiting for completion')
+    redirect_to '/jobs/unassigned'
   end
 
   def live_search
@@ -192,6 +205,22 @@ class JobOrdersController < ApplicationController
     else
       @results = ""
     end
+    render :layout => false
+  end
+
+  def live_search3
+    if(params[:undefined] != "")
+      @results = User.where("fname LIKE ? AND position LIKE ?", "%#{params[:undefined]}%", "Staff")
+    else
+      @results = ""
+    end
+
+    if @results == nil
+      puts "Result empty"
+    else
+      puts "Result not empty"
+    end
+
     render :layout => false
   end
 
@@ -238,7 +267,7 @@ class JobOrdersController < ApplicationController
     elsif User.find(session['user_credentials_id']).has_role? :Head     #head/chair
       @office = Office.where(:user_id => session['user_credentials_id'])
       if !@office.blank?
-        @ongoing_jobs = JobOrder.where("progress LIKE ? AND office_id = ?", 'Ongoing%', @office.office_id)
+        @ongoing_jobs = JobOrder.where("progress LIKE ? AND office_id = ?", 'Ongoing', @office.ids)
       end
     else  #staff
       @ongoing_jobs = JobOrder.where("assigned_to_id = ? AND progress LIKE ?", session['user_credentials_id'], 'Ongoing%')
@@ -253,7 +282,7 @@ class JobOrdersController < ApplicationController
     elsif User.find(session['user_credentials_id']).has_role? :Head     #head/chair
       @office = Office.where(:user_id => session['user_credentials_id'])
       if !@office.blank?
-        @finished_job = JobOrder.where("progress = 'Finished' AND office_id = ?", @office.office_id)
+        @finished_job = JobOrder.where("progress = 'Finished' AND office_id = ?", @office.ids)
       end
     else  #staff
       @finished_jobs = JobOrder.where("assigned_to_id = ? AND progress = 'Finished'", session['user_credentials_id'])
@@ -261,20 +290,22 @@ class JobOrdersController < ApplicationController
   end
 
   def assigned_job_orders
+    puts "Assigned"
     if User.find(session['user_credentials_id']).has_role? :Head     #head/chair
       @office = Office.where("user_id = ?", session['user_credentials_id'])
       if !@office.blank?
-        print "Office ID: " + "#{@office.last.id}"
+        puts "Office ID: " + "#{@office.last.id}"
         @assigned_requests = JobOrder.where("progress = 'Waiting for completion' AND office_id = ?", @office.last.id)
       end
     end
   end
 
   def unassigned_job_orders
+    puts "Unassigned"
     if User.find(session['user_credentials_id']).has_role? :Head     #head/chair
       @office = Office.where("user_id = ?", session['user_credentials_id'])
       if !@office.blank?
-        print "qqqqqqqqqqqqqqqqqqqqqqq #{@office.last.id}"
+        puts "Unassigned #{@office.last.id}"
         @unassigned_requests = JobOrder.where("progress = 'Waiting for assignment' AND office_id = ?", @office.last.id)
       end
     end
@@ -283,4 +314,13 @@ class JobOrdersController < ApplicationController
   def pending_job_orders
     @pending_jobs = JobOrder.where("assigned_to_id = ? AND progress = 'Ready to start'", session['user_credentials_id'])
   end
+
+  private
+    def get_job
+      @job_order = JobOrder.find params[:id]
+    end
+
+    def get_update_record
+      update_record = JobOrder.find params[:id]
+    end
 end
