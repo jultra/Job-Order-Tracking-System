@@ -319,8 +319,4 @@ class JobOrdersController < ApplicationController
     def get_job
       @job_order = JobOrder.find params[:id]
     end
-
-    def get_update_record
-      update_record = JobOrder.find params[:id]
-    end
 end

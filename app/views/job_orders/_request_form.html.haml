@@ -125,6 +125,8 @@
             .form-group
               %label.form-control-label{:for => "fund"} Fund Source
               = job.text_field :fund_source, :class => 'form-control', :placeholder => "e.g. DNSM"
+              %label.form-control-label{:for => "money_budget"} Budget
+              = job.text_field :money_budget, :class => 'form-control', :placeholder => "0.00"
             .form-group
               %label.form-control-label{:for => "information"} Order/Activity/Problem Area
               = job.text_area :information, :class => 'form-control', :rows => "9", :placeholder => "Important information"
