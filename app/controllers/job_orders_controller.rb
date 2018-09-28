@@ -67,27 +67,27 @@ class JobOrdersController < ApplicationController
 
       if @new_request.adviser_id != "" && @new_request.adviser_id != nil
         #do some query here to set @new_request.adviser_id =
-        @new_request.progress = "Waiting for adviser approval"
+        @new_request.progress = 'Waiting for adviser approval'
       else
         @new_request.adviser_id = 1
-        @new_request.progress = "Waiting for admin approval"
+        @new_request.progress = 'Waiting for admin approval'
       end
       if @new_request.valid?
         @new_request.save!
         redirect_to '/job_orders/pending_requests'
       else
-        flash[:notice] = "Insufficient information provided!"
+        flash[:notice] = 'Insufficient information provided!'
         redirect_to '/job_orders/new'
       end
     else
-      flash[:notice] = "Date provided is not valid!"
+      flash[:notice] = 'Date provided is not valid!'
       redirect_to '/job_orders/new'
     end
   end
 
   def pending_requests
     @requests = JobOrder.where("progress LIKE 'Waiting%' OR progress LIKE 'Ready%'")
-    #try using dependency injection kena
+    # try using dependency injection kena
   end
 
   def show
@@ -97,7 +97,7 @@ class JobOrdersController < ApplicationController
 
   def edit
     @job_type = @job_order.job_type
-    if(@job_order.adviser_id != "" && @job_order.adviser_id != nil)
+    if (@job_order.adviser_id != "" && @job_order.adviser_id != nil)
       @user = User.find(@job_order.adviser_id)
       @adviser_name = @user.fname + " " + @user.mname + " " + @user.lname
     end
@@ -105,58 +105,58 @@ class JobOrdersController < ApplicationController
 
   def update
     update_record.update_attributes!(job_order_params)
-    #should put notice here
+    # should put notice here
     redirect_to '/job_orders/pending_requests'
   end
 
   def destroy
-    @job_order.update_column(:progress, "Cancelled")
+    @job_order.update_column(:progress, 'Cancelled')
     @job_order.save!
     redirect_to '/job_orders/pending_requests'
   end
 
   def list_pending_admin_approval
-    @requests = JobOrder.where(:progress => "Waiting for admin approval")
+    @requests = JobOrder.where(:progress => 'Waiting for admin approval')
   end
 
   def list_pending_adviser_approval
-    @requests = JobOrder.where(:progress => "Waiting for adviser approval", :adviser_id => session['user_credentials_id'])
+    @requests = JobOrder.where(progress: 'Waiting for adviser approval', adviser_id: session['user_credentials_id'])
   end
 
   def adviser_approval
     @job_type = @job_order.job_type
-    if(@job_order.adviser_id != "" && @job_order.adviser_id != nil)
+    if(@job_order.adviser_id != '' && @job_order.adviser_id != nil)
       @user = User.find(@job_order.adviser_id)
-      @adviser_name = @user.fname + " " + @user.mname + " " + @user.lname
+      @adviser_name = @user.fname + ' ' + @user.mname + ' ' + @user.lname
     end
   end
 
   def adviser_approve_job_order
-    update_attribute("Waiting for admin approval")
+    update_attribute('Waiting for admin approval')
     redirect_to '/jobs/unapproved'
   end
 
   def adviser_reject_job_order
-    update_attribute("Rejected")
+    update_attribute('Rejected')
     redirect_to '/jobs/unapproved'
   end
 
   def update_attribute(attribute)
     update_record = JobOrder.find params[:id]
-    update_record.update_attributes!(:progress => attribute)
+    update_record.update_attributes!(progress: attribute)
     redirect_to '/job_orders/list_pending_approval'
   end
 
   def list_ongoing_jobs
-    @requests = JobOrder.where(:progress => "Approved")
+    @requests = JobOrder.where(progress: 'Approved')
   end
 
   def admin_approval
-    print "admin approval"
+    print 'admin approval'
     @job_type = @job_order.job_type
-    if(@job_order.adviser_id != "" && @job_order.adviser_id != nil)
+    if(@job_order.adviser_id != '' && @job_order.adviser_id != nil)
       @user = User.find(@job_order.adviser_id)
-      @adviser_name = @user.fname + " " + @user.mname + " " + @user.lname
+      @adviser_name = @user.fname + ' ' + @user.mname + ' ' + @user.lname
     end
   end
 
@@ -173,13 +173,13 @@ class JobOrdersController < ApplicationController
   def admin_approve_job_order
     update_record = JobOrder.find params[:id]
     update_record.update_attributes!(admin_approval_params)
-    update_record.update_attributes!(:control_no => Date.today.year.to_s + '-' + JobOrder.last.id.to_s)
-    update_record.update_attributes!(:progress => "Waiting for assignment")
+    update_record.update_attributes!(control_no: Date.today.year.to_s + '-' + JobOrder.last.id.to_s)
+    update_record.update_attributes!(progress: 'Waiting for assignment')
     redirect_to '/jobs/unapproved'
   end
 
   def admin_reject_job_order
-    update_attribute("Rejected")
+    update_attribute('Rejected')
     redirect_to '/jobs/unapproved'
   end
 
@@ -192,36 +192,36 @@ class JobOrdersController < ApplicationController
 
   def live_search
     if(params[:undefined] != "")
-          @results = (User.where("(fname LIKE ? OR mname LIKE ? OR lname LIKE ?) AND position LIKE ?", "#{params[:undefined]}%", "#{params[:undefined]}%", "#{params[:undefined]}%", "Faculty"))
+      @results = (User.where("(fname LIKE ? OR mname LIKE ? OR lname LIKE ?) AND position LIKE ?", "#{params[:undefined]}%", "#{params[:undefined]}%", "#{params[:undefined]}%", "Faculty"))
     else
-      @results = ""
+      @results = ''
     end
-    render :layout => false
+    render layout: false
   end
 
   def live_search2
-    if(params[:undefined] != "")
+    if(params[:undefined] != '')
       @results = (Office.where("name LIKE ? ", "%#{params[:undefined]}%"))
     else
-      @results = ""
+      @results = ''
     end
     render :layout => false
   end
 
   def live_search3
-    if(params[:undefined] != "")
+    if(params[:undefined] != '')
       @results = User.where("fname LIKE ? AND position LIKE ?", "%#{params[:undefined]}%", "Staff")
     else
-      @results = ""
+      @results = ''
     end
 
     if @results == nil
-      puts "Result empty"
+      puts 'Result empty'
     else
-      puts "Result not empty"
+      puts 'Result not empty'
     end
 
-    render :layout => false
+    render layout: false
   end
 
   def require_login
