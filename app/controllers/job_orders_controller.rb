@@ -6,7 +6,7 @@ class JobOrdersController < ApplicationController
   before_action :get_job, only: [:show, :edit, :destroy, :adviser_approval, :admin_approval, :unapproved, :unassigned]
 
   def job_order_params
-    params.require(:job_order).permit(:job_type, :where, :date_needed, :time_needed, :available_materials, :information, :adviser_id, :fund_source, :user_id)
+    params.require(:job_order).permit(:job_type, :where, :date_needed, :time_needed, :available_materials, :information, :adviser_id, :fund_source, :money_budget, :user_id)
   end
 
   def index
