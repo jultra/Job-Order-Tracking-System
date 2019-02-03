@@ -13,6 +13,7 @@ gem 'rspec-autotest'
 gem 'autotest'
 gem 'haml-rails'
 gem 'haml'
+gem 'jquery-rails'
 
 gem 'rolify'
 # Use sqlite3 as the database for Active Record
