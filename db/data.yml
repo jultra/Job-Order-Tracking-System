@@ -1,0 +1,736 @@
+
+---
+ar_internal_metadata:
+  columns:
+  - key
+  - value
+  - created_at
+  - updated_at
+  records: 
+  - - environment
+    - development
+    - '2018-06-21 02:52:59.104047'
+    - '2018-06-21 02:52:59.104047'
+
+---
+job_orders:
+  columns:
+  - id
+  - control_no
+  - job_type
+  - code
+  - information
+  - where
+  - fund_source
+  - acknowledgment
+  - available_materials
+  - date_filed
+  - date_needed
+  - date_approved
+  - delivery_date
+  - time_needed
+  - date_started
+  - progress
+  - inspection_date
+  - inspection_remarks
+  - assignment_remarks
+  - assignment_date
+  - money_budget
+  - money_spent
+  - date_completed
+  - user_id
+  - adviser_id
+  - office_id
+  - inspected_by_id
+  - assigned_to_id
+  records: 
+  - - 1
+    - 
+    - Internet & network problems
+    - 
+    - For academic purposes
+    - Computer Lab 1
+    - DNSM
+    - 
+    - None
+    - '2018-06-21'
+    - '2018-06-25'
+    - 
+    - 
+    - '2000-01-01 11:00:00'
+    - 
+    - Rejected
+    - 
+    - 
+    - 
+    - 
+    - 
+    - 
+    - 
+    - 5
+    - 4
+    - 
+    - 
+    - 
+  - - 2
+    - 2018-11
+    - Aircon cleaning/repair/install
+    - 
+    - None
+    - Computer Lab 1
+    - DNSM
+    - 
+    - None
+    - '2018-07-01'
+    - '2018-07-09'
+    - 
+    - '2018-07-09'
+    - '2000-01-01 12:00:00'
+    - 
+    - Waiting for completion
+    - 
+    - 
+    - 
+    - 
+    - 
+    - 
+    - 
+    - 5
+    - 4
+    - 1
+    - 
+    - 9
+  - - 3
+    - 2018-3
+    - Bulb Tube Replacement
+    - 
+    - None
+    - LRC
+    - DNSM
+    - 
+    - None
+    - '2018-07-01'
+    - '2018-07-09'
+    - 
+    - '2018-07-09'
+    - '2000-01-01 11:00:00'
+    - 
+    - Waiting for assignment
+    - 
+    - 
+    - 
+    - 
+    - 
+    - 
+    - 
+    - 7
+    - 1
+    - 
+    - 
+    - 
+  - - 4
+    - 
+    - Computer Software Servicing
+    - 
+    - None
+    - Computer Lab 1
+    - DNSM
+    - 
+    - None
+    - '2018-07-02'
+    - '2018-07-09'
+    - 
+    - 
+    - '2000-01-01 11:00:00'
+    - 
+    - Waiting for admin approval
+    - 
+    - 
+    - 
+    - 
+    - 
+    - 
+    - 
+    - 7
+    - 1
+    - 
+    - 
+    - 
+  - - 5
+    - 2018-8
+    - Aircon cleaning/repair/install
+    - 
+    - asdas
+    - LRC
+    - DNSM
+    - 
+    - dasd
+    - '2018-07-02'
+    - '2018-07-09'
+    - 
+    - '2018-07-09'
+    - '2000-01-01 11:00:00'
+    - 
+    - Waiting for assignment
+    - 
+    - 
+    - 
+    - 
+    - 
+    - 
+    - 
+    - 7
+    - 1
+    - 
+    - 
+    - 
+  - - 6
+    - 2018-6
+    - Aircon cleaning/repair/install
+    - 
+    - None
+    - Computer Lab 1
+    - DNSM
+    - 
+    - None
+    - '2018-07-03'
+    - '2018-07-09'
+    - 
+    - '2018-07-09'
+    - '2000-01-01 11:00:00'
+    - 
+    - Waiting for assignment
+    - 
+    - 
+    - 
+    - 
+    - 
+    - 
+    - 
+    - 7
+    - 4
+    - 
+    - 
+    - 
+  - - 7
+    - 
+    - Computer Software Servicing
+    - 
+    - None
+    - Computer Lab 1
+    - DNSM
+    - 
+    - None
+    - '2018-07-03'
+    - '2018-07-06'
+    - 
+    - 
+    - '2000-01-01 08:00:00'
+    - 
+    - Waiting for admin approval
+    - 
+    - 
+    - 
+    - 
+    - 
+    - 
+    - 
+    - 5
+    - 4
+    - 
+    - 
+    - 
+  - - 8
+    - 
+    - Bulb Tube Replacement
+    - 
+    - None
+    - Computer Lab 1
+    - DNSM
+    - 
+    - None
+    - '2018-07-03'
+    - '2018-07-09'
+    - 
+    - 
+    - '2000-01-01 08:00:00'
+    - 
+    - Rejected
+    - 
+    - 
+    - 
+    - 
+    - 
+    - 
+    - 
+    - 4
+    - 4
+    - 
+    - 
+    - 
+  - - 9
+    - 
+    - Aircon cleaning/repair/install
+    - 
+    - None
+    - Computer Lab 1
+    - DNSM
+    - 
+    - None
+    - '2018-07-28'
+    - '2018-07-31'
+    - 
+    - 
+    - '2000-01-01 11:00:00'
+    - 
+    - Rejected
+    - 
+    - 
+    - 
+    - 
+    - 
+    - 
+    - 
+    - 4
+    - 4
+    - 
+    - 
+    - 
+  - - 10
+    - 
+    - Aircon cleaning/repair/install
+    - 
+    - dasdad
+    - Computer Lab 1
+    - DNSM
+    - 
+    - dasdas
+    - '2018-07-28'
+    - '2018-08-01'
+    - 
+    - 
+    - '2000-01-01 11:00:00'
+    - 
+    - Waiting for admin approval
+    - 
+    - 
+    - 
+    - 
+    - 
+    - 
+    - 
+    - 4
+    - 1
+    - 
+    - 
+    - 
+  - - 11
+    - 
+    - Aircon cleaning/repair/install
+    - 
+    - Nonen
+    - Computer Lab 1
+    - DNSM
+    - 
+    - NOne
+    - '2018-07-28'
+    - '2018-08-03'
+    - 
+    - 
+    - '2000-01-01 08:00:00'
+    - 
+    - Waiting for adviser approval
+    - 
+    - 
+    - 
+    - 
+    - 
+    - 
+    - 
+    - 4
+    - 4
+    - 
+    - 
+    - 
+  - - 12
+    - 
+    - Bulb Tube Replacement
+    - 
+    - None
+    - Computer Lab 1
+    - DNSM
+    - 
+    - None
+    - '2018-07-28'
+    - '2018-08-03'
+    - 
+    - 
+    - '2000-01-01 06:00:00'
+    - 
+    - Waiting for adviser approval
+    - 
+    - 
+    - 
+    - 
+    - 100.0
+    - 
+    - 
+    - 7
+    - 4
+    - 
+    - 
+    - 
+
+---
+offices:
+  columns:
+  - id
+  - name
+  - created_at
+  - updated_at
+  - acronym
+  - user_id
+  records: 
+  - - 1
+    - Division of Natural Sciences and Mathematics
+    - '2018-06-21 14:07:55.035385'
+    - '2018-06-21 14:07:55.035385'
+    - DNSM
+    - 2
+  - - 2
+    - Division of Management
+    - '2018-06-21 14:08:05.661558'
+    - '2018-06-21 14:08:05.661558'
+    - DM
+    - 3
+
+---
+roles:
+  columns:
+  - id
+  - name
+  - resource_type
+  - resource_id
+  - created_at
+  - updated_at
+  records: 
+  - - 1
+    - SAO_admin
+    - 
+    - 
+    - '2018-06-21 02:55:52.436757'
+    - '2018-06-21 02:55:52.436757'
+  - - 2
+    - Head
+    - 
+    - 
+    - '2018-06-21 11:55:43.007497'
+    - '2018-06-21 11:55:43.007497'
+  - - 3
+    - Student
+    - 
+    - 
+    - '2018-06-21 12:03:48.762886'
+    - '2018-06-21 12:03:48.762886'
+  - - 4
+    - Faculty
+    - 
+    - 
+    - '2018-06-21 12:03:52.322394'
+    - '2018-06-21 12:03:52.322394'
+  - - 5
+    - Staff
+    - 
+    - 
+    - '2018-06-21 14:07:40.151478'
+    - '2018-06-21 14:07:40.151478'
+
+---
+users:
+  columns:
+  - id
+  - username
+  - position
+  - fname
+  - mname
+  - lname
+  - email
+  - crypted_password
+  - password_salt
+  - persistence_token
+  - single_access_token
+  - perishable_token
+  - login_count
+  - failed_login_count
+  - last_request_at
+  - current_login_at
+  - last_login_at
+  - current_login_ip
+  - last_login_ip
+  - active
+  - approved
+  - confirmed
+  - created_at
+  - updated_at
+  - accessType
+  - Division_Department
+  records: 
+  - - 1
+    - sirteles
+    - Admin Officer
+    - Telesforo
+    - Sanches
+    - Sales
+    - teles@up.edu.ph
+    - "$2a$10$lzv1qNK2C.2i9JJhogTShuFbcX92vBAEy7HR1Z49JS47LFpGCWEhG"
+    - iAMqxJ1i-5bB14vTQZGc
+    - ab90e2249b66671b316c3791694580482eaf35e90cc025af3903763f333835840a1b9668366dc53420e67af30cf176e93d29f52d7656b92b89ce6c22872e6cff
+    - ddjI8H0zEWJBJDSX0VC1
+    - oyiqZ-SBfvmpeCSo0Did
+    - 26
+    - 0
+    - '2018-07-27 16:16:37.754359'
+    - '2018-07-27 16:14:08.448480'
+    - '2018-07-03 00:58:30.230337'
+    - 127.0.0.1
+    - 127.0.0.1
+    - true
+    - true
+    - true
+    - '2018-06-21 03:45:30.844295'
+    - '2018-07-27 16:16:37.755156'
+    - 
+    - 
+  - - 2
+    - eulito_casas
+    - Chairperson/Head
+    - Eulito
+    - Vicente
+    - Casas
+    - evcasas@up.edu.ph
+    - "$2a$10$P6wTHc0VBAoHMglDXHB6M.cxETN5YDJNmP3a2WZk6faZoRnxcX5ny"
+    - zBhvdJPG2XNelDYdyu_h
+    - 941e3131c0f999ad203956fcbe953483602bc9280f61372c03151d0588180ef23356e431914853f4d98ec9a479f4601c1148808b48d7abee6fd860b6614a04d5
+    - SG1X-aHgF6wtDSXAEX0l
+    - _YgYR88cJ1UhD4rdSmFt
+    - 15
+    - 0
+    - '2018-07-28 13:11:41.137097'
+    - '2018-07-28 11:11:05.528277'
+    - '2018-07-28 11:03:33.465140'
+    - 127.0.0.1
+    - 127.0.0.1
+    - true
+    - true
+    - true
+    - '2018-06-21 11:55:22.258161'
+    - '2018-07-28 13:11:41.138195'
+    - 
+    - Division of Natural Sciences and Mathematics
+  - - 3
+    - amyjo
+    - Chairperson/Head
+    - Amy Jo
+    - S
+    - Exconde
+    - amyjo@up.edu.ph
+    - "$2a$10$67z0V1ZaI7vWG0DbnJOUEue7YfItodOa53znRvbwXeSScBFR2g7vK"
+    - 0_CVXFrUUU6phJQ8VF7F
+    - 5e8605c8bb4a9409781cc8aea5d5156fe83296160baa53c66e2ecd2c79a8bc6625b63b30cb7c6ca96a2c5b5e8cbf40342afab292e43b27b1539aaa72a35600b9
+    - 6b25naX5pZHOfxFi5tF_
+    - NQj7hWJFBHsPTGMvabso
+    - 0
+    - 0
+    - 
+    - 
+    - 
+    - 
+    - 
+    - true
+    - true
+    - true
+    - '2018-06-21 11:59:33.058058'
+    - '2018-06-21 14:08:05.980401'
+    - 
+    - Division of Management
+  - - 4
+    - jdultra
+    - Faculty
+    - John
+    - Diana
+    - Ultra
+    - jdultra@up.edu.ph
+    - "$2a$10$kAEeubzWt0Jd.IsAXcO7OOUrsDHR9S2ekJ6w3BBbeGOhyLDu/7hge"
+    - 0r0U58CFcwbYRfimJm3Q
+    - f2fc9f09b5c2e472e0143051ed198d3a83815f9cdc4fa2c814220f4630d001e9aced6fec803eb88ff17a0079af85bc80b121502530aac689fcf4eb3fd4449d71
+    - A_2_TJVxNH1mYW5B15H9
+    - aYI8UFZhQ94BlImAvCuk
+    - 20
+    - 0
+    - '2019-02-03 13:21:49.784952'
+    - '2019-02-03 13:21:49.784738'
+    - '2019-01-07 14:03:52.814526'
+    - 127.0.0.1
+    - 127.0.0.1
+    - true
+    - true
+    - true
+    - '2018-06-21 12:00:59.042516'
+    - '2019-02-03 13:21:49.786695'
+    - 
+    - 
+  - - 5
+    - jhamezzz1315
+    - Student
+    - James Michael
+    - Kawaling
+    - Kuizon
+    - jkkuizon@up.edu.ph
+    - "$2a$10$5HU45NFYYYFYkbYeRxw5LuhIFi5JfUkMpcDsjjM.kmAZMQgac4MuW"
+    - Y2GzxoAGBannyf3hajSb
+    - 9c554febfd506b034cfcc0b33ded01db02e8bb55360d755000e6fcc271f915a7c97e6409d1d56239f071e1223be95da108f6baf7d3374784d7e50e710e2d6d0b
+    - zlDC9KeSJOV7CrIbj0Fc
+    - T4OuekeVtXgyxi0k2xPg
+    - 6
+    - 0
+    - '2018-09-28 02:20:14.795885'
+    - '2018-09-28 02:20:14.795603'
+    - '2018-07-02 23:07:21.341194'
+    - 127.0.0.1
+    - 127.0.0.1
+    - true
+    - true
+    - true
+    - '2018-06-21 12:02:22.494660'
+    - '2018-09-28 02:20:14.816360'
+    - 
+    - Division of Natural Sciences and Mathematics
+  - - 6
+    - irmaOCS
+    - Chairperson/Head
+    - Irma
+    - A
+    - Tan
+    - itanOCS@up.edu.ph
+    - "$2a$10$sYqnXYEy28zhDyzECgT9VOJNjaTKFRsG226zUuI6F9Gv1jLD5wUY."
+    - fXw1-yIRSg3A2KbWMTJQ
+    - 014fae4b9b6e34395d7ba3738a85fde33f0863babb6fcc7c968f9ca25e2fcc3abc56c360b3a52832df835a3245f93c6400f866e19ba5775b320ada0b9cda1b2c
+    - Kd73WBVg_yOHEWG8txPl
+    - LlrOIRinRFk6FHLoLHFU
+    - 0
+    - 0
+    - 
+    - 
+    - 
+    - 
+    - 
+    - true
+    - true
+    - true
+    - '2018-06-21 12:09:50.357010'
+    - '2018-06-21 12:11:17.548687'
+    - 
+    - 
+  - - 7
+    - bree
+    - Student
+    - Aubrey
+    - Medalla
+    - Vicente
+    - amvicente1@up.edu.ph
+    - "$2a$10$aa6k2tefONSOmZ63B75jyO62lsWvDhmX3KhnRPpAoid0GbTJAzJt."
+    - N2fLNuE_U4OqWa9ENfBU
+    - bda715f9cb2987c59dab800a6701c4665a079827b9e1fc300ef1a5c487a4b74816c90dd9f2c309ff735eebad430a66fc57a098881147b5fe9398a46fa462ec17
+    - Daxv_TybUi5M9FwBFSSU
+    - fXCVhgoqxCAyIPPTNNkv
+    - 9
+    - 0
+    - '2018-07-28 13:13:34.462187'
+    - '2018-07-28 13:11:55.560952'
+    - '2018-07-28 05:17:31.540148'
+    - 127.0.0.1
+    - 127.0.0.1
+    - true
+    - true
+    - true
+    - '2018-06-21 12:10:37.196044'
+    - '2018-07-28 13:13:34.463162'
+    - 
+    - 
+  - - 8
+    - arni
+    - Student
+    - Arni Maxine
+    - Amascual
+    - Hi
+    - aah@up.edu.ph
+    - "$2a$10$dge7u9Sp/PvByAIP2we1nugOoZKiT6p0CFRSP13p2ZztzvKLqUbSS"
+    - a8pBTNOv33lxb8acjMtt
+    - 20aa56c74e7015f127b8ad307ac0cc68a05f69461ea09fb1a670fd643f795ad07f435516a18fae7db4ed94c7bbbfc54c16d32d8ccf87bc132e1870eb8a23e87e
+    - DMk5eFBQ6dMRJzTwJZGD
+    - WBvPpEIkvy0nLQ8KQP6k
+    - 0
+    - 0
+    - 
+    - 
+    - 
+    - 
+    - 
+    - true
+    - true
+    - true
+    - '2018-06-21 12:32:12.917236'
+    - '2018-06-21 12:32:25.276296'
+    - 
+    - 
+  - - 9
+    - pinky
+    - Staff
+    - Pinky
+    - A
+    - Pinky
+    - pinky@up.edu.ph
+    - "$2a$10$vmhe1qC/yiK8hVBexayNjugf0zIIhx.6t2BZAFjQo0mvBKk8bQNr."
+    - Q4SdNa5WeQtsG-9pfntK
+    - bd149ad278303ac60472250584dd482a6c12ee1a69c81bffce8d3cb16d163dd30a7a27ef06f0148d609c035b1f824486b5caa81c4650f30f1b5bb0761884ebab
+    - wrAfNaqJLsLbd7mrNlz5
+    - U9xbAGYC3PL5xlgA9KOj
+    - 2
+    - 0
+    - '2018-06-21 14:11:46.623110'
+    - '2018-06-21 14:11:23.432035'
+    - '2018-06-21 14:11:07.406459'
+    - 127.0.0.1
+    - 127.0.0.1
+    - true
+    - true
+    - true
+    - '2018-06-21 14:07:20.244637'
+    - '2018-06-21 14:11:46.624333'
+    - 
+    - Division of Natural Sciences and Mathematics
+
+---
+users_roles:
+  columns:
+  - user_id
+  - role_id
+  records: 
+  - - 1
+    - 1
+  - - 2
+    - 2
+  - - 3
+    - 2
+  - - 4
+    - 4
+  - - 5
+    - 3
+  - - 6
+    - 2
+  - - 7
+    - 3
+  - - 8
+    - 3
+  - - 9
+    - 5

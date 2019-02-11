@@ -10,7 +10,8 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180616102557) do
+ActiveRecord::Schema.define(version: 20180621114744) do
+
   create_table "job_orders", force: :cascade do |t|
     t.string "control_no"
     t.string "job_type"
@@ -101,7 +102,7 @@ ActiveRecord::Schema.define(version: 20180616102557) do
     t.index ["single_access_token"], name: "index_users_on_single_access_token", unique: true
   end
 
-  create_table 'users_roles', id: false, force: :cascade do |t|
+  create_table "users_roles", id: false, force: :cascade do |t|
     t.integer "user_id"
     t.integer "role_id"
     t.index ["role_id"], name: "index_users_roles_on_role_id"
