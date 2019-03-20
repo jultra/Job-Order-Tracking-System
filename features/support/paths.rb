@@ -26,7 +26,7 @@ module NavigationHelpers
       '/request_form'
 
     when /^Pending Requests/
-      '/pending_requests'
+      '/pending_requests/'
 
     when /^Ongoing Jobs/
       '/ongoing_jobs'

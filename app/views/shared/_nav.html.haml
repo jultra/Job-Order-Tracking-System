@@ -32,14 +32,13 @@
             %i.menu-icon.fa.fa-edit>
             Request Job Order
         %li.active
-          %a{:href => "/job_orders/pending_requests"}
+          = link_to(pending_requests_path(@user.id), method: :get) do
             %i.menu-icon.fa.fa-spinner>
             Pending Requests
         %li.active
           %a{:href => "/ongoing_jobs"}
             %i.menu-icon.fa.fa-gavel>
             On-going Jobs
-
         %li.active
           %a{:href => "/finished_jobs"}
             %i.menu-icon.fa.fa-check>

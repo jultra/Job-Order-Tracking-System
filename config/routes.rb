@@ -3,7 +3,7 @@ Rails.application.routes.draw do
   root 'user_sessions#new'
   get '/signup' => 'users#new'
   post '/register' => 'users#create'
-  get '/job_orders/pending_requests' => 'job_orders#pending_requests'
+  get '/job_orders/pending_requests/:id' => 'job_orders#pending_requests', as: 'pending_requests'
   get '/job_orders/list_pending_approval' => 'job_orders#list_pending_approval'
   get '/job_orders/approve_job_order/:id' => 'job_orders#approve_job_order', as: 'approve_job_order'
   get '/job_orders/reject_job_order/:id' => 'job_orders#reject_job_order', as: 'reject_job_order'

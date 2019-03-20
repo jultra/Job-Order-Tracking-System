@@ -86,8 +86,7 @@ class JobOrdersController < ApplicationController
   end
 
   def pending_requests
-    @requests = JobOrder.where("progress LIKE 'Waiting%' OR progress LIKE 'Ready%'")
-    # try using dependency injection kena
+    @requests = JobOrder.where("(progress LIKE 'Waiting%' OR progress LIKE 'Ready%') AND user_id = :id", id: params[:id].to_i)
   end
 
   def show
@@ -152,7 +151,7 @@ class JobOrdersController < ApplicationController
   end
 
   def admin_approval
-    print 'admin approval'
+    puts 'admin approval'
     @job_type = @job_order.job_type
     if(@job_order.adviser_id != '' && @job_order.adviser_id != nil)
       @user = User.find(@job_order.adviser_id)
