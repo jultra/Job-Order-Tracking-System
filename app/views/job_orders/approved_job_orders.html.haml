@@ -1,0 +1,64 @@
+.div{:style => "position: relative; top: 75px; z-index:1; left: 275px; width: 80%;"}
+  / /header
+  / Header
+  .breadcrumbs
+    .col-lg-12
+      .card
+        .card-header
+          %h4 Manage Job Orders
+        .card-body
+          .custom-tab
+            %nav
+              #nav-tab.nav.nav-tabs{:role => "tablist"}
+                -@user = User.find(session['user_credentials_id'])
+                -if @user.has_role? :SAO_admin or @user.has_role? :Faculty
+                  %a#custom-nav-approve-tab.nav-item.nav-link.active{:href => "/jobs/approved"} Approved Job Orders
+                  %a#custom-nav-unapprove-tab.nav-item.nav-link{:href => "/jobs/unapproved"} Unapproved Job Orders
+                -if @user.has_role? :Head
+                  %a#custom-nav-assigned-tab.nav-item.nav-link{:href => "/jobs/assigned"} Assigned Job Orders
+                  %a#custom-nav-unassigned-tab.nav-item.nav-link{:href => "/jobs/unassigned"} Unassigned Job Orders
+                -if @user.has_role? :Staff
+                  %a#custom-nav-assigned-tab.nav-item.nav-link{:href => "/jobs/pending"} Pending Job Orders
+                %a#custom-nav-ongoing-tab.nav-item.nav-link{:href => "/jobs/ongoing"} Ongoing Job Orders
+                %a#custom-nav-finish-tab.nav-item.nav-link{:href => "/jobs/finished"} Finished Job Orders
+          #nav-tabContent.tab-content.pl-3.pt-2
+            %table#bootstrap-data-table.table.table-striped.table-bordered
+              %thead
+                %tr
+                  %th Control Number
+                  %th Job Type
+                  %th Filed By
+                  %th Progress
+                  %th Action
+              %tbody
+                -if !@approved_requests.blank?
+                  -@approved_requests.each do |req|
+                    %tr
+                      %td= req.control_no
+                      %td= req.job_type
+                      %td= User.find(req.user_id).fname + " " + User.find(req.user_id).mname + " " + User.find(req.user_id).lname
+                      %td= req.progress
+                      %td
+                        = link_to(job_order_path(req), method: :get, class: 'btn btn-primary') do
+                          %i.fa.fa-eye>
+                            View
+
+%script{:src => "/assets/js/vendor/jquery-2.1.4.min.js"}
+%script{:src => "/assets/js/popper.min.js"}
+%script{:src => "/assets/js/plugins.js"}
+%script{:src => "/assets/js/main.js"}
+%script{:src => "/assets/js/lib/data-table/datatables.min.js"}
+%script{:src => "/assets/js/lib/data-table/dataTables.bootstrap.min.js"}
+%script{:src => "/assets/js/lib/data-table/dataTables.buttons.min.js"}
+%script{:src => "/assets/js/lib/data-table/buttons.bootstrap.min.js"}
+%script{:src => "/assets/js/lib/data-table/jszip.min.js"}
+%script{:src => "/assets/js/lib/data-table/pdfmake.min.js"}
+%script{:src => "/assets/js/lib/data-table/vfs_fonts.js"}
+%script{:src => "/assets/js/lib/data-table/buttons.html5.min.js"}
+%script{:src => "/assets/js/lib/data-table/buttons.print.min.js"}
+%script{:src => "/assets/js/lib/data-table/buttons.colVis.min.js"}
+%script{:src => "/assets/js/lib/data-table/datatables-init.js"}
+:javascript
+  $(document).ready(function() {
+    $('#bootstrap-data-table-export').DataTable();
+  } );

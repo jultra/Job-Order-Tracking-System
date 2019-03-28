@@ -1,0 +1,86 @@
+.div{:style => "position: relative; top: 75px; z-index:1; left: 275px; width: 80%;"}
+  / /header
+  / Header
+  .breadcrumbs
+    .col-sm-4
+      .page-header.float-left
+        .page-title
+          -@user = User.find(session['user_credentials_id'])
+          %h3 Dashboard
+  .content.mt-3
+    -if(flash[:notice]!=nil)
+      %div{:class => "alert alert-success"}
+        %H6=flash[:notice]
+    .animated.fadeIn
+      .row
+        .col-sm-12.mb-4
+          .card-group
+            .card.col-lg-2.col-md-6.no-padding.bg-flat-color-1
+              .card-body
+                .h1.text-muted.text-right.mb-4
+                  %i.fa.fa-spinner.text-light
+                .h4.mb-0.text-light
+                  %span.count
+                    =@pending_request_num
+                %small.text-uppercase.font-weight-bold.text-light Pending Requests
+                .progress.progress-xs.mt-3.mb-0.bg-light{:style => "width: 40%; height: 5px;"}
+            .card.col-lg-2.col-md-6.no-padding.no-shadow
+              .card-body.bg-flat-color-2
+                .h1.text-muted.text-right.mb-4
+                  %i.fa.fa-gavel.text-light
+                .h4.mb-0.text-light
+                  %span.count
+                    =@ongoing_request_num
+                %small.text-uppercase.font-weight-bold.text-light On-going Jobs
+                .progress.progress-xs.mt-3.mb-0.bg-light{:style => "width: 40%; height: 5px;"}
+            .card.col-lg-2.col-md-6.no-padding.no-shadow
+              .card-body.bg-flat-color-3
+                .h1.text-right.mb-4
+                  %i.fa.fa-check.text-light
+                .h4.mb-0.text-light
+                  %span.count
+                    = @finished_request_num
+                %small.text-light.text-uppercase.font-weight-bold Finished Jobs
+                .progress.progress-xs.mt-3.mb-0.bg-light{:style => "width: 40%; height: 5px;"}
+                .col-lg-3.col-md-6
+    -if @user.has_role? :SAO_admin
+      .col-lg-3.col-md-6
+        .card
+          .card-body
+            .stat-widget-one
+              .stat-icon.dib
+                %i.ti-user.text-primary.border-primary
+              .stat-content.dib
+                .stat-text Pending Accounts
+                .stat-digit
+                  =@pending_Accounts
+/ /#right-panel
+/ Right Panel
+%script{:src => "assets/js/vendor/jquery-2.1.4.min.js"}
+%script{:src => "https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js"}
+%script{:src => "assets/js/plugins.js"}
+%script{:src => "assets/js/main.js"}
+%script{:src => "assets/js/lib/chart-js/Chart.bundle.js"}
+%script{:src => "assets/js/dashboard.js"}
+%script{:src => "assets/js/widgets.js"}
+%script{:src => "assets/js/lib/vector-map/jquery.vmap.js"}
+%script{:src => "assets/js/lib/vector-map/jquery.vmap.min.js"}
+%script{:src => "assets/js/lib/vector-map/jquery.vmap.sampledata.js"}
+%script{:src => "assets/js/lib/vector-map/country/jquery.vmap.world.js"}
+:javascript
+  ( function ( $ ) {
+      "use strict";
+
+      jQuery( '#vmap' ).vectorMap( {
+          map: 'world_en',
+          backgroundColor: null,
+          color: '#ffffff',
+          hoverOpacity: 0.7,
+          selectedColor: '#1de9b6',
+          enableZoom: true,
+          showTooltip: true,
+          values: sample_data,
+          scaleColors: [ '#1de9b6', '#03a9f5' ],
+          normalizeFunction: 'polynomial'
+      } );
+  } )( jQuery );

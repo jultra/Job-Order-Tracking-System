@@ -1,0 +1,70 @@
+/ Left Panel
+%aside#left-panel.left-panel{:style => "position: fixed;"}
+  %nav.navbar.navbar-expand-sm.navbar-default
+    .navbar-header
+      %button.navbar-toggler{"aria-controls" => "main-menu", "aria-expanded" => "false", "aria-label" => "Toggle navigation", "data-target" => "#main-menu", "data-toggle" => "collapse", :type => "button"}
+        %i.fa.fa-bars
+      %a.navbar-brand{:href => job_orders_path}
+        %img{:alt => "Logo", :src => "/images/worker.png"}/
+    #main-menu.main-menu.collapse.navbar-collapse
+      %ul.nav.navbar-nav
+        %li.active
+          %a{:href => job_orders_path}
+            %i.menu-icon.fa.fa-dashboard>
+            Dashboard
+        -@user = User.find(session['user_credentials_id'])
+        -if @user.has_role? :SAO_admin
+          %li.active
+            %a{:href => users_path}
+              %i.menu-icon.fa.fa-address-book-o>
+              Accounts
+          %li.active
+            %a{:href => offices_path}
+              %i.menu-icon.fa.fa-hospital-o>
+              Offices
+        -if @user.has_role? :SAO_admin or @user.has_role? :Faculty or @user.has_role? :Head
+          %li.active
+            %a{:href => "/manage_job_orders"}
+              %i.menu-icon.fa.fa-file-text-o>
+              Manage Job Orders
+        %li.active
+          %a{:href => new_job_order_path}
+            %i.menu-icon.fa.fa-edit>
+            Request Job Order
+        %li.active
+          = link_to(pending_requests_path(@user.id), method: :get) do
+            %i.menu-icon.fa.fa-spinner>
+            Pending Requests
+        %li.active
+          %a{:href => "/ongoing_jobs"}
+            %i.menu-icon.fa.fa-gavel>
+            On-going Jobs
+        %li.active
+          %a{:href => "/finished_jobs"}
+            %i.menu-icon.fa.fa-check>
+            Finished Jobs
+        %li.active
+          %a{:href => "/trash"}
+            %i.menu-icon.fa.fa-trash-o>
+            Trash
+    / /.navbar-collapse
+
+#right-panel.right-panel{:style => "position: fixed; width: 80%; z-index: 3; left: 280px;"}
+  / Header
+  %header#header.header
+    .header-menu
+      .col-sm-7
+        .header-left
+        %h5.pb-2.display-5 Job Order Tracking System
+
+      .col-sm-5
+        .user-area.dropdown.float-right
+          %a.dropdown-toggle{"aria-expanded" => "false", "aria-haspopup" => "true", "data-toggle" => "dropdown", :href => "#"}
+            %img.user-avatar.rounded-circle{:alt => "User Avatar", :src => "/images/admin.jpg"}/
+          .user-menu.dropdown-menu
+            %a.nav-link{:href => "/users/new_update"}
+              %i.fa.fa-.user>
+              Update Profile
+            %a.nav-link{:href => root_path}
+              %i.fa.fa-power.-off>
+              Logout

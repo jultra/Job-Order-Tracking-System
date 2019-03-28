@@ -42,9 +42,15 @@ GEM
     addressable (2.5.2)
       public_suffix (>= 2.0.2, < 4.0)
     arel (8.0.0)
+    authlogic (4.0.1)
+      activerecord (>= 4.2, < 5.3)
+      activesupport (>= 4.2, < 5.3)
+      request_store (~> 1.0)
+      scrypt (>= 1.2, < 4.0)
     autotest (4.4.6)
       ZenTest (>= 4.4.1)
     backports (3.11.1)
+    bcrypt (3.1.11)
     bindex (0.5.0)
     builder (3.2.3)
     byebug (10.0.2)
@@ -96,6 +102,9 @@ GEM
     erubis (2.7.0)
     execjs (2.7.0)
     ffi (1.9.23)
+    ffi-compiler (1.0.1)
+      ffi (>= 1.0.0)
+      rake
     gherkin (5.0.0)
     globalid (0.4.1)
       activesupport (>= 4.2.0)
@@ -118,6 +127,10 @@ GEM
     jbuilder (2.7.0)
       activesupport (>= 4.2.0)
       multi_json (>= 1.2)
+    jquery-rails (4.3.3)
+      rails-dom-testing (>= 1, < 3)
+      railties (>= 4.2.0)
+      thor (>= 0.14, < 2.0)
     listen (3.1.5)
       rb-fsevent (~> 0.9, >= 0.9.4)
       rb-inotify (~> 0.9, >= 0.9.7)
@@ -136,6 +149,7 @@ GEM
     minitest (5.11.3)
     multi_json (1.13.1)
     multi_test (0.1.2)
+    mysql2 (0.5.2)
     nio4r (2.3.0)
     nokogiri (1.8.2)
       mini_portile2 (~> 2.3.0)
@@ -171,6 +185,9 @@ GEM
     rb-fsevent (0.10.3)
     rb-inotify (0.9.10)
       ffi (>= 0.5.0, < 2)
+    request_store (1.4.1)
+      rack (>= 1.4)
+    rolify (5.2.0)
     rspec (3.7.0)
       rspec-core (~> 3.7.0)
       rspec-expectations (~> 3.7.0)
@@ -201,6 +218,8 @@ GEM
       sprockets (>= 2.8, < 4.0)
       sprockets-rails (>= 2.0, < 4.0)
       tilt (>= 1.1, < 3)
+    scrypt (3.0.5)
+      ffi-compiler (>= 1.0, < 2.0)
     selenium-webdriver (3.11.0)
       childprocess (~> 0.5)
       rubyzip (~> 1.2)
@@ -217,7 +236,6 @@ GEM
       actionpack (>= 4.0)
       activesupport (>= 4.0)
       sprockets (>= 3.0.0)
-    sqlite3 (1.3.13)
     temple (0.8.0)
     thor (0.20.0)
     thread_safe (0.3.6)
@@ -239,12 +257,17 @@ GEM
     websocket-extensions (0.1.3)
     xpath (3.0.0)
       nokogiri (~> 1.8)
+    yaml_db (0.7.0)
+      rails (>= 3.0)
+      rake (>= 0.8.7)
 
 PLATFORMS
   ruby
 
 DEPENDENCIES
+  authlogic (~> 4.0.1)
   autotest
+  bcrypt
   byebug
   capybara (~> 2.13)
   coffee-rails (~> 4.2)
@@ -254,20 +277,23 @@ DEPENDENCIES
   haml
   haml-rails
   jbuilder (~> 2.5)
+  jquery-rails
   listen (>= 3.0.5, < 3.2)
+  mysql2 (>= 0.4.4, < 0.6.0)
   puma (~> 3.7)
   rails (~> 5.1.6)
+  rolify
   rspec
   rspec-autotest
   sass-rails (~> 5.0)
   selenium-webdriver
   spring
   spring-watcher-listen (~> 2.0.0)
-  sqlite3
   turbolinks (~> 5)
   tzinfo-data
   uglifier (>= 1.3.0)
   web-console (>= 3.3.0)
+  yaml_db
 
 BUNDLED WITH
-   1.16.1
+   1.16.2
