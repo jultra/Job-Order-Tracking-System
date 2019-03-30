@@ -10,9 +10,9 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180621114744) do
+ActiveRecord::Schema.define(version: 20180616102557) do
 
-  create_table "job_orders", force: :cascade do |t|
+  create_table "job_orders", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string "control_no"
     t.string "job_type"
     t.string "code"
@@ -32,10 +32,10 @@ ActiveRecord::Schema.define(version: 20180621114744) do
     t.text "inspection_remarks"
     t.text "assignment_remarks"
     t.date "assignment_date"
-    t.float "money_budget"
-    t.float "money_spent"
+    t.float "money_budget", limit: 24
+    t.float "money_spent", limit: 24
     t.date "date_completed"
-    t.integer "user_id"
+    t.bigint "user_id"
     t.integer "adviser_id"
     t.integer "office_id"
     t.integer "inspected_by_id"
@@ -43,21 +43,21 @@ ActiveRecord::Schema.define(version: 20180621114744) do
     t.index ["user_id"], name: "index_job_orders_on_user_id"
   end
 
-  create_table "offices", force: :cascade do |t|
+  create_table "offices", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "acronym"
-    t.integer "user_id"
+    t.bigint "user_id"
     t.index ["acronym"], name: "index_offices_on_acronym", unique: true
     t.index ["name"], name: "index_offices_on_name", unique: true
     t.index ["user_id"], name: "index_offices_on_user_id"
   end
 
-  create_table "roles", force: :cascade do |t|
+  create_table "roles", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string "name"
     t.string "resource_type"
-    t.integer "resource_id"
+    t.bigint "resource_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["name", "resource_type", "resource_id"], name: "index_roles_on_name_and_resource_type_and_resource_id"
@@ -65,12 +65,12 @@ ActiveRecord::Schema.define(version: 20180621114744) do
     t.index ["resource_type", "resource_id"], name: "index_roles_on_resource_type_and_resource_id"
   end
 
-  create_table "user_sessions", force: :cascade do |t|
+  create_table "user_sessions", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
-  create_table "users", force: :cascade do |t|
+  create_table "users", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string "username"
     t.string "position"
     t.string "fname"
@@ -102,12 +102,14 @@ ActiveRecord::Schema.define(version: 20180621114744) do
     t.index ["single_access_token"], name: "index_users_on_single_access_token", unique: true
   end
 
-  create_table "users_roles", id: false, force: :cascade do |t|
-    t.integer "user_id"
-    t.integer "role_id"
+  create_table "users_roles", id: false, force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.bigint "user_id"
+    t.bigint "role_id"
     t.index ["role_id"], name: "index_users_roles_on_role_id"
     t.index ["user_id", "role_id"], name: "index_users_roles_on_user_id_and_role_id"
     t.index ["user_id"], name: "index_users_roles_on_user_id"
   end
 
+  add_foreign_key "job_orders", "users"
+  add_foreign_key "offices", "users"
 end
