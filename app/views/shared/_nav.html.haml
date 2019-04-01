@@ -13,7 +13,7 @@
             %i.menu-icon.fa.fa-dashboard>
             Dashboard
         -@user = User.find(session['user_credentials_id'])
-        -if @user.has_role? :SAO_admin
+        -if @user.has_role? :Administrator
           %li.active
             %a{:href => users_path}
               %i.menu-icon.fa.fa-address-book-o>
@@ -22,7 +22,7 @@
             %a{:href => offices_path}
               %i.menu-icon.fa.fa-hospital-o>
               Offices
-        -if @user.has_role? :SAO_admin or @user.has_role? :Faculty or @user.has_role? :Head
+        -if @user.has_role? :Administrator or @user.has_role? :Faculty or @user.has_role? :Office_Head
           %li.active
             %a{:href => "/manage_job_orders"}
               %i.menu-icon.fa.fa-file-text-o>

@@ -7,6 +7,7 @@ class Authlogicuser < ActiveRecord::Migration[5.1]
       t.string :fname
       t.string :mname
       t.string :lname
+      t.string :division_office
 
       # Authlogic::ActsAsAuthentic::Email
       t.string    :email

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180616102557) do
+ActiveRecord::Schema.define(version: 20180610075336) do
 
   create_table "job_orders", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string "control_no"
@@ -76,6 +76,7 @@ ActiveRecord::Schema.define(version: 20180616102557) do
     t.string "fname"
     t.string "mname"
     t.string "lname"
+    t.string "division_office"
     t.string "email"
     t.string "crypted_password"
     t.string "password_salt"
@@ -94,8 +95,6 @@ ActiveRecord::Schema.define(version: 20180616102557) do
     t.boolean "confirmed", default: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.integer "accessType"
-    t.string "Division_Department"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["perishable_token"], name: "index_users_on_perishable_token", unique: true
     t.index ["persistence_token"], name: "index_users_on_persistence_token", unique: true

@@ -1,4 +1,4 @@
-  class UsersController < ApplicationController
+class UsersController < ApplicationController
   layout :resolve_layout
 
   def new
@@ -13,6 +13,7 @@
 
   def create
     @user = User.new(users_params)
+
     if @user.save_without_session_maintenance
       flash.keep
       flash[:success] = "Account Request Submitted"
@@ -61,25 +62,23 @@
   end
 
   private
-
   def set_role(user)
     if user.position == "Student"
       user.add_role :Student
-    elsif user.position == "Admin Officer"
-      user.add_role :AdminOfficer
+    elsif user.position == "Administrator"
+      user.add_role :Administrator
     elsif user.position == "Faculty"
       user.add_role :Faculty
     elsif user.position == "Staff"
       user.add_role :Staff
-    elsif user.position == "Chairperson/Head"
-      user.add_role :Head
+    elsif user.position == "Office Head"
+      user.add_role :Office_Head
     end
     user.save!
-
   end
 
   def users_params
-    params.require(:user).permit(:username, :Division_Department, :position, :fname, :mname, :lname, :email, :password, :password_confirmation)
+    params.require(:user).permit(:username, :division_office, :position, :fname, :mname, :lname, :email, :password, :password_confirmation)
   end
 
   def resolve_layout

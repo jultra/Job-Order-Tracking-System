@@ -1,15 +1,36 @@
 # This file should contain all the record creation needed to seed the database with its default values.
 # The data can then be loaded with the rails db:seed command (or created alongside the database with db:setup).
 #
-# Examples:
-#
-#   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
-#   Character.create(name: 'Luke', movie: movies.first)
-#user = User.create(:username => "be", :position => "Student", :fname =>"Bea", :mname => "Santos", :lname => "Santiago", :email =>"bdSantiago@up.edu.ph", :password =>"art", :password_confirmation => "art", :active => true, :approved => true, :confirmed => true);
-#params.require(:user).permit(:username, :position, :fname, :mname, :lname, :email, :password, :password_confirmation)
-User.create( username: 'teles', fname: 'Telesforo', mname:	'Santos', lname: 'Sales', email: 'ts@up.edu.ph', Division_Department:	'Supervising Administrative Office', active: true, confirmed: true, approved: true)
-User.create( username: 'jcarlos', fname: 'Juan', mname:	'Carlos', lname: 'cdmo', email: 'jc@up.edu.ph', Division_Department:	'CDMO', active: true, confirmed: true, approved: true)
-User.create( username: 'juana', fname: 'Juana', mname:	'Math', lname: 'Alta', email: 'jm@up.edu.ph', Division_Department:	'CDMO', active: true, confirmed: true, approved: true)
-User.find(1).add_role :SAO_Admin
-User.find(2).add_role :CDMO_Admin
-User.find(3).add_role :CDMO_Staff
+
+#To correctly seed the database run this command: rake db:drop db:create db:migrate db:seed
+
+puts "Seeding...."
+office = Office.create(name: 'System Administrator', acronym: 'SA')
+
+puts "Created office"
+puts "Office Name: #{office.name}\n"
+
+user = User.create(username: 'sysad', position: 'Administrator', email: 'sysad@up.edu.ph', division_office: office.name,
+		fname: 'System', mname: '', lname: 'Administrator', password: 'password123', password_confirmation: 'password123')
+
+user.active = true
+user.approved = true 
+user.confirmed = true
+
+puts "Created user"
+puts "Username: #{user.username}"
+puts "Email: #{user.email}"
+puts "Password: passsword123 \n"
+
+office.user_id = user.id
+user.add_role :Administrator
+
+puts "Added Role"
+puts "Role: Administrator"
+
+office.save!
+user.save!
+
+
+
+
