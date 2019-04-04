@@ -2,25 +2,72 @@
   / /header
   / Header
   .breadcrumbs
-    .col-lg-12
-      .card
-        .card-header
-          %h4 Manage Job Orders
-        .card-body
-          .custom-tab
-            %nav
-              #nav-tab.nav.nav-tabs{:role => "tablist"}
-                -@user = User.find(session['user_credentials_id'])
-                -if @user.has_role? :SAO_admin or @user.has_role? :Faculty
-                  %a#custom-nav-approve-tab.nav-item.nav-link{:href => "/jobs/approved"} Approved Job Orders
-                  %a#custom-nav-unapprove-tab.nav-item.nav-link.active{:href => "/jobs/unapproved"} Unapproved Job Orders
-                -if @user.has_role? :Head
-                  %a#custom-nav-assigned-tab.nav-item.nav-link{:href => "/jobs/assigned"} Assigned Job Orders
-                  %a#custom-nav-unassigned-tab.nav-item.nav-link{:href => "/jobs/unassigned"} Unassigned Job Orders
-                -if @user.has_role? :Staff
-                  %a#custom-nav-assigned-tab.nav-item.nav-link{:href => "/jobs/pending"} Pending Job Orders
-                %a#custom-nav-ongoing-tab.nav-item.nav-link{:href => "/jobs/ongoing"} Ongoing Job Orders
-                %a#custom-nav-finish-tab.nav-item.nav-link{:href => "/jobs/finished"} Finished Job Orders
+    .col-sm-4
+      .page-header.float-left
+        .page-title
+          %h3 Manage Job Orders
+  .content.mt-3
+    .custom-tab
+      %nav
+        #nav-tab.nav.nav-tabs{:role => "tablist"}
+          %a#custom-nav-unapproved-tab.nav-item.nav-link.active{"aria-controls" => "custom-nav-unapproved", "aria-selected" => "true", "data-toggle" => "tab", :href => "#custom-nav-unapproved", :role => "tab"} Unapproved Job Orders
+          %a#custom-nav-approved-tab.nav-item.nav-link{"aria-controls" => "custom-nav-approved", "aria-selected" => "false", "data-toggle" => "tab", :href => "#custom-nav-approved", :role => "tab"} Approved Job Orders
+          / %a#custom-nav-ready-tab.nav-item.nav-link{"aria-controls" => "custom-nav-ready", "aria-selected" => "false", "data-toggle" => "tab", :href => "#custom-nav-ready", :role => "tab"} Ready Job Orders
+          %a#custom-nav-ongoing-tab.nav-item.nav-link{"aria-controls" => "custom-nav-ongoing", "aria-selected" => "false", "data-toggle" => "tab", :href => "#custom-nav-ongoing", :role => "tab"} Ongoing Job Orders
+          %a#custom-nav-finished-tab.nav-item.nav-link{"aria-controls" => "custom-nav-finished", "aria-selected" => "false", "data-toggle" => "tab", :href => "#custom-nav-finished", :role => "tab"} Finished Job Orders
+      #nav-tabContent.tab-content.pl-3.pt-2
+        #custom-nav-unapproved.tab-pane.fade.show.active{"aria-labelledby" => "custom-nav-unapproved", :role => "tabpane"}
+          .animated.fadeIn
+            .row
+              .col-md-12
+                .card
+                  .card-body
+                    %table#bootstrap-data-table.table.table-striped.table-bordered
+                      %thead
+                        %tr
+                          %th Date Filed
+                          %th Job Type
+                          %th Progress
+                          %th Actions
+                      %tbody
+                        -@unapproved.each do |req|
+                          %tr
+                            /{:onclick => "location.href='#{job_order_path(req)}'"}
+                            %td= req.date_filed
+                            %td= req.job_type
+                            %td= req.progress
+                            %td
+                              = link_to(job_order_path(req), method: :get, class: 'btn btn-primary') do
+                                %i.fa.fa-eye>
+                                  View
+                              = link_to(edit_job_order_path(req), method: :get, class: 'btn btn-success') do
+                                %i.fa.fa-pencil>
+                                  Edit
+                              = link_to "Cancel", "#smallmodal", :class => "btn btn-danger", "data-toggle" => "modal"
+                              #smallmodal.modal.fade{"data-backdrop" => "false", "aria-hidden" => "true", "aria-labelledby" => "smallmodalLabel", :role => "dialog", :tabindex => "-1", :style => "margin-top:50px;"}
+                                .modal-dialog.modal-sm{:role => "document"}
+                                  .modal-content
+                                    .modal-header
+                                      %h5#smallmodalLabel.modal-title Job Order Cancellation
+                                      %button.close{"aria-label" => "Close", "data-dismiss" => "modal", :type => "button"}
+                                        %span{"aria-hidden" => "true"} ×
+                                    .modal-body
+                                      %p.text-center
+                                        Are you sure you want to cancel job order request?
+                                    .modal-footer
+                                      %button.btn.btn-secondary{"data-dismiss" => "modal", :type => "button"} Cancel
+                                      = link_to(job_order_path(req), method: :delete, class: 'btn btn-danger') do
+                                          Confirm
+                
+        #custom-nav-approved.tab-pane.fade{"aria-labelledby" => "custom-nav-approved", :role => "tabpanel"}
+
+        / #custom-nav-ready.tab-pane.fade{"aria-labelledby" => "custom-nav-ready", :role => "tabpanel"}
+
+        #custom-nav-ongoing.tab-pane.fade{"aria-labelledby" => "custom-nav-ongoing", :role => "tabpanel"}
+
+        #custom-nav-finished.tab-pane.fade{"aria-labelledby" => "custom-nav-finished", :role => "tabpanel"}
+
+                
 
 %script{:src => "/assets/js/vendor/jquery-2.1.4.min.js"}
 %script{:src => "/assets/js/popper.min.js"}

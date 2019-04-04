@@ -11,10 +11,10 @@
             %nav
               #nav-tab.nav.nav-tabs{:role => "tablist"}
                 -@user = User.find(session['user_credentials_id'])
-                -if @user.has_role? :SAO_admin or @user.has_role? :Faculty
+                -if @user.has_role? :Administrator or @user.has_role? :Faculty
                   %a#custom-nav-approve-tab.nav-item.nav-link{:href => "/jobs/approved"} Approved Job Orders
                   %a#custom-nav-unapprove-tab.nav-item.nav-link{:href => "/jobs/unapproved"} Unapproved Job Orders
-                -if @user.has_role? :Head
+                -if @user.has_role? :Office_Head
                   %a#custom-nav-assigned-tab.nav-item.nav-link{:href => "/jobs/assigned"} Assigned Job Orders
                   %a#custom-nav-unassigned-tab.nav-item.nav-link.active{:href => "/jobs/unassigned"} Unassigned Job Orders
                 -if @user.has_role? :Staff

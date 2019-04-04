@@ -23,7 +23,7 @@
                   %tr
                     %th Office Name
                     %th Office Acronym
-                    %th Chairperson/Head
+                    %th Head
                     %th Action
                 %tbody
                   -@office.each do |office|
@@ -32,7 +32,7 @@
                       %td= office.acronym
                       %td= User.find(office.user_id).fname + " " + User.find(office.user_id).mname + " " + User.find(office.user_id).lname
                       %td
-                        = link_to("#", method: :get, class: 'btn btn-warning') do
+                        = link_to(edit_office_path(office), method: :get, class: 'btn btn-warning') do
                           %i.fa.fa-edit>
                             Edit
             = link_to(new_office_path, method: :get, class: 'btn btn-success') do

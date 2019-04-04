@@ -24,9 +24,9 @@ class UsersController < ApplicationController
   end
 
   def index
-    #@user = User.find(session['user_credentials_id'])
-    @user = User.all.where(:active => true, :approved => true, :confirmed => true)
-    @user2 = User.all.where(:active => false, :approved => false, :confirmed => false)
+    # @user = User.find(session['user_credentials_id'])
+    @users_active = User.all.where(:active => true, :approved => true, :confirmed => true)
+    @users_pending = User.all.where(:active => false, :approved => false, :confirmed => false)
   end
 
   def approve

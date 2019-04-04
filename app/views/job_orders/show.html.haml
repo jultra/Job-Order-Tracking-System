@@ -12,55 +12,58 @@
           .card-body
             .center
               .col-md-7
-                .card.border.border-secondary
-                  .card-header
-                    %tr
-                      Job Order :
-                      %td= @job_order.control_no
-                  .card-body
-                    .row
-                      .col-md-6
-                        %address.mt-3
-                          %strong Job Type
-                          %br/
-                          %td= @job_order.job_type
-                          %br/
-                          %br/
-                          %b Requested by
-                          %br/
-                          %td= @users.find(@job_order.user_id).fname + " " +  @users.find(@job_order.user_id).lname
-                          %br/
-                          %br/
-                          %b Date Needed
-                          %br/
-                          %td= @job_order.date_needed
-                          %br/
-                          %br/
-                          %b Adviser
-                          %br/
-                          %td= @users.find(@job_order.adviser_id).fname + " " +  @users.find(@job_order.adviser_id).lname
-                          %br/
-                          %br/
-                          %b Order/Activity/Problem Area
-                          %br/
-                          %td= @job_order.information
-                          %br/
-                      .col-md-6
-                        %address.mt-3
-                          %strong Location
-                          %br/
-                          %td= @job_order.where
-                          %br/
-                          %br/
-                          %b Date Requested
-                          %br/
-                          %td= @job_order.date_filed
-                          %br/
-                          %br/
-                          %b Time Needed
-                          %br/
-                          %td= @job_order.time_needed
-                          %br/
+                .row
+                  .col-md-6
+                    %address.mt-3
+                      %strong Control Number
+                      %br/
+                      - if @job_order.control_no == nil
+                        %td= "XXXX-XXXXX"
+                      - else
+                        %td= @job_order.control_no
+                .row
+                  .col-md-6
+                    %address.mt-3
+                      %strong Job Type
+                      %br/
+                      %td= @job_order.job_type
+                      %br/
+                      %br/
+                      %b Requested by
+                      %br/
+                      %td= @users.find(@job_order.user_id).fname + " " +  @users.find(@job_order.user_id).lname
+                      %br/
+                      %br/
+                      %b Date Needed
+                      %br/
+                      %td= @job_order.date_needed
+                      %br/
+                      %br/
+                      %b Adviser
+                      %br/
+                      %td= @users.find(@job_order.adviser_id).fname + " " +  @users.find(@job_order.adviser_id).lname
+                      %br/
+                      %br/
+                      %b Order/Activity/Problem Area
+                      %br/
+                      %td= @job_order.information
+                      %br/
+                  .col-md-6
+                    %address.mt-3
+                      %strong Location
+                      %br/
+                      %td= @job_order.where
+                      %br/
+                      %br/
+                      %b Date Requested
+                      %br/
+                      %td= @job_order.date_filed
+                      %br/
+                      %br/
+                      %b Time Needed
+                      %br/
+                      %td= @job_order.time_needed
+                      %br/
             .col-md-5.col-lg-5
               .card
                 .card-body

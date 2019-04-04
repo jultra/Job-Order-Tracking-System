@@ -3,7 +3,7 @@ require 'date'
 class JobOrdersController < ApplicationController
   protect_from_forgery
   before_action :require_login
-  before_action :get_job, only: [:show, :edit, :destroy, :adviser_approval, :admin_approval, :unapproved, :unassigned]
+  #before_action :get_job, only: [:show, :edit, :destroy, :adviser_approval, :admin_approval, :unapproved, :unassigned]
 
   def job_order_params
     params.require(:job_order).permit(:job_type, :where, :date_needed, :time_needed, :available_materials, :information, :adviser_id, :fund_source, :money_budget, :user_id)
@@ -44,6 +44,13 @@ class JobOrdersController < ApplicationController
 
   end
 
+  def manage_job_orders
+    @unapproved = JobOrder.where(:progress => ["Waiting for adviser approval.", "Waiting for SAO approval."])
+    @approved = JobOrder.where(:progress => "Ready to start.") 
+    @ongoing = JobOrder.where(:progress => "Ongoing job order.") 
+    @finished = JobOrder.where(:progress => "Finished job order.") 
+  end
+
   def new
     @user_name = User.find(session['user_credentials_id']).fname + " " + User.find(session['user_credentials_id']).lname
   end
@@ -63,18 +70,17 @@ class JobOrdersController < ApplicationController
       @new_request = JobOrder.new(job_order_params)
       @new_request.date_filed = current_time.strftime "%Y-%m-%d"
 
-      print "adviser #{params[:job_order][:adviser_id]} ssssssssssssssss"
-
       if @new_request.adviser_id != "" && @new_request.adviser_id != nil
         #do some query here to set @new_request.adviser_id =
-        @new_request.progress = 'Waiting for adviser approval'
+        @new_request.progress = 'Waiting for adviser approval.'
       else
         @new_request.adviser_id = 1
-        @new_request.progress = 'Waiting for admin approval'
+        @new_request.progress = 'Waiting for SAO approval.'
       end
+
       if @new_request.valid?
         @new_request.save!
-        redirect_to '/job_orders/pending_requests'
+        redirect_to '/job_orders/' + @new_request.id.to_s
       else
         flash[:notice] = 'Insufficient information provided!'
         redirect_to '/job_orders/new'
@@ -90,11 +96,13 @@ class JobOrdersController < ApplicationController
   end
 
   def show
+    @job_order = JobOrder.find params[:id]
     @job_type = @job_order.job_type
     @users = User.all
   end
 
   def edit
+    @job_order = JobOrder.find params[:id]
     @job_type = @job_order.job_type
     if (@job_order.adviser_id != "" && @job_order.adviser_id != nil)
       @user = User.find(@job_order.adviser_id)
@@ -115,6 +123,7 @@ class JobOrdersController < ApplicationController
   end
 
   def list_pending_admin_approval
+    puts "wwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwww"
     @requests = JobOrder.where(:progress => 'Waiting for admin approval')
   end
 
@@ -317,5 +326,6 @@ class JobOrdersController < ApplicationController
   private
     def get_job
       @job_order = JobOrder.find params[:id]
+      #@job_order = JobOrder.all
     end
 end
