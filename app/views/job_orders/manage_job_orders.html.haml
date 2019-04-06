@@ -22,50 +22,32 @@
               .col-md-12
                 .card
                   .card-body
-                    %table#bootstrap-data-table.table.table-striped.table-bordered
-                      %thead
-                        %tr
-                          %th Date Filed
-                          %th Job Type
-                          %th Progress
-                          %th Actions
-                      %tbody
-                        -@unapproved.each do |req|
-                          %tr
-                            /{:onclick => "location.href='#{job_order_path(req)}'"}
-                            %td= req.date_filed
-                            %td= req.job_type
-                            %td= req.progress
-                            %td
-                              = link_to(job_order_path(req), method: :get, class: 'btn btn-primary') do
-                                %i.fa.fa-eye>
-                                  View
-                              = link_to(edit_job_order_path(req), method: :get, class: 'btn btn-success') do
-                                %i.fa.fa-pencil>
-                                  Edit
-                              = link_to "Cancel", "#smallmodal", :class => "btn btn-danger", "data-toggle" => "modal"
-                              #smallmodal.modal.fade{"data-backdrop" => "false", "aria-hidden" => "true", "aria-labelledby" => "smallmodalLabel", :role => "dialog", :tabindex => "-1", :style => "margin-top:50px;"}
-                                .modal-dialog.modal-sm{:role => "document"}
-                                  .modal-content
-                                    .modal-header
-                                      %h5#smallmodalLabel.modal-title Job Order Cancellation
-                                      %button.close{"aria-label" => "Close", "data-dismiss" => "modal", :type => "button"}
-                                        %span{"aria-hidden" => "true"} ×
-                                    .modal-body
-                                      %p.text-center
-                                        Are you sure you want to cancel job order request?
-                                    .modal-footer
-                                      %button.btn.btn-secondary{"data-dismiss" => "modal", :type => "button"} Cancel
-                                      = link_to(job_order_path(req), method: :delete, class: 'btn btn-danger') do
-                                          Confirm
-                
+                    = render(:partial => "data_table", :locals => {:data => @unapproved})
         #custom-nav-approved.tab-pane.fade{"aria-labelledby" => "custom-nav-approved", :role => "tabpanel"}
+          .animated.fadeIn
+            .row
+              .col-md-12
+                .card
+                  .card-body
+                    = render(:partial => "data_table", :locals => {:data => @approved})
 
         / #custom-nav-ready.tab-pane.fade{"aria-labelledby" => "custom-nav-ready", :role => "tabpanel"}
 
         #custom-nav-ongoing.tab-pane.fade{"aria-labelledby" => "custom-nav-ongoing", :role => "tabpanel"}
+          .animated.fadeIn
+            .row
+              .col-md-12
+                .card
+                  .card-body
+                    = render(:partial => "data_table", :locals => {:data => @ongoing})
 
         #custom-nav-finished.tab-pane.fade{"aria-labelledby" => "custom-nav-finished", :role => "tabpanel"}
+          .animated.fadeIn
+            .row
+              .col-md-12
+                .card
+                  .card-body
+                    = render(:partial => "data_table", :locals => {:data => @finished})
 
                 
 
