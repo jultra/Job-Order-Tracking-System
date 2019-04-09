@@ -1,8 +1,9 @@
 Rails.application.routes.draw do
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
   root 'user_sessions#new'
-  get '/signup' => 'users#new'
-  post '/register' => 'users#create'
+  get '/signup' => 'users#signup', as: 'signup_user'
+  post '/register' => 'users#register', as: 'register_user'
+
   get '/job_orders/pending_requests/:id' => 'job_orders#pending_requests', as: 'pending_requests'
   get '/job_orders/list_pending_approval' => 'job_orders#list_pending_approval'
   get '/job_orders/approve_job_order/:id' => 'job_orders#approve_job_order', as: 'approve_job_order'
@@ -30,11 +31,8 @@ Rails.application.routes.draw do
   get 'jobs/unassigned/:id' => 'job_orders#unassigned', as: 'unassigned'
   get 'job_orders/assign_job_order/:id' => 'job_orders#assign_job_order', as: 'assign_job_order'
 
-  get '/users/approve/:id' => 'users#approve', as: 'approve_user'
-  get '/users/reject/:id' => 'users#reject', as: 'reject_user'
-  get '/users/new_update' => 'users#new_update'
-  get '/users/active_account' => 'users#show_active_account'
-  post '/users/:id' => 'users#update'
+  get '/users/activate/:id' => 'users#activate', as: 'activate_user'
+  get '/users/deactivate/:id' => 'users#deactivate', as: 'deactivate_user'
 
   get '/job_orders/live_search' => 'job_orders#live_search', as: 'search'
   get '/job_orders/live_search2' => 'job_orders#live_search2', as: 'search2'

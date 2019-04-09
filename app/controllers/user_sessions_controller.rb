@@ -16,7 +16,8 @@ class UserSessionsController < ApplicationController
     if @user_session.save
       redirect_to job_orders_path
     else
-      render :action => :new
+      flash[:errors] = @user_session.errors.full_messages
+      render :new
     end
   end
 

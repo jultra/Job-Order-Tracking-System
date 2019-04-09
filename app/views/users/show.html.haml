@@ -1,0 +1,42 @@
+.div{:style => "position: relative; top: 75px; z-index:1; left: 275px; width: 80%;"}
+  .container
+    .login-form
+      %h3{:style=>"text-align: center;"} Account Information
+      %br
+      = form_for @user do |f|
+        %div.form-row
+          %div{:class=>"form-group col-md-4"}
+            = f.label "firstname"
+            = f.text_field :fname, :class=>"form-control", :value => "#{@user.fname}", :readonly => true
+          %div{:class=>"form-group col-md-4"}
+            = f.label "middlename"
+            = f.text_field :mname, :class=>"form-control", :value => "#{@user.mname}", :readonly => true
+          %div{:class => "form-group col-md-4"}
+            = f.label "lastname"
+            = f.text_field :lname, :class=>"form-control", :value => "#{@user.lname}", :readonly => true
+        .form-group
+          = f.label "Division/Department"
+          -@office = Office.find(@user.office_id)
+          = f.text_field :office_id, :class=>"form-control", :value => "#{@office.name}", :readonly => true
+        .form-group
+          = f.label "position"
+          = f.text_field :position, :class=>"form-control", :value => "#{@user.position}", :readonly => true
+        .form-group
+          = f.label "username"
+          = f.text_field :username, :class=>"form-control", :value => "#{@user.username}", :readonly => true
+        .form-group
+          = f.label "email"
+          = f.text_field :email, :class=>"form-control", :value => "#{@user.email}", :readonly => true
+        %div.form-row
+          - if(@user.active == true)
+            %div{:class=>"form-group col-sm-3 mb-0 mt-0 ml-auto"}
+              = link_to(edit_user_path(@user), method: :get, class: 'btn btn-primary') do
+                Edit Account
+          - if(@user.active == true and User.find(session['user_credentials_id']).has_role? :Administrator)
+            %div{:class=>"form-group col-sm-3 mb-0 mt-0"}
+              = link_to(deactivate_user_path(@user), method: :get, class: 'btn btn-danger') do
+                Deactivate Account
+          - elsif(@user.active == false and User.find(session['user_credentials_id']).has_role? :Administrator)
+            %div{:class=>"form-group col-sm-3 mb-0 mt-0 ml-auto"}
+              = link_to(activate_user_path(@user), method: :get, class: 'btn btn-secondary') do
+                Activate Account

@@ -1,64 +1,104 @@
 class UsersController < ApplicationController
-  layout :resolve_layout
+  # layout :resolve_layout
+
+  def index
+    @users_active = User.all.where(:active => true)
+    @users_inactive = User.all.where(:active => false)
+  end
 
   def new
-    if current_user_session != nil
-      current_user_session.destroy
-    else
-      session.destroy
-    end
     @user = User.new
-    @office = Office.all.map{|i| i.name }
+    # @office = Office.pluck(:name, :id)
   end
 
   def create
     @user = User.new(users_params)
+    
+    @user.active = true
+    @user.approved = true
+    @user.confirmed = true
 
-    if @user.save_without_session_maintenance
-      flash.keep
-      flash[:success] = "Account Request Submitted"
-      redirect_to root_path
-    else
+    if @user.save
+      set_role(@user)
+
+      redirect_to @user 
+    else 
+      flash[:errors] = @user.errors.full_messages
+      # redirect_to new_user_path
       render :new
     end
+
+    # if @user.save_without_session_maintenance
+
+    # else
+    #   render :new
+    # end
+
+    # redirect_to @user
   end
 
-  def index
-    # @user = User.find(session['user_credentials_id'])
-    @users_active = User.all.where(:active => true, :approved => true, :confirmed => true)
-    @users_pending = User.all.where(:active => false, :approved => false, :confirmed => false)
+  def signup
+    @user = User.new
+    # @office = Office.pluck(:name, :id)
   end
 
-  def approve
-    user = User.find params[:id]
-    user.update(:approved => true, :confirmed => true, :active => true)
-    
-    set_role(user)
-    
-    redirect_to users_path
+  def register
+    @user = User.new(users_params)
+
+    if @user.save
+      set_role(@user)
+
+      flash[:success] = "Account Request Submitted"
+    else 
+      flash[:errors] = @user.errors.full_messages
+    end
+
+    # redirect_to signup_user_path
+    render :signup
   end
 
-  def new_update
-    @user = User.find_by_id(session['user_credentials_id'])
-    @office = Office.all.map{|i| i.name }
+  def show
+    @user = User.find(params[:id])
   end
 
-  def show_active_account
-    @user = User.all.where(:active => true, :approved => true, :confirmed => true)
+  def edit
+    @user = User.find(params[:id])
+    # @office = Office.pluck(:name, :id)
   end
 
   def update
-    @users = User.find params[:id]
-    @users.update_attributes!(users_params)
-    flash[:notice] = "Account was successfully updated."
-    redirect_to job_orders_path
+    @user = User.find(params[:id])
+
+    if @user.update(users_params)
+      redirect_to @user
+    else
+      flash[:errors] = @user.errors.full_messages
+      # redirect_to edit_user_path(@user)
+      render :edit
+    end
   end
 
+  def destroy 
+    # @user = User.find(params[:id])
+    # @user.destroy
 
-  def reject
-    user = User.find params[:id]
-    user.destroy
-    redirect_to users_path
+    # redirect_to users_path
+  end 
+
+  def activate
+    @user = User.find params[:id]
+    @user.update(:active => true, :approved => true, :confirmed => true)
+
+    set_role(@user)
+
+    redirect_to @user
+  end
+
+  def deactivate
+    @user = User.find params[:id]
+    @user.update(:active => false, :approved => false, :confirmed => false)
+
+    redirect_to @user
   end
 
   private
@@ -78,17 +118,6 @@ class UsersController < ApplicationController
   end
 
   def users_params
-    params.require(:user).permit(:username, :division_office, :position, :fname, :mname, :lname, :email, :password, :password_confirmation)
-  end
-
-  def resolve_layout
-    case action_name
-      when "new"
-        "login"
-      when "create"
-        "login"
-      else
-        "application"
-    end
+    params.require(:user).permit(:username, :office_id, :position, :fname, :mname, :lname, :email, :password, :password_confirmation)
   end
 end

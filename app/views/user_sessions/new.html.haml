@@ -3,40 +3,26 @@
     .container
       .login-content
         .login-logo
-          %a{:href => "/login"}
+          %a{:href => root_path}
             %img.align-content{:alt => "", :src => "images/lg.png"}/
         .login-form
+          -if flash[:errors]!=nil
+            - flash[:errors].each do |msg|
+              .alert.alert-danger= msg
+          -flash.clear
           = form_for @user_session do |f|
-            - if @user_session.errors.any?
-              #error_explanation
-                .div{:class=>"alert alert-danger alert-dismissible fade show", :role=>"alert"}
-                  %button.close{"aria-label" => "Close", "data-dismiss" => "alert", type: "button"}
-                    %span{"aria-hidden" => "true"} ×
-                  %h2#errorHeading
-                    / Email/Password Incorrect!
-                    -#= pluralize(@user_session.errors.count, "error")
-                    -#prohibited:
-                  - @user_session.errors.full_messages.each do |msg|
-                    %p#errorList= msg
-            - if flash[:success] != nil
-              #success
-                .div{:class=>"alert alert-success alert-dismissible fade show", :role=>"alert"}
-                  %button.close{"aria-label" => "Close", "data-dismiss" => "alert", type: "button"}
-                    %span{"aria-hidden" => "true"} ×
-                  %h2#successHeading
-                    =flash[:success]
             .form-group
               = f.label :email
-              = f.email_field :email, class: 'form-control'
+              = f.email_field :email, :required => true, class: 'form-control'
             .form-group
               = f.label :password
-              = f.password_field :password, class: 'form-control'
+              = f.password_field :password, :required => true, class: 'form-control'
             .form-group
               = f.submit "Log in!", class: 'btn btn-primary btn-lg'
             .register-link.m-t-15.text-center
               %p
                 Don't have account ?
-                %a{:href => "/signup"} Sign Up Here
+                %a{:href => signup_user_path} Sign Up Here
   %script{:src => "assets/js/vendor/jquery-2.1.4.min.js"}
   %script{:src => "assets/js/popper.min.js"}
   %script{:src => "assets/js/plugins.js"}

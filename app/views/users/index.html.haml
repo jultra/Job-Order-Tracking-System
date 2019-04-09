@@ -11,7 +11,12 @@
       %nav
         #nav-tab.nav.nav-tabs{:role => "tablist"}
           %a#custom-nav-active-tab.nav-item.nav-link.active{"aria-controls" => "custom-nav-active", "aria-selected" => "true", "data-toggle" => "tab", :href => "#custom-nav-active", :role => "tab"} Active Accounts
-          %a#custom-nav-pending-tab.nav-item.nav-link{"aria-controls" => "custom-nav-pending", "aria-selected" => "false", "data-toggle" => "tab", :href => "#custom-nav-pending", :role => "tab"} Pending Accounts
+          %a#custom-nav-inactive-tab.nav-item.nav-link{"aria-controls" => "custom-nav-inactive", "aria-selected" => "false", "data-toggle" => "tab", :href => "#custom-nav-inactive", :role => "tab"} Inactive Accounts
+          .col-sm-4.ml-auto
+            .page-header.float-right
+              = link_to(new_user_path, method: :get, class: 'btn btn-success') do
+                %i.fa.fa-plus-square-o
+                  Add New Account
       #nav-tabContent.tab-content.pl-3.pt-2
         #custom-nav-active.tab-pane.fade.show.active{"aria-labelledby" => "custom-nav-active", :role => "tabpane"}
           .animated.fadeIn
@@ -29,13 +34,14 @@
                           %th Position
                       %tbody
                         -@users_active.each do |req|
-                          %tr
+                          %tr{:onclick => "location.href='#{user_path(req)}'"}
                             %td= req.fname
                             %td= req.mname
                             %td= req.lname
-                            %td= req.division_office
+                            -@office = Office.find(req.office_id)
+                            %td= @office.name
                             %td= req.position
-        #custom-nav-pending.tab-pane.fade{"aria-labelledby" => "custom-nav-pending", :role => "tabpanel"}
+        #custom-nav-inactive.tab-pane.fade{"aria-labelledby" => "custom-nav-inactive", :role => "tabpanel"}
           .animated.fadeIn
             .row
               .col-md-12
@@ -49,24 +55,15 @@
                           %th Last Name
                           %th Division/Department
                           %th Position
-                          %th Action
                       %tbody
-                        -@users_pending.each do |req|
-                          %tr
+                        -@users_inactive.each do |req|
+                          %tr{:onclick => "location.href='#{user_path(req)}'"}
                             %td= req.fname
                             %td= req.mname
                             %td= req.lname
-                            %td= req.division_office
+                            -@office = Office.find(req.office_id)
+                            %td= @office.name
                             %td= req.position
-                            %td
-                              = link_to(approve_user_path(req), method: :get, class: 'btn btn-success') do
-                                %i.fa.fa-check>
-                                  Approve
-                              = link_to(reject_user_path(req), method: :get, class: 'btn btn-danger') do
-                                %i.fa.fa-times>
-                                  Reject
-          
-
 
 %script{:src => "/assets/js/vendor/jquery-2.1.4.min.js"}
 %script{:src => "/assets/js/popper.min.js"}
@@ -91,4 +88,3 @@
   $(document).ready(function() {
     $('#bootstrap-data-tables-export').DataTable();
   } );
-

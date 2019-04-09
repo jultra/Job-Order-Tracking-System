@@ -60,7 +60,7 @@
       .col-sm-5
         .user-area.float-right
           .row
-            %a.nav-link{:href => "/users/new_update"}
+            %a.nav-link{:href => user_path(User.find(session['user_credentials_id']))}
               %i.fa.fa-user
               Profile
             %a.nav-link{:href => root_path}

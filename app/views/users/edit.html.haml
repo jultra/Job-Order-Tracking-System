@@ -1,28 +1,27 @@
 .div{:style => "position: relative; top: 75px; z-index:1; left: 275px; width: 80%;"}
   .container
-    .login-logo
-      %a{:href => "index.html"}
-        %img.align-content{:alt => "", :src => "images/logo.png"}/
     .login-form
-      %h3{:id=>"updatetitle", :style=>"text-align: center;"} Update Account
+      %h3{:style=>"text-align: center;"} Account Information
       %br
-      -if(flash[:danger]!=nil)
-        %div{:class => "alert alert-danger"}
-          %H6=flash[:danger]
-      = form_for @user, :action => user_path(@user.id), :method => :post do |f|
+      -if(flash[:errors]!=nil)
+        - flash[:errors].each do |msg|
+          .alert.alert-danger= msg
+      -flash.clear
+      = form_for @user, :action => user_path(@user), :method => :patch do |f|
         %div.form-row
           %div{:class=>"form-group col-md-4"}
             = f.label "firstname"
             = f.text_field :fname, :required => true, :class=>"form-control", :id=>"inputfirstname", :placeholder => "Firstname"
           %div{:class=>"form-group col-md-4"}
             = f.label "middlename"
-            = f.text_field :mname,:required => true, :class=>"form-control", :id=>"inputmiddlename", :placeholder => "Middlename"
+            = f.text_field :mname, :class=>"form-control", :id=>"inputmiddlename", :placeholder => "Middlename"
           %div{:class => "form-group col-md-4"}
             = f.label "lastname"
             = f.text_field :lname, :required =>true, :type=>"text", :class=>"form-control", :id=>"inputlastname", :placeholder=>"Lastname"
         .form-group
           = f.label "Division/Department"
-          = f.select :division_office, options_for_select(@office), {}, :id=>"inputDivDept", class: "form-control"
+          -@office = Office.pluck(:name, :id)
+          = f.select :office_id, options_for_select(@office), {}, :id=>"inputDivDept", class: "form-control"
         .form-group
           = f.label "position"
           = f.select :position, options_for_select(["Student", "Administrator", "Faculty", "Staff", "Office Head"], @user.position), {}, :id=>"inputposition", :class=> "form-control"
@@ -32,20 +31,21 @@
         .form-group
           = f.label "email"
           = f.email_field :email, :required =>true, :placeholder => "Email", :type => "email", class: "form-control"
-        //.form-group
-        //  = f.label "old password"
-        //  = password_field_tag "old_password", :required =>true, :placeholder => "Old Password", :type => "password", :pattern=>".{8,}",:title=>"Password should be a minimum of 8 characters", :id=>"password", class: "form-control"
         .form-group
           = f.label "new password"
-          = f.password_field :password, :required =>true, :placeholder => "New Password", :type => "password", :pattern=>".{8,}",:title=>"Password should be a minimum of 8 characters", :id=>"password", class: "form-control"
+          = f.password_field :password, :placeholder => "New Password", :type => "password", :pattern=>".{8,}",:title=>"Password should be a minimum of 8 characters", :id=>"password", class: "form-control"
         .form-group
           = f.label "confirm password"
-          = f.password_field :password_confirmation, :required =>true, :placeholder => "Confirm Password", :type => "password", :oninput=>"check(this);", :id=>"confirmpassword", class: "form-control"
+          = f.password_field :password_confirmation, :placeholder => "Confirm Password", :type => "password", :oninput=>"check(this);", :id=>"confirmpassword", class: "form-control"
+        %div.form-row
+          %div{:class=>"form-group col-sm-3 mb-0 mt-0 ml-auto"}
+            %button.btn.btn-primary{:type => "submit"} Update Account
+          %div{:class=>"form-group col-sm-3 mb-0 mt-0"}
+            = link_to(user_path(@user), method: :get, class: 'btn btn-danger') do
+              Cancel
 
-        %button.btn.btn-primary.btn-flat.m-b-30.m-t-30{:type => "submit"} Update Account
-    %footer{:id=>"userfooter", :style=>"text-align: center;"}
-      %p &copy;All rights reserved 2018. Krabby Inc.
   %script{:src => "assets/js/vendor/jquery-2.1.4.min.js"}
   %script{:src => "assets/js/popper.min.js"}
   %script{:src => "assets/js/plugins.js"}
   %script{:src => "assets/js/main.js"}
+
