@@ -1,30 +1,32 @@
 .div{:style => "position: relative; top: 75px; z-index:1; left: 275px; width: 80%;"}
   .sufee-login.d-flex.align-content-center.flex-wrap
     .container
-      .login-logo
-        %a{:href => "index.html"}
-          %img.align-content{:alt => "", :src => "images/logo.png"}/
       .login-form
         %h3{:id=>"signuptitle"} Update Office
         %br
-        -if(flash[:danger]!=nil)
-          %div{:class => "alert alert-danger"}
-            %H6=flash[:danger]
+        -if(flash[:errors]!=nil)
+          - flash[:errors].each do |msg|
+            .alert.alert-danger= msg
+        -flash.clear
         = form_for @office do |f|
+          .form-group
+            = f.label "office name" 
+            = f.text_field :name, :required => true, :class=>"form-control", :id=>"inputname", :placeholder => "Office Name"
+          .form-group
+            = f.label "acronym"
+            = f.text_field :acronym, :required => true, :type=>"text", :class=>"form-control", :id=>"inputlacronym", :placeholder=>"Acronym"
+          .form-group
+            = f.label "Head"
+            - @users = User.all.where('(position = ? OR position = ? OR position = ?) AND office_id = ?', 'Staff', 'Faculty', 'Office Head', @office.id).collect{|x| [x.fname + ' '+ x.mname + ' ' + x.lname, x.id]}
+            = f.select :user_id, options_for_select(@users), {}, :id=>"inputHead", :required => true, class: "form-control"
           %div.form-row
-            %div{:class=>"form-group col-md-4"}
-              = f.label "office name" 
-              = f.text_field :name, :required => true, :class=>"form-control", :id=>"inputname", :placeholder => "Office Name"
-            %div{:class => "form-group col-md-4"}
-              = f.label "acronym"
-              = f.text_field :acronym, :required =>true, :type=>"text", :class=>"form-control", :id=>"inputlacronym", :placeholder=>"Acronym"
-            .form-group
-              = f.label "Head"
-              = f.select :user_id, options_for_select(@user_name), {}, :id=>"inputHead", class: "form-control"
-            %button.btn.btn-primary.btn-flat.m-b-30.m-t-30{:type => "submit"} Update Office
-  %footer{:id=>"userfooter", :style=>"text-align: center;"}
-    %p &copy;All rights reserved 2018. Krabby Inc.
-  %script{:src => "assets/js/vendor/jquery-2.1.4.min.js"}
-  %script{:src => "assets/js/popper.min.js"}
-  %script{:src => "assets/js/plugins.js"}
-  %script{:src => "assets/js/main.js"}
+            %div{:class=>"form-group col-sm-3 mb-0 mt-0 ml-auto"}
+              %button.btn.btn-primary{:type => "submit"} Update Office
+            %div{:class=>"form-group col-sm-3 mb-0 mt-0"}
+              = link_to(office_path(@office), method: :get, class: 'btn btn-danger') do
+                Cancel
+
+%script{:src => "assets/js/vendor/jquery-2.1.4.min.js"}
+%script{:src => "assets/js/popper.min.js"}
+%script{:src => "assets/js/plugins.js"}
+%script{:src => "assets/js/main.js"}

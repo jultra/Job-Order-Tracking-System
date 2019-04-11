@@ -1,0 +1,30 @@
+.div{:style => "position: relative; top: 75px; z-index:1; left: 275px; width: 80%;"}
+  .sufee-login.d-flex.align-content-center.flex-wrap
+    .container
+      .login-form
+        %h3{:id=>"signuptitle"} Office Information
+        %br
+        = form_for @office do |f|
+          .form-group
+            = f.label "office name" 
+            = f.text_field :name, :class=>"form-control", :value => "#{@office.name}", :readonly => true
+          .form-group
+            = f.label "acronym"
+            = f.text_field :acronym, :class=>"form-control", :value => "#{@office.acronym}", :readonly => true
+          .form-group
+            = f.label "Head"
+            = f.text_field :user_id, class: "form-control", :value => "#{@office_head}", :readonly => true
+            / %button.btn.btn-primary.btn-flat.m-b-30.m-t-30{:type => "submit"} Update Office
+          %div.form-row
+            %div{:class=>"form-group col-sm-3 mb-0 mt-0 ml-auto"}
+              = link_to(edit_office_path(@office), method: :get, class: 'btn btn-primary') do
+                Edit Office
+            %div{:class=>"form-group col-sm-3 mb-0 mt-0"}
+              = link_to(office_path(@office), method: :delete, class: 'btn btn-danger') do
+                Delete Office
+
+  
+  %script{:src => "assets/js/vendor/jquery-2.1.4.min.js"}
+  %script{:src => "assets/js/popper.min.js"}
+  %script{:src => "assets/js/plugins.js"}
+  %script{:src => "assets/js/main.js"}

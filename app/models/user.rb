@@ -1,6 +1,6 @@
 class User < ApplicationRecord
   has_many :job_orders
-  has_one :office
+  has_one :office, required: false
 
   rolify
   acts_as_authentic do |c|

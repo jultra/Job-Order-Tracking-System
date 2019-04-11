@@ -6,12 +6,19 @@
       .page-header.float-left
         .page-title
           %h3 System Office
-  -if(flash[:success]!=nil)
-    %div{:class => "alert alert-success"}
-      %H6=flash[:success]
-  -if(flash[:danger]!=nil)
-    %div{:class => "alert alert-danger"}
-      %H6=flash[:danger]
+  / -if(flash[:success]!=nil)
+  /   %div{:class => "alert alert-success"}
+  /     %H6=flash[:success]
+  / -if(flash[:danger]!=nil)
+  /   %div{:class => "alert alert-danger"}
+  /     %H6=flash[:danger]
+  %br
+  .row
+    .col-sm-4.ml-auto
+      .page-header.float-right
+        = link_to(new_office_path, method: :get, class: 'btn btn-success') do
+          %i.fa.fa-plus-square-o
+            Add New Office
   .content.mt-3
     .animated.fadeIn
       .row
@@ -24,25 +31,46 @@
                     %th Office Name
                     %th Office Acronym
                     %th Head
-                    %th Action
                 %tbody
                   -@office.each do |office|
-                    %tr
+                    %tr{:onclick => "location.href='#{office_path(office)}'"}
                       %td= office.name
                       %td= office.acronym
-                      %td= User.find(office.user_id).fname + " " + User.find(office.user_id).mname + " " + User.find(office.user_id).lname
-                      %td
-                        = link_to(edit_office_path(office), method: :get, class: 'btn btn-warning') do
-                          %i.fa.fa-edit>
-                            Edit
-            = link_to(new_office_path, method: :get, class: 'btn btn-success') do
-              %i.fa.fa-plus-square-o>
-                Add Office
+                      -if office.user_id != nil
+                        %td= User.find(office.user_id).fname + " " + User.find(office.user_id).mname + " " + User.find(office.user_id).lname
+                      -else
+                        %td= ""
+                      / %td
+                      /   = link_to(edit_office_path(office), method: :get, class: 'btn btn-warning') do
+                      /     %i.fa.fa-edit>
+                      /       Edit
+            / = link_to(new_office_path, method: :get, class: 'btn btn-success') do
+            /   %i.fa.fa-plus-square-o>
+            /     Add Office
     / .animated
   / .content
 / /#right-panel
 / Right Panel
+%script{:src => "/assets/js/vendor/jquery-2.1.4.min.js"}
+%script{:src => "/assets/js/popper.min.js"}
+%script{:src => "/assets/js/plugins.js"}
+%script{:src => "/assets/js/main.js"}
+%script{:src => "/assets/js/lib/data-table/datatables.min.js"}
+%script{:src => "/assets/js/lib/data-table/dataTables.bootstrap.min.js"}
+%script{:src => "/assets/js/lib/data-table/dataTables.buttons.min.js"}
+%script{:src => "/assets/js/lib/data-table/buttons.bootstrap.min.js"}
+%script{:src => "/assets/js/lib/data-table/jszip.min.js"}
+%script{:src => "/assets/js/lib/data-table/pdfmake.min.js"}
+%script{:src => "/assets/js/lib/data-table/vfs_fonts.js"}
+%script{:src => "/assets/js/lib/data-table/buttons.html5.min.js"}
+%script{:src => "/assets/js/lib/data-table/buttons.print.min.js"}
+%script{:src => "/assets/js/lib/data-table/buttons.colVis.min.js"}
+%script{:src => "/assets/js/lib/data-table/datatables-init.js"}
 :javascript
   $(document).ready(function() {
-    $('#bootstrap-data-table-export').DataTable();
+    $('#bootstrap-data-table2-export').DataTable();
+  } );
+
+  $(document).ready(function() {
+    $('#bootstrap-data-tables-export').DataTable();
   } );
