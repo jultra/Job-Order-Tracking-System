@@ -94,7 +94,9 @@ class UsersController < ApplicationController
         end
 
         @user.add_role :Office_Head
+        @office.user_id = @user.id
         @user.save!
+        @office.save!
       end
 
       redirect_to @user

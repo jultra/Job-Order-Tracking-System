@@ -2,7 +2,7 @@
   .sufee-login.d-flex.align-content-center.flex-wrap
     .container
       .login-form
-        %h3{:id=>"signuptitle"} Update Office
+        %h3{:style=>"text-align: center;"} Update Office
         %br
         -if(flash[:errors]!=nil)
           - flash[:errors].each do |msg|
@@ -18,7 +18,7 @@
           .form-group
             = f.label "Head"
             - @users = User.all.where('(position = ? OR position = ? OR position = ?) AND office_id = ?', 'Staff', 'Faculty', 'Office Head', @office.id).collect{|x| [x.fname + ' '+ x.mname + ' ' + x.lname, x.id]}
-            = f.select :user_id, options_for_select(@users), {}, :id=>"inputHead", :required => true, class: "form-control"
+            = f.select :user_id, options_for_select(@users, @office.user_id), {}, :id=>"inputHead", :required => true, class: "form-control"
           %div.form-row
             %div{:class=>"form-group col-sm-3 mb-0 mt-0 ml-auto"}
               %button.btn.btn-primary{:type => "submit"} Update Office

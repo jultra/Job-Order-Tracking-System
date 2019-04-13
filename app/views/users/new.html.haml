@@ -2,7 +2,7 @@
   .sufee-login.d-flex.align-content-center.flex-wrap
     .container
       .login-form
-        %h3 Account Details
+        %h3{:style=>"text-align: center;"} Account Details
         %br
         -if(flash[:errors]!=nil)
           - flash[:errors].each do |msg|

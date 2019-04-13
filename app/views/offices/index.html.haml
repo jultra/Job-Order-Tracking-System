@@ -2,10 +2,10 @@
   / /header
   / Header
   .breadcrumbs
-    .col-sm-4
-      .page-header.float-left
+    .col-sm-12
+      .page-header.float-center
         .page-title
-          %h3 System Office
+          %h3{:style=>"text-align: center;"} Offices
   / -if(flash[:success]!=nil)
   /   %div{:class => "alert alert-success"}
   /     %H6=flash[:success]
@@ -13,13 +13,13 @@
   /   %div{:class => "alert alert-danger"}
   /     %H6=flash[:danger]
   %br
-  .row
-    .col-sm-4.ml-auto
-      .page-header.float-right
-        = link_to(new_office_path, method: :get, class: 'btn btn-success') do
-          %i.fa.fa-plus-square-o
-            Add New Office
   .content.mt-3
+    .row
+      .col-sm-4.ml-auto
+        .page-header.float-right
+          = link_to(new_office_path, method: :get, class: 'btn btn-success') do
+            %i.fa.fa-plus-square-o
+              Add New Office
     .animated.fadeIn
       .row
         .col-md-12

@@ -3,7 +3,7 @@
     .container
       .login-content
         .login-form
-          %h3 New Account
+          %h3{:style=>"text-align: center;"} New Account
           %br
           -if(flash[:errors]!=nil)
             - flash[:errors].each do |msg|
