@@ -1,0 +1,28 @@
+.div{:style => "position: relative; z-index:1; left: 33.5%; width: 100%;"}
+  .col-lg-8
+    .card
+      .card-header
+        %strong.card-title Office doing the Job
+      .card-body.card-block
+        .form-group
+          %label.form-control-label{:for => "office_id"} Assigned Office
+          - options = options_from_collection_for_select(@office, 'id', 'name')
+          = job.select :office_id,  options, {}, class: "form-control", id: "assigned_office"
+        .form-group
+          %label.form-control-label{:for => "delivery_date"} Expected Delivery Date
+          = job.text_field :delivery_date, :class => 'form-control', :type => "date", :id => "expected_delivery_date"
+        .form-group
+          %label.form-control-label{:for => "assigned_to_id"} Task Assigned to
+          - options = options_from_collection_for_select(@staff, 'id', 'name')
+          = job.select :assigned_to_id,  options, {}, class: "form-control", :id => "task_assigned_to"
+
+:javascript
+  $(document).ready(function(){
+
+      var bool = document.getElementById("bool").value;
+      if(bool == "false"){
+        $("#assigned_office").attr("disabled", true);
+        $("#expected_delivery_date").prop("readonly", true);
+        $("#task_assigned_to").attr("disabled", true);
+      }
+  });

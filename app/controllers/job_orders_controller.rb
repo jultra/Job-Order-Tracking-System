@@ -46,13 +46,14 @@ class JobOrdersController < ApplicationController
 
   def manage_job_orders
     @unapproved = JobOrder.where(:progress => ["Waiting for adviser approval.", "Waiting for SAO approval."])
-    @approved = JobOrder.where(:progress => "Ready to start.") 
-    @ongoing = JobOrder.where(:progress => "Ongoing job order.") 
-    @finished = JobOrder.where(:progress => "Finished job order.") 
+    @approved = JobOrder.where(:progress => "Ready to start.")
+    @ongoing = JobOrder.where(:progress => "Ongoing job order.")
+    @finished = JobOrder.where(:progress => "Finished job order.")
   end
 
   def new
     @user_name = User.find(session['user_credentials_id']).fname + " " + User.find(session['user_credentials_id']).lname
+    @fac_and_staff = User.where("position LIKE ? OR position LIKE ?", "Staff", "Faculty")
   end
 
   def admin_approval_params
@@ -98,16 +99,26 @@ class JobOrdersController < ApplicationController
   def show
     @job_order = JobOrder.find params[:id]
     @job_type = @job_order.job_type
+    @office = Office.all
     @users = User.all
+    @staff = User.where("position LIKE ?", "Staff")
+    @fac_and_staff = User.where("position LIKE ? OR position LIKE ?", "Staff", "Faculty")
+    @boolean = false;
+
+
   end
 
   def edit
     @job_order = JobOrder.find params[:id]
+    @office = Office.all
     @job_type = @job_order.job_type
     if (@job_order.adviser_id != "" && @job_order.adviser_id != nil)
       @user = User.find(@job_order.adviser_id)
       @adviser_name = @user.fname + " " + @user.mname + " " + @user.lname
     end
+    @staff = User.where("position LIKE ?", "Staff")
+    @fac_and_staff = User.where("position LIKE ? OR position LIKE ?", "Staff", "Faculty")
+    @boolean = false;
   end
 
   def update
@@ -123,7 +134,6 @@ class JobOrdersController < ApplicationController
   end
 
   def list_pending_admin_approval
-    puts "wwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwww"
     @requests = JobOrder.where(:progress => 'Waiting for admin approval')
   end
 

@@ -1,0 +1,25 @@
+.div{:style => "position: relative; z-index:1; left: 33.5%; width: 100%;"}
+  .col-lg-8
+    .card
+      .card-header
+        %strong.card-title Inspection
+      .card-body.card-block
+        .form-group
+          %label.form-control-label{:for => "available_materials"} Available Materials
+          = job.text_area :available_materials, :class => 'form-control', :rows => "4", :placeholder => "", :id => "available_materials"
+
+        .form-group
+          %label.form-control-label{:for => "inspected_by"} Inspected by
+          - options = options_from_collection_for_select(@staff, 'id', 'name')
+          = job.select :office_id,  options, {}, class: "form-control", :id => "inspected_by"
+
+
+:javascript
+  $(document).ready(function(){
+
+      var bool = document.getElementById("bool").value;
+      if(bool == "false"){
+        $("#inspected_by").attr("disabled", true);
+        $("#available_materials").prop("readonly", true);
+      }
+  });
