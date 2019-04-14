@@ -3,7 +3,7 @@ require 'date'
 class JobOrdersController < ApplicationController
   protect_from_forgery
   before_action :require_login
-  #before_action :get_job, only: [:show, :edit, :destroy, :adviser_approval, :admin_approval, :unapproved, :unassigned]
+  # before_action :get_job, only: [:show, :edit, :destroy, :adviser_approval, :admin_approval, :unapproved, :unassigned]
 
   def job_order_params
     params.require(:job_order).permit(:job_type, :where, :date_needed, :time_needed, :available_materials, :information, :adviser_id, :fund_source, :money_budget, :user_id)
@@ -16,16 +16,16 @@ class JobOrdersController < ApplicationController
       @pending_request_num = JobOrder.where(:progress => "Waiting for Adviser Approval").count
       @pending_request_num2 = JobOrder.where(:progress => "Waiting for Admin Approval").count
       @pending_request_num += @pending_request_num2
-      @ongoing_request_num = JobOrder.where(:progress => "On going").count
-      @finished_request_num = JobOrder.where(:progress => "Completed").count
+      @ongoing_request_num = JobOrder.where(:progress => "Ongoing job order.").count
+      @finished_request_num = JobOrder.where(:progress => "Finished job order.").count
       @pending_Accounts = User.where(:active => false, :approved => false, :confirmed => false).count
     #Adviser
     elsif User.find(session['user_credentials_id']).has_role? :Faculty
      @pending_request_num = JobOrder.where(:progress => "Waiting for Adviser Approval").count
      @pending_request_num2 = JobOrder.where(:progress => "Waiting for Admin Approval").count
      @pending_request_num += @pending_request_num2
-     @ongoing_request_num = JobOrder.where(:progress => "On going").count
-     @finished_request_num = JobOrder.where(:progress => "Completed").count
+     @ongoing_request_num = JobOrder.where(:progress => "Ongoing job order.").count
+     @finished_request_num = JobOrder.where(:progress => "Finished job order.").count
     #Chairperson/Head
     #elsif User.find(session['user_credentials_id']).has_role? :Head
     #  @pending_request_num = JobOrder.where(:progress => "Waiting for Adviser Approval").count
@@ -35,11 +35,11 @@ class JobOrdersController < ApplicationController
     #  @finished_request_num = JobOrder.where(:progress => "Completed").count
     #Student, Faculty, Staff
     else
-      @pending_request_num = JobOrder.where(:progress => "Waiting for Adviser Approval", :user_id => session['user_credentials_id']).count
-      @pending_request_num2 = JobOrder.where(:progress => "Waiting for Admin Approval", :user_id => session['user_credentials_id']).count
+      @pending_request_num = JobOrder.where(:progress => "Waiting for Adviser Approval.", :user_id => session['user_credentials_id']).count
+      @pending_request_num2 = JobOrder.where(:progress => "Waiting for Admin Approval.", :user_id => session['user_credentials_id']).count
       @pending_request_num += @pending_request_num2
-      @ongoing_request_num = JobOrder.where(:progress => "On going", :user_id => session['user_credentials_id']).count
-      @finished_request_num = JobOrder.where(:progress => "Completed", :user_id => session['user_credentials_id']).count
+      @ongoing_request_num = JobOrder.where(:progress => "Ongoing job order.", :user_id => session['user_credentials_id']).count
+      @finished_request_num = JobOrder.where(:progress => "Finished job order.", :user_id => session['user_credentials_id']).count
     end
 
   end
@@ -117,9 +117,10 @@ class JobOrdersController < ApplicationController
   end
 
   def destroy
+    @job_order = JobOrder.find params[:id]
     @job_order.update_column(:progress, 'Cancelled')
     @job_order.save!
-    redirect_to '/job_orders/pending_requests'
+    redirect_to '/manage_job_orders'
   end
 
   def list_pending_admin_approval
@@ -263,6 +264,7 @@ class JobOrdersController < ApplicationController
     if User.find(session['user_credentials_id']).has_role? :SAO_admin   #admin
       @unapproved_requests = JobOrder.where("progress = 'Waiting for admin approval'")
     elsif User.find(session['user_credentials_id']).has_role? :Faculty   #faculty
+      puts "James"
       @unapproved_requests = JobOrder.where("progress = 'Waiting for adviser approval' AND adviser_id = ?", session['user_credentials_id'])
     end
   end

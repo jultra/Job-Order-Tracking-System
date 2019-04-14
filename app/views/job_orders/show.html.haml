@@ -1,5 +1,4 @@
 .div{:style => "position: relative; top: 75px; z-index:1; left: 275px; width: 80%;"}
-  / /header
   / Header
   .content.mt-3
     .animated.fadeIn
@@ -96,7 +95,23 @@
                       %i.fa.fa-clock-o.text-success.border-success
                     .stat-content.dib
                       .stat-text Estimated Project Duration
-                      .stat-digit= @job_order.date_needed - @job_order.date_filed
+                      .stat-digit= (@job_order.date_needed - @job_order.date_filed).to_i
+            .col-lg-5.col-md-6{ :style => "padding-left: 15px"}
+              = link_to "Approved", "#smallmodal", :class => "btn btn-danger col-md-3", "data-toggle" => "modal"
+              #smallmodal.modal.fade{"data-backdrop" => "false", "aria-hidden" => "true", "aria-labelledby" => "smallmodalLabel", :role => "dialog", :tabindex => "-1", :style => "margin-top:50px;"}
+                .modal-dialog.modal-sm{:role => "document"}
+                  .modal-content
+                    .modal-header
+                      %h5#smallmodalLabel.modal-title Approved Job Order
+                      %button.close{"aria-label" => "Close", "data-dismiss" => "modal", :type => "button"}
+                        %span{"aria-hidden" => "true"} ×
+                    .modal-body
+                      %p.text-center
+                        Are you sure you want to approved job order request?
+                    .modal-footer
+                      %button.btn.btn-secondary{"data-dismiss" => "modal", :type => "button"} Cancel
+                      = link_to(job_order_path(@job_order), method: :delete, class: 'btn btn-danger') do
+                        Confirm        
   %script{:src => "/assets/js/vendor/jquery-2.1.4.min.js"}
   %script{:src => "/assets/js/plugins.js"}
   %script{:src => "/assets/js/main.js"}
