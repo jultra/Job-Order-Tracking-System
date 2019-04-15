@@ -110,7 +110,7 @@
                         Are you sure you want to approved job order request?
                     .modal-footer
                       %button.btn.btn-secondary{"data-dismiss" => "modal", :type => "button"} Cancel
-                      = link_to(job_order_path(@job_order), method: :delete, class: 'btn btn-danger') do
+                      = link_to(adviser_approval_path(@job_order), method: :patch, class: 'btn btn-success') do
                         Confirm        
   %script{:src => "/assets/js/vendor/jquery-2.1.4.min.js"}
   %script{:src => "/assets/js/plugins.js"}

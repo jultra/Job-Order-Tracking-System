@@ -22,7 +22,7 @@ Rails.application.routes.draw do
   get '/job_orders/list_pending_adviser_approval' => 'job_orders#list_pending_adviser_approval', as: 'list_pending_adviser_approval'
   get '/job_orders/list_pending_admin_approval' => 'job_orders#list_pending_admin_approval', as: 'list_pending_admin_approval'
   get '/job_orders/admin_approval/:id' => 'job_orders#admin_approval', as: 'admin_approval'
-  get '/job_orders/adviser_approval/:id' => 'job_orders#adviser_approval', as: 'adviser_approval'
+  patch '/job_orders/adviser_approval/:id' => 'job_orders#adviser_approval', as: 'adviser_approval'
   get '/job_orders/adviser_approve_job_order/:id' => 'job_orders#adviser_approve_job_order', as: 'adviser_approve_job_order'
   get '/job_orders/admin_approve_job_order/:id' => 'job_orders#admin_approve_job_order', as: 'admin_approve_job_order'
   get '/job_orders/adviser_reject_job_order/:id' => 'job_orders#adviser_reject_job_order', as: 'adviser_reject_job_order'

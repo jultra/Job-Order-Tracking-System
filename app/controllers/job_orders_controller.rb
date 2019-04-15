@@ -3,7 +3,7 @@ require 'date'
 class JobOrdersController < ApplicationController
   protect_from_forgery
   before_action :require_login
-  # before_action :get_job, only: [:show, :edit, :destroy, :adviser_approval, :admin_approval, :unapproved, :unassigned]
+  before_action :get_job, only: [:show, :edit, :destroy, :adviser_approval, :admin_approval, :unapproved, :unassigned]
 
   def job_order_params
     params.require(:job_order).permit(:job_type, :where, :date_needed, :time_needed, :available_materials, :information, :adviser_id, :fund_source, :money_budget, :user_id)
@@ -13,16 +13,16 @@ class JobOrdersController < ApplicationController
     #SAO Admin wuvwuv
     name = User.find(session['user_credentials_id']).fname + ' ' + User.find(session['user_credentials_id']).lname
     if User.find(session['user_credentials_id']).has_role? :SAO_admin
-      @pending_request_num = JobOrder.where(:progress => "Waiting for Adviser Approval").count
-      @pending_request_num2 = JobOrder.where(:progress => "Waiting for Admin Approval").count
+      @pending_request_num = JobOrder.where(:progress => "Waiting for Adviser Approval.").count
+      @pending_request_num2 = JobOrder.where(:progress => "Waiting for Admin Approval.").count
       @pending_request_num += @pending_request_num2
       @ongoing_request_num = JobOrder.where(:progress => "Ongoing job order.").count
       @finished_request_num = JobOrder.where(:progress => "Finished job order.").count
       @pending_Accounts = User.where(:active => false, :approved => false, :confirmed => false).count
     #Adviser
     elsif User.find(session['user_credentials_id']).has_role? :Faculty
-     @pending_request_num = JobOrder.where(:progress => "Waiting for Adviser Approval").count
-     @pending_request_num2 = JobOrder.where(:progress => "Waiting for Admin Approval").count
+     @pending_request_num = JobOrder.where(:progress => "Waiting for Adviser Approval.").count
+     @pending_request_num2 = JobOrder.where(:progress => "Waiting for Admin Approval.").count
      @pending_request_num += @pending_request_num2
      @ongoing_request_num = JobOrder.where(:progress => "Ongoing job order.").count
      @finished_request_num = JobOrder.where(:progress => "Finished job order.").count
@@ -96,13 +96,11 @@ class JobOrdersController < ApplicationController
   end
 
   def show
-    @job_order = JobOrder.find params[:id]
     @job_type = @job_order.job_type
     @users = User.all
   end
 
   def edit
-    @job_order = JobOrder.find params[:id]
     @job_type = @job_order.job_type
     if (@job_order.adviser_id != "" && @job_order.adviser_id != nil)
       @user = User.find(@job_order.adviser_id)
@@ -117,7 +115,6 @@ class JobOrdersController < ApplicationController
   end
 
   def destroy
-    @job_order = JobOrder.find params[:id]
     @job_order.update_column(:progress, 'Cancelled')
     @job_order.save!
     redirect_to '/manage_job_orders'
@@ -133,11 +130,9 @@ class JobOrdersController < ApplicationController
   end
 
   def adviser_approval
-    @job_type = @job_order.job_type
-    if(@job_order.adviser_id != '' && @job_order.adviser_id != nil)
-      @user = User.find(@job_order.adviser_id)
-      @adviser_name = @user.fname + ' ' + @user.mname + ' ' + @user.lname
-    end
+    @job_order.update_column(:progress, 'Waiting for Admin Approval.')
+    @job_order.save!
+    redirect_to '/manage_job_orders'
   end
 
   def adviser_approve_job_order
