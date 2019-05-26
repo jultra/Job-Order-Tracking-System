@@ -14,7 +14,7 @@ class UserSessionsController < ApplicationController
   def create
     @user_session = UserSession.new(user_session_params.to_h)
     if @user_session.save
-      redirect_to job_orders_path
+      redirect_to job_order_tracking_system_path
     else
       flash[:errors] = @user_session.errors.full_messages
       render :new
@@ -30,7 +30,8 @@ class UserSessionsController < ApplicationController
   private
 
   def user_session_params
-    params.require(:user_session).permit(:email, :password, :remember_me)
+    # params.require(:user_session).permit(:email, :password)
+    params.require(:user_session).permit(:username, :password)
   end
 
   def resolve_layout

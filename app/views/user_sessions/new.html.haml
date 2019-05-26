@@ -11,9 +11,12 @@
               .alert.alert-danger= msg
           -flash.clear
           = form_for @user_session do |f|
+            / .form-group
+            /   = f.label :email
+            /   = f.email_field :email, :required => true, class: 'form-control'
             .form-group
-              = f.label :email
-              = f.email_field :email, :required => true, class: 'form-control'
+              = f.label :username
+              = f.text_field :username, :required => true, class: 'form-control'
             .form-group
               = f.label :password
               = f.password_field :password, :required => true, class: 'form-control'

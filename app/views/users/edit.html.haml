@@ -24,7 +24,7 @@
           = f.select :office_id, options_for_select(@office, @user.office_id), {}, :id=>"inputDivDept", class: "form-control"
         .form-group
           = f.label "position"
-          = f.select :position, options_for_select(["Student", "Administrator", "Faculty", "Staff", "Office Head"], @user.position), {}, :id=>"inputposition", :class=> "form-control"
+          = f.select :position, options_for_select(["Standard User", "Administrator", "Faculty", "Staff", "Office Head"], @user.position), {}, :id=>"inputposition", :class=> "form-control"
         .form-group
           = f.label "username"
           = f.text_field :username, :required =>true, :placeholder => "Username", :type => "text", class: "form-control"

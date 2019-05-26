@@ -25,7 +25,7 @@
             = f.select :office_id, options_for_select(@office), {}, :id=>"inputDivDept", class: "form-control"
           .form-group
             = f.label "position"
-            = f.select :position, options_for_select(["Student", "Administrator", "Faculty", "Staff", "Office Head"], @user.position), {}, :id=>"inputposition", :class=> "form-control"
+            = f.select :position, options_for_select(["Standard User", "Administrator", "Faculty", "Staff", "Office Head"], @user.position), {}, :id=>"inputposition", :class=> "form-control"
           .form-group
             = f.label "username"
             = f.text_field :username, :required => true,  :placeholder => "Username", :type => "text", class: "form-control"
@@ -42,5 +42,5 @@
             %div{:class=>"form-group col-sm-3 mb-0 mt-0 ml-auto"}
               %button.btn.btn-primary{:type => "submit"} Create Account
             %div{:class=>"form-group col-sm-3 mb-0 mt-0"}
-              = link_to(users_path, method: :get, class: 'btn btn-danger') do
+              = link_to(users_path(:type => 'active'), method: :get, class: 'btn btn-danger') do
                 Cancel

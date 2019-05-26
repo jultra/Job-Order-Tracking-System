@@ -2,86 +2,51 @@
   / /header
   / Header
   .breadcrumbs
-    .col-sm-4
-      .page-header.float-left
+    .col-sm-12
+      .page-header.float-center
         .page-title
-          -@user = User.find(session['user_credentials_id'])
-          %h3 Dashboard
+          %h3{:style=>"text-align: center;"}= @title
   .content.mt-3
-    -if(flash[:notice]!=nil)
-      %div{:class => "alert alert-success"}
-        %H6=flash[:notice]
     .animated.fadeIn
       .row
-        .col-sm-12.mb-4
-          .card-group
-            .card.col-lg-2.col-md-6.no-padding.bg-flat-color-1
-              .card-body
-                .h1.text-muted.text-right.mb-4
-                  %i.fa.fa-spinner.text-light
-                .h4.mb-0.text-light
-                  %span.count
-                    =@pending_request_num
-                %small.text-uppercase.font-weight-bold.text-light Pending Requests
-                .progress.progress-xs.mt-3.mb-0.bg-light{:style => "width: 40%; height: 5px;"}
-            .card.col-lg-2.col-md-6.no-padding.no-shadow
-              .card-body.bg-flat-color-2
-                .h1.text-muted.text-right.mb-4
-                  %i.fa.fa-gavel.text-light
-                .h4.mb-0.text-light
-                  %span.count
-                    =@ongoing_request_num
-                %small.text-uppercase.font-weight-bold.text-light On-going Jobs
-                .progress.progress-xs.mt-3.mb-0.bg-light{:style => "width: 40%; height: 5px;"}
-            .card.col-lg-2.col-md-6.no-padding.no-shadow
-              .card-body.bg-flat-color-3
-                .h1.text-right.mb-4
-                  %i.fa.fa-check.text-light
-                .h4.mb-0.text-light
-                  %span.count
-                    = @finished_request_num
-                %small.text-light.text-uppercase.font-weight-bold Finished Jobs
-                .progress.progress-xs.mt-3.mb-0.bg-light{:style => "width: 40%; height: 5px;"}
-                .col-lg-3.col-md-6
-    -if @user.has_role? :SAO_admin
-      .col-lg-3.col-md-6
-        .card
-          .card-body
-            .stat-widget-one
-              .stat-icon.dib
-                %i.ti-user.text-primary.border-primary
-              .stat-content.dib
-                .stat-text Pending Accounts
-                .stat-digit
-                  =@pending_Accounts
-/ /#right-panel
-/ Right Panel
-- content_for :scripts do
-  %script{:src => "assets/js/vendor/jquery-2.1.4.min.js"}
-  %script{:src => "https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js"}
-  %script{:src => "assets/js/plugins.js"}
-  %script{:src => "assets/js/main.js"}
-  %script{:src => "assets/js/lib/chart-js/Chart.bundle.js"}
-  %script{:src => "assets/js/dashboard.js"}
-  %script{:src => "assets/js/widgets.js"}
-  %script{:src => "assets/js/lib/vector-map/jquery.vmap.js"}
-  %script{:src => "assets/js/lib/vector-map/jquery.vmap.min.js"}
-  %script{:src => "assets/js/lib/vector-map/jquery.vmap.sampledata.js"}
-  %script{:src => "assets/js/lib/vector-map/country/jquery.vmap.world.js"}
-  :javascript
-    ( function ( $ ) {
-        "use strict";
-      
-        jQuery( '#vmap' ).vectorMap( {
-            map: 'world_en',
-            backgroundColor: null,
-            color: '#ffffff',
-            hoverOpacity: 0.7,
-            selectedColor: '#1de9b6',
-            enableZoom: true,
-            showTooltip: true,
-            values: sample_data,
-            scaleColors: [ '#1de9b6', '#03a9f5' ],
-            normalizeFunction: 'polynomial'
-        } );
-    } )( jQuery );
+        .col-md-12
+          .card
+            .card-body
+              %table#bootstrap-data-table.table.table-striped.table-bordered
+                %thead
+                  %tr
+                    
+                    %th Control Number
+                    -if !@current_user.has_role? :Standard_User
+                      %th Requested by
+                    %th Job Type
+                    %th Date Filed
+                    %th Where
+                    %th Status
+                %tbody
+                  -if !@job_orders.blank?
+                    -@job_orders.each do |job|
+                      %tr{:onclick => "location.href='#{job_order_path(job)}'"}
+                        %td= job.control_no
+                        -if !@current_user.has_role? :Standard_User
+                          -@requester = User.find(job.user_id)
+                          %td= @requester.fname + ' ' + @requester.mname + ' ' + @requester.lname
+                        %td= job.job_type
+                        %td= job.date_filed
+                        %td= job.where
+                        %td= job.progress
+
+%script{:src => "/assets/js/vendor/jquery-2.1.4.min.js"}
+%script{:src => "/assets/js/plugins.js"}
+%script{:src => "/assets/js/main.js"}
+%script{:src => "/assets/js/lib/data-table/datatables.min.js"}
+%script{:src => "/assets/js/lib/data-table/dataTables.bootstrap.min.js"}
+%script{:src => "/assets/js/lib/data-table/dataTables.buttons.min.js"}
+%script{:src => "/assets/js/lib/data-table/buttons.bootstrap.min.js"}
+%script{:src => "/assets/js/lib/data-table/jszip.min.js"}
+%script{:src => "/assets/js/lib/data-table/pdfmake.min.js"}
+%script{:src => "/assets/js/lib/data-table/vfs_fonts.js"}
+%script{:src => "/assets/js/lib/data-table/buttons.html5.min.js"}
+%script{:src => "/assets/js/lib/data-table/buttons.print.min.js"}
+%script{:src => "/assets/js/lib/data-table/buttons.colVis.min.js"}
+%script{:src => "/assets/js/lib/data-table/datatables-init.js"}

@@ -1,172 +1,160 @@
 .content.mt-3
   .animated.fadeIn
-    .row
-      .col-lg-4
-        .card
-          .card-header
-            %strong.card-title Select a job type
-          .card-body
-            / Credit Card
-            #pay-invoice
-              .card-body
-                .card-title
-                  %h4.text-center Job Types
-                  %hr/
-                  .form-group
-                    .checkbox
-                      %input#variable{:name => "variable", :type => "hidden", :value => "#{@job_type}"}
-                      %input#variable2{:name => "variable2", :type => "hidden", :value => "#{@adviser_name}"}
-                      %label.form-check-label{:for => "checkbox1"}
-                        = check_box_tag "job_order[job_type]", "Aircon cleaning/repair/install", @job_type == "Aircon cleaning/repair/install", :id => "option1"
-                        Aircon cleaning/repair/install
-                    .checkbox
-                      %label.form-check-label{:for => "checkbox2"}
-                        = check_box_tag "job_order[job_type]", "Bulb Tube Replacement", @job_type == "Bulb Tube Replacement", :id => "option2"
-                        Bulb Tube Replacement
-                    .checkbox
-                      %label.form-check-label{:for => "checkbox3"}
-                        = check_box_tag "job_order[job_type]", "Carpentry/ Fabrication work/ repair", @job_type == "Carpentry/ Fabrication work/ repair", :id => "option3"
-                        Carpentry/ Fabrication work/ repair
-                    .checkbox
-                      %label.form-check-label{:for => "checkbox1"}
-                        = check_box_tag "job_order[job_type]", "Computer Hardware Servicing", @job_type == "Computer Hardware Servicing",  :id => "option4"
-                        Computer Hardware Servicing
-                    .checkbox
-                      %label.form-check-label{:for => "checkbox2"}
-                        = check_box_tag "job_order[job_type]", "Computer Software Servicing", @job_type == "Computer Software Servicing",  :id => "option5"
-                        Computer Software Servicing
-                    .checkbox
-                      %label.form-check-label{:for => "checkbox3"}
-                        = check_box_tag "job_order[job_type]", "Cost Estimate Formulation / POW", @job_type == "Cost Estimate Formulation / POW", :id => "option6"
-                        Cost Estimate Formulation / POW
-                    .checkbox
-                      %label.form-check-label{:for => "checkbox1"}
-                        = check_box_tag "job_order[job_type]", "DLP/LCD Services", @job_type == "DLP/LCD Services", :id => "option7"
-                        DLP/LCD Services
-                    .checkbox
-                      %label.form-check-label{:for => "checkbox2"}
-                        = check_box_tag "job_order[job_type]", "Door knob installation/repair", @job_type == "Door knob installation/repair", :id => "option8"
-                        Door knob installation/repair
-                    .checkbox
-                      %label.form-check-label{:for => "checkbox3"}
-                        = check_box_tag "job_order[job_type]", "Electric fan cleaning/repair", @job_type == "Electric fan cleaning/repair", :id => "option9"
-                        Electric fan cleaning/repair
-                    .checkbox
-                      %label.form-check-label{:for => "checkbox1"}
-                        = check_box_tag "job_order[job_type]", "Electrical installation/repair", @job_type == "Electrical installation/repair", :id => "option10"
-                        Electrical installation/repair
-                    .checkbox
-                      %label.form-check-label{:for => "checkbox2"}
-                        = check_box_tag "job_order[job_type]", "Internet & network problems", @job_type == "Internet & network problems", :id => "option11"
-                        Internet & network problems
-                    .checkbox
-                      %label.form-check-label{:for => "checkbox3"}
-                        = check_box_tag "job_order[job_type]", "Inventory taking & recording", @job_type == "Inventory taking & recording", :id => "option12"
-                        Inventory taking & recording
-                    .checkbox
-                      %label.form-check-label{:for => "checkbox1"}
-                        = check_box_tag "job_order[job_type]", "Painting/Repainting/Varnish works", @job_type == "Painting/Repainting/Varnish works", :id => "option13"
-                        Painting/Repainting/Varnish works
-                    .checkbox
-                      %label.form-check-label{:for => "checkbox2"}
-                        = check_box_tag "job_order[job_type]", "Photography/Video coverage", @job_type == "Photography/Video coverage", :id => "option14"
-                        Photography/Video coverage
-                    .checkbox
-                      %label.form-check-label{:for => "checkbox3"}
-                        = check_box_tag "job_order[job_type]", "Plumbing/Sanitary Install/repair", @job_type == "Plumbing/Sanitary Install/repair", :id => "option15"
-                        Plumbing/Sanitary Install/repair
-                    .checkbox
-                      %label.form-check-label{:for => "checkbox1"}
-                        = check_box_tag "job_order[job_type]", "Printer/ Peripheral related problems", @job_type == "Printer/ Peripheral related problems", :id => "option16"
-                        Printer/ Peripheral related problems
-                    .checkbox
-                      %label.form-check-label{:for => "checkbox2"}
-                        = check_box_tag "job_order[job_type]", "Request for Personnel assistance", @job_type == "Request for Personnel assistance", :id => "option17"
-                        Request for Personnel assistance
-                    .checkbox
-                      %label.form-check-label{:for => "checkbox3"}
-                        = check_box_tag "job_order[job_type]", "Sounds & lights services", @job_type == "Sounds & lights services", :id => "option18"
-                        Sounds & lights services
-                    .checkbox
-                      %label.form-check-label{:for => "checkbox1"}
-                        = check_box_tag "job_order[job_type]", "Streamer/Signage making", @job_type == "Streamer/Signage making", :id => "option19"
-                        Streamer/Signage making
-                    .checkbox
-                      %label.form-check-label{:for => "checkbox2"}
-                        = check_box_tag "job_order[job_type]", "Streamer installation", @job_type == "Streamer installation", :id => "option20"
-                        Streamer installation
-                    .checkbox
-                      %label.form-check-label{:for => "checkbox3"}
-                        = check_box_tag "job_order[job_type]", "Transfer/Transport items(see listing)", @job_type == "Transfer/Transport items(see listing)", :id => "option21"
-                        Transfer/Transport items(see listing)
-                    .checkbox
-                      %label.form-check-label{:for => "others"}
-                        %input#others{:name => "others", :type => "checkbox", :onclick => "enableDisableField();" }>/
-                        Others
-                      %input.form-control{:id => "specify", :type => "text", :placeholder => "Specify...", :name => "job_order[job_type]", :disabled => true}/
-      .col-lg-8
-        .card
-          .card-header
-            %strong.card-title Job Order Information
-          .card-body.card-block
-            .form-group
-              %label.form-control-label{:for => "where"} Where
-              = job.text_field :where, :class => 'form-control',:placeholder => "eg. CS Lecture Room", :id => "where"
-            .form-group
-              %label.form-control-label{:for => "date_needed"} Date Needed*
-              = job.text_field :date_needed, :class => 'form-control', :type => "date"
-            .form-group
-              %label.form-control-label{:for => "time_needed"} Time Needed
-              = job.text_field :time_needed, :class => 'form-control',:type => "time", :id => "time_needed"
-            .form-group{:id => "live-search-form", :action => search_path, :method => "get"}
-              %label.form-control-label{:for => "adviser"} Adviser
-              %input#adviser_name{:name => "adviser_id", :type => "text", :class => 'form-control', :autocomplete => "off"}/
-            #live-search-results
-            .form-group
-              %label.form-control-label{:for => "fund"} Fund Source
-              = job.text_field :fund_source, :class => 'form-control', :placeholder => "e.g. DNSM"
-              %label.form-control-label{:for => "money_budget"} Budget
-              = job.text_field :money_budget, :class => 'form-control', :placeholder => "0.00"
-            .form-group
-              %label.form-control-label{:for => "information"} Order/Activity/Problem Area
-              = job.text_area :information, :class => 'form-control', :rows => "9", :placeholder => "Important information"
-            .form-group
-              %label.form-control-label{:for => "available_materials"} Available Materials
-              = job.text_area :available_materials, :class => 'form-control', :rows => "4", :placeholder => ""
-            .form-group
-              %label.form-control-label{:for => "user_id"}
-              = job.hidden_field :user_id, :value => "#{session['user_credentials_id']}"
-              = job.hidden_field :adviser_id, :id => "adviser_id"
-            *The specified date should be at least 3 days earlier today
-            
-%script{:src => "https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"}
+    - if @summary
+      .row
+        .col-lg-12
+          .card
+            .card-header
+              %strong.card-title Summary
+            .card-body.card-block
+              .row.form-group
+                .col.col-md-2
+                  %label.form-control-label{:for => "control_no"} Control Number
+                .col-12.col-md-4
+                  = job.text_field :control_no, :class => 'form-control', :placeholder => "XXXX-XXXXX", :readonly => true
+                .col.col-md-2
+                  %label.form-control-label{:for => "progress"} Status
+                .col-12.col-md-4
+                  = job.text_field :progress, :class => 'form-control', :placeholder => "", :readonly => true
+              .row.form-group
+                .col.col-md-2
+                  %label.form-control-label{:for => "user_id"} Requested by
+                .col-12.col-md-4
+                  -@user = User.find(@job_order.user_id)
+                  = job.text_field :user_id, :class => 'form-control', :value => "#{@user.fname} #{@user.mname} #{@user.lname}", :placeholder => "", :readonly => true
+                .col.col-md-2
+                  %label.form-control-label{:for => "date_filed"} Date Filed
+                .col-12.col-md-4
+                  = job.text_field :date_filed, :class => 'form-control', :placeholder => "", :readonly => true
+              .row.form-group
+                .col.col-md-2
+                  %label.form-control-label{:for => "inspection_date"} Inspected Date
+                .col-12.col-md-4
+                  = job.text_field :inspection_date, :class => 'form-control', :placeholder => "No date", :readonly => true
+                .col.col-md-2
+                  %label.form-control-label{:for => "date_approved"} Date Approved
+                .col-12.col-md-4
+                  = job.text_field :date_approved, :class => 'form-control', :placeholder => "No date", :readonly => true
+              .row.form-group
+                .col.col-md-2
+                  %label.form-control-label{:for => "assignment_date"} Assignment Date
+                .col-12.col-md-4
+                  = job.text_field :assignment_date, :class => 'form-control', :placeholder => "No date", :readonly => true
+                .col.col-md-2
+                  %label.form-control-label{:for => "date_started"} Date Started
+                .col-12.col-md-4
+                  = job.text_field :date_started, :class => 'form-control', :placeholder => "No date", :readonly => true
+              .row.form-group
+                .col.col-md-2
+                  %label.form-control-label{:for => "date_completed"} Date Completed
+                .col-12.col-md-4
+                  = job.text_field :date_completed, :class => 'form-control', :placeholder => "No date", :readonly => true
+    - if @information
+      .row
+        .col-lg-12
+          .card
+            .card-header
+              %strong.card-title Job Order Information
+            .card-body.card-block
+              .row.form-group
+                .col.col-md-2
+                  %label.form-control-label{:for => "job_type"} Job Type
+                .col-12.col-md-4
+                  = job.select :job_type, options_for_select($job_types, @job_order.job_type), {}, class: "form-control", :id => "job_type", :readonly => @readonly
+                .col.col-md-2
+                  %label.form-control-label{:for => "where"} Where
+                .col-12.col-md-4
+                  = job.text_field :where, :required => true, :class => 'form-control',:placeholder => "eg. CS Lecture Room", :id => "where", :readonly => @readonly
+              .row.form-group
+                .col.col-md-2
+                  %label.form-control-label{:for => "date_needed"} Date Needed*
+                .col-12.col-md-4
+                  = job.text_field :date_needed, :required => true, :class => 'form-control', :type => "date", :readonly => @readonly
+                .col.col-md-2
+                  %label.form-control-label{:for => "time_needed"} Time Needed
+                .col-12.col-md-4
+                  = job.text_field :time_needed, :required => true, :class => 'form-control',:type => "time", :id => "time_needed", :readonly => @readonly
+              .row.form-group
+                .col.col-md-2
+                  %label.form-control-label{:for => "adviser_id"} Adviser
+                .col-12.col-md-4
+                  - @faculty = User.all.where('position = ?', 'Faculty').collect{|x| [x.fname + ' '+ x.mname + ' ' + x.lname, x.id]}
+                  = job.select :adviser_id, options_for_select(@faculty, @job_order.adviser_id), {}, class: "form-control", :id => "adviser_id", :readonly => @readonly
+                .col.col-md-2
+                  %label.form-control-label{:for => "fund"} Fund Source
+                .col-12.col-md-4
+                  = job.text_field :fund_source, :class => 'form-control', :placeholder => "e.g. DNSM", :readonly => @readonly
+              .row.form-group
+                .col.col-md-2
+                  %label.form-control-label{:for => "money_budget"} Budget
+                  %label.form-control-label{:for => "acknowledgment", :class => "mt-3"} Acknowledgment
+                .col-12.col-md-4
+                  = job.text_field :money_budget, :class => 'form-control', :placeholder => "0.00", :readonly => @readonly
+                  = job.text_area :acknowledgment, :class => 'form-control mt-3', :rows => "2", :placeholder => "", :readonly => @readonly
+                .col.col-md-2
+                  %label.form-control-label{:for => "information"} Description
+                .col-12.col-md-4
+                  = job.text_area :information, :required => true, :class => 'form-control', :rows => "4", :placeholder => "Important information", :readonly => @readonly
+              / *The specified date should be at least 3 days earlier today
+    -if @inspection
+      .row
+        .col-lg-12
+          .card
+            .card-header
+              %strong.card-title Inspection Information
+            .card-body.card-block
+              .row.form-group
+                .col.col-md-2
+                  %label.form-control-label{:for => "inspected_by"} Inspected by
+                .col-12.col-md-4
+                  - @staffs = User.all.where('position = ?', 'Staff').collect{|x| [x.fname + ' '+ x.mname + ' ' + x.lname, x.id]}
+                  = job.select :inspected_by_id, options_for_select(@staffs, @job_order.inspected_by_id), {}, class: "form-control", :id => "inspected_by_id", :required => @inspection, :readonly => @readonly
+                .col.col-md-2
+                  %label.form-control-label{:for => "code"} Code
+                .col-12.col-md-4
+                  = job.select :code, options_for_select($codes, @job_order.code), {}, class: "form-control", :id => "code", :required => @inspection, :readonly => @readonly
+              .row.form-group
+                .col.col-md-2
+                  %label.form-control-label{:for => "available_materials"} Available Materials
+                .col-12.col-md-4
+                  = job.text_area :available_materials, :class => 'form-control', :rows => "2", :placeholder => "", :id => "available_materials", :readonly => @readonly
+                .col.col-md-2
+                  %label.form-control-label{:for => "inspection_remarks"} Remarks
+                .col-12.col-md-4
+                  = job.text_area :inspection_remarks, :class => 'form-control', :rows => "2", :placeholder => "", :id => "inpsection_remarks", :readonly => @readonly
+    -if @office_assignment
+      .row
+        .col-lg-12
+          .card
+            .card-header
+              %strong.card-title Office Assigned To
+            .card-body.card-block
+              .row.form-group
+                .col.col-md-2
+                  %label.form-control-label{:for => "office"} Office
+                .col-12.col-md-4
+                  -@office = Office.pluck(:name, :id)
+                  = job.select :office_id, options_for_select(@office, @job_order.office_id), {}, :id=>"office_id", :required => @office_assignment, class: "form-control", :readonly => @readonly 
+                .col.col-md-2
+                  %label.form-control-label{:for => "delivery_date"} Expected Delivery Date
+                .col-12.col-md-4
+                  = job.text_field :delivery_date, :class => 'form-control', :type => "date", :required => @office_assignment, :readonly => @readonly
+    -if @task_assignment
+      .row
+        .col-lg-12
+          .card
+            .card-header
+              %strong.card-title Task Assigned To
+            .card-body.card-block
+              .row.form-group
+                .col.col-md-2
+                  %label.form-control-label{:for => "assigned_worker"} Assigned Worker
+                .col-12.col-md-4
+                  - @staffs = User.all.where('position = ?', 'Staff').collect{|x| [x.fname + ' '+ x.mname + ' ' + x.lname, x.id]}
+                  = job.select :assigned_to_id, options_for_select(@staffs, @job_order.assigned_to_id), {}, class: "form-control", :id => "assigned_to_id", :required => @task_assignment, :readonly => @readonly
+                .col.col-md-2
+                  %label.form-control-label{:for => "assignment_remarks"} Remarks
+                .col-12.col-md-4
+                  = job.text_area :assignment_remarks, :class => 'form-control', :rows => "2", :placeholder => "", :id => "assignment_remarks", :readonly => @readonly              
 
-:javascript
-  $(document).ready(function(){
-    var adv_name = document.getElementById("variable2").value;
-
-    if(adv_name != ""){
-      document.getElementById("adviser_name").value = adv_name
-    }
-      $("input#adviser_name").keyup(function(){
-          var url = "/job_orders/live_search";
-          var x = document.getElementById("live-search-results");
-
-          var formData= $.param($("#adviser_name").map(function(){
-            return {
-              value:  document.getElementById('adviser_name').value
-            }
-          }));
-          $.get(url, formData, function(html) {
-            if(x.style.display == "none"){
-              x.style.display = "block"
-            }
-            $("#live-search-results").html(html);
-            $("#myUL li").on("click", function(){
-              document.getElementById('adviser_name').value = $(this).text()
-              document.getElementById('adviser_id').value = this.id
-              x.style.display = "none"
-            });
-          });
-      });
-  });
+/ %script{:src => "https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"}

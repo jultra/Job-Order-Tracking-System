@@ -2,8 +2,14 @@ class UsersController < ApplicationController
   # layout :resolve_layout
 
   def index
-    @users_active = User.all.where(:active => true)
-    @users_inactive = User.all.where(:active => false)
+    type = params[:type]
+    if type == "active"
+      @title = "Active Accounts"
+      @users = User.all.where(:active => true)
+    else
+      @title = "Inactive Accounts"
+      @users = User.all.where(:active => false)
+    end
   end
 
   def new
@@ -25,7 +31,7 @@ class UsersController < ApplicationController
 
       if @office.user_id != nil && @office.user_id != @user.id
         @old_head = User.find(@office.user_id)
-        @old_head.remove_role :Office_Head
+        @old_head.remove_user_role(@old_head)
         @old_head.add_role :Staff
         @old_head.position = "Staff"
         @old_head.save
@@ -51,7 +57,7 @@ class UsersController < ApplicationController
     @user = User.new(users_params)
 
     if @user.save
-      set_role(@user)
+      # set_role(@user)
 
       flash[:success] = "Account Request Submitted"
     else 
@@ -82,21 +88,26 @@ class UsersController < ApplicationController
         if @office.user_id != nil && @office.user_id != @user.id
           @old_head = User.find(@office.user_id)
           remove_user_role(@old_head)
-          @old_head.add_role :Staff
           @old_head.position = "Staff"
           @old_head.save
+          set_role(@old_head)
         end
         
-        if @user.has_role? :Staff
-          @user.remove_role :Staff
-        elsif @user.has_role? :Faculty
-          @user.remove_role :Faculty         
-        end
+        remove_user_role(@user)
+        @user.save
+        set_role(@user)
 
-        @user.add_role :Office_Head
         @office.user_id = @user.id
-        @user.save!
         @office.save!
+      else
+        remove_user_role(@user)
+        set_role(@user)
+        @office = Office.find(@user.id)
+
+        if @office != nil
+          @office.user_id = nil
+          @office.save!
+        end
       end
 
       redirect_to @user
@@ -133,8 +144,8 @@ class UsersController < ApplicationController
 
   private
   def set_role(user)
-    if user.position == "Student"
-      user.add_role :Student
+    if user.position == "Standard User"
+      user.add_role :Standard_User
     elsif user.position == "Administrator"
       user.add_role :Administrator
     elsif user.position == "Faculty"
@@ -158,7 +169,7 @@ class UsersController < ApplicationController
     elsif user.has_role? :Staff
       user.remove_role :Staff
     else
-      user.remove_role :Student
+      user.remove_role :Standard_User
     end
   end
 

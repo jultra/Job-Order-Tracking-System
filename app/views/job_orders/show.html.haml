@@ -1,121 +1,30 @@
 .div{:style => "position: relative; top: 75px; z-index:1; left: 275px; width: 80%;"}
-  / Header
-  .content.mt-3
-    .animated.fadeIn
-      .col-md-12
-        .card
-          .card-header
-            %strong.card-title.mb-3
-              %tr
-                Job Details
-          .card-body
-            .center
-              .col-md-7
-                .row
-                  .col-md-6
-                    %address.mt-3
-                      %strong Control Number
-                      %br/
-                      - if @job_order.control_no == nil
-                        %td= "XXXX-XXXXX"
-                      - else
-                        %td= @job_order.control_no
-                .row
-                  .col-md-6
-                    %address.mt-3
-                      %strong Job Type
-                      %br/
-                      %td= @job_order.job_type
-                      %br/
-                      %br/
-                      %b Requested by
-                      %br/
-                      %td= @users.find(@job_order.user_id).fname + " " +  @users.find(@job_order.user_id).lname
-                      %br/
-                      %br/
-                      %b Date Needed
-                      %br/
-                      %td= @job_order.date_needed
-                      %br/
-                      %br/
-                      %b Adviser
-                      %br/
-                      %td= @users.find(@job_order.adviser_id).fname + " " +  @users.find(@job_order.adviser_id).lname
-                      %br/
-                      %br/
-                      %b Order/Activity/Problem Area
-                      %br/
-                      %td= @job_order.information
-                      %br/
-                  .col-md-6
-                    %address.mt-3
-                      %strong Location
-                      %br/
-                      %td= @job_order.where
-                      %br/
-                      %br/
-                      %b Date Requested
-                      %br/
-                      %td= @job_order.date_filed
-                      %br/
-                      %br/
-                      %b Time Needed
-                      %br/
-                      %td= @job_order.time_needed
-                      %br/
-            .col-md-5.col-lg-5
-              .card
-                .card-body
-                  .stat-widget-one
-                    .stat-icon.dib
-                      %i.ti-money.text-success.border-success
-                    .stat-content.dib
-                      .stat-text Estimated Budget
-                      -if !@job_order.money_budget.nil?
-                        .stat-digit= @job_order.money_budget
-                      -else
-                        .stat-digit= 0.00
-            .col-lg-5.col-md-6
-              .card
-                .card-body
-                  .stat-widget-one
-                    .stat-icon.dib
-                      %i.fa.fa-cart-plus.text-success.border-success
-                    .stat-content.dib
-                      .stat-text Total Amount Spent
-                      -if !@job_order.money_spent.nil?
-                        .stat-digit= @job_order.money_spent
-                      -else
-                        .stat-digit 0.00
-            .col-lg-5.col-md-6
-              .card
-                .card-body
-                  .stat-widget-one
-                    .stat-icon.dib
-                      %i.fa.fa-clock-o.text-success.border-success
-                    .stat-content.dib
-                      .stat-text Estimated Project Duration
-                      .stat-digit= (@job_order.date_needed - @job_order.date_filed).to_i
-            .col-lg-5.col-md-6{ :style => "padding-left: 15px"}
-              = link_to "Approved", "#smallmodal", :class => "btn btn-danger col-md-3", "data-toggle" => "modal"
-              #smallmodal.modal.fade{"data-backdrop" => "false", "aria-hidden" => "true", "aria-labelledby" => "smallmodalLabel", :role => "dialog", :tabindex => "-1", :style => "margin-top:50px;"}
-                .modal-dialog.modal-sm{:role => "document"}
-                  .modal-content
-                    .modal-header
-                      %h5#smallmodalLabel.modal-title Approved Job Order
-                      %button.close{"aria-label" => "Close", "data-dismiss" => "modal", :type => "button"}
-                        %span{"aria-hidden" => "true"} ×
-                    .modal-body
-                      %p.text-center
-                        Are you sure you want to approved job order request?
-                    .modal-footer
-                      %button.btn.btn-secondary{"data-dismiss" => "modal", :type => "button"} Cancel
-                      = link_to(adviser_approval_path(@job_order), method: :patch, class: 'btn btn-success') do
-                        Confirm        
-  %script{:src => "/assets/js/vendor/jquery-2.1.4.min.js"}
-  %script{:src => "/assets/js/plugins.js"}
-  %script{:src => "/assets/js/main.js"}
-  / Chart js
-  %script{:src => "/assets/js/lib/chart-js/Chart.bundle.js"}
-  %script{:src => "/assets/js/lib/chart-js/chartjs-init.js"}
-  %script{:src => "https://canvasjs.com/assets/script/canvasjs.min.js"}
+  = form_for @job_order do |job_order|
+    = render(:partial => "request_form", :locals => {:job => job_order})
+    .float-right{:style => "padding-bottom: 25px; padding-right: 15px;"}
+      -if (@current_user.has_role? :Faculty and @job_order.progress == JobOrdersController::ADVISER_APPROVAL) or (@current_user.has_role? :Office_Head and Office.find(@current_user.office_id).name == "Supervising Administrative Office" and @job_order.progress == JobOrdersController::SAO_APPROVAL)
+        = link_to(approve_job_order_path(@job_order), method: :get, class: 'btn btn-primary') do
+          %i.fa.fa-thumbs-up
+            Approve
+        = link_to(reject_job_order_path(@job_order), method: :get, class: 'btn btn-danger') do
+          %i.fa.fa-thumbs-down
+            Reject
+      -elsif @current_user.has_role? :Staff and @job_order.progress == JobOrdersController::READY_JOB and @job_order.assigned_to_id == @current_user.id
+        = link_to(start_job_order_path(@job_order), method: :get, class: 'btn btn-secondary') do
+          %i.fa.fa-toggle-right
+            Start Job
+      -elsif @current_user.has_role? :Staff and @job_order.progress == JobOrdersController::ONGOING_JOB and @job_order.assigned_to_id == @current_user.id
+        = link_to(edit_job_order_path(@job_order), method: :get, class: 'btn btn-primary') do
+          %i.fa.fa-edit
+            Edit
+        = link_to(done_job_order_path(@job_order), method: :get, class: 'btn btn-success') do
+          %i.fa.fa-check-square
+            Done Job
+      -elsif @job_order.progress != JobOrdersController::FINISHED_JOB and @job_order.progress != JobOrdersController::CANCELLED and @job_order.progress != JobOrdersController::REJECTED_SAO and @job_order.progress != JobOrdersController::REJECTED_ADVISER
+        = link_to(edit_job_order_path(@job_order), method: :get, class: 'btn btn-primary') do
+          %i.fa.fa-edit
+            Edit
+        -if @current_user.id == @job_order.user_id
+          = link_to(cancel_job_order_path(@job_order), method: :get, class: 'btn btn-danger') do
+            %i.fa.fa-times
+             	Cancel

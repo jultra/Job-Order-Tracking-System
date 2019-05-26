@@ -1,23 +1,15 @@
 .div{:style => "position: relative; top: 75px; z-index:1; left: 275px; width: 80%;"}
-  / /header
-  / Header
   .breadcrumbs
     .col-sm-12
       .page-header.float-center
         .page-title
           %h3{:style=>"text-align: center;"} Offices
-  / -if(flash[:success]!=nil)
-  /   %div{:class => "alert alert-success"}
-  /     %H6=flash[:success]
-  / -if(flash[:danger]!=nil)
-  /   %div{:class => "alert alert-danger"}
-  /     %H6=flash[:danger]
   %br
   .content.mt-3
     .row
       .col-sm-4.ml-auto
         .page-header.float-right
-          = link_to(new_office_path, method: :get, class: 'btn btn-success') do
+          = link_to(new_office_path, method: :get, class: 'btn btn-success mb-2') do
             %i.fa.fa-plus-square-o
               Add New Office
     .animated.fadeIn
