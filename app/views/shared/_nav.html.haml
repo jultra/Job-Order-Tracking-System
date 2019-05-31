@@ -73,6 +73,11 @@
         .user-area.float-right
           .row
             -@current_user = User.find(session['user_credentials_id'])
+            .dropdown{"data-behavior" => "notifications"}
+              %button#dropdownMenuButton.btn.btn-secondary.dropdown-toggle{"aria-expanded" => "false", "aria-haspopup" => "true", "data-behavior" => "notifications-link", "data-toggle" => "dropdown", :type => "button"}
+                %i.fa.fa-bell
+                %span{"data-behavior" => "unread-count"}
+              .dropdown-menu.dropdown-menu-right{"aria-labelledby" => "dropdownMenuButton", "data-behavior" => "notification-items"}
             %a.nav-link{:href => user_path(@current_user)}
               %i.fa.fa-user
               = @current_user.fname

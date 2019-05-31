@@ -245,7 +245,7 @@ class JobOrdersController < ApplicationController
       @job_order.date_approved = current_time.strftime "%Y-%m-%d"
 
       @job_order.save!
-
+      Notification.create(recipient: @job_order.user, actor: current_user, action: "APPROVED", notifiable: @job_order)
       redirect_to @job_order
 
     elsif @current_user.has_role? :Office_Head
@@ -264,7 +264,7 @@ class JobOrdersController < ApplicationController
     end
 
     @job_order.save!
-
+    Notification.create(recipient: @job_order.user, actor: current_user, action: "REJECTED", notifiable: @job_order)
     redirect_to @job_order
   end
 
@@ -276,7 +276,7 @@ class JobOrdersController < ApplicationController
     @job_order.date_started = current_time.strftime "%Y-%m-%d"
 
     @job_order.save!
-
+    Notification.create(recipient: @job_order.user, actor: current_user, action: "STARTED", notifiable: @job_order)
     redirect_to @job_order
   end
 
@@ -288,7 +288,7 @@ class JobOrdersController < ApplicationController
     @job_order.date_completed = current_time.strftime "%Y-%m-%d"
 
     @job_order.save!
-
+    Notification.create(recipient: @job_order.user, actor: current_user, action: "DONE", notifiable: @job_order)
     redirect_to @job_order
   end
 
@@ -296,7 +296,7 @@ class JobOrdersController < ApplicationController
     @job_order = JobOrder.find params[:id]
     @job_order.progress = CANCELLED;
     @job_order.save!
-
+    Notification.create(recipient: @job_order.user, actor: current_user, action: "CANCELLED", notifiable: @job_order)
     redirect_to @job_order
   end
 

@@ -1257,7 +1257,7 @@ header .form-inline {
       .header-left .dropdown .dropdown-menu .dropdown-item:hover {
         background: transparent; }
 
-.dropdown-menu {
+/*.dropdown-menu {
   border-radius: 0;
   transform: none !important; }
 
@@ -1272,7 +1272,7 @@ header .form-inline {
     width: 20px; }
   .for-notification .dropdown-menu .dropdown-item p {
     padding: 0 !important;
-    text-overflow: ellipsis; }
+    text-overflow: ellipsis; }*/
 
 .user-area {
   float: right;
