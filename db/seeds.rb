@@ -12,7 +12,7 @@ puts "Created office"
 puts "Office Name: #{office.name}\n"
 
 user = User.create(username: 'sysad', position: 'Administrator', email: 'sysad@up.edu.ph', office_id: office.id,
-		fname: 'System', mname: '', lname: 'Administrator', password: 'password123', password_confirmation: 'password123')
+		fname: 'System', mname: '', lname: 'Administrator', password: 'password', password_confirmation: 'password')
 
 user.active = true
 user.approved = true 
@@ -21,7 +21,7 @@ user.confirmed = true
 puts "Created user"
 puts "Username: #{user.username}"
 puts "Email: #{user.email}"
-puts "Password: passsword123 \n"
+puts "Password: password \n"
 
 office.user_id = user.id
 user.add_role :Administrator

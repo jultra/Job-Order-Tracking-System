@@ -1,4 +1,5 @@
 class User < ApplicationRecord
+  has_many :notifications, foreign_key: :recipient_id
   has_many :job_orders
   has_one :office, required: false
   validates_uniqueness_of :username
