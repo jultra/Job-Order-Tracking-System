@@ -1,30 +1,143 @@
 .div{:style => "position: relative; top: 75px; z-index:1; left: 275px; width: 80%;"}
   = form_for @job_order do |job_order|
     = render(:partial => "request_form", :locals => {:job => job_order})
+    = render(:partial => "log", :locals => {:job => job_order})
     .float-right{:style => "padding-bottom: 25px; padding-right: 15px;"}
       -if (@current_user.has_role? :Faculty and @job_order.progress == JobOrdersController::ADVISER_APPROVAL) or (@current_user.has_role? :Office_Head and Office.find(@current_user.office_id).name == "Supervising Administrative Office" and @job_order.progress == JobOrdersController::SAO_APPROVAL)
-        = link_to(approve_job_order_path(@job_order), method: :get, class: 'btn btn-primary') do
-          %i.fa.fa-thumbs-up
-            Approve
-        = link_to(reject_job_order_path(@job_order), method: :get, class: 'btn btn-danger') do
-          %i.fa.fa-thumbs-down
-            Reject
-      -elsif @current_user.has_role? :Staff and @job_order.progress == JobOrdersController::READY_JOB and @job_order.assigned_to_id == @current_user.id
-        = link_to(start_job_order_path(@job_order), method: :get, class: 'btn btn-secondary') do
-          %i.fa.fa-toggle-right
-            Start Job
-      -elsif @current_user.has_role? :Staff and @job_order.progress == JobOrdersController::ONGOING_JOB and @job_order.assigned_to_id == @current_user.id
+        = link_to "Approve", "#smallmodalApprove", :class => "btn btn-success", "data-toggle" => "modal"
+        #smallmodalApprove.modal.fade{"data-backdrop" => "false", "aria-hidden" => "true", "aria-labelledby" => "smallmodalLabel", :role => "dialog", :tabindex => "-1", :style => "margin-top:50px;"}
+          .modal-dialog.modal-sm{:role => "document"}
+            .modal-content
+              .modal-header
+                %h5#smallmodalLabel.modal-title Approve Job Order?
+                %button.close{"aria-label" => "Close", "data-dismiss" => "modal", :type => "button"}
+                  %span{"aria-hidden" => "true"} ×
+              .modal-body
+                %p.text-center
+                  Are you sure you want to approve job order request?
+              .modal-footer
+                %button.btn.btn-secondary{"data-dismiss" => "modal", :type => "button"} Back
+                = link_to(approve_job_order_path(@job_order), method: :get, class: 'btn btn-success') do
+                  %i.fa.fa-thumbs-up
+                    Approve
+      -if (@job_order.progress == JobOrdersController::REJECTED_ADVISER and @current_user.has_role? :Standard_User) or (@job_order.progress == JobOrdersController::REJECTED_SAO and @current_user.has_role? :Faculty) or (@job_order.progress == JobOrdersController::REJECTED_HEAD and (@current_user.has_role? :Office_Head and Office.find(@current_user.office_id).name == "Supervising Administrative Office"))
+        = link_to "Resubmit", "#smallmodalResubmit", :class => "btn btn-success", "data-toggle" => "modal"
+        #smallmodalResubmit.modal.fade{"data-backdrop" => "false", "aria-hidden" => "true", "aria-labelledby" => "smallmodalLabel", :role => "dialog", :tabindex => "-1", :style => "margin-top:50px;"}
+          .modal-dialog.modal-sm{:role => "document"}
+            .modal-content
+              .modal-header
+                %h5#smallmodalLabel.modal-title Resubmit Job Order?
+                %button.close{"aria-label" => "Close", "data-dismiss" => "modal", :type => "button"}
+                  %span{"aria-hidden" => "true"} ×
+              .modal-body
+                %p.text-center
+                  Are you sure you want to resubmit job order request?
+              .modal-footer
+                %button.btn.btn-secondary{"data-dismiss" => "modal", :type => "button"} Back
+                = link_to(resubmit_job_order_path(@job_order), method: :get, class: 'btn btn-success') do
+                  %i.fa.fa-check
+                    Resubmit
+      -if @current_user.has_role? :Staff and @job_order.progress == JobOrdersController::READY_JOB and @job_order.assigned_to_id == @current_user.id
+        = link_to "StartJob", "#smallmodalStartJob", :class => "btn btn-primary", "data-toggle" => "modal"
+        #smallmodalStartJob.modal.fade{"data-backdrop" => "false", "aria-hidden" => "true", "aria-labelledby" => "smallmodalLabel", :role => "dialog", :tabindex => "-1", :style => "margin-top:50px;"}
+          .modal-dialog.modal-sm{:role => "document"}
+            .modal-content
+              .modal-header
+                %h5#smallmodalLabel.modal-title Start Job Order?
+                %button.close{"aria-label" => "Close", "data-dismiss" => "modal", :type => "button"}
+                  %span{"aria-hidden" => "true"} ×
+              .modal-body
+                %p.text-center
+                  Are you sure you want to Start job order request?
+              .modal-footer
+                %button.btn.btn-secondary{"data-dismiss" => "modal", :type => "button"} Back
+                = link_to(start_job_order_path(@job_order), method: :get, class: 'btn btn-primary') do
+                  %i.fa.fa-toggle-right
+                    Start Job
+      -if @current_user.has_role? :Staff and @job_order.progress == JobOrdersController::ONGOING_JOB and @job_order.assigned_to_id == @current_user.id
+        = link_to "DoneJob", "#smallmodalDoneJob", :class => "btn btn-success", "data-toggle" => "modal"
+        #smallmodalDoneJob.modal.fade{"data-backdrop" => "false", "aria-hidden" => "true", "aria-labelledby" => "smallmodalLabel", :role => "dialog", :tabindex => "-1", :style => "margin-top:50px;"}
+          .modal-dialog.modal-sm{:role => "document"}
+            .modal-content
+              .modal-header
+                %h5#smallmodalLabel.modal-title Finish Job Order?
+                %button.close{"aria-label" => "Close", "data-dismiss" => "modal", :type => "button"}
+                  %span{"aria-hidden" => "true"} ×
+              .modal-body
+                %p.text-center
+                  Are you sure you want to finish job order request?
+              .modal-footer
+                %button.btn.btn-secondary{"data-dismiss" => "modal", :type => "button"} Back
+                = link_to(done_job_order_path(@job_order), method: :get, class: 'btn btn-success') do
+                  %i.fa.fa-check-square
+                    Done Job
+      -if (@job_order.progress == JobOrdersController::WORKER_ASSIGNMENT or @job_order.progress == JobOrdersController::REJECTED_STAFF) and (@current_user.has_role? :Office_Head and Office.find(@current_user.office_id).name != "Supervising Administrative Office") 
         = link_to(edit_job_order_path(@job_order), method: :get, class: 'btn btn-primary') do
-          %i.fa.fa-edit
-            Edit
-        = link_to(done_job_order_path(@job_order), method: :get, class: 'btn btn-success') do
-          %i.fa.fa-check-square
-            Done Job
-      -elsif @job_order.progress != JobOrdersController::FINISHED_JOB and @job_order.progress != JobOrdersController::CANCELLED and @job_order.progress != JobOrdersController::REJECTED_SAO and @job_order.progress != JobOrdersController::REJECTED_ADVISER
-        = link_to(edit_job_order_path(@job_order), method: :get, class: 'btn btn-primary') do
-          %i.fa.fa-edit
-            Edit
-        -if @current_user.id == @job_order.user_id
-          = link_to(cancel_job_order_path(@job_order), method: :get, class: 'btn btn-danger') do
-            %i.fa.fa-times
-             	Cancel
+          %i.fa
+            Assign
+      -if (@current_user.has_role? :Faculty and (@job_order.progress == JobOrdersController::REJECTED_SAO or @job_order.progress == JobOrdersController::ADVISER_APPROVAL)) or (@current_user.has_role? :Office_Head and Office.find(@current_user.office_id).name == "Supervising Administrative Office" and (@job_order.progress == JobOrdersController::SAO_APPROVAL or @job_order.progress == JobOrdersController::REJECTED_HEAD)) or ((@job_order.progress == JobOrdersController::WORKER_ASSIGNMENT or @job_order.progress == JobOrdersController::REJECTED_STAFF) and (@current_user.has_role? :Office_Head and Office.find(@current_user.office_id).name != "Supervising Administrative Office")) or (@current_user.has_role? :Staff and @job_order.progress == JobOrdersController::ONGOING_JOB and @job_order.assigned_to_id == @current_user.id) or (@current_user.has_role? :Staff and @job_order.progress == JobOrdersController::READY_JOB and @job_order.assigned_to_id == @current_user.id)
+        = link_to "Reject", "#smallmodalReject", :class => "btn btn-danger", "data-toggle" => "modal"
+        #smallmodalReject.modal.fade{"data-backdrop" => "false", "aria-hidden" => "true", "aria-labelledby" => "smallmodalLabel", :role => "dialog", :tabindex => "-1", :style => "margin-top:50px;"}
+          .modal-dialog.modal-sm{:role => "document"}
+            .modal-content
+              .modal-header
+                %h5#smallmodalLabel.modal-title Reject Job Order?
+                %button.close{"aria-label" => "Close", "data-dismiss" => "modal", :type => "button"}
+                  %span{"aria-hidden" => "true"} ×
+              .modal-body
+                %p.text-center
+                  Are you sure you want to reject job order request?
+                %p.text-left
+                  Please provide reason for rejection.
+                %textarea#RejectionReason.form-control{:rows => "3", :oninput => "getReason()"}
+                / = form_tag reject_job_order_path(@job_order), method: :get, :class => "form-horizontal" do
+                /   = label_tag 'reason', 'Reason for rejection', :class => 'control-label'
+                /   = text_field_tag :reason, params[:reason], :class => "form-control"
+              .modal-footer
+                %button.btn.btn-secondary{"data-dismiss" => "modal", :type => "button"} Back
+                / %button.btn.btn-primary{:type => "submit"}
+                / %i.fa.fa-check
+                /   Reject
+                / = submit_tag "Reject", name: nil, class: "btn btn-success"
+                / = link_to(reject_job_order_path(@job_order, :reason => "asdasd"), method: :get, class: 'btn btn-danger') do
+                /   %i.fa.fa-thumbs-down
+                /     Reject
+                = link_to(reject_job_order_path(@job_order), method: :get, class: 'btn btn-danger', id: 'reject-job-link') do
+                  %i.fa.fa-thumbs-down
+                    Reject
+      - if @current_user.id == @job_order.user_id
+        -if (@job_order.progress == JobOrdersController::ADVISER_APPROVAL)
+          = link_to(edit_job_order_path(@job_order), method: :get, class: 'btn btn-primary') do
+            %i.fa
+              Edit
+        -if (@job_order.progress != JobOrdersController::CANCELLED)
+          = link_to "Cancel", "#smallmodalCancel", :class => "btn btn-danger", "data-toggle" => "modal"
+          #smallmodalCancel.modal.fade{"data-backdrop" => "false", "aria-hidden" => "true", "aria-labelledby" => "smallmodalLabel", :role => "dialog", :tabindex => "-1", :style => "margin-top:50px;"}
+            .modal-dialog.modal-sm{:role => "document"}
+              .modal-content
+                .modal-header
+                  %h5#smallmodalLabel.modal-title Cancel Job Order?
+                  %button.close{"aria-label" => "Close", "data-dismiss" => "modal", :type => "button"}
+                    %span{"aria-hidden" => "true"} ×
+                .modal-body
+                  %p.text-center
+                    Are you sure you want to cancel job order request?
+                .modal-footer
+                  %button.btn.btn-secondary{"data-dismiss" => "modal", :type => "button"} Back
+                  = link_to(cancel_job_order_path(@job_order), method: :get, class: 'btn btn-danger') do
+                    %i.fa.fa-times>
+                    Cancel
+
+%script{:src => "/assets/js/vendor/jquery-2.1.4.min.js"}
+%script{:src => "/assets/js/plugins.js"}
+%script{:src => "/assets/js/main.js"}
+
+:javascript
+  if (document.getElementById("reject-job-link") != null) {
+    var currentRejectJobPath = document.getElementById("reject-job-link").href;
+    function getReason() {
+      var rejectReason = document.getElementById("RejectionReason").value;
+      var jobPathWithReason = currentRejectJobPath + "?reason=" + rejectReason;
+      document.getElementById("reject-job-link").href=jobPathWithReason;
+    }
+  }

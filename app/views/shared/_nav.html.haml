@@ -55,6 +55,10 @@
             = link_to(job_orders_path(:type => 'finished'), method: :get) do
               %i.menu-icon.fa.fa-check-square
               Finished Job Orders
+          %li.active
+            = link_to(job_orders_path(:type => 'rejected'), method: :get) do
+              %i.menu-icon.fa.fa-minus-square
+              Rejected Job Orders
           -if @user.has_role? :Faculty or @user.has_role? :Standard_User or (Office.find(@user.office_id).name == "Supervising Administrative Office" and @user.has_role? :Office_Head)
             %li.active
               = link_to(job_orders_path(:type => 'trash'), method: :get) do
@@ -74,7 +78,7 @@
           .row
             -@current_user = User.find(session['user_credentials_id'])
             .dropdown{"data-behavior" => "notifications"}
-              %button#dropdownMenuButton.btn.btn-secondary.dropdown-toggle{"aria-expanded" => "false", "aria-haspopup" => "true", "data-behavior" => "notifications-link", "data-toggle" => "dropdown", :type => "button"}
+              %a.dropdown-toggle.nav-link{"aria-expanded" => "false", "aria-haspopup" => "true", "data-behavior" => "notifications-link", "data-toggle" => "dropdown", :type => "button"}
                 %i.fa.fa-bell
                 %span{"data-behavior" => "unread-count"}
               .dropdown-menu.dropdown-menu-right{"aria-labelledby" => "dropdownMenuButton", "data-behavior" => "notification-items"}
