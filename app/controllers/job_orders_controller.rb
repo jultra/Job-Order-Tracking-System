@@ -14,6 +14,8 @@ class JobOrdersController < ApplicationController
   CANCELLED = "Cancelled job order."
   REJECTED_SAO = "Rejected by SAO."
   REJECTED_ADVISER = "Rejected by adviser."
+  REJECTED_HEAD = "Rejected by office head."
+  REJECTED_STAFF = "Rejected by staff."
 
   $job_types = ["Aircon cleaning/repair/install", "Bulb tube replacement", "Carpentry/fabrication work/repair", "Computer hardware servicing",
     "Computer software servicing", "Cost estimate formulation/POW", "DLP/LCD Sevices", "Door knob installation/repair", "Electric fan cleaning/repair",
@@ -68,12 +70,8 @@ class JobOrdersController < ApplicationController
       end
     elsif @type == "trash"
       @title = "Trash"
-      if @current_user.has_role? :Faculty
-        @job_orders = JobOrder.where(:progress => REJECTED_ADVISER, :adviser_id => @current_user.id)
-      elsif @current_user.has_role? :Standard_User
-        @job_orders = JobOrder.where(:progress => [CANCELLED, REJECTED_SAO, REJECTED_ADVISER], :user_id => @current_user.id)
-      else
-        @job_orders = JobOrder.where(:progress => REJECTED_SAO, :user_id => @current_user.id)
+      if @current_user.has_role? :Standard_User
+        @job_orders = JobOrder.where(:progress => CANCELLED, :user_id => @current_user.id)
       end
     elsif @type == "unapproved"
       @title = "Unapproved Job Orders"
@@ -85,6 +83,17 @@ class JobOrdersController < ApplicationController
     elsif @type == "unassigned"
       @title = "Unassigned Job Orders"
       @job_orders = JobOrder.where(:progress => WORKER_ASSIGNMENT, :office_id => @current_user.office_id)
+    elsif @type == "rejected"
+      @title = "Rejected Job Orders"
+      if @current_user.has_role? :Standard_User
+        @job_orders = JobOrder.where(:progress => [REJECTED_ADVISER,REJECTED_SAO,REJECTED_HEAD,REJECTED_STAFF], :user_id => @current_user.id)
+      elsif @current_user.has_role? :Faculty 
+        @job_orders = JobOrder.where(:progress => REJECTED_SAO, :adviser_id => @current_user.id)
+      elsif @current_user.has_role? :Office_Head and Office.find(@current_user.office_id).name == "Supervising Administrative Office"
+        @job_orders = JobOrder.where(:progress => REJECTED_HEAD)
+      elsif @current_user.has_role? :Office_Head 
+        @job_orders = JobOrder.where(:progress => REJECTED_STAFF, :office_id => @current_user.office_id)
+      end
     end
   end
 
@@ -101,6 +110,7 @@ class JobOrdersController < ApplicationController
 
   def create
     current_time = DateTime.now
+    @current_user = User.find session['user_credentials_id']
 
     if Date.parse(params[:job_order][:date_needed].to_s).past?
       flash[:errors] = ["The date provided has already past!"]
@@ -119,6 +129,14 @@ class JobOrdersController < ApplicationController
       end
 
       @job_order.save!
+      Log.create(job_order: @job_order, actor: @current_user, action_at: DateTime.now, action: "create")
+      if @job_order.adviser_id != nil
+        Notification.create(recipient: User.find(@job_order.adviser_id), actor: current_user, action: "submitted", notifiable: @job_order)
+      else
+        # NOTIFICATION FOR FACULTY REQUEST I DONT KNOW WHAT TO PUT IN recipient:
+        Notification.create(recipient: @job_order.user, actor: current_user, action: "submitted", notifiable: @job_order)
+      end
+      
       redirect_to @job_order
     else
       if flash[:errors].any?
@@ -169,6 +187,7 @@ class JobOrdersController < ApplicationController
 
     @job_order = JobOrder.find params[:id]
     @current_user = User.find session['user_credentials_id']
+    current_time = DateTime.now
 
     @readonly = false
     @summary = true
@@ -197,7 +216,7 @@ class JobOrdersController < ApplicationController
     @current_user = User.find session['user_credentials_id']
     current_time = DateTime.now
 
-    if @job_order.progress == SAO_APPROVAL and @current_user.has_role? :Office_Head and Office.find(@current_user.office_id).name == "Supervising Administrative Office"
+    if @job_order.progress == SAO_APPROVAL or @job_order.progress == REJECTED_HEAD and @current_user.has_role? :Office_Head and Office.find(@current_user.office_id).name == "Supervising Administrative Office"
       @job_order.update(job_order_params)
       @job_order.progress = WORKER_ASSIGNMENT
       @job_order.date_approved = current_time.strftime "%Y-%m-%d"
@@ -205,23 +224,23 @@ class JobOrdersController < ApplicationController
       @job_order.inspection_date = @job_order.date_approved
 
       @job_order.save!
-
+      Log.create(job_order: @job_order, actor: @current_user, action_at: current_time, action: "assign", comment: Office.find(@job_order.office_id).name)
       redirect_to @job_order
-    elsif @job_order.progress == WORKER_ASSIGNMENT and @current_user.has_role? :Office_Head and @job_order.office_id == @current_user.office_id
+    elsif (@job_order.progress == WORKER_ASSIGNMENT or @job_order.progress == REJECTED_STAFF) and @current_user.has_role? :Office_Head and @job_order.office_id == @current_user.office_id
       @job_order.update(job_order_params)
       @job_order.progress = READY_JOB
       @job_order.assignment_date = current_time.strftime "%Y-%m-%d"
 
       @job_order.save!
-
+      Log.create(job_order: @job_order, actor: @current_user, action_at: current_time, action: "assign", comment: User.find(@job_order.assigned_to_id).username)
       redirect_to @job_order
     elsif @job_order.progress == ONGOING_JOB and @current_user.id == @job_order.assigned_to_id
       @job_order.update(job_order_params)
-
+      Log.create(job_order: @job_order, actor: @current_user, action_at: current_time, action: "edit")
       redirect_to @job_order
     elsif @job_order.user_id == @current_user.id or @job_order.adviser_id = @current_user.id
       @job_order.update(job_order_params)
-
+      Log.create(job_order: @job_order, actor: @current_user, action_at: current_time, action: "edit")
       redirect_to @job_order 
     end
   end
@@ -245,7 +264,8 @@ class JobOrdersController < ApplicationController
       @job_order.date_approved = current_time.strftime "%Y-%m-%d"
 
       @job_order.save!
-      Notification.create(recipient: @job_order.user, actor: current_user, action: "APPROVED", notifiable: @job_order)
+      Notification.create(recipient: @job_order.user, actor: current_user, action: "APPROVE", notifiable: @job_order)
+      Log.create(job_order: @job_order, actor: @current_user, action_at: current_time, action: "approve")
       redirect_to @job_order
 
     elsif @current_user.has_role? :Office_Head
@@ -254,17 +274,38 @@ class JobOrdersController < ApplicationController
   end
 
   def reject_job_order
+    current_time = DateTime.now
     @job_order = JobOrder.find params[:id]
     @current_user = User.find session['user_credentials_id']
 
     if @current_user.has_role? :Faculty
       @job_order.progress = REJECTED_ADVISER
-    elsif @current_user.has_role? :Office_Head
+    elsif @current_user.has_role? :Office_Head and Office.find(@current_user.office_id).name == "Supervising Administrative Office"
       @job_order.progress = REJECTED_SAO
+    elsif @current_user.has_role? :Office_Head
+      @job_order.progress = REJECTED_HEAD
+    elsif @current_user.has_role? :Staff
+      @job_order.progress = REJECTED_STAFF
     end
 
     @job_order.save!
-    Notification.create(recipient: @job_order.user, actor: current_user, action: "REJECTED", notifiable: @job_order)
+    if @current_user.has_role? :Faculty
+      Notification.create(recipient: @job_order.user, actor: current_user, action: "REJECT", notifiable: @job_order)
+    elsif @current_user.has_role? :Office_Head and Office.find(@current_user.office_id).name == "Supervising Administrative Office"
+      Notification.create(recipient: @job_order.user, actor: current_user, action: "REJECT", notifiable: @job_order)
+    elsif @current_user.has_role? :Office_Head
+      Notification.create(recipient: @job_order.user, actor: current_user, action: "REJECT", notifiable: @job_order)
+    elsif @current_user.has_role? :Staff
+      Notification.create(recipient: @job_order.user, actor: current_user, action: "REJECT", notifiable: @job_order)
+    end
+
+    if params[:reason]
+      print "----------------HAS REASON------------------"
+    else
+      print "----------------NO REASON------------------"
+    end
+    print params[:reason]
+    Log.create(job_order: @job_order, actor: @current_user, action_at: current_time, action: "reject", comment: params[:reason].to_s)
     redirect_to @job_order
   end
 
@@ -277,6 +318,7 @@ class JobOrdersController < ApplicationController
 
     @job_order.save!
     Notification.create(recipient: @job_order.user, actor: current_user, action: "STARTED", notifiable: @job_order)
+    Log.create(job_order: @job_order, actor: @current_user, action_at: current_time, action: "start")
     redirect_to @job_order
   end
 
@@ -289,14 +331,39 @@ class JobOrdersController < ApplicationController
 
     @job_order.save!
     Notification.create(recipient: @job_order.user, actor: current_user, action: "DONE", notifiable: @job_order)
+    Log.create(job_order: @job_order, actor: @current_user, action_at: current_time, action: "done")
     redirect_to @job_order
   end
 
+  def resubmit_job_order
+    @job_order = JobOrder.find params[:id]
+    @current_user = User.find session['user_credentials_id']
+    current_time = DateTime.now
+    if @job_order.progress == REJECTED_ADVISER and @current_user.has_role? :Standard_User
+      @job_order.progress = ADVISER_APPROVAL
+      @job_order.save!
+      Notification.create(recipient: User.find(@job_order.adviser_id), actor: current_user, action: "RESUBMIT", notifiable: @job_order)
+      Log.create(job_order: @job_order, actor: @current_user, action_at: current_time, action: "resubmit")
+      redirect_to @job_order
+    elsif @job_order.progress == REJECTED_SAO and @current_user.has_role? :Faculty
+      @job_order.progress = SAO_APPROVAL
+      @job_order.save!
+      Notification.create(recipient: @job_order.user, actor: current_user, action: "DONE", notifiable: @job_order)
+      Log.create(job_order: @job_order, actor: @current_user, action_at: current_time, action: "resubmit")
+      redirect_to @job_order
+    elsif @job_order.progress == REJECTED_HEAD and @current_user.has_role? :Office_Head
+      Notification.create(recipient: @job_order.user, actor: current_user, action: "DONE", notifiable: @job_order)
+      Log.create(job_order: @job_order, actor: @current_user, action_at: current_time, action: "resubmit")
+      redirect_to edit_job_order_path(@job_order)
+    end
+  end
+
   def cancel_job_order
+    current_time = DateTime.now
     @job_order = JobOrder.find params[:id]
     @job_order.progress = CANCELLED;
     @job_order.save!
-    Notification.create(recipient: @job_order.user, actor: current_user, action: "CANCELLED", notifiable: @job_order)
+    Log.create(job_order: @job_order, actor: @current_user, action_at: current_time, action: "cancel")
     redirect_to @job_order
   end
 

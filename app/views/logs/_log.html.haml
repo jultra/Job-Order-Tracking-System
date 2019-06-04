@@ -1,0 +1,7 @@
+.content.mt-3
+  .animated.fadeIn
+    .list-group
+	  - @job_order.logs.each do |log|
+		  = log.action
+		  %br/
+

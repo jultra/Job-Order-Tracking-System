@@ -1,0 +1,32 @@
+.content.mt-3
+  .animated.fadeIn
+    .list-group
+  - @job_order.logs.each do |log|
+    - if log.action == "create"
+      / %a.list-group-item.list-group-item-primary 
+      #{log.action_at} --- #{User.find(log.actor_id).username} created this request.
+    - if log.action == "approve"
+      / %a.list-group-item.list-group-item-success 
+      #{log.action_at} --- #{User.find(log.actor_id).username} approved this request.
+    - if log.action == "reject"
+      / %a.list-group-item.list-group-item-danger 
+      #{log.action_at} --- #{User.find(log.actor_id).username} rejected this request because #{log.comment}.
+    - if log.action == "start"
+      / %a.list-group-item.list-group-item-primary 
+      #{log.action_at} --- #{User.find(log.actor_id).username} started this request.
+    - if log.action == "done"
+      / %a.list-group-item.list-group-item-primary 
+      #{log.action_at} --- #{User.find(log.actor_id).username} finished this request.
+    - if log.action == "cancel"
+      / %a.list-group-item.list-group-item-primary 
+      #{log.action_at} --- #{User.find(log.actor_id).username} cancelled this request.
+    - if log.action == "resubmit"
+      / %a.list-group-item.list-group-item-primary 
+      #{log.action_at} --- #{User.find(log.actor_id).username} resubmitted this request.
+    - if log.action == "edit"
+      / %a.list-group-item.list-group-item-primary 
+      #{log.action_at} --- #{User.find(log.actor_id).username} edited this request.
+    - if log.action == "assign"
+      / %a.list-group-item.list-group-item-primary 
+      #{log.action_at} --- #{User.find(log.actor_id).username} assigned this request to #{log.comment}.
+    %br/
