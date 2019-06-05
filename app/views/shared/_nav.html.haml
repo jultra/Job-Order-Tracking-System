@@ -4,8 +4,11 @@
     .navbar-header
       %button.navbar-toggler{"aria-controls" => "main-menu", "aria-expanded" => "false", "aria-label" => "Toggle navigation", "data-target" => "#main-menu", "data-toggle" => "collapse", :type => "button"}
         %i.fa.fa-bars
-      %a.navbar-brand{:href => job_orders_path}
-        %img{:alt => "Logo", :src => "/images/worker.png"}
+      / %a.navbar-brand{:href => job_orders_path}
+      /   %img{:alt => "Logo", :src => "/images/worker.png"}
+      /   %p{:style=>"text-align: center;"}=User.find(session['user_credentials_id']).position
+      = link_to(job_order_tracking_system_path, method: :get, :class=>"navbar-brand") do
+        %img{:alt => "Logo", :src => "/images/worker.png", :width => "180px", :height => "180px"}
         %p{:style=>"text-align: center;"}=User.find(session['user_credentials_id']).position
     #main-menu.main-menu.collapse.navbar-collapse
       %ul.nav.navbar-nav
@@ -16,15 +19,15 @@
         -@user = User.find(session['user_credentials_id'])
         -if @user.has_role? :Administrator
           %li.active
-            %a{:href => offices_path}
+            = link_to(offices_path, method: :get) do
               %i.menu-icon.fa.fa-hospital-o
               Offices
           %li.active
-            %a{:href => users_path(:type => 'active')}
+            = link_to(users_path(:type => 'active'), method: :get) do
               %i.menu-icon.fa.fa-check
               Active Accounts
           %li.active
-            %a{:href => users_path(:type => 'inactive')}
+            = link_to(users_path(:type => 'inactive'), method: :get) do
               %i.menu-icon.fa.fa-ban
               Inactive Accounts
         -else
@@ -35,7 +38,7 @@
                 Unapproved Job Orders
           -elsif @user.has_role? :Standard_User
             %li.active
-              %a{:href => new_job_order_path}
+              = link_to(new_job_order_path, method: :get) do
                 %i.menu-icon.fa.fa-edit
                 Request Job Order
           -elsif @user.has_role? :Office_Head
@@ -66,25 +69,24 @@
                 Trash
 
 #right-panel.right-panel{:style => "position: fixed; width: 80%; z-index: 3; left: 280px;"}
-  / Header
   %header#header.header
     .header-menu
       .col-sm-7
         .header-left
         %h5.pb-2.display-5 Job Order Tracking System
-
       .col-sm-5
         .user-area.float-right
           .row
             -@current_user = User.find(session['user_credentials_id'])
             .dropdown{"data-behavior" => "notifications"}
-              %a.dropdown-toggle.nav-link{"aria-expanded" => "false", "aria-haspopup" => "true", "data-behavior" => "notifications-link", "data-toggle" => "dropdown", :type => "button"}
+              = link_to nil, class: 'dropdown-toggle nav-link', type: :button, aria:{ expanded: false, haspopup: true}, data: { behavior: "notifications-link",  toggle: :dropdown} do
                 %i.fa.fa-bell
                 %span{"data-behavior" => "unread-count"}
               .dropdown-menu.dropdown-menu-right{"aria-labelledby" => "dropdownMenuButton", "data-behavior" => "notification-items"}
-            %a.nav-link{:href => user_path(@current_user)}
-              %i.fa.fa-user
-              = @current_user.fname
-            %a.nav-link{:href => root_path}
-              %i.fa.fa-sign-out
-              Logout
+            .float-right{:style => "padding-top: 7px; padding-bottom: 15px; padding-right: 15px;"}
+              = link_to(user_path(@current_user), method: :get) do
+                %i.fa.fa-user
+                = @current_user.fname
+              = link_to(root_path, method: :get) do
+                %i.fa.fa-sign-out
+                Logout

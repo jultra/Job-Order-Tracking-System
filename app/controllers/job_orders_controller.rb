@@ -131,10 +131,10 @@ class JobOrdersController < ApplicationController
       @job_order.save!
       Log.create(job_order: @job_order, actor: @current_user, action_at: DateTime.now, action: "create")
       if @job_order.adviser_id != nil
-        Notification.create(recipient: User.find(@job_order.adviser_id), actor: current_user, action: "submitted", notifiable: @job_order)
+        Notification.create(recipient: User.find(@job_order.adviser_id), actor: current_user, action: "SUBMIT", notifiable: @job_order)
       else
         # NOTIFICATION FOR FACULTY REQUEST I DONT KNOW WHAT TO PUT IN recipient:
-        Notification.create(recipient: @job_order.user, actor: current_user, action: "submitted", notifiable: @job_order)
+        Notification.create(recipient: @job_order.user, actor: current_user, action: "SUBMIT", notifiable: @job_order)
       end
       
       redirect_to @job_order
@@ -299,12 +299,6 @@ class JobOrdersController < ApplicationController
       Notification.create(recipient: @job_order.user, actor: current_user, action: "REJECT", notifiable: @job_order)
     end
 
-    if params[:reason]
-      print "----------------HAS REASON------------------"
-    else
-      print "----------------NO REASON------------------"
-    end
-    print params[:reason]
     Log.create(job_order: @job_order, actor: @current_user, action_at: current_time, action: "reject", comment: params[:reason].to_s)
     redirect_to @job_order
   end
@@ -317,7 +311,7 @@ class JobOrdersController < ApplicationController
     @job_order.date_started = current_time.strftime "%Y-%m-%d"
 
     @job_order.save!
-    Notification.create(recipient: @job_order.user, actor: current_user, action: "STARTED", notifiable: @job_order)
+    Notification.create(recipient: @job_order.user, actor: current_user, action: "START", notifiable: @job_order)
     Log.create(job_order: @job_order, actor: @current_user, action_at: current_time, action: "start")
     redirect_to @job_order
   end
@@ -348,14 +342,25 @@ class JobOrdersController < ApplicationController
     elsif @job_order.progress == REJECTED_SAO and @current_user.has_role? :Faculty
       @job_order.progress = SAO_APPROVAL
       @job_order.save!
-      Notification.create(recipient: @job_order.user, actor: current_user, action: "DONE", notifiable: @job_order)
+      Notification.create(recipient: @job_order.user, actor: current_user, action: "RESUBMIT", notifiable: @job_order)
       Log.create(job_order: @job_order, actor: @current_user, action_at: current_time, action: "resubmit")
       redirect_to @job_order
     elsif @job_order.progress == REJECTED_HEAD and @current_user.has_role? :Office_Head
-      Notification.create(recipient: @job_order.user, actor: current_user, action: "DONE", notifiable: @job_order)
+      Notification.create(recipient: @job_order.user, actor: current_user, action: "RESUBMIT", notifiable: @job_order)
       Log.create(job_order: @job_order, actor: @current_user, action_at: current_time, action: "resubmit")
       redirect_to edit_job_order_path(@job_order)
     end
+  end
+
+  def comment_job_order
+    @job_order = JobOrder.find params[:id]
+    @current_user = User.find session['user_credentials_id']
+    current_time = DateTime.now
+    if params[:comment]
+      Log.create(job_order: @job_order, actor: @current_user, action_at: current_time, action: "comment", comment: params[:comment])
+    end
+    Notification.create(recipient: @job_order.user, actor: current_user, action: "COMMENT", notifiable: @job_order)
+    redirect_to @job_order
   end
 
   def cancel_job_order
