@@ -3,6 +3,7 @@ class NotificationsController < ActionController::Base
   
   def index 
   	@current_user = User.find session['user_credentials_id']
+    print "Current user: " + @current_user.username 
     @notifications = Notification.where(recipient: @current_user).unread
   end
 

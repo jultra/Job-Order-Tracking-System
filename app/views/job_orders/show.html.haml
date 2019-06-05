@@ -75,6 +75,22 @@
         = link_to(edit_job_order_path(@job_order), method: :get, class: 'btn btn-primary') do
           %i.fa
             Assign
+      = link_to "Comment", "#smallmodalComment", :class => "btn btn-secondary", "data-toggle" => "modal"
+      #smallmodalComment.modal.fade{"data-backdrop" => "false", "aria-hidden" => "true", "aria-labelledby" => "smallmodalLabel", :role => "dialog", :tabindex => "-1", :style => "margin-top:50px;"}
+        .modal-dialog.modal-sm{:role => "document"}
+          .modal-content
+            .modal-header
+              %h5#smallmodalLabel.modal-title Comment on Job Order?
+              %button.close{"aria-label" => "Close", "data-dismiss" => "modal", :type => "button"}
+                %span{"aria-hidden" => "true"} ×
+            .modal-body
+              %p.text-left
+                Enter comment.
+              %textarea#Comment.form-control{:rows => "3", :oninput => "getComment()"}
+            .modal-footer
+              %button.btn.btn-secondary{"data-dismiss" => "modal", :type => "button"} Back
+              = link_to(comment_job_order_path(@job_order), method: :get, class: 'btn btn-secondary', id: 'comment-job-link') do
+                Comment
       -if (@current_user.has_role? :Faculty and (@job_order.progress == JobOrdersController::REJECTED_SAO or @job_order.progress == JobOrdersController::ADVISER_APPROVAL)) or (@current_user.has_role? :Office_Head and Office.find(@current_user.office_id).name == "Supervising Administrative Office" and (@job_order.progress == JobOrdersController::SAO_APPROVAL or @job_order.progress == JobOrdersController::REJECTED_HEAD)) or ((@job_order.progress == JobOrdersController::WORKER_ASSIGNMENT or @job_order.progress == JobOrdersController::REJECTED_STAFF) and (@current_user.has_role? :Office_Head and Office.find(@current_user.office_id).name != "Supervising Administrative Office")) or (@current_user.has_role? :Staff and @job_order.progress == JobOrdersController::ONGOING_JOB and @job_order.assigned_to_id == @current_user.id) or (@current_user.has_role? :Staff and @job_order.progress == JobOrdersController::READY_JOB and @job_order.assigned_to_id == @current_user.id)
         = link_to "Reject", "#smallmodalReject", :class => "btn btn-danger", "data-toggle" => "modal"
         #smallmodalReject.modal.fade{"data-backdrop" => "false", "aria-hidden" => "true", "aria-labelledby" => "smallmodalLabel", :role => "dialog", :tabindex => "-1", :style => "margin-top:50px;"}
@@ -90,18 +106,8 @@
                 %p.text-left
                   Please provide reason for rejection.
                 %textarea#RejectionReason.form-control{:rows => "3", :oninput => "getReason()"}
-                / = form_tag reject_job_order_path(@job_order), method: :get, :class => "form-horizontal" do
-                /   = label_tag 'reason', 'Reason for rejection', :class => 'control-label'
-                /   = text_field_tag :reason, params[:reason], :class => "form-control"
               .modal-footer
                 %button.btn.btn-secondary{"data-dismiss" => "modal", :type => "button"} Back
-                / %button.btn.btn-primary{:type => "submit"}
-                / %i.fa.fa-check
-                /   Reject
-                / = submit_tag "Reject", name: nil, class: "btn btn-success"
-                / = link_to(reject_job_order_path(@job_order, :reason => "asdasd"), method: :get, class: 'btn btn-danger') do
-                /   %i.fa.fa-thumbs-down
-                /     Reject
                 = link_to(reject_job_order_path(@job_order), method: :get, class: 'btn btn-danger', id: 'reject-job-link') do
                   %i.fa.fa-thumbs-down
                     Reject
@@ -110,7 +116,7 @@
           = link_to(edit_job_order_path(@job_order), method: :get, class: 'btn btn-primary') do
             %i.fa
               Edit
-        -if (@job_order.progress != JobOrdersController::CANCELLED)
+        -if (@job_order.progress != JobOrdersController::CANCELLED and @job_order.progress != JobOrdersController::FINISHED_JOB)
           = link_to "Cancel", "#smallmodalCancel", :class => "btn btn-danger", "data-toggle" => "modal"
           #smallmodalCancel.modal.fade{"data-backdrop" => "false", "aria-hidden" => "true", "aria-labelledby" => "smallmodalLabel", :role => "dialog", :tabindex => "-1", :style => "margin-top:50px;"}
             .modal-dialog.modal-sm{:role => "document"}
@@ -128,10 +134,6 @@
                     %i.fa.fa-times>
                     Cancel
 
-%script{:src => "/assets/js/vendor/jquery-2.1.4.min.js"}
-%script{:src => "/assets/js/plugins.js"}
-%script{:src => "/assets/js/main.js"}
-
 :javascript
   if (document.getElementById("reject-job-link") != null) {
     var currentRejectJobPath = document.getElementById("reject-job-link").href;
@@ -139,5 +141,14 @@
       var rejectReason = document.getElementById("RejectionReason").value;
       var jobPathWithReason = currentRejectJobPath + "?reason=" + rejectReason;
       document.getElementById("reject-job-link").href=jobPathWithReason;
+    }
+  }
+
+  if (document.getElementById("comment-job-link") != null) {
+    var currentCommentJobPath = document.getElementById("comment-job-link").href;
+    function getComment() {
+      var comment = document.getElementById("Comment").value;
+      var jobPathWithComment = currentCommentJobPath + "?comment=" + comment;
+      document.getElementById("comment-job-link").href=jobPathWithComment;
     }
   }

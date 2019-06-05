@@ -29,4 +29,7 @@
     - if log.action == "assign"
       / %a.list-group-item.list-group-item-primary 
       #{log.action_at} --- #{User.find(log.actor_id).username} assigned this request to #{log.comment}.
+    - if log.action == "comment"
+      / %a.list-group-item.list-group-item-primary 
+      #{log.action_at} --- #{User.find(log.actor_id).username} commented "#{log.comment}".
     %br/

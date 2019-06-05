@@ -17,6 +17,8 @@ Rails.application.routes.draw do
   get '/job_orders/done_job_order/:id' => 'job_orders#done_job_order', as: 'done_job_order'
   get '/job_orders/cancel_job_order/:id' => 'job_orders#cancel_job_order', as: 'cancel_job_order'
   get '/job_orders/resubmit_job_order/:id' => 'job_orders#resubmit_job_order', as: 'resubmit_job_order'
+  get '/job_orders/comment_job_order/:id' => 'job_orders#comment_job_order', as: 'comment_job_order'
+
 
   resources :job_orders
   resources :users
