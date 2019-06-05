@@ -17,11 +17,11 @@ class JobOrdersController < ApplicationController
   REJECTED_HEAD = "Rejected by office head."
   REJECTED_STAFF = "Rejected by staff."
 
-  $job_types = ["Aircon cleaning/repair/install", "Bulb tube replacement", "Carpentry/fabrication work/repair", "Computer hardware servicing",
-    "Computer software servicing", "Cost estimate formulation/POW", "DLP/LCD Sevices", "Door knob installation/repair", "Electric fan cleaning/repair",
-    "Electrical installation/repair", "Internet & network problems", "Inventory taking & recording", "Painting/repainting/varnish workds",
-    "Photography/video coverage", "Plumbing/sanitary install/repair", "Printer/peripheral related problems", "Request for personnel assistance",
-    "Sounds & lights services", "Streamer/signage making", "Streamer installation", "Transfer/transport items", "Others"]
+  $job_types = ["Aircon cleaning / repair / install", "Bulb tube replacement", "Carpentry / fabrication work / repair", "Computer hardware servicing",
+    "Computer software servicing", "Cost estimate formulation / POW", "DLP / LCD Sevices", "Door knob installation / repair", "Electric fan cleaning / repair",
+    "Electrical installation / repair", "Internet & network problems", "Inventory taking & recording", "Painting / repainting / varnish works",
+    "Photography / video coverage", "Plumbing / sanitary install / repair", "Printer / peripheral related problems", "Request for personnel assistance",
+    "Sounds & lights services", "Streamer / signage making", "Streamer installation", "Transfer / transport items", "Others"]
   $codes = [["E (within 2 hours)", "E"], ["U (within 24 hours)", "U"], ["P (within 5 working days)", "P"], ["R (within 10 working days)", "R"]]
 
   def job_order_params
