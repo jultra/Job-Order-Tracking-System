@@ -1,0 +1,228 @@
+.div
+  .content.mt-1
+    .animated.fadeIn
+      .col-md-12
+        .card
+          .card-header
+            %strong.card-title.mb-3
+              %tr
+                SUMMARY
+          .card-body
+            .center
+              .col-md-4
+                .row
+                  .col-md-6
+                    %address.mt-3
+                      %strong Control Number
+                      %br/
+                      - if @job_order.control_no == nil
+                        %td= "XXXX-XXXXX"
+                      - else
+                        %td= @job_order.control_no
+                      %br/
+                      %br/
+                      %b Date Filed
+                      %br/
+                      %td= @job_order.date_filed
+                      %br/
+                      %b Date Approved
+                      %br/
+                      %td= @job_order.date_approved
+                      %br/
+              .col-md-4
+                .row
+                  %address.mt-3
+                    %b Requested by
+                    %br/
+                    - if @job_order.user_id == nil
+                      %td
+                    - else
+                      %td= User.find(@job_order.user_id).fname + " " +  User.find(@job_order.user_id).lname
+                    %br/
+                    %br/
+                    %b Date Inspected
+                    %br/
+                    %td= @job_order.inspection_date
+                    %br/
+                    %b Date Assigned
+                    %br/
+                    %td= @job_order.assignment_date
+                    %br/
+              .col-md-4
+                .row
+                  %address.mt-3
+                    %b Status
+                    %br/
+                    %td= @job_order.progress
+                    %br/
+                    %br/
+                    %b Date Started
+                    %br/
+                    %td= @job_order.date_started
+                    %br/
+                    %b Date Completed
+                    %br/
+                    %td= @job_order.date_completed
+                    %br/
+  .content.mt-1
+    .animated.fadeIn
+      .col-md-12
+        .card
+          .card-header
+            %strong.card-title.mb-3
+              %tr
+                JOB ORDER INFORMATION
+          .card-body
+            .center
+              .col-md-4
+                .row
+                  .col-md-6
+                    %address.mt-3
+                      %strong Job Type
+                      %br/
+                      %td= @job_order.job_type
+                      %br/
+                      %b Where
+                      %br/
+                      %td= @job_order.where
+                      %br/
+                      %b Adviser
+                      %br/
+                      - if @job_order.adviser_id == nil
+                        %td
+                      - else
+                        %td= User.find(@job_order.adviser_id).fname + " " +  User.find(@job_order.adviser_id).lname
+                      %br/
+              .col-md-4
+                .row
+                  %address.mt-3
+                    %b Date Needed
+                    %br/
+                    %td= @job_order.date_needed
+                    %br/
+                    %b Time Needed
+                    %br/
+                    %td= @job_order.time_needed
+                    %br/
+                    %b Acknowledgement
+                    %br/
+                    %td= @job_order.acknowledgment
+                    %br/
+              .col-md-4
+                .row
+                  %address.mt-3  
+                    %b Budget
+                    %br/
+                    %td= @job_order.money_budget
+                    %br/  
+                    %b Fund Source
+                    %br/
+                    %td= @job_order.fund_source
+                    %br/
+                    %b Description
+                    %br/
+                    %td= @job_order.information
+                    %br/
+  .content.mt-1
+    .animated.fadeIn
+      .col-md-12
+        .card
+          .card-header
+            %strong.card-title.mb-3
+              %tr
+                INSPECTION INFORMATION
+          .card-body
+            .center
+              .col-md-12
+                .row
+                  .col-md-3
+                    %address.mt-3
+                      %b Inpected By
+                      %br/
+                      - if @job_order.inspected_by_id == nil
+                        %td
+                      - else
+                        %td= User.find(@job_order.inspected_by_id).fname + " " +  User.find(@job_order.inspected_by_id).lname
+                      %br/
+                  .col-md-3
+                    %address.mt-3
+                      %b Available Materials
+                      %br/
+                      %td= @job_order.available_materials
+                      %br/
+                  .col-md-3
+                    %address.mt-3
+                      %b Code
+                      %br/
+                      %td= @job_order.code
+                      %br/
+                  .col-md-3
+                    %address.mt-3
+                      %b Remarks
+                      %br/
+                      %td= @job_order.inspection_remarks
+                      %br/
+  .content.mt-1
+    .animated.fadeIn
+      .col-md-12
+        .row
+          .col-md-6
+            .card
+              .card-header
+                %strong.card-title.mb-3
+                  %tr
+                    OFFICE ASSIGNED TO
+              .card-body
+                .center
+                  .col-md-12
+                    .row
+                      .col-md-6
+                        %address.mt-3
+                          %b Office
+                          %br/
+                          - if @job_order.office_id == nil
+                            %td
+                          - else
+                            %td= Office.find(@job_order.office_id).name
+                          %br/
+                          
+                      .col-md-6
+                        %address.mt-3
+                          %b Expected Delivery Date
+                          %br/
+                          %td= @job_order.delivery_date
+                          %br/
+          .col-md-6
+            .card
+              .card-header
+                %strong.card-title.mb-3
+                  %tr
+                    TASK ASSIGNED TO
+              .card-body          
+                .center
+                  .col-md-12
+                    .row
+                      .col-md-6
+                        %address.mt-3
+                          %b Assigned Worker
+                          %br/
+                          - if @job_order.assigned_to_id == nil
+                            %td
+                          - else
+                            %td= User.find(@job_order.assigned_to_id).fname + " " +  User.find(@job_order.assigned_to_id).lname
+                          %br/
+                      .col-md-6
+                        %address.mt-3
+                          %b Remarks
+                          %br/
+                          %td= @job_order.assignment_remarks
+                          %br/
+
+%script{:src => "/assets/js/vendor/jquery-2.1.4.min.js"}
+  %script{:src => "/assets/js/popper.min.js"}
+  %script{:src => "/assets/js/plugins.js"}
+  %script{:src => "/assets/js/main.js"}
+  / Chart js
+  %script{:src => "/assets/js/lib/chart-js/Chart.bundle.js"}
+  %script{:src => "/assets/js/lib/chart-js/chartjs-init.js"}
+  %script{:src => "https://canvasjs.com/assets/script/canvasjs.min.js"}

@@ -1,6 +1,7 @@
 .div{:style => "position: relative; top: 75px; z-index:1; left: 275px; width: 80%;"}
   = form_for @job_order do |job_order|
-    = render(:partial => "request_form", :locals => {:job => job_order})
+    / = render(:partial => "request_form", :locals => {:job => job_order})
+    = render(:partial => "simplified_show", :locals => {:job => job_order})
     = render(:partial => "log", :locals => {:job => job_order})
     .float-right{:style => "padding-bottom: 25px; padding-right: 15px;"}
       -if (@current_user.has_role? :Faculty and @job_order.progress == JobOrdersController::ADVISER_APPROVAL) or (@current_user.has_role? :Office_Head and Office.find(@current_user.office_id).name == "Supervising Administrative Office" and @job_order.progress == JobOrdersController::SAO_APPROVAL)
