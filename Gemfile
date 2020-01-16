@@ -1,4 +1,5 @@
 source 'https://rubygems.org'
+ruby '2.4.9'
 
 git_source(:github) do |repo_name|
   repo_name = "#{repo_name}/#{repo_name}" unless repo_name.include?("/")
@@ -19,8 +20,12 @@ gem 'yaml_db'
 
 gem 'rolify'
 gem 'mysql2', '>= 0.4.4', '< 0.6.0'
-# Use Puma as the app server
-gem 'puma', '~> 3.7'
+
+group :development do
+  # Use Puma as the app server
+  gem 'puma', '~> 3.7'
+end
+
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 5.0'
 # Use Uglifier as compressor for JavaScript assets
@@ -67,3 +72,8 @@ end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
+
+gem 'capistrano', '~> 3.7', '>= 3.7.1'
+gem 'capistrano-rails', '~> 1.2'
+gem 'capistrano-passenger', '~> 0.2.0'
+gem 'capistrano-rbenv', '~> 2.1'
